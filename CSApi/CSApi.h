@@ -8,8 +8,18 @@
 
 #import <Foundation/Foundation.h>
 
+@protocol CSAuthenticator <NSObject>
+- (void)applyBasicAuthWithUsername:(NSString *)username
+                          password:(NSString *)password;
+@end
+
+@protocol CSCredentials <NSObject>
+- (void)applyWith:(id<CSAuthenticator>)authenticator;
+@end
+
 @protocol CSRequester <NSObject>
 - (void)getURL:(NSURL *)url
+   credentials:(id<CSCredentials>)credentials
       callback:(void (^)(id result, NSError *error))callback;
 @end
 

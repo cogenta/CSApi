@@ -8,8 +8,7 @@
 
 #import "TestRequester.h"
 
-
-@interface TestRequester ()
+@interface TestRequester () <CSAuthenticator>
 
 @property (strong) NSMutableDictionary *responses;
 
@@ -18,6 +17,8 @@
 @implementation TestRequester
 
 @synthesize responses;
+@synthesize lastUsername;
+@synthesize lastPassword;
 
 - (id)init
 {
@@ -42,8 +43,12 @@
     } forKey:url];    
 }
 
-- (void)getURL:(NSURL *)url callback:(void (^)(id, NSError *))callback
+- (void)getURL:(NSURL *)url
+   credentials:(id<CSCredentials>)credentials
+      callback:(void (^)(id, NSError *))callback
 {
+    [credentials applyWith:self];
+    
     void (^response)(void (^)(id, NSError *)) = [responses objectForKey:url];
     
     if ( ! response) {
@@ -57,6 +62,12 @@
     }
     
     response(callback);
+}
+
+- (void)applyBasicAuthWithUsername:(NSString *)username password:(NSString *)password
+{
+    lastUsername = username;
+    lastPassword = password;
 }
 
 @end

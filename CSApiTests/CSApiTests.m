@@ -139,4 +139,18 @@ static NSString *kPassword = @"2af58818-c7c0-4503-b7e6-b95d661474f4";
     STAssertEqualObjects(errorResponse, expectedError, nil);
 }
 
+- (void)testUsesCredentials
+{
+    [self callAndWait:^(void (^done)()) {
+        [api getApplication:[NSURL URLWithString:kBookmark]
+                   callback:^(id<CSApplication> anApp, NSError *anError)
+         {
+             done();
+         }];
+    }];
+    
+    STAssertEqualObjects(requester.lastUsername, kUsername, nil);
+    STAssertEqualObjects(requester.lastPassword, kPassword, nil);
+}
+
 @end

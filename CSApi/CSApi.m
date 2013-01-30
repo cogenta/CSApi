@@ -8,6 +8,42 @@
 
 #import "CSApi.h"
 
+@interface BasicCredentials : NSObject <CSCredentials>
+
+@property (nonatomic, weak) CSApi *api;
+- (id)initWithApi:(CSApi *)api;
+
++ (instancetype) credentialsWithApi:(CSApi *)api;
+
+@end
+
+@implementation BasicCredentials
+
+@synthesize api;
+
+- (id)initWithApi:(CSApi *)anApi
+{
+    self = [super init];
+    if (self) {
+        api = anApi;
+    }
+    return self;
+}
+
++ (instancetype)credentialsWithApi:(CSApi *)api
+{
+    return [[BasicCredentials alloc] initWithApi:api];
+}
+
+- (void)applyWith:(id<CSAuthenticator>)authenticator
+{
+    [authenticator applyBasicAuthWithUsername:api.username
+                                     password:api.password];
+}
+
+@end
+
+
 @interface CSApi ()
 
 - (id<CSRequester>) requester;
@@ -37,7 +73,9 @@
               callback:(void (^)(id<CSApplication> app, NSError *error))callback
 {
     id<CSRequester> requester = [self requester];
-    [requester getURL:appUrl callback:callback];
+    [requester getURL:appUrl
+          credentials:[BasicCredentials credentialsWithApi:self]
+             callback:callback];
 }
 
 - (id)requester

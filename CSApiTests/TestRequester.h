@@ -11,6 +11,9 @@
 
 @interface TestRequester : NSObject <CSRequester>
 
+@property (nonatomic, readonly) NSString *lastUsername;
+@property (nonatomic, readonly) NSString *lastPassword;
+
 - (void)addGetResponse:(id)response forURL:(NSURL *)url;
 - (void)addGetError:(id)error forURL:(NSURL *)url;
 
