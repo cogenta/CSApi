@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9807DF74FCE84807AA7A905A /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D0A9D9C4BB3D41BCA4100D6F /* libPods.a */; };
+		BE01AA7116B7FEE500982D27 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE01AA7016B7FEE500982D27 /* SystemConfiguration.framework */; };
+		BE01AA7316B7FF0800982D27 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE01AA7216B7FF0800982D27 /* MobileCoreServices.framework */; };
+		BE01AA7416B7FF3000982D27 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE01AA7216B7FF0800982D27 /* MobileCoreServices.framework */; };
+		BE01AA7516B7FF3500982D27 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE01AA7016B7FEE500982D27 /* SystemConfiguration.framework */; };
 		BE06A4C016B6E54900F345F8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE06A4BF16B6E54900F345F8 /* Foundation.framework */; };
 		BE06A4C516B6E54900F345F8 /* CSApi.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = BE06A4C416B6E54900F345F8 /* CSApi.h */; };
 		BE06A4C716B6E54900F345F8 /* CSApi.m in Sources */ = {isa = PBXBuildFile; fileRef = BE06A4C616B6E54900F345F8 /* CSApi.m */; };
@@ -16,6 +21,7 @@
 		BE06A4D516B6E54A00F345F8 /* libCSApi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BE06A4BC16B6E54900F345F8 /* libCSApi.a */; };
 		BE06A4DB16B6E54A00F345F8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = BE06A4D916B6E54A00F345F8 /* InfoPlist.strings */; };
 		BE06A4DE16B6E54A00F345F8 /* CSApiTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BE06A4DD16B6E54A00F345F8 /* CSApiTests.m */; };
+		BEA65A0D16B92F3100F10CB0 /* TestRequester.m in Sources */ = {isa = PBXBuildFile; fileRef = BEA65A0C16B92F3100F10CB0 /* TestRequester.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +48,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		BE01AA7016B7FEE500982D27 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		BE01AA7216B7FF0800982D27 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		BE06A4BC16B6E54900F345F8 /* libCSApi.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libCSApi.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE06A4BF16B6E54900F345F8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		BE06A4C316B6E54900F345F8 /* CSApi-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CSApi-Prefix.pch"; sourceTree = "<group>"; };
@@ -52,8 +60,11 @@
 		BE06A4D016B6E54A00F345F8 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		BE06A4D816B6E54A00F345F8 /* CSApiTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CSApiTests-Info.plist"; sourceTree = "<group>"; };
 		BE06A4DA16B6E54A00F345F8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		BE06A4DC16B6E54A00F345F8 /* CSApiTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSApiTests.h; sourceTree = "<group>"; };
 		BE06A4DD16B6E54A00F345F8 /* CSApiTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSApiTests.m; sourceTree = "<group>"; };
+		BEA65A0B16B92F3100F10CB0 /* TestRequester.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestRequester.h; sourceTree = "<group>"; };
+		BEA65A0C16B92F3100F10CB0 /* TestRequester.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestRequester.m; sourceTree = "<group>"; };
+		D0A9D9C4BB3D41BCA4100D6F /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		E11FCF6D842F44979932768C /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,7 +72,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BE01AA7316B7FF0800982D27 /* MobileCoreServices.framework in Frameworks */,
+				BE01AA7116B7FEE500982D27 /* SystemConfiguration.framework in Frameworks */,
 				BE06A4C016B6E54900F345F8 /* Foundation.framework in Frameworks */,
+				9807DF74FCE84807AA7A905A /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -69,6 +83,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BE01AA7516B7FF3500982D27 /* SystemConfiguration.framework in Frameworks */,
+				BE01AA7416B7FF3000982D27 /* MobileCoreServices.framework in Frameworks */,
 				BE06A4CF16B6E54A00F345F8 /* SenTestingKit.framework in Frameworks */,
 				BE06A4D116B6E54A00F345F8 /* UIKit.framework in Frameworks */,
 				BE06A4D216B6E54A00F345F8 /* Foundation.framework in Frameworks */,
@@ -82,10 +98,13 @@
 		BE06A4B116B6E54900F345F8 = {
 			isa = PBXGroup;
 			children = (
+				BE01AA7216B7FF0800982D27 /* MobileCoreServices.framework */,
+				BE01AA7016B7FEE500982D27 /* SystemConfiguration.framework */,
 				BE06A4C116B6E54900F345F8 /* CSApi */,
 				BE06A4D616B6E54A00F345F8 /* CSApiTests */,
 				BE06A4BE16B6E54900F345F8 /* Frameworks */,
 				BE06A4BD16B6E54900F345F8 /* Products */,
+				E11FCF6D842F44979932768C /* Pods.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -104,6 +123,7 @@
 				BE06A4BF16B6E54900F345F8 /* Foundation.framework */,
 				BE06A4CE16B6E54A00F345F8 /* SenTestingKit.framework */,
 				BE06A4D016B6E54A00F345F8 /* UIKit.framework */,
+				D0A9D9C4BB3D41BCA4100D6F /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -129,7 +149,7 @@
 		BE06A4D616B6E54A00F345F8 /* CSApiTests */ = {
 			isa = PBXGroup;
 			children = (
-				BE06A4DC16B6E54A00F345F8 /* CSApiTests.h */,
+				BEA65A0A16B92F1200F10CB0 /* Utils */,
 				BE06A4DD16B6E54A00F345F8 /* CSApiTests.m */,
 				BE06A4D716B6E54A00F345F8 /* Supporting Files */,
 			);
@@ -145,6 +165,15 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		BEA65A0A16B92F1200F10CB0 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				BEA65A0B16B92F3100F10CB0 /* TestRequester.h */,
+				BEA65A0C16B92F3100F10CB0 /* TestRequester.m */,
+			);
+			name = Utils;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -155,6 +184,7 @@
 				BE06A4B816B6E54900F345F8 /* Sources */,
 				BE06A4B916B6E54900F345F8 /* Frameworks */,
 				BE06A4BA16B6E54900F345F8 /* CopyFiles */,
+				A4ED4B9F6B394FE5AF81B8BA /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -223,6 +253,20 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		A4ED4B9F6B394FE5AF81B8BA /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+		};
 		BE06A4CB16B6E54A00F345F8 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -252,6 +296,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BE06A4DE16B6E54A00F345F8 /* CSApiTests.m in Sources */,
+				BEA65A0D16B92F3100F10CB0 /* TestRequester.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -326,11 +371,15 @@
 		};
 		BE06A4E216B6E54A00F345F8 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E11FCF6D842F44979932768C /* Pods.xcconfig */;
 			buildSettings = {
 				DSTROOT = /tmp/CSApi.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CSApi/CSApi-Prefix.pch";
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"$(inherited)",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
@@ -338,11 +387,15 @@
 		};
 		BE06A4E316B6E54A00F345F8 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E11FCF6D842F44979932768C /* Pods.xcconfig */;
 			buildSettings = {
 				DSTROOT = /tmp/CSApi.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CSApi/CSApi-Prefix.pch";
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"$(inherited)",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
@@ -350,6 +403,7 @@
 		};
 		BE06A4E516B6E54A00F345F8 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E11FCF6D842F44979932768C /* Pods.xcconfig */;
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = (
 					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
@@ -365,6 +419,7 @@
 		};
 		BE06A4E616B6E54A00F345F8 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E11FCF6D842F44979932768C /* Pods.xcconfig */;
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = (
 					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
@@ -397,6 +452,7 @@
 				BE06A4E316B6E54A00F345F8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		BE06A4E416B6E54A00F345F8 /* Build configuration list for PBXNativeTarget "CSApiTests" */ = {
 			isa = XCConfigurationList;
@@ -405,6 +461,7 @@
 				BE06A4E616B6E54A00F345F8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

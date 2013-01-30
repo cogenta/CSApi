@@ -6,27 +6,110 @@
 //  Copyright (c) 2013 Cogenta Systems Ltd. All rights reserved.
 //
 
-#import "CSApiTests.h"
+#import <SenTestingKit/SenTestingKit.h>
+
+#import <OCMock/OCMock.h>
+#import <HyperBek/HyperBek.h>
+#import "TestRequester.h"
+
+#import "CSApi.h"
+
+@interface TestApi : CSApi
+
+@property (weak, readwrite) TestRequester *requester;
+
+@end
+
+@implementation TestApi
+
+@synthesize requester;
+
+@end
+
+@interface CSApiTests : SenTestCase
+
+@property (weak) CSApi *api;
+@property (strong) TestApi *testApi;
+@property (strong) TestRequester *requester;
+
+@end
 
 @implementation CSApiTests
+
+static NSString *kBookmark = @"http://localhost:5000/apps/5106b3de704679b792c918c8";
+static NSString *kUsername = @"c6dd81c6-af73-4ffd-ba8d-5419cbf8a0cb";
+static NSString *kPassword = @"2af58818-c7c0-4503-b7e6-b95d661474f4";
+
+@synthesize testApi;
+@synthesize api;
+@synthesize requester;
 
 - (void)setUp
 {
     [super setUp];
     
-    // Set-up code here.
+    testApi = [[TestApi alloc] initWithBookmark:kBookmark
+                                       username:kUsername
+                                       password:kPassword];
+    api = (CSApi *)testApi;
+    requester = [[TestRequester alloc] init];
+    testApi.requester = requester;
 }
 
 - (void)tearDown
 {
-    // Tear-down code here.
+    self.api = nil;
+    self.testApi = nil;
+    self.requester = nil;
     
     [super tearDown];
 }
 
-- (void)testExample
+- (void)callAndWait:(void (^)(void (^done)()))blk
 {
-    STFail(@"Unit tests are not implemented yet in CSApiTests");
+    dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+    
+    void (^done)() = ^{
+        dispatch_semaphore_signal(semaphore);
+    };
+    
+    blk(done);
+    [self waitForSemaphore:semaphore];
+}
+
+- (void)waitForSemaphore:(dispatch_semaphore_t)semaphore
+{
+    long timedout;
+    for (int tries = 0; tries < 1; tries++) {
+        timedout = dispatch_semaphore_wait(semaphore, DISPATCH_TIME_NOW);
+        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode
+                                 beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
+    }
+    
+    STAssertFalse(timedout, @"Timed out waiting for callback");
+}
+
+- (void)testGetApplicationWithResult
+{
+    NSDictionary *resultDict = [NSDictionary dictionary];
+    NSURL *url = [NSURL URLWithString:kBookmark];
+    YBHALResource *result = [resultDict HALResourceWithBaseURL:url];
+    [requester addGetResponse:result forURL:url];
+    
+    __block id<CSApplication> app = nil;
+    __block NSError *error = nil;
+    [self callAndWait:^(void (^done)()) {
+        [api getApplication:[NSURL URLWithString:kBookmark]
+                   callback:^(id<CSApplication> anApp, NSError *anError)
+        {
+            app = anApp;
+            error = anError;
+            done();
+        }];
+    }];
+    
+    STAssertNotNil(app, nil);
+    STAssertNil(error, [error localizedDescription]);
 }
 
 @end
