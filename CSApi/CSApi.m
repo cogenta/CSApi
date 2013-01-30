@@ -7,7 +7,6 @@
 //
 
 #import "CSApi.h"
-#import "AFNetworking.h"
 
 @interface CSApi ()
 
