@@ -8,23 +8,11 @@
 
 #import <SenTestingKit/SenTestingKit.h>
 
-#import <OCMock/OCMock.h>
 #import <HyperBek/HyperBek.h>
 #import "TestRequester.h"
+#import "TestApi.h"
 
 #import "CSApi.h"
-
-@interface TestApi : CSApi
-
-@property (weak, readwrite) TestRequester *requester;
-
-@end
-
-@implementation TestApi
-
-@synthesize requester;
-
-@end
 
 @interface CSApiTests : SenTestCase
 

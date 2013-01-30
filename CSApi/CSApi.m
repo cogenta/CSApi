@@ -7,6 +7,7 @@
 //
 
 #import "CSApi.h"
+#import <HyperBek/HyperBek.h>
 
 @interface BasicCredentials : NSObject <CSCredentials>
 
@@ -44,6 +45,27 @@
 @end
 
 
+@interface CSApplication : NSObject <CSApplication>
+
+- (id)initWithHAL:(YBHALResource *)resource;
+
+@end
+
+@implementation CSApplication
+
+@synthesize name;
+
+- (id)initWithHAL:(YBHALResource *)resource
+{
+    self = [super init];
+    if (self) {
+        name = resource[@"name"];
+    }
+    return self;
+}
+
+@end
+
 @interface CSApi ()
 
 - (id<CSRequester>) requester;
@@ -75,7 +97,15 @@
     id<CSRequester> requester = [self requester];
     [requester getURL:appUrl
           credentials:[BasicCredentials credentialsWithApi:self]
-             callback:callback];
+             callback:^(YBHALResource *result, NSError *error)
+    {
+        if (error) {
+            callback(nil, error);
+            return;
+        }
+        CSApplication *app = [[CSApplication alloc] initWithHAL:result];
+        callback(app, nil);
+    }];
 }
 
 - (id)requester
@@ -86,10 +116,3 @@
 
 @end
 
-@interface CSApplication : NSObject <CSApplication>
-
-@end
-
-@implementation CSApplication
-
-@end

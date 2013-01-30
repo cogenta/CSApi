@@ -22,6 +22,9 @@
 		BE06A4DB16B6E54A00F345F8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = BE06A4D916B6E54A00F345F8 /* InfoPlist.strings */; };
 		BE06A4DE16B6E54A00F345F8 /* CSApiTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BE06A4DD16B6E54A00F345F8 /* CSApiTests.m */; };
 		BEA65A0D16B92F3100F10CB0 /* TestRequester.m in Sources */ = {isa = PBXBuildFile; fileRef = BEA65A0C16B92F3100F10CB0 /* TestRequester.m */; };
+		BEA65A1016B94DDF00F10CB0 /* CSApplicationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BEA65A0F16B94DDF00F10CB0 /* CSApplicationTests.m */; };
+		BEA65A1316B94E4900F10CB0 /* TestApi.m in Sources */ = {isa = PBXBuildFile; fileRef = BEA65A1216B94E4900F10CB0 /* TestApi.m */; };
+		BEA65A1616B9537300F10CB0 /* app.json in Resources */ = {isa = PBXBuildFile; fileRef = BEA65A1516B9537300F10CB0 /* app.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +66,10 @@
 		BE06A4DD16B6E54A00F345F8 /* CSApiTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSApiTests.m; sourceTree = "<group>"; };
 		BEA65A0B16B92F3100F10CB0 /* TestRequester.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestRequester.h; sourceTree = "<group>"; };
 		BEA65A0C16B92F3100F10CB0 /* TestRequester.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestRequester.m; sourceTree = "<group>"; };
+		BEA65A0F16B94DDF00F10CB0 /* CSApplicationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSApplicationTests.m; sourceTree = "<group>"; };
+		BEA65A1116B94E4900F10CB0 /* TestApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestApi.h; sourceTree = "<group>"; };
+		BEA65A1216B94E4900F10CB0 /* TestApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestApi.m; sourceTree = "<group>"; };
+		BEA65A1516B9537300F10CB0 /* app.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = app.json; path = Fixtures/app.json; sourceTree = "<group>"; };
 		D0A9D9C4BB3D41BCA4100D6F /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		E11FCF6D842F44979932768C /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
@@ -149,9 +156,11 @@
 		BE06A4D616B6E54A00F345F8 /* CSApiTests */ = {
 			isa = PBXGroup;
 			children = (
+				BEA65A1416B9535300F10CB0 /* Fixtures */,
 				BEA65A0A16B92F1200F10CB0 /* Utils */,
 				BE06A4DD16B6E54A00F345F8 /* CSApiTests.m */,
 				BE06A4D716B6E54A00F345F8 /* Supporting Files */,
+				BEA65A0F16B94DDF00F10CB0 /* CSApplicationTests.m */,
 			);
 			path = CSApiTests;
 			sourceTree = "<group>";
@@ -170,8 +179,18 @@
 			children = (
 				BEA65A0B16B92F3100F10CB0 /* TestRequester.h */,
 				BEA65A0C16B92F3100F10CB0 /* TestRequester.m */,
+				BEA65A1116B94E4900F10CB0 /* TestApi.h */,
+				BEA65A1216B94E4900F10CB0 /* TestApi.m */,
 			);
 			name = Utils;
+			sourceTree = "<group>";
+		};
+		BEA65A1416B9535300F10CB0 /* Fixtures */ = {
+			isa = PBXGroup;
+			children = (
+				BEA65A1516B9537300F10CB0 /* app.json */,
+			);
+			name = Fixtures;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -247,6 +266,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BE06A4DB16B6E54A00F345F8 /* InfoPlist.strings in Resources */,
+				BEA65A1616B9537300F10CB0 /* app.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -297,6 +317,8 @@
 			files = (
 				BE06A4DE16B6E54A00F345F8 /* CSApiTests.m in Sources */,
 				BEA65A0D16B92F3100F10CB0 /* TestRequester.m in Sources */,
+				BEA65A1016B94DDF00F10CB0 /* CSApplicationTests.m in Sources */,
+				BEA65A1316B94E4900F10CB0 /* TestApi.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

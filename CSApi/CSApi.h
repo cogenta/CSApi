@@ -43,4 +43,6 @@
 
 @protocol CSApplication <NSObject>
 
+@property (readonly) NSString *name;
+
 @end
