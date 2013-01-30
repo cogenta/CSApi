@@ -30,24 +30,33 @@
 
 - (void)addGetResponse:(id)response forURL:(NSURL *)url
 {
-    [responses setObject:response forKey:url];
+    [responses setObject:^(void (^cb)(id, NSError *)) {
+        cb(response, nil);
+    } forKey:url];
+}
+
+- (void)addGetError:(id)error forURL:(NSURL *)url
+{
+    [responses setObject:^(void (^cb)(id, NSError *)) {
+        cb(nil, error);
+    } forKey:url];    
 }
 
 - (void)getURL:(NSURL *)url callback:(void (^)(id, NSError *))callback
 {
-    id response = [responses objectForKey:url];
+    void (^response)(void (^)(id, NSError *)) = [responses objectForKey:url];
     
     if ( ! response) {
         NSString *message = [NSString stringWithFormat:
                              @"%@ not in test requester",
                              url];
-        callback(nil, [NSError errorWithDomain:@"com.cogenta.CSApi"
+        callback(nil, [NSError errorWithDomain:NSURLErrorDomain
                                           code:404
                                       userInfo:@{NSLocalizedDescriptionKey: message}]);
         return;
     }
     
-    callback(response, nil);
+    response(callback);
 }
 
 @end

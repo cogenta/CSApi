@@ -112,4 +112,31 @@ static NSString *kPassword = @"2af58818-c7c0-4503-b7e6-b95d661474f4";
     STAssertNil(error, [error localizedDescription]);
 }
 
+- (void)testGetApplicationWithError
+{
+    NSURL *url = [NSURL URLWithString:kBookmark];
+    NSString *message = @"Not Authorized";
+    NSDictionary *userInfo = @{NSLocalizedDescriptionKey: message};
+    NSError *expectedError = [NSError errorWithDomain:NSURLErrorDomain
+                                                 code:404
+                                             userInfo:userInfo];
+    [requester addGetError:expectedError forURL:url];
+    
+    __block id<CSApplication> app = nil;
+    __block NSError *errorResponse = nil;
+    [self callAndWait:^(void (^done)()) {
+        [api getApplication:[NSURL URLWithString:kBookmark]
+                   callback:^(id<CSApplication> anApp, NSError *anError)
+         {
+             app = anApp;
+             errorResponse = anError;
+             done();
+         }];
+    }];
+    
+    STAssertNil(app, nil);
+    STAssertNotNil(errorResponse, nil);
+    STAssertEqualObjects(errorResponse, expectedError, nil);
+}
+
 @end

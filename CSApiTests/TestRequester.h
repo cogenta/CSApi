@@ -12,5 +12,6 @@
 @interface TestRequester : NSObject <CSRequester>
 
 - (void)addGetResponse:(id)response forURL:(NSURL *)url;
+- (void)addGetError:(id)error forURL:(NSURL *)url;
 
 @end
