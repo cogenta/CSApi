@@ -13,6 +13,7 @@
 #import "CSRepresentation.h"
 #import "CSBasicCredentials.h"
 #import "CSHALRepresentation.h"
+#import "CSAPIStore.h"
 #import <HyperBek/HyperBek.h>
 
 @interface CSApplication : NSObject <CSApplication>
@@ -90,6 +91,7 @@
 @synthesize url;
 @synthesize reference;
 @synthesize meta;
+@synthesize credential;
 
 - (id)initWithHal:(YBHALResource *)resource
 {
@@ -98,6 +100,11 @@
         url = [resource linkForRelation:@"self"].URL;
         reference = resource[@"reference"];
         meta = resource[@"meta"];
+        
+        if (resource[@"credential"]) {
+            credential = [CSBasicCredentials
+                          credentialsWithDictionary:resource[@"credential"]];
+        }
     }
     return self;
 }
@@ -163,6 +170,35 @@
 - (id)requester
 {
     return nil;
+}
+
+- (id<CSAPIStore>)store
+{
+    return nil;
+}
+
+- (void)login:(void (^)(id<CSUser>, NSError *))callback
+{
+    [self getApplication:[NSURL URLWithString:bookmark]
+                callback:^(id<CSApplication> app, NSError *error)
+    {
+        if (error) {
+            callback(nil, error);
+            return;
+        }
+        
+        [app createUser:[self newUser]
+               callback:^(id<CSUser> user, NSError *error)
+        {
+            if (error) {
+                callback(nil, error);
+                return;
+            }
+            
+            [[self store] didCreateUser:user];
+            callback(user, nil);
+        }];
+    }];
 }
 
 

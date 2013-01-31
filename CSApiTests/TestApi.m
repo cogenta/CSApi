@@ -11,5 +11,6 @@
 @implementation TestApi
 
 @synthesize requester;
+@synthesize store;
 
 @end

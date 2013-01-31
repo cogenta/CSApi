@@ -12,13 +12,25 @@
 
 @implementation CSBasicCredentials
 
-@synthesize api;
+@synthesize username;
+@synthesize password;
 
-- (id)initWithApi:(CSApi *)anApi
+- (id)initWithApi:(CSApi *)api
 {
     self = [super init];
     if (self) {
-        api = anApi;
+        username = api.username;
+        password = api.password;
+    }
+    return self;
+}
+
+- (id)initWithDictionary:(NSDictionary *)credentials
+{
+    self = [super init];
+    if (self) {
+        username = credentials[@"username"];
+        password = credentials[@"password"];
     }
     return self;
 }
@@ -28,10 +40,15 @@
     return [[CSBasicCredentials alloc] initWithApi:api];
 }
 
++ (instancetype)credentialsWithDictionary:(NSDictionary *)credentials
+{
+    return [[CSBasicCredentials alloc] initWithDictionary:credentials];
+}
+
 - (void)applyWith:(id<CSAuthenticator>)authenticator
 {
-    [authenticator applyBasicAuthWithUsername:api.username
-                                     password:api.password];
+    [authenticator applyBasicAuthWithUsername:username
+                                     password:password];
 }
 
 @end

@@ -9,9 +9,11 @@
 #import "CSApi.h"
 
 @class TestRequester;
+@class TestAPIStore;
 
 @interface TestApi : CSApi
 
 @property (weak, readwrite) TestRequester *requester;
+@property (weak, readwrite) TestAPIStore *store;
 
 @end

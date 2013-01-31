@@ -91,6 +91,17 @@
            body:(id)body
        callback:(void (^)(id, NSError *))callback
 {
+    if ( ! [url isKindOfClass:[NSURL class]]) {
+        NSDictionary *userInfo = @{ NSURLErrorFailingURLErrorKey: url,
+                                    NSLocalizedDescriptionKey:
+                                        [NSString stringWithFormat:@"Bad URL: %@", url]
+                                    };
+        callback(nil, [NSError errorWithDomain:NSURLErrorDomain
+                                          code:NSURLErrorBadURL
+                                      userInfo:userInfo]);
+        return;
+    }
+    
     [self resetLastCredentails];
     [credentials applyWith:self];
     

@@ -53,7 +53,7 @@ static NSString *kPassword = @"2af58818-c7c0-4503-b7e6-b95d661474f4";
 
 - (NSDictionary *)jsonForData:(NSData *)data
 {
-    return [CSApplicationTests jsonForData:data];
+    return [[self class] jsonForData:data];
 }
 
 + (YBHALResource *)resourceForJson:(NSDictionary *)json
@@ -65,7 +65,7 @@ static NSString *kPassword = @"2af58818-c7c0-4503-b7e6-b95d661474f4";
 
 - (YBHALResource *)resourceForJson:(NSDictionary *)json
 {
-    return [CSApplicationTests resourceForJson:json];
+    return [[self class] resourceForJson:json];
 }
 
 - (YBHALResource *)resourceForData:(NSData *)data

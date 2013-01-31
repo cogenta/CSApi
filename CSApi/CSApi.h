@@ -12,6 +12,7 @@
 
 @protocol CSApplication;
 @protocol CSUser;
+@protocol CSCredentials;
 
 @interface CSApi : NSObject
 
@@ -24,7 +25,8 @@
               password:(NSString *)aPassword;
 - (void)getApplication:(NSString *)path
               callback:(void (^)(id<CSApplication> app, NSError *error))callback;
-- (id<CSUser>) newUser;
+- (id<CSUser>)newUser;
+- (void)login:(void (^)(id<CSUser> user, NSError *error))callback;
 
 @end
 
@@ -42,6 +44,7 @@
 @protocol CSUser <CSRepresentable>
 
 @property (readonly) NSURL *url;
+@property (readonly) id<CSCredentials> credential;
 @property (nonatomic, strong) NSString *reference;
 @property (nonatomic, strong) NSMutableDictionary *meta;
 

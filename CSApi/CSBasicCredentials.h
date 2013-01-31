@@ -13,9 +13,13 @@
 
 @interface CSBasicCredentials : NSObject <CSCredentials>
 
-@property (nonatomic, weak) CSApi *api;
+@property (nonatomic, strong) NSString *username;
+@property (nonatomic, strong) NSString *password;
+
 - (id)initWithApi:(CSApi *)api;
+- (id)initWithDictionary:(NSDictionary *)credentials;
 
 + (instancetype) credentialsWithApi:(CSApi *)api;
++ (instancetype) credentialsWithDictionary:(NSDictionary *)credentials;
 
 @end
