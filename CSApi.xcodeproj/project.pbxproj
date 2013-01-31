@@ -29,6 +29,7 @@
 		BE57714E16BA8FFA002F42E4 /* TestAPIStore.m in Sources */ = {isa = PBXBuildFile; fileRef = BE57714D16BA8FFA002F42E4 /* TestAPIStore.m */; };
 		BE57715116BA9073002F42E4 /* CSApiLoginTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BE57715016BA9073002F42E4 /* CSApiLoginTests.m */; };
 		BE57715316BABC69002F42E4 /* user_get_response.json in Resources */ = {isa = PBXBuildFile; fileRef = BE57715216BABC69002F42E4 /* user_get_response.json */; };
+		BE57715616BAD046002F42E4 /* TestConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = BE57715516BAD046002F42E4 /* TestConstants.m */; };
 		BEA65A0D16B92F3100F10CB0 /* TestRequester.m in Sources */ = {isa = PBXBuildFile; fileRef = BEA65A0C16B92F3100F10CB0 /* TestRequester.m */; };
 		BEA65A1016B94DDF00F10CB0 /* CSApplicationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BEA65A0F16B94DDF00F10CB0 /* CSApplicationTests.m */; };
 		BEA65A1316B94E4900F10CB0 /* TestApi.m in Sources */ = {isa = PBXBuildFile; fileRef = BEA65A1216B94E4900F10CB0 /* TestApi.m */; };
@@ -90,6 +91,8 @@
 		BE57714D16BA8FFA002F42E4 /* TestAPIStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestAPIStore.m; sourceTree = "<group>"; };
 		BE57715016BA9073002F42E4 /* CSApiLoginTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSApiLoginTests.m; sourceTree = "<group>"; };
 		BE57715216BABC69002F42E4 /* user_get_response.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = user_get_response.json; path = Fixtures/user_get_response.json; sourceTree = "<group>"; };
+		BE57715416BAD046002F42E4 /* TestConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestConstants.h; sourceTree = "<group>"; };
+		BE57715516BAD046002F42E4 /* TestConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestConstants.m; sourceTree = "<group>"; };
 		BEA65A0B16B92F3100F10CB0 /* TestRequester.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestRequester.h; sourceTree = "<group>"; };
 		BEA65A0C16B92F3100F10CB0 /* TestRequester.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestRequester.m; sourceTree = "<group>"; };
 		BEA65A0F16B94DDF00F10CB0 /* CSApplicationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSApplicationTests.m; sourceTree = "<group>"; };
@@ -222,6 +225,8 @@
 				BE4B14A916B9727300BDDD08 /* TestFixtures.m */,
 				BE57714C16BA8FFA002F42E4 /* TestAPIStore.h */,
 				BE57714D16BA8FFA002F42E4 /* TestAPIStore.m */,
+				BE57715416BAD046002F42E4 /* TestConstants.h */,
+				BE57715516BAD046002F42E4 /* TestConstants.m */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -371,6 +376,7 @@
 				BE4B14AA16B9727300BDDD08 /* TestFixtures.m in Sources */,
 				BE57714E16BA8FFA002F42E4 /* TestAPIStore.m in Sources */,
 				BE57715116BA9073002F42E4 /* CSApiLoginTests.m in Sources */,
+				BE57715616BAD046002F42E4 /* TestConstants.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

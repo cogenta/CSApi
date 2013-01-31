@@ -14,6 +14,8 @@
 
 #import "CSApi.h"
 #import "TestFixtures.h"
+#import "TestConstants.h"
+
 
 @interface CSApplicationTests : SenTestCase
 
@@ -28,12 +30,6 @@
 
 
 @implementation CSApplicationTests
-
-static NSString *kBookmark = @"http://localhost:5000/apps/5106b3de704679b792c918c8";
-static NSString *kUsername = @"c6dd81c6-af73-4ffd-ba8d-5419cbf8a0cb";
-static NSString *kPassword = @"2af58818-c7c0-4503-b7e6-b95d661474f4";
-
-
 
 @synthesize testApi;
 @synthesize api;
