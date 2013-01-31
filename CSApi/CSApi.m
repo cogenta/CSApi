@@ -11,42 +11,9 @@
 #import "CSAuthenticator.h"
 #import "CSRequester.h"
 #import "CSRepresentation.h"
+#import "CSBasicCredentials.h"
+#import "CSHALRepresentation.h"
 #import <HyperBek/HyperBek.h>
-
-@interface BasicCredentials : NSObject <CSCredentials>
-
-@property (nonatomic, weak) CSApi *api;
-- (id)initWithApi:(CSApi *)api;
-
-+ (instancetype) credentialsWithApi:(CSApi *)api;
-
-@end
-
-@implementation BasicCredentials
-
-@synthesize api;
-
-- (id)initWithApi:(CSApi *)anApi
-{
-    self = [super init];
-    if (self) {
-        api = anApi;
-    }
-    return self;
-}
-
-+ (instancetype)credentialsWithApi:(CSApi *)api
-{
-    return [[BasicCredentials alloc] initWithApi:api];
-}
-
-- (void)applyWith:(id<CSAuthenticator>)authenticator
-{
-    [authenticator applyBasicAuthWithUsername:api.username
-                                     password:api.password];
-}
-
-@end
 
 @interface CSApplication : NSObject <CSApplication>
 
@@ -67,12 +34,6 @@
 
 @end
 
-@interface CSHALRepresentation : NSObject <CSRepresentation>
-
-@property (nonatomic, strong) NSURL *baseURL;
-+ (instancetype) representationWithBaseURL:(NSURL *)baseURL;
-
-@end
 
 @implementation CSApplication
 
@@ -174,7 +135,7 @@
 {
     id<CSRequester> requester = [self requester];
     [requester getURL:appUrl
-          credentials:[BasicCredentials credentialsWithApi:self]
+          credentials:[CSBasicCredentials credentialsWithApi:self]
              callback:^(YBHALResource *result, NSError *error)
     {
         if (error) {
@@ -200,42 +161,4 @@
 
 @end
 
-
-@implementation CSHALRepresentation
-
-@synthesize baseURL;
-
-- (id)initWithBaserURL:(NSURL *)aBaseURL
-{
-    self = [super init];
-    if (self) {
-        baseURL = aBaseURL;
-    }
-    return self;
-}
-
-+ (instancetype)representationWithBaseURL:(NSURL *)baseURL
-{
-    return [[CSHALRepresentation alloc] initWithBaserURL:baseURL];
-}
-
-- (id)representUser:(id<CSUser>)user
-{
-    NSMutableDictionary *json = [NSMutableDictionary dictionary];
-    if (user.url) {
-        json[@"_links"] = @{@"self": [user.url absoluteString]};
-    }
-    
-    if (user.reference) {
-        json[@"reference"] = user.reference;
-    }
-    
-    if (user.meta) {
-        json[@"meta"] = user.meta;
-    }
-    
-    return [json HALResourceWithBaseURL:baseURL];
-}
-
-@end
 
