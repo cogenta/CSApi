@@ -7,6 +7,8 @@
 //
 
 #import "TestRequester.h"
+#import "CSAuthenticator.h"
+#import "CSCredentials.h"
 
 @interface TestRequester () <CSAuthenticator>
 
@@ -31,16 +33,29 @@
 
 - (void)addGetResponse:(id)response forURL:(NSURL *)url
 {
-    [responses setObject:^(void (^cb)(id, NSError *)) {
+    [responses setObject:^(id body, void (^cb)(id, NSError *)) {
         cb(response, nil);
     } forKey:url];
 }
 
 - (void)addGetError:(id)error forURL:(NSURL *)url
 {
-    [responses setObject:^(void (^cb)(id, NSError *)) {
+    [responses setObject:^(id body, void (^cb)(id, NSError *)) {
         cb(nil, error);
-    } forKey:url];    
+    } forKey:url];
+}
+
+- (void)addPostResponse:(id)response forURL:(NSURL *)url
+{
+    [self addGetResponse:response forURL:url];
+}
+
+- (void)addPostCallback:(void (^)(id, void (^)(id, NSError *)))callback
+                 forURL:(NSURL *)url
+{
+    [responses setObject:^(id body, void (^cb)(id, NSError *)) {
+        callback(body, cb);
+    } forKey:url];
 }
 
 - (void)getURL:(NSURL *)url
@@ -49,7 +64,7 @@
 {
     [credentials applyWith:self];
     
-    void (^response)(void (^)(id, NSError *)) = [responses objectForKey:url];
+    void (^response)(id, void (^)(id, NSError *)) = [responses objectForKey:url];
     
     if ( ! response) {
         NSString *message = [NSString stringWithFormat:
@@ -61,8 +76,31 @@
         return;
     }
     
-    response(callback);
+    response(nil, callback);
 }
+
+- (void)postURL:(NSURL *)url
+    credentials:(id<CSCredentials>)credentials
+           body:(id)body
+       callback:(void (^)(id, NSError *))callback
+{
+    [credentials applyWith:self];
+    
+    void (^response)(id, void (^)(id, NSError *)) = [responses objectForKey:url];
+    
+    if ( ! response) {
+        NSString *message = [NSString stringWithFormat:
+                             @"%@ not in test requester",
+                             url];
+        callback(nil, [NSError errorWithDomain:NSURLErrorDomain
+                                          code:404
+                                      userInfo:@{NSLocalizedDescriptionKey: message}]);
+        return;
+    }
+    
+    response(body, callback);
+}
+
 
 - (void)applyBasicAuthWithUsername:(NSString *)username password:(NSString *)password
 {

@@ -8,22 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
-@protocol CSAuthenticator <NSObject>
-- (void)applyBasicAuthWithUsername:(NSString *)username
-                          password:(NSString *)password;
-@end
-
-@protocol CSCredentials <NSObject>
-- (void)applyWith:(id<CSAuthenticator>)authenticator;
-@end
-
-@protocol CSRequester <NSObject>
-- (void)getURL:(NSURL *)url
-   credentials:(id<CSCredentials>)credentials
-      callback:(void (^)(id result, NSError *error))callback;
-@end
+#import "CSRepresentable.h"
 
 @protocol CSApplication;
+@protocol CSUser;
 
 @interface CSApi : NSObject
 
@@ -36,6 +24,7 @@
               password:(NSString *)aPassword;
 - (void)getApplication:(NSString *)path
               callback:(void (^)(id<CSApplication> app, NSError *error))callback;
+- (id<CSUser>) newUser;
 
 @end
 
@@ -44,5 +33,16 @@
 @protocol CSApplication <NSObject>
 
 @property (readonly) NSString *name;
+
+- (void)createUser:(id<CSUser>)user
+          callback:(void (^)(id<CSUser> user, NSError *error))callback;
+
+@end
+
+@protocol CSUser <CSRepresentable>
+
+@property (readonly) NSURL *url;
+@property (nonatomic, strong) NSString *reference;
+@property (nonatomic, strong) NSMutableDictionary *meta;
 
 @end

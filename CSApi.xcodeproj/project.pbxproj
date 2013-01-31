@@ -21,6 +21,9 @@
 		BE06A4D516B6E54A00F345F8 /* libCSApi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BE06A4BC16B6E54900F345F8 /* libCSApi.a */; };
 		BE06A4DB16B6E54A00F345F8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = BE06A4D916B6E54A00F345F8 /* InfoPlist.strings */; };
 		BE06A4DE16B6E54A00F345F8 /* CSApiTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BE06A4DD16B6E54A00F345F8 /* CSApiTests.m */; };
+		BE4B14A716B9722A00BDDD08 /* user_post_response.json in Resources */ = {isa = PBXBuildFile; fileRef = BE4B14A616B9722A00BDDD08 /* user_post_response.json */; };
+		BE4B14AA16B9727300BDDD08 /* TestFixtures.m in Sources */ = {isa = PBXBuildFile; fileRef = BE4B14A916B9727300BDDD08 /* TestFixtures.m */; };
+		BE57713F16B98EFF002F42E4 /* user_post_response_with_reference_and_meta.json in Resources */ = {isa = PBXBuildFile; fileRef = BE57713E16B98EFF002F42E4 /* user_post_response_with_reference_and_meta.json */; };
 		BEA65A0D16B92F3100F10CB0 /* TestRequester.m in Sources */ = {isa = PBXBuildFile; fileRef = BEA65A0C16B92F3100F10CB0 /* TestRequester.m */; };
 		BEA65A1016B94DDF00F10CB0 /* CSApplicationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BEA65A0F16B94DDF00F10CB0 /* CSApplicationTests.m */; };
 		BEA65A1316B94E4900F10CB0 /* TestApi.m in Sources */ = {isa = PBXBuildFile; fileRef = BEA65A1216B94E4900F10CB0 /* TestApi.m */; };
@@ -64,6 +67,15 @@
 		BE06A4D816B6E54A00F345F8 /* CSApiTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CSApiTests-Info.plist"; sourceTree = "<group>"; };
 		BE06A4DA16B6E54A00F345F8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		BE06A4DD16B6E54A00F345F8 /* CSApiTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSApiTests.m; sourceTree = "<group>"; };
+		BE4B14A616B9722A00BDDD08 /* user_post_response.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = user_post_response.json; path = Fixtures/user_post_response.json; sourceTree = "<group>"; };
+		BE4B14A816B9727300BDDD08 /* TestFixtures.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFixtures.h; sourceTree = "<group>"; };
+		BE4B14A916B9727300BDDD08 /* TestFixtures.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestFixtures.m; sourceTree = "<group>"; };
+		BE57713E16B98EFF002F42E4 /* user_post_response_with_reference_and_meta.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = user_post_response_with_reference_and_meta.json; path = Fixtures/user_post_response_with_reference_and_meta.json; sourceTree = "<group>"; };
+		BE57714016BA7C19002F42E4 /* CSAuthenticator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSAuthenticator.h; sourceTree = "<group>"; };
+		BE57714116BA7C44002F42E4 /* CSCredentials.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSCredentials.h; sourceTree = "<group>"; };
+		BE57714216BA7C8A002F42E4 /* CSRequester.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSRequester.h; sourceTree = "<group>"; };
+		BE57714316BA7D3E002F42E4 /* CSRepresentation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSRepresentation.h; sourceTree = "<group>"; };
+		BE57714416BA7D92002F42E4 /* CSRepresentable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSRepresentable.h; sourceTree = "<group>"; };
 		BEA65A0B16B92F3100F10CB0 /* TestRequester.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestRequester.h; sourceTree = "<group>"; };
 		BEA65A0C16B92F3100F10CB0 /* TestRequester.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestRequester.m; sourceTree = "<group>"; };
 		BEA65A0F16B94DDF00F10CB0 /* CSApplicationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSApplicationTests.m; sourceTree = "<group>"; };
@@ -141,6 +153,11 @@
 				BE06A4C416B6E54900F345F8 /* CSApi.h */,
 				BE06A4C616B6E54900F345F8 /* CSApi.m */,
 				BE06A4C216B6E54900F345F8 /* Supporting Files */,
+				BE57714016BA7C19002F42E4 /* CSAuthenticator.h */,
+				BE57714116BA7C44002F42E4 /* CSCredentials.h */,
+				BE57714216BA7C8A002F42E4 /* CSRequester.h */,
+				BE57714316BA7D3E002F42E4 /* CSRepresentation.h */,
+				BE57714416BA7D92002F42E4 /* CSRepresentable.h */,
 			);
 			path = CSApi;
 			sourceTree = "<group>";
@@ -159,8 +176,8 @@
 				BEA65A1416B9535300F10CB0 /* Fixtures */,
 				BEA65A0A16B92F1200F10CB0 /* Utils */,
 				BE06A4DD16B6E54A00F345F8 /* CSApiTests.m */,
-				BE06A4D716B6E54A00F345F8 /* Supporting Files */,
 				BEA65A0F16B94DDF00F10CB0 /* CSApplicationTests.m */,
+				BE06A4D716B6E54A00F345F8 /* Supporting Files */,
 			);
 			path = CSApiTests;
 			sourceTree = "<group>";
@@ -181,6 +198,8 @@
 				BEA65A0C16B92F3100F10CB0 /* TestRequester.m */,
 				BEA65A1116B94E4900F10CB0 /* TestApi.h */,
 				BEA65A1216B94E4900F10CB0 /* TestApi.m */,
+				BE4B14A816B9727300BDDD08 /* TestFixtures.h */,
+				BE4B14A916B9727300BDDD08 /* TestFixtures.m */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -189,6 +208,8 @@
 			isa = PBXGroup;
 			children = (
 				BEA65A1516B9537300F10CB0 /* app.json */,
+				BE4B14A616B9722A00BDDD08 /* user_post_response.json */,
+				BE57713E16B98EFF002F42E4 /* user_post_response_with_reference_and_meta.json */,
 			);
 			name = Fixtures;
 			sourceTree = "<group>";
@@ -267,6 +288,8 @@
 			files = (
 				BE06A4DB16B6E54A00F345F8 /* InfoPlist.strings in Resources */,
 				BEA65A1616B9537300F10CB0 /* app.json in Resources */,
+				BE4B14A716B9722A00BDDD08 /* user_post_response.json in Resources */,
+				BE57713F16B98EFF002F42E4 /* user_post_response_with_reference_and_meta.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -319,6 +342,7 @@
 				BEA65A0D16B92F3100F10CB0 /* TestRequester.m in Sources */,
 				BEA65A1016B94DDF00F10CB0 /* CSApplicationTests.m in Sources */,
 				BEA65A1316B94E4900F10CB0 /* TestApi.m in Sources */,
+				BE4B14AA16B9727300BDDD08 /* TestFixtures.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

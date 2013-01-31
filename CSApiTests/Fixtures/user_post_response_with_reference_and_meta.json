@@ -1,0 +1,22 @@
+{
+    "credential": {
+        "username": "73bfcac3-0a80-4832-b1de-c902fd859240",
+        "password": "99fa1677-930b-4a02-819d-d8e05b45e53b"
+    },
+    "_links": {
+        "curie": {
+            "href": "/rels/{rel}",
+            "name": "api"
+        },
+        "self": {
+            "href": "/users/51093a79704679b792cee0ee"
+        },
+        "app:developer": {
+            "href": "/developers/5101280670467949bd575fce"
+        }
+    },
+    "reference": "12345",
+    "meta": {
+        "clientId": "12345"
+    }
+}

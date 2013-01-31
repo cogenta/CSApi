@@ -1,27 +1,25 @@
 {
-  "credential": {
-    "username": "c6dd81c6-af73-4ffd-ba8d-5419cbf8a0cb", 
-    "password": "2af58818-c7c0-4503-b7e6-b95d661474f4"
-  }, 
-  "_links": {
-    "curie": {
-      "href": "/rels/{rel}", 
-      "name": "api"
+    "credential": {
+        "username": "c6dd81c6-af73-4ffd-ba8d-5419cbf8a0cb",
+        "password": "2af58818-c7c0-4503-b7e6-b95d661474f4"
+    },
+    "_links": {
+        "api:usersbyreference": {
+            "href": "/developers/5106b341704679b792e221a4/users/{?reference}"
+        },
+        "curie": {
+            "href": "/rels/{rel}",
+            "name": "api"
+        },
+        "self": {
+            "href": "/apps/5106b3de704679b792c918c8"
+        },
+        "api:users": {
+            "href": "/developers/5106b341704679b792e221a4/users/"
+        },
+        "api:developer": {
+            "href": "/developers/5106b341704679b792e221a4"
+        }
     }, 
-    "self": {
-      "href": "/apps/5106b3de704679b792c918c8"
-    }, 
-    "api:users": [
-      {
-        "href": "/developers/5106b341704679b792e221a4/users/"
-      }, 
-      {
-        "href": "/developers/5106b341704679b792e221a4/users/{?reference}"
-      }
-    ], 
-    "api:developer": {
-      "href": "/developers/5106b341704679b792e221a4"
-    }
-  }, 
-  "name": "Test Application"
+    "name": "Test Application"
 }
