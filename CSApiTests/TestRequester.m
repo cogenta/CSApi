@@ -31,31 +31,70 @@
     return self;
 }
 
+- (NSMutableDictionary *)methodsForURL:(NSURL *)url
+{
+    NSMutableDictionary *result = [responses objectForKey:url];
+    if ( ! result) {
+        result = [NSMutableDictionary dictionary];
+        [responses setObject:result forKey:url];
+    }
+    return result;
+}
+
+
+- (void)addCallback:(void (^)(id body, void (^)(id, NSError *)))cb
+          forMethod:(NSString *)method
+                url:(NSURL *)url
+{
+    [[self methodsForURL:url]
+     setObject:cb
+     forKey:method];
+}
+
+- (void)addResponse:(id)response forMethod:(NSString *)method url:(NSURL *)url
+{
+    [self addCallback:^(id body, void (^cb)(id, NSError *))
+    {
+         cb(response, nil);
+     }
+            forMethod:method
+                  url:url];
+}
+
+- (void)addError:(NSError *)error forMethod:(NSString *)method url:(NSURL *)url
+{
+    [self addCallback:^(id body, void (^cb)(id, NSError *))
+     {
+          cb(nil, error);
+     }
+            forMethod:method
+                  url:url];
+}
+
 - (void)addGetResponse:(id)response forURL:(NSURL *)url
 {
-    [responses setObject:^(id body, void (^cb)(id, NSError *)) {
-        cb(response, nil);
-    } forKey:url];
+    [self addResponse:response forMethod:@"GET" url:url];
 }
 
 - (void)addGetError:(id)error forURL:(NSURL *)url
 {
-    [responses setObject:^(id body, void (^cb)(id, NSError *)) {
-        cb(nil, error);
-    } forKey:url];
+    [self addError:error forMethod:@"GET" url:url];
 }
 
 - (void)addPostResponse:(id)response forURL:(NSURL *)url
 {
-    [self addGetResponse:response forURL:url];
+    [self addResponse:response forMethod:@"POST" url:url];
 }
 
 - (void)addPostCallback:(void (^)(id, void (^)(id, NSError *)))callback
                  forURL:(NSURL *)url
 {
-    [responses setObject:^(id body, void (^cb)(id, NSError *)) {
-        callback(body, cb);
-    } forKey:url];
+    [self addCallback:^(id body, void (^cb)(id, NSError *))
+     {
+         callback(body, cb);
+     }
+            forMethod:@"POST"
+                  url:url];
 }
 
 - (void)resetLastCredentails
@@ -64,16 +103,19 @@
     lastPassword = nil;
 }
 
-- (void)getURL:(NSURL *)url
-   credentials:(id<CSCredentials>)credentials
-      callback:(void (^)(id, NSError *))callback
+- (void)invokeURL:(NSURL *)url
+           method:(NSString *)method
+             body:(id)body
+      credentials:(id<CSCredentials>)credentials
+         callback:(void (^)(id, NSError *))callback
 {
     [self resetLastCredentails];
     [credentials applyWith:self];
     
-    void (^response)(id, void (^)(id, NSError *)) = [responses objectForKey:url];
+    NSDictionary *methods = [responses objectForKey:url];
     
-    if ( ! response) {
+    
+    if ( ! [methods count]) {
         NSString *message = [NSString stringWithFormat:
                              @"%@ not in test requester",
                              url];
@@ -83,7 +125,26 @@
         return;
     }
     
-    response(nil, callback);
+    void (^response)(id, void (^)(id, NSError *)) = [methods objectForKey:method];
+    
+    if ( ! response) {
+        NSString *message = [NSString stringWithFormat:
+                             @"%@ not allowed on %@ in test requester",
+                             method, url];
+        callback(nil, [NSError errorWithDomain:NSURLErrorDomain
+                                          code:405
+                                      userInfo:@{NSLocalizedDescriptionKey: message}]);
+        return;
+    }
+    
+    response(body, callback);
+}
+
+- (void)getURL:(NSURL *)url
+   credentials:(id<CSCredentials>)credentials
+      callback:(void (^)(id, NSError *))callback
+{
+    [self invokeURL:url method:@"GET" body:nil credentials:credentials callback:callback];
 }
 
 - (void)postURL:(NSURL *)url
@@ -91,33 +152,11 @@
            body:(id)body
        callback:(void (^)(id, NSError *))callback
 {
-    if ( ! [url isKindOfClass:[NSURL class]]) {
-        NSDictionary *userInfo = @{ NSURLErrorFailingURLErrorKey: url,
-                                    NSLocalizedDescriptionKey:
-                                        [NSString stringWithFormat:@"Bad URL: %@", url]
-                                    };
-        callback(nil, [NSError errorWithDomain:NSURLErrorDomain
-                                          code:NSURLErrorBadURL
-                                      userInfo:userInfo]);
-        return;
-    }
-    
-    [self resetLastCredentails];
-    [credentials applyWith:self];
-    
-    void (^response)(id, void (^)(id, NSError *)) = [responses objectForKey:url];
-    
-    if ( ! response) {
-        NSString *message = [NSString stringWithFormat:
-                             @"%@ not in test requester",
-                             url];
-        callback(nil, [NSError errorWithDomain:NSURLErrorDomain
-                                          code:404
-                                      userInfo:@{NSLocalizedDescriptionKey: message}]);
-        return;
-    }
-    
-    response(body, callback);
+    [self invokeURL:url
+             method:@"POST"
+               body:body
+        credentials:credentials
+           callback:callback];
 }
 
 
