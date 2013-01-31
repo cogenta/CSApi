@@ -30,6 +30,8 @@
 		BE57715116BA9073002F42E4 /* CSApiLoginTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BE57715016BA9073002F42E4 /* CSApiLoginTests.m */; };
 		BE57715316BABC69002F42E4 /* user_get_response.json in Resources */ = {isa = PBXBuildFile; fileRef = BE57715216BABC69002F42E4 /* user_get_response.json */; };
 		BE57715616BAD046002F42E4 /* TestConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = BE57715516BAD046002F42E4 /* TestConstants.m */; };
+		BE57715916BAD163002F42E4 /* CSAPITestCase.h in Sources */ = {isa = PBXBuildFile; fileRef = BE57715716BAD162002F42E4 /* CSAPITestCase.h */; };
+		BE57715A16BAD163002F42E4 /* CSAPITestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = BE57715816BAD162002F42E4 /* CSAPITestCase.m */; };
 		BEA65A0D16B92F3100F10CB0 /* TestRequester.m in Sources */ = {isa = PBXBuildFile; fileRef = BEA65A0C16B92F3100F10CB0 /* TestRequester.m */; };
 		BEA65A1016B94DDF00F10CB0 /* CSApplicationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BEA65A0F16B94DDF00F10CB0 /* CSApplicationTests.m */; };
 		BEA65A1316B94E4900F10CB0 /* TestApi.m in Sources */ = {isa = PBXBuildFile; fileRef = BEA65A1216B94E4900F10CB0 /* TestApi.m */; };
@@ -93,6 +95,8 @@
 		BE57715216BABC69002F42E4 /* user_get_response.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = user_get_response.json; path = Fixtures/user_get_response.json; sourceTree = "<group>"; };
 		BE57715416BAD046002F42E4 /* TestConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestConstants.h; sourceTree = "<group>"; };
 		BE57715516BAD046002F42E4 /* TestConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestConstants.m; sourceTree = "<group>"; };
+		BE57715716BAD162002F42E4 /* CSAPITestCase.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.h; path = CSAPITestCase.h; sourceTree = "<group>"; tabWidth = 4; usesTabs = 0; wrapsLines = 1; };
+		BE57715816BAD162002F42E4 /* CSAPITestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = CSAPITestCase.m; sourceTree = "<group>"; tabWidth = 4; usesTabs = 0; wrapsLines = 1; };
 		BEA65A0B16B92F3100F10CB0 /* TestRequester.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestRequester.h; sourceTree = "<group>"; };
 		BEA65A0C16B92F3100F10CB0 /* TestRequester.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestRequester.m; sourceTree = "<group>"; };
 		BEA65A0F16B94DDF00F10CB0 /* CSApplicationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSApplicationTests.m; sourceTree = "<group>"; };
@@ -217,6 +221,8 @@
 		BEA65A0A16B92F1200F10CB0 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				BE57715716BAD162002F42E4 /* CSAPITestCase.h */,
+				BE57715816BAD162002F42E4 /* CSAPITestCase.m */,
 				BEA65A0B16B92F3100F10CB0 /* TestRequester.h */,
 				BEA65A0C16B92F3100F10CB0 /* TestRequester.m */,
 				BEA65A1116B94E4900F10CB0 /* TestApi.h */,
@@ -377,6 +383,8 @@
 				BE57714E16BA8FFA002F42E4 /* TestAPIStore.m in Sources */,
 				BE57715116BA9073002F42E4 /* CSApiLoginTests.m in Sources */,
 				BE57715616BAD046002F42E4 /* TestConstants.m in Sources */,
+				BE57715916BAD163002F42E4 /* CSAPITestCase.h in Sources */,
+				BE57715A16BAD163002F42E4 /* CSAPITestCase.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
