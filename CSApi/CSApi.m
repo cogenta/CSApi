@@ -19,9 +19,11 @@
 
 @property (strong, nonatomic) id<CSRequester> requester;
 @property (strong, nonatomic) YBHALResource *resource;
+@property (strong, nonatomic) id<CSCredentials> credentials;
 
 - (id)initWithHAL:(YBHALResource *)resource
-        requester:(id<CSRequester>)requester;
+        requester:(id<CSRequester>)requester
+      credentials:(id<CSCredentials>)credentials;
 
 @end
 
@@ -39,15 +41,18 @@
 
 @synthesize requester;
 @synthesize resource;
+@synthesize credentials;
 @synthesize name;
 
 - (id)initWithHAL:(YBHALResource *)aResource
         requester:(id<CSRequester>)aRequester
+      credentials:(id<CSCredentials>)aCredentials
 {
     self = [super init];
     if (self) {
         requester = aRequester;
         resource = aResource;
+        credentials = aCredentials;
         
         name = resource[@"name"];
     }
@@ -63,7 +68,7 @@
                                            representationWithBaseURL:baseURL];
     
     [requester postURL:url
-           credentials:nil
+           credentials:credentials
                   body:[user representWithRepresentation:representation]
               callback:^(id result, NSError *error)
     {
@@ -134,8 +139,9 @@
               callback:(void (^)(id<CSApplication> app, NSError *error))callback
 {
     id<CSRequester> requester = [self requester];
+    id<CSCredentials> credentials = [CSBasicCredentials credentialsWithApi:self];
     [requester getURL:appUrl
-          credentials:[CSBasicCredentials credentialsWithApi:self]
+          credentials:credentials
              callback:^(YBHALResource *result, NSError *error)
     {
         if (error) {
@@ -143,7 +149,8 @@
             return;
         }
         CSApplication *app = [[CSApplication alloc] initWithHAL:result
-                                                      requester:requester];
+                                                      requester:requester
+                                                    credentials:credentials];
         callback(app, nil);
     }];
 }

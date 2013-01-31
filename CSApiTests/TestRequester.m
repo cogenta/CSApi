@@ -58,10 +58,17 @@
     } forKey:url];
 }
 
+- (void)resetLastCredentails
+{
+    lastUsername = nil;
+    lastPassword = nil;
+}
+
 - (void)getURL:(NSURL *)url
    credentials:(id<CSCredentials>)credentials
       callback:(void (^)(id, NSError *))callback
 {
+    [self resetLastCredentails];
     [credentials applyWith:self];
     
     void (^response)(id, void (^)(id, NSError *)) = [responses objectForKey:url];
@@ -84,6 +91,7 @@
            body:(id)body
        callback:(void (^)(id, NSError *))callback
 {
+    [self resetLastCredentails];
     [credentials applyWith:self];
     
     void (^response)(id, void (^)(id, NSError *)) = [responses objectForKey:url];
