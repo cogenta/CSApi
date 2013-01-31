@@ -9,5 +9,6 @@
 #import <Foundation/Foundation.h>
 
 NSData *appData();
-NSData *userPostReponseData();
+NSData *userPostResponseData();
+NSData *userGetResponseData();
 NSData *userPostReponseDataWithReferenceAndMeta();

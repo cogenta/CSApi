@@ -34,6 +34,8 @@
 @property (strong, nonatomic) NSURL *baseUrl;
 
 - (id)initWithHal:(YBHALResource *)resource;
+- (id)initWithHal:(YBHALResource *)resource
+       credential:(id<CSCredentials>)credential;
 
 @end
 
@@ -109,6 +111,19 @@
     return self;
 }
 
+- (id)initWithHal:(YBHALResource *)resource
+       credential:(id<CSCredentials>)aCredential
+{
+    self = [super init];
+    if (self) {
+        url = [resource linkForRelation:@"self"].URL;
+        reference = resource[@"reference"];
+        meta = resource[@"meta"];
+        credential = aCredential;
+    }
+    return self;
+}
+
 - (id)representWithRepresentation:(id<CSRepresentation>)representation
 {
     id result = [representation representUser:self];
@@ -179,6 +194,26 @@
 
 - (void)login:(void (^)(id<CSUser>, NSError *))callback
 {
+    NSURL *storedUserURL = [[self store] userUrl];
+    id<CSCredentials> storedCredential = [[self store] userCredential];
+    
+    if (storedUserURL) {
+        [[self requester] getURL:storedUserURL
+                     credentials:storedCredential
+                        callback:^(YBHALResource *result, NSError *error)
+        {
+            if (error) {
+                callback(nil, error);
+                return;
+            }
+            
+            CSUser *user = [[CSUser alloc] initWithHal:result
+                                            credential:storedCredential];
+            callback(user, nil);
+        }];
+        return;
+    }
+    
     [self getApplication:[NSURL URLWithString:bookmark]
                 callback:^(id<CSApplication> app, NSError *error)
     {

@@ -17,6 +17,7 @@
 @property (nonatomic, strong) id<CSCredentials> userCredential;
 
 - (void)resetToFirstLogin;
+- (void)resetWithURL:(NSURL *)url credential:(NSDictionary *)credential;
 
 
 @end

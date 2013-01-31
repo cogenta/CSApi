@@ -149,7 +149,7 @@ static NSString *kPassword = @"2af58818-c7c0-4503-b7e6-b95d661474f4";
 void (^postCallback)(id body, void (^cb)(id, NSError *)) =
 ^(id body, void (^cb)(id, NSError *)) {
     YBHALResource *halBody = body;
-    NSData *data = userPostReponseData();
+    NSData *data = userPostResponseData();
     NSMutableDictionary *json = [[CSApplicationTests jsonForData:data] mutableCopy];
     if (halBody[@"reference"]) {
         json[@"reference"] = halBody[@"reference"];

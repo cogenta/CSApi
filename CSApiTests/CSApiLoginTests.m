@@ -113,7 +113,7 @@ static NSString *kPassword = @"2af58818-c7c0-4503-b7e6-b95d661474f4";
     YBHALResource *appResource = [self resourceForData:appData()];
     [requester addGetResponse:appResource forURL:[NSURL URLWithString:kBookmark]];
     
-    YBHALResource *userResource = [self resourceForData:userPostReponseData()];
+    YBHALResource *userResource = [self resourceForData:userPostResponseData()];
     [requester addPostResponse:userResource forURL:[appResource linkForRelation:@"/rels/users"].URL];
     
     [store resetToFirstLogin];
@@ -137,6 +137,39 @@ static NSString *kPassword = @"2af58818-c7c0-4503-b7e6-b95d661474f4";
     [[mockAuthenticator expect] applyBasicAuthWithUsername:userResource[@"credential"][@"username"]
                                                   password:userResource[@"credential"][@"password"]];
     [store.userCredential applyWith:mockAuthenticator];
+    [mockAuthenticator verify];
+}
+
+- (void)testSecondLoginReusesExistingUser
+{
+    NSURL *userURL = [NSURL URLWithString:@"http://localhost:5000/users/12345"];
+    YBHALResource *userResource = [self resourceForData:userGetResponseData()];
+    [requester addGetResponse:userResource forURL:userURL];
+    
+    [store resetWithURL:userURL
+             credential:@{@"username": @"user",
+                          @"password": @"pass"}];
+    
+    __block id<CSUser> returnedUser = nil;
+    __block NSError *returnedError = nil;
+    [self callAndWait:^(void (^done)()) {
+        [api login:^(id<CSUser> user, NSError *error) {
+            returnedUser = user;
+            returnedError = error;
+            done();
+        }];
+    }];
+    
+    STAssertNil(returnedError, @"%@", [returnedError localizedDescription]);
+    
+    STAssertNotNil(returnedUser.url, nil);
+    STAssertEqualObjects(store.userUrl, userURL, nil);
+    STAssertEqualObjects(returnedUser.url, userURL, nil);
+    
+    id mockAuthenticator = [OCMockObject mockForProtocol:@protocol(CSAuthenticator)];
+    [[mockAuthenticator expect] applyBasicAuthWithUsername:@"user"
+                                                  password:@"pass"];
+    [returnedUser.credential applyWith:mockAuthenticator];
     [mockAuthenticator verify];
 }
 

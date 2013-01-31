@@ -14,5 +14,7 @@
 @protocol CSAPIStore <NSObject>
 
 - (void)didCreateUser:(id<CSUser>)user;
+- (NSURL *)userUrl;
+- (id<CSCredentials>)userCredential;
 
 @end
