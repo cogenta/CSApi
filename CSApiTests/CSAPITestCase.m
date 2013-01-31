@@ -7,6 +7,7 @@
 //
 
 #import "CSAPITestCase.h"
+#import "TestConstants.h"
 
 @implementation CSAPITestCase
 
@@ -32,6 +33,39 @@
     
     blk(done);
     [self waitForSemaphore:semaphore];
+}
+
++ (NSDictionary *)jsonForData:(NSData *)data
+{
+    __block NSError *error = nil;
+    id json = [NSJSONSerialization JSONObjectWithData:data
+                                              options:0
+                                                error:&error];
+    
+    return json;
+}
+
+- (NSDictionary *)jsonForData:(NSData *)data
+{
+    return [[self class] jsonForData:data];
+}
+
++ (YBHALResource *)resourceForJson:(NSDictionary *)json
+{
+    NSURL *url = [NSURL URLWithString:kBookmark];
+    YBHALResource *resource = [json HALResourceWithBaseURL:url];
+    return resource;
+}
+
+- (YBHALResource *)resourceForJson:(NSDictionary *)json
+{
+    return [[self class] resourceForJson:json];
+}
+
+- (YBHALResource *)resourceForData:(NSData *)data
+{
+    NSDictionary *json = [self jsonForData:data];
+    return [self resourceForJson:json];
 }
 
 @end
