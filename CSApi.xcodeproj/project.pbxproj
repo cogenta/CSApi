@@ -30,7 +30,6 @@
 		BE57715116BA9073002F42E4 /* CSApiLoginTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BE57715016BA9073002F42E4 /* CSApiLoginTests.m */; };
 		BE57715316BABC69002F42E4 /* user_get_response.json in Resources */ = {isa = PBXBuildFile; fileRef = BE57715216BABC69002F42E4 /* user_get_response.json */; };
 		BE57715616BAD046002F42E4 /* TestConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = BE57715516BAD046002F42E4 /* TestConstants.m */; };
-		BE57715916BAD163002F42E4 /* CSAPITestCase.h in Sources */ = {isa = PBXBuildFile; fileRef = BE57715716BAD162002F42E4 /* CSAPITestCase.h */; };
 		BE57715A16BAD163002F42E4 /* CSAPITestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = BE57715816BAD162002F42E4 /* CSAPITestCase.m */; };
 		BEA65A0D16B92F3100F10CB0 /* TestRequester.m in Sources */ = {isa = PBXBuildFile; fileRef = BEA65A0C16B92F3100F10CB0 /* TestRequester.m */; };
 		BEA65A1016B94DDF00F10CB0 /* CSApplicationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BEA65A0F16B94DDF00F10CB0 /* CSApplicationTests.m */; };
@@ -383,7 +382,6 @@
 				BE57714E16BA8FFA002F42E4 /* TestAPIStore.m in Sources */,
 				BE57715116BA9073002F42E4 /* CSApiLoginTests.m in Sources */,
 				BE57715616BAD046002F42E4 /* TestConstants.m in Sources */,
-				BE57715916BAD163002F42E4 /* CSAPITestCase.h in Sources */,
 				BE57715A16BAD163002F42E4 /* CSAPITestCase.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
