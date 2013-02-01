@@ -23,9 +23,16 @@
 - (id)initWithBookmark:(NSString *)aBookmark
               username:(NSString *)aUsername
               password:(NSString *)aPassword;
+
 - (void)getApplication:(NSString *)path
               callback:(void (^)(id<CSApplication> app, NSError *error))callback;
+
+- (void)getUser:(NSURL *)url
+     credential:(id<CSCredentials>)credential
+       callback:(void (^)(id<CSUser>, NSError *))callback;
+
 - (id<CSUser>)newUser;
+
 - (void)login:(void (^)(id<CSUser> user, NSError *error))callback;
 
 @end

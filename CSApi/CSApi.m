@@ -192,25 +192,32 @@
     return nil;
 }
 
+- (void)getUser:(NSURL *)url
+     credential:(id<CSCredentials>)credential
+       callback:(void (^)(id<CSUser>, NSError *))callback
+{
+    [[self requester] getURL:url
+                 credentials:credential
+                    callback:^(YBHALResource *result, NSError *error)
+     {
+         if (error) {
+             callback(nil, error);
+             return;
+         }
+         
+         CSUser *user = [[CSUser alloc] initWithHal:result
+                                         credential:credential];
+         callback(user, nil);
+     }];
+}
+
 - (void)login:(void (^)(id<CSUser>, NSError *))callback
 {
     NSURL *storedUserURL = [[self store] userUrl];
     id<CSCredentials> storedCredential = [[self store] userCredential];
     
     if (storedUserURL) {
-        [[self requester] getURL:storedUserURL
-                     credentials:storedCredential
-                        callback:^(YBHALResource *result, NSError *error)
-        {
-            if (error) {
-                callback(nil, error);
-                return;
-            }
-            
-            CSUser *user = [[CSUser alloc] initWithHal:result
-                                            credential:storedCredential];
-            callback(user, nil);
-        }];
+        [self getUser:storedUserURL credential:storedCredential callback:callback];
         return;
     }
     
