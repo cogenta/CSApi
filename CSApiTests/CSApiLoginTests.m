@@ -113,6 +113,9 @@
                                                   password:@"pass"];
     [returnedUser.credential applyWith:mockAuthenticator];
     [mockAuthenticator verify];
+    
+    STAssertEqualObjects(returnedUser.reference, userResource[@"reference"], nil);
+    STAssertEqualObjects(returnedUser.meta, userResource[@"meta"], nil);
 }
 
 @end

@@ -10,5 +10,9 @@
     "app:developer": {
       "href": "/developers/5101280670467949bd575fce"
     }
+  },
+  "reference": "clientId_12345",
+  "meta": {
+      "field": "value"
   }
 }

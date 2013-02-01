@@ -91,7 +91,7 @@
 		BE57714C16BA8FFA002F42E4 /* TestAPIStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestAPIStore.h; sourceTree = "<group>"; };
 		BE57714D16BA8FFA002F42E4 /* TestAPIStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestAPIStore.m; sourceTree = "<group>"; };
 		BE57715016BA9073002F42E4 /* CSApiLoginTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSApiLoginTests.m; sourceTree = "<group>"; };
-		BE57715216BABC69002F42E4 /* user_get_response.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = user_get_response.json; path = Fixtures/user_get_response.json; sourceTree = "<group>"; };
+		BE57715216BABC69002F42E4 /* user_get_response.json */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = text.json; name = user_get_response.json; path = Fixtures/user_get_response.json; sourceTree = "<group>"; tabWidth = 2; };
 		BE57715416BAD046002F42E4 /* TestConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestConstants.h; sourceTree = "<group>"; };
 		BE57715516BAD046002F42E4 /* TestConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestConstants.m; sourceTree = "<group>"; };
 		BE57715716BAD162002F42E4 /* CSAPITestCase.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.h; path = CSAPITestCase.h; sourceTree = "<group>"; tabWidth = 4; usesTabs = 0; wrapsLines = 1; };
