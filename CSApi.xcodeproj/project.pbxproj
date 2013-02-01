@@ -24,7 +24,7 @@
 		BE4B14A716B9722A00BDDD08 /* user_post_response.json in Resources */ = {isa = PBXBuildFile; fileRef = BE4B14A616B9722A00BDDD08 /* user_post_response.json */; };
 		BE4B14AA16B9727300BDDD08 /* TestFixtures.m in Sources */ = {isa = PBXBuildFile; fileRef = BE4B14A916B9727300BDDD08 /* TestFixtures.m */; };
 		BE57713F16B98EFF002F42E4 /* user_post_response_with_reference_and_meta.json in Resources */ = {isa = PBXBuildFile; fileRef = BE57713E16B98EFF002F42E4 /* user_post_response_with_reference_and_meta.json */; };
-		BE57714716BA7F89002F42E4 /* CSBasicCredentials.m in Sources */ = {isa = PBXBuildFile; fileRef = BE57714616BA7F89002F42E4 /* CSBasicCredentials.m */; };
+		BE57714716BA7F89002F42E4 /* CSBasicCredential.m in Sources */ = {isa = PBXBuildFile; fileRef = BE57714616BA7F89002F42E4 /* CSBasicCredential.m */; };
 		BE57714A16BA8066002F42E4 /* CSHALRepresentation.m in Sources */ = {isa = PBXBuildFile; fileRef = BE57714916BA8066002F42E4 /* CSHALRepresentation.m */; };
 		BE57714E16BA8FFA002F42E4 /* TestAPIStore.m in Sources */ = {isa = PBXBuildFile; fileRef = BE57714D16BA8FFA002F42E4 /* TestAPIStore.m */; };
 		BE57715116BA9073002F42E4 /* CSApiLoginTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BE57715016BA9073002F42E4 /* CSApiLoginTests.m */; };
@@ -67,7 +67,7 @@
 		BE06A4BF16B6E54900F345F8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		BE06A4C316B6E54900F345F8 /* CSApi-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CSApi-Prefix.pch"; sourceTree = "<group>"; };
 		BE06A4C416B6E54900F345F8 /* CSApi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSApi.h; sourceTree = "<group>"; };
-		BE06A4C616B6E54900F345F8 /* CSApi.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSApi.m; sourceTree = "<group>"; };
+		BE06A4C616B6E54900F345F8 /* CSApi.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CSApi.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		BE06A4CD16B6E54A00F345F8 /* CSApiTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CSApiTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE06A4CE16B6E54A00F345F8 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		BE06A4D016B6E54A00F345F8 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
@@ -79,12 +79,12 @@
 		BE4B14A916B9727300BDDD08 /* TestFixtures.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestFixtures.m; sourceTree = "<group>"; };
 		BE57713E16B98EFF002F42E4 /* user_post_response_with_reference_and_meta.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = user_post_response_with_reference_and_meta.json; path = Fixtures/user_post_response_with_reference_and_meta.json; sourceTree = "<group>"; };
 		BE57714016BA7C19002F42E4 /* CSAuthenticator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSAuthenticator.h; sourceTree = "<group>"; };
-		BE57714116BA7C44002F42E4 /* CSCredentials.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSCredentials.h; sourceTree = "<group>"; };
+		BE57714116BA7C44002F42E4 /* CSCredential.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSCredential.h; sourceTree = "<group>"; };
 		BE57714216BA7C8A002F42E4 /* CSRequester.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSRequester.h; sourceTree = "<group>"; };
 		BE57714316BA7D3E002F42E4 /* CSRepresentation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSRepresentation.h; sourceTree = "<group>"; };
 		BE57714416BA7D92002F42E4 /* CSRepresentable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSRepresentable.h; sourceTree = "<group>"; };
-		BE57714516BA7F89002F42E4 /* CSBasicCredentials.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSBasicCredentials.h; sourceTree = "<group>"; };
-		BE57714616BA7F89002F42E4 /* CSBasicCredentials.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSBasicCredentials.m; sourceTree = "<group>"; };
+		BE57714516BA7F89002F42E4 /* CSBasicCredential.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSBasicCredential.h; sourceTree = "<group>"; };
+		BE57714616BA7F89002F42E4 /* CSBasicCredential.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSBasicCredential.m; sourceTree = "<group>"; };
 		BE57714816BA8066002F42E4 /* CSHALRepresentation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSHALRepresentation.h; sourceTree = "<group>"; };
 		BE57714916BA8066002F42E4 /* CSHALRepresentation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSHALRepresentation.m; sourceTree = "<group>"; };
 		BE57714B16BA8FC7002F42E4 /* CSAPIStore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSAPIStore.h; sourceTree = "<group>"; };
@@ -172,13 +172,13 @@
 			children = (
 				BE06A4C416B6E54900F345F8 /* CSApi.h */,
 				BE06A4C616B6E54900F345F8 /* CSApi.m */,
-				BE57714516BA7F89002F42E4 /* CSBasicCredentials.h */,
-				BE57714616BA7F89002F42E4 /* CSBasicCredentials.m */,
+				BE57714516BA7F89002F42E4 /* CSBasicCredential.h */,
+				BE57714616BA7F89002F42E4 /* CSBasicCredential.m */,
 				BE57714816BA8066002F42E4 /* CSHALRepresentation.h */,
 				BE57714916BA8066002F42E4 /* CSHALRepresentation.m */,
 				BE06A4C216B6E54900F345F8 /* Supporting Files */,
 				BE57714016BA7C19002F42E4 /* CSAuthenticator.h */,
-				BE57714116BA7C44002F42E4 /* CSCredentials.h */,
+				BE57714116BA7C44002F42E4 /* CSCredential.h */,
 				BE57714216BA7C8A002F42E4 /* CSRequester.h */,
 				BE57714316BA7D3E002F42E4 /* CSRepresentation.h */,
 				BE57714416BA7D92002F42E4 /* CSRepresentable.h */,
@@ -365,7 +365,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BE06A4C716B6E54900F345F8 /* CSApi.m in Sources */,
-				BE57714716BA7F89002F42E4 /* CSBasicCredentials.m in Sources */,
+				BE57714716BA7F89002F42E4 /* CSBasicCredential.m in Sources */,
 				BE57714A16BA8066002F42E4 /* CSHALRepresentation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

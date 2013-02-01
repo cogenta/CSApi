@@ -1,5 +1,5 @@
 //
-//  CSCredentials.h
+//  CSCredential.h
 //  CSApi
 //
 //  Created by Will Harris on 31/01/2013.
@@ -10,6 +10,6 @@
 
 @protocol CSAuthenticator;
 
-@protocol CSCredentials <NSObject>
+@protocol CSCredential <NSObject>
 - (void)applyWith:(id<CSAuthenticator>)authenticator;
 @end

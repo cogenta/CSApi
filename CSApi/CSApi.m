@@ -7,11 +7,11 @@
 //
 
 #import "CSApi.h"
-#import "CSCredentials.h"
+#import "CSCredential.h"
 #import "CSAuthenticator.h"
 #import "CSRequester.h"
 #import "CSRepresentation.h"
-#import "CSBasicCredentials.h"
+#import "CSBasicCredential.h"
 #import "CSHALRepresentation.h"
 #import "CSAPIStore.h"
 #import <HyperBek/HyperBek.h>
@@ -20,11 +20,11 @@
 
 @property (strong, nonatomic) id<CSRequester> requester;
 @property (strong, nonatomic) YBHALResource *resource;
-@property (strong, nonatomic) id<CSCredentials> credentials;
+@property (strong, nonatomic) id<CSCredential> credential;
 
 - (id)initWithHAL:(YBHALResource *)resource
         requester:(id<CSRequester>)requester
-      credentials:(id<CSCredentials>)credentials;
+       credential:(id<CSCredential>)credential;
 
 @end
 
@@ -35,7 +35,7 @@
 
 - (id)initWithHal:(YBHALResource *)resource;
 - (id)initWithHal:(YBHALResource *)resource
-       credential:(id<CSCredentials>)credential;
+       credential:(id<CSCredential>)credential;
 
 @end
 
@@ -44,18 +44,18 @@
 
 @synthesize requester;
 @synthesize resource;
-@synthesize credentials;
+@synthesize credential;
 @synthesize name;
 
 - (id)initWithHAL:(YBHALResource *)aResource
         requester:(id<CSRequester>)aRequester
-      credentials:(id<CSCredentials>)aCredentials
+       credential:(id<CSCredential>)aCredential
 {
     self = [super init];
     if (self) {
         requester = aRequester;
         resource = aResource;
-        credentials = aCredentials;
+        credential = aCredential;
         
         name = resource[@"name"];
     }
@@ -71,7 +71,7 @@
                                            representationWithBaseURL:baseURL];
     
     [requester postURL:url
-           credentials:credentials
+           credential:credential
                   body:[user representWithRepresentation:representation]
               callback:^(id result, NSError *error)
     {
@@ -104,15 +104,15 @@
         meta = resource[@"meta"];
         
         if (resource[@"credential"]) {
-            credential = [CSBasicCredentials
-                          credentialsWithDictionary:resource[@"credential"]];
+            credential = [CSBasicCredential
+                          credentialWithDictionary:resource[@"credential"]];
         }
     }
     return self;
 }
 
 - (id)initWithHal:(YBHALResource *)resource
-       credential:(id<CSCredentials>)aCredential
+       credential:(id<CSCredential>)aCredential
 {
     self = [super init];
     if (self) {
@@ -161,9 +161,9 @@
               callback:(void (^)(id<CSApplication> app, NSError *error))callback
 {
     id<CSRequester> requester = [self requester];
-    id<CSCredentials> credentials = [CSBasicCredentials credentialsWithApi:self];
+    id<CSCredential> credential = [CSBasicCredential credentialWithApi:self];
     [requester getURL:appUrl
-          credentials:credentials
+           credential:credential
              callback:^(YBHALResource *result, NSError *error)
     {
         if (error) {
@@ -172,7 +172,7 @@
         }
         CSApplication *app = [[CSApplication alloc] initWithHAL:result
                                                       requester:requester
-                                                    credentials:credentials];
+                                                     credential:credential];
         callback(app, nil);
     }];
 }
@@ -193,11 +193,11 @@
 }
 
 - (void)getUser:(NSURL *)url
-     credential:(id<CSCredentials>)credential
+     credential:(id<CSCredential>)credential
        callback:(void (^)(id<CSUser>, NSError *))callback
 {
     [[self requester] getURL:url
-                 credentials:credential
+                  credential:credential
                     callback:^(YBHALResource *result, NSError *error)
      {
          if (error) {
@@ -214,10 +214,12 @@
 - (void)login:(void (^)(id<CSUser>, NSError *))callback
 {
     NSURL *storedUserURL = [[self store] userUrl];
-    id<CSCredentials> storedCredential = [[self store] userCredential];
+    id<CSCredential> storedCredential = [[self store] userCredential];
     
     if (storedUserURL) {
-        [self getUser:storedUserURL credential:storedCredential callback:callback];
+        [self getUser:storedUserURL
+           credential:storedCredential
+             callback:callback];
         return;
     }
     

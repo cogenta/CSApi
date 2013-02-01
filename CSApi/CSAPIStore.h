@@ -9,12 +9,12 @@
 #import <Foundation/Foundation.h>
 
 @protocol CSUser;
-@protocol CSCredentials;
+@protocol CSCredential;
 
 @protocol CSAPIStore <NSObject>
 
 - (void)didCreateUser:(id<CSUser>)user;
 - (NSURL *)userUrl;
-- (id<CSCredentials>)userCredential;
+- (id<CSCredential>)userCredential;
 
 @end

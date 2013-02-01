@@ -8,7 +8,7 @@
 
 #import "TestAPIStore.h"
 #import "CSApi.h"
-#import "CSBasicCredentials.h"
+#import "CSBasicCredential.h"
 
 @implementation TestAPIStore
 
@@ -24,7 +24,7 @@
 - (void)resetWithURL:(NSURL *)url credential:(NSDictionary *)credential
 {
     userUrl = url;
-    userCredential = [CSBasicCredentials credentialsWithDictionary:credential];
+    userCredential = [CSBasicCredential credentialWithDictionary:credential];
 }
 
 - (void)didCreateUser:(id<CSUser>)user
@@ -38,7 +38,7 @@
     return userUrl;
 }
 
-- (id<CSCredentials>)userCredential
+- (id<CSCredential>)userCredential
 {
     return userCredential;
 }

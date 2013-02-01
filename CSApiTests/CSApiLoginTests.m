@@ -9,7 +9,7 @@
 #import <SenTestingKit/SenTestingKit.h>
 #import <OCMock/OCClassMockObject.h>
 #import "CSApi.h"
-#import "CSCredentials.h"
+#import "CSCredential.h"
 #import "CSAuthenticator.h"
 #import "TestApi.h"
 #import "TestRequester.h"

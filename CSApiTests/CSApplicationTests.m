@@ -162,7 +162,7 @@ void (^postCallback)(id body, void (^cb)(id, NSError *)) =
     STAssertEqualObjects(createdUser.meta, userResource[@"meta"], nil);
 }
 
-- (void)testUsesCredentials
+- (void)testUsesCredential
 {
     id<CSUser> user = [self.api newUser];
     [self callAndWait:^(void (^done)()) {

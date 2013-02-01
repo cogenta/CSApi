@@ -102,7 +102,7 @@
     STAssertEqualObjects(errorResponse, expectedError, nil);
 }
 
-- (void)testUsesCredentials
+- (void)testUsesCredential
 {
     [self callAndWait:^(void (^done)()) {
         [api getApplication:[NSURL URLWithString:kBookmark]

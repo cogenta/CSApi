@@ -8,14 +8,14 @@
 
 #import <Foundation/Foundation.h>
 
-@protocol CSCredentials;
+@protocol CSCredential;
 
 @protocol CSRequester <NSObject>
 - (void)getURL:(NSURL *)url
-   credentials:(id<CSCredentials>)credentials
+    credential:(id<CSCredential>)credential
       callback:(void (^)(id result, NSError *error))callback;
 - (void)postURL:(NSURL *)url
-    credentials:(id<CSCredentials>)credentials
+     credential:(id<CSCredential>)credential
            body:(id)body
        callback:(void (^)(id result, NSError *error))callback;
 @end

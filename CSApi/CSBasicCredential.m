@@ -1,16 +1,16 @@
 //
-//  CSBasicCredentials.m
+//  CSBasicCredential.m
 //  CSApi
 //
 //  Created by Will Harris on 31/01/2013.
 //  Copyright (c) 2013 Cogenta Systems Ltd. All rights reserved.
 //
 
-#import "CSBasicCredentials.h"
+#import "CSBasicCredential.h"
 #import "CSAuthenticator.h"
 #import "CSApi.h"
 
-@implementation CSBasicCredentials
+@implementation CSBasicCredential
 
 @synthesize username;
 @synthesize password;
@@ -25,24 +25,24 @@
     return self;
 }
 
-- (id)initWithDictionary:(NSDictionary *)credentials
+- (id)initWithDictionary:(NSDictionary *)credential
 {
     self = [super init];
     if (self) {
-        username = credentials[@"username"];
-        password = credentials[@"password"];
+        username = credential[@"username"];
+        password = credential[@"password"];
     }
     return self;
 }
 
-+ (instancetype)credentialsWithApi:(CSApi *)api
++ (instancetype)credentialWithApi:(CSApi *)api
 {
-    return [[CSBasicCredentials alloc] initWithApi:api];
+    return [[CSBasicCredential alloc] initWithApi:api];
 }
 
-+ (instancetype)credentialsWithDictionary:(NSDictionary *)credentials
++ (instancetype)credentialWithDictionary:(NSDictionary *)credential
 {
-    return [[CSBasicCredentials alloc] initWithDictionary:credentials];
+    return [[CSBasicCredential alloc] initWithDictionary:credential];
 }
 
 - (void)applyWith:(id<CSAuthenticator>)authenticator

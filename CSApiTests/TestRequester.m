@@ -8,7 +8,7 @@
 
 #import "TestRequester.h"
 #import "CSAuthenticator.h"
-#import "CSCredentials.h"
+#import "CSCredential.h"
 
 @interface TestRequester () <CSAuthenticator>
 
@@ -106,11 +106,11 @@
 - (void)invokeURL:(NSURL *)url
            method:(NSString *)method
              body:(id)body
-      credentials:(id<CSCredentials>)credentials
+       credential:(id<CSCredential>)credential
          callback:(void (^)(id, NSError *))callback
 {
     [self resetLastCredentails];
-    [credentials applyWith:self];
+    [credential applyWith:self];
     
     NSDictionary *methods = [responses objectForKey:url];
     
@@ -141,21 +141,21 @@
 }
 
 - (void)getURL:(NSURL *)url
-   credentials:(id<CSCredentials>)credentials
+    credential:(id<CSCredential>)credential
       callback:(void (^)(id, NSError *))callback
 {
-    [self invokeURL:url method:@"GET" body:nil credentials:credentials callback:callback];
+    [self invokeURL:url method:@"GET" body:nil credential:credential callback:callback];
 }
 
 - (void)postURL:(NSURL *)url
-    credentials:(id<CSCredentials>)credentials
+     credential:(id<CSCredential>)credential
            body:(id)body
        callback:(void (^)(id, NSError *))callback
 {
     [self invokeURL:url
              method:@"POST"
                body:body
-        credentials:credentials
+         credential:credential
            callback:callback];
 }
 

@@ -1,5 +1,5 @@
 //
-//  CSBasicCredentials.h
+//  CSBasicCredential.h
 //  CSApi
 //
 //  Created by Will Harris on 31/01/2013.
@@ -7,19 +7,19 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "CSCredentials.h"
+#import "CSCredential.h"
 
 @class CSApi;
 
-@interface CSBasicCredentials : NSObject <CSCredentials>
+@interface CSBasicCredential : NSObject <CSCredential>
 
 @property (nonatomic, strong) NSString *username;
 @property (nonatomic, strong) NSString *password;
 
 - (id)initWithApi:(CSApi *)api;
-- (id)initWithDictionary:(NSDictionary *)credentials;
+- (id)initWithDictionary:(NSDictionary *)credential;
 
-+ (instancetype) credentialsWithApi:(CSApi *)api;
-+ (instancetype) credentialsWithDictionary:(NSDictionary *)credentials;
++ (instancetype) credentialWithApi:(CSApi *)api;
++ (instancetype) credentialWithDictionary:(NSDictionary *)credential;
 
 @end

@@ -9,12 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "CSAPIStore.h"
 
-@protocol CSCredentials;
+@protocol CSCredential;
 
 @interface TestAPIStore : NSObject <CSAPIStore>
 
 @property (nonatomic, strong) NSURL *userUrl;
-@property (nonatomic, strong) id<CSCredentials> userCredential;
+@property (nonatomic, strong) id<CSCredential> userCredential;
 
 - (void)resetToFirstLogin;
 - (void)resetWithURL:(NSURL *)url credential:(NSDictionary *)credential;
