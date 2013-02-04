@@ -137,6 +137,11 @@
     }
                        forURL:userURL];
     
+    NSString *originalReference = user.reference;
+    NSDictionary *originalMeta = user.meta;
+    id originalEtag = user.etag;
+    NSURL *originalURL = user.url;
+    
     __block BOOL success = nil;
     __block NSError *error = nil;
     [self callAndWait:^(void (^done)()) {
@@ -152,6 +157,15 @@
     
     STAssertFalse(success, nil);
     STAssertNotNil(error, nil);
+    
+    STAssertEqualObjects(user.reference, originalReference,
+                         @"change:callback: does not change user reference on error");
+    STAssertEqualObjects(user.meta, originalMeta,
+                         @"change:callback: does not change user meta on error");
+    STAssertEqualObjects(user.etag, originalEtag,
+                         @"change:callback: does not change user etag on error");
+    STAssertEqualObjects(user.url, originalURL,
+                         @"change:callback: does not change user url on error");
 }
 
 @end

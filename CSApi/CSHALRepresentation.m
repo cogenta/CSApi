@@ -28,7 +28,7 @@
     return [[CSHALRepresentation alloc] initWithBaserURL:baseURL];
 }
 
-- (id)representUser:(id<CSUser>)user
+- (id)representMutableUser:(id<CSMutableUser>)user
 {
     NSMutableDictionary *json = [NSMutableDictionary dictionary];
     if (user.url) {

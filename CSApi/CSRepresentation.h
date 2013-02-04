@@ -8,8 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
-@protocol CSUser;
+@protocol CSMutableUser;
 
 @protocol CSRepresentation <NSObject>
-- (id)representUser:(id<CSUser>)user;
+- (id)representMutableUser:(id<CSMutableUser>)user;
 @end

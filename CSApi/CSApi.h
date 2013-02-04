@@ -64,6 +64,7 @@
 
 @protocol CSMutableUser <CSRepresentable>
 
+@property (readonly, strong) NSURL *url;
 @property (nonatomic, strong) NSString *reference;
 @property (nonatomic, strong) NSMutableDictionary *meta;
 

@@ -28,8 +28,14 @@
 
 @end
 
+@interface CSMutableUser : NSObject <CSMutableUser>
 
-@interface CSUser : NSObject <CSMutableUser, CSUser>
+- (id)init;
+- (id)initWithUser:(id<CSUser>)user;
+
+@end
+
+@interface CSUser : NSObject <CSUser>
 
 @property (strong, nonatomic) NSURL *baseUrl;
 @property (strong, nonatomic) id<CSRequester> requester;
@@ -72,7 +78,7 @@
     NSURL *baseURL = [resource linkForRelation:@"self"].URL;
     id<CSRepresentation> representation = [CSHALRepresentation
                                            representationWithBaseURL:baseURL];
-    id<CSMutableUser> user = [[CSUser alloc] init];
+    id<CSMutableUser> user = [[CSMutableUser alloc] init];
     change(user);
     
     [requester postURL:url
@@ -142,21 +148,28 @@
     return self;
 }
 
-- (id)representWithRepresentation:(id<CSRepresentation>)representation
+- (CSMutableUser *)mutableUser
 {
-    id result = [representation representUser:self];
-    return result;
+    return [[CSMutableUser alloc] initWithUser:self];
 }
 
-- (void)change:(void (^)(id<CSUser>))change
+- (void)loadFromMutableUser:(CSMutableUser *)mutableUser
+{
+    reference = mutableUser.reference;
+    meta = mutableUser.meta;
+}
+
+- (void)change:(void (^)(id<CSMutableUser>))change
       callback:(void (^)(BOOL, NSError *))callback
 {
     id<CSRepresentation> representation = [CSHALRepresentation
                                            representationWithBaseURL:self.url];
-    change(self);
+    CSMutableUser *mutableUser = [self mutableUser];
+    change(mutableUser);
+
     [requester putURL:url
            credential:self.credential
-                 body:[self representWithRepresentation:representation]
+                 body:[mutableUser representWithRepresentation:representation]
                  etag:self.etag
              callback:^(id result, id newEtag, NSError *error)
     {
@@ -165,9 +178,40 @@
             return;
         }
         
+        [self loadFromMutableUser:mutableUser];
         etag = newEtag;
         callback(YES, nil);
     }];
+}
+
+@end
+
+@implementation CSMutableUser
+
+@synthesize url;
+@synthesize reference;
+@synthesize meta;
+
+- (id)init
+{
+    return [self initWithUser:nil];
+}
+
+- (id)initWithUser:(id<CSUser>)user
+{
+    self = [super init];
+    if (self) {
+        url = user.url;
+        self.reference = user.reference;
+        self.meta = user.meta;
+    }
+    return self;
+}
+
+- (id)representWithRepresentation:(id<CSRepresentation>)representation
+{
+    id result = [representation representMutableUser:self];
+    return result;
 }
 
 @end
