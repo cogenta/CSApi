@@ -139,10 +139,12 @@
     return result;
 }
 
-- (void)save:(void (^)(BOOL, NSError *))callback
+- (void)change:(void (^)(id<CSUser>))change
+      callback:(void (^)(BOOL, NSError *))callback
 {
     id<CSRepresentation> representation = [CSHALRepresentation
                                            representationWithBaseURL:self.url];
+    change(self);
     [requester putURL:url
            credential:self.credential
                  body:[self representWithRepresentation:representation]

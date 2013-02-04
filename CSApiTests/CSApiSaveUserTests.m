@@ -92,13 +92,13 @@
     }
                        forURL:userURL];
     
-    user.reference = newUserResource[@"reference"];
-    user.meta = newUserResource[@"meta"];
-    
     __block BOOL success = nil;
     __block NSError *error = nil;
     [self callAndWait:^(void (^done)()) {
-        [user save:^(BOOL returnedSuccess, NSError *returnedError) {
+        [user change:^(id<CSUser> userToChange) {
+            userToChange.reference = newUserResource[@"reference"];
+            userToChange.meta = newUserResource[@"meta"];
+        } callback:^(BOOL returnedSuccess, NSError *returnedError) {
             success = returnedSuccess;
             error = returnedError;
             done();
@@ -127,7 +127,7 @@
     __block id requestedEtag = nil;
     [requester addPutCallback:^(id body, id etag, requester_callback_t cb) {
         requestedEtag = etag;
-        const static int statusCode = 409;
+        const static int statusCode = 500;
         NSDictionary *userInfo =
             @{NSLocalizedDescriptionKey:
                   [NSHTTPURLResponse localizedStringForStatusCode:statusCode]};
@@ -137,13 +137,13 @@
     }
                        forURL:userURL];
     
-    user.reference = newUserResource[@"reference"];
-    user.meta = newUserResource[@"meta"];
-    
     __block BOOL success = nil;
     __block NSError *error = nil;
     [self callAndWait:^(void (^done)()) {
-        [user save:^(BOOL returnedSuccess, NSError *returnedError) {
+        [user change:^(id<CSUser> userToChange) {
+            userToChange.reference = newUserResource[@"reference"];
+            userToChange.meta = newUserResource[@"meta"];
+        } callback:^(BOOL returnedSuccess, NSError *returnedError) {
             success = returnedSuccess;
             error = returnedError;
             done();

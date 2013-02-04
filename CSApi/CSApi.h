@@ -56,6 +56,7 @@
 @property (nonatomic, strong) NSString *reference;
 @property (nonatomic, strong) NSMutableDictionary *meta;
 
-- (void)save:(void (^)(BOOL success, NSError *error))callback;
+- (void)change:(void (^)(id<CSUser> user))change
+      callback:(void (^)(BOOL success, NSError *error))callback;
 
 @end
