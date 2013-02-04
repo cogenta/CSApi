@@ -29,7 +29,7 @@
 @end
 
 
-@interface CSUser : NSObject <CSUser>
+@interface CSUser : NSObject <CSMutableUser, CSUser>
 
 @property (strong, nonatomic) NSURL *baseUrl;
 @property (strong, nonatomic) id<CSRequester> requester;
@@ -65,14 +65,14 @@
     return self;
 }
 
-- (void)createUserWithChange:(void (^)(id<CSUser>))change
+- (void)createUserWithChange:(void (^)(id<CSMutableUser>))change
                     callback:(void (^)(id<CSUser>, NSError *))callback
 {
     NSURL *url = [resource linkForRelation:@"/rels/users"].URL;
     NSURL *baseURL = [resource linkForRelation:@"self"].URL;
     id<CSRepresentation> representation = [CSHALRepresentation
                                            representationWithBaseURL:baseURL];
-    id<CSUser> user = [[CSUser alloc] init];
+    id<CSMutableUser> user = [[CSUser alloc] init];
     change(user);
     
     [requester postURL:url
@@ -92,7 +92,7 @@
 
 - (void)createUser:(void (^)(id<CSUser>, NSError *))callback
 {
-    [self createUserWithChange:^(id<CSUser> user) {
+    [self createUserWithChange:^(id<CSMutableUser> user) {
         // Do nothing
     } callback:callback];
 }
@@ -268,7 +268,7 @@
             return;
         }
         
-        [app createUserWithChange:^(id<CSUser> user) {
+        [app createUserWithChange:^(id<CSMutableUser> user) {
             // Do nothing
         } callback:^(id<CSUser> user, NSError *error)
         {

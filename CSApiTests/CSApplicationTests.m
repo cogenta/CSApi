@@ -137,7 +137,7 @@ request_handler_t postCallback =
     __block NSError *error = nil;
     __block id<CSUser> createdUser = nil;
     [self callAndWait:^(void (^done)()) {
-        [self.app createUserWithChange:^(id<CSUser> user) {
+        [self.app createUserWithChange:^(id<CSMutableUser> user) {
             user.reference = userResource[@"reference"];
             user.meta = userResource[@"meta"];
         } callback:^(id<CSUser> returnedUser, NSError *returnedError)

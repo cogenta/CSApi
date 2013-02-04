@@ -12,6 +12,7 @@
 
 @protocol CSApplication;
 @protocol CSUser;
+@protocol CSMutableUser;
 @protocol CSCredential;
 
 @interface CSApi : NSObject
@@ -42,20 +43,28 @@
 @property (readonly) NSString *name;
 
 - (void)createUser:(void (^)(id<CSUser> user, NSError *error))callback;
-- (void)createUserWithChange:(void (^)(id<CSUser> user))change
+- (void)createUserWithChange:(void (^)(id<CSMutableUser> user))change
                     callback:(void (^)(id<CSUser> user, NSError *error))callback;
 
 @end
 
-@protocol CSUser <CSRepresentable>
+
+@protocol CSUser <NSObject>
 
 @property (readonly) NSURL *url;
 @property (readonly) id etag;
 @property (readonly) id<CSCredential> credential;
+@property (readonly) NSString *reference;
+@property (readonly) NSMutableDictionary *meta;
+
+- (void)change:(void (^)(id<CSMutableUser> user))change
+      callback:(void (^)(BOOL success, NSError *error))callback;
+
+@end
+
+@protocol CSMutableUser <CSRepresentable>
+
 @property (nonatomic, strong) NSString *reference;
 @property (nonatomic, strong) NSMutableDictionary *meta;
-
-- (void)change:(void (^)(id<CSUser> user))change
-      callback:(void (^)(BOOL success, NSError *error))callback;
 
 @end

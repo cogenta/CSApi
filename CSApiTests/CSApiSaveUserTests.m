@@ -95,7 +95,7 @@
     __block BOOL success = nil;
     __block NSError *error = nil;
     [self callAndWait:^(void (^done)()) {
-        [user change:^(id<CSUser> userToChange) {
+        [user change:^(id<CSMutableUser> userToChange) {
             userToChange.reference = newUserResource[@"reference"];
             userToChange.meta = newUserResource[@"meta"];
         } callback:^(BOOL returnedSuccess, NSError *returnedError) {
@@ -140,7 +140,7 @@
     __block BOOL success = nil;
     __block NSError *error = nil;
     [self callAndWait:^(void (^done)()) {
-        [user change:^(id<CSUser> userToChange) {
+        [user change:^(id<CSMutableUser> userToChange) {
             userToChange.reference = newUserResource[@"reference"];
             userToChange.meta = newUserResource[@"meta"];
         } callback:^(BOOL returnedSuccess, NSError *returnedError) {
