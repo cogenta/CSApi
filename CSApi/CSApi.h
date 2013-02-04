@@ -31,8 +31,6 @@
      credential:(id<CSCredential>)credential
        callback:(void (^)(id<CSUser>, NSError *))callback;
 
-- (id<CSUser>)newUser;
-
 - (void)login:(void (^)(id<CSUser> user, NSError *error))callback;
 
 @end
@@ -43,8 +41,9 @@
 
 @property (readonly) NSString *name;
 
-- (void)createUser:(id<CSUser>)user
-          callback:(void (^)(id<CSUser> user, NSError *error))callback;
+- (void)createUser:(void (^)(id<CSUser> user, NSError *error))callback;
+- (void)createUserWithChange:(void (^)(id<CSUser> user))change
+                    callback:(void (^)(id<CSUser> user, NSError *error))callback;
 
 @end
 

@@ -107,13 +107,10 @@ request_handler_t postCallback =
     
     [requester addPostCallback:postCallback forURL:postUrl];
     
-    id<CSUser> user = [self.api newUser];
-    
     __block NSError *error = nil;
     __block id<CSUser> createdUser = nil;
     [self callAndWait:^(void (^done)()) {
-        [self.app createUser:user
-                    callback:^(id<CSUser> returnedUser, NSError *returnedError)
+        [self.app createUser:^(id<CSUser> returnedUser, NSError *returnedError)
         {
             createdUser = returnedUser;
             error = returnedError;
@@ -137,15 +134,13 @@ request_handler_t postCallback =
     
     [requester addPostCallback:postCallback forURL:postUrl];
     
-    id<CSUser> user = [self.api newUser];
-    user.reference = userResource[@"reference"];
-    user.meta = userResource[@"meta"];
-    
     __block NSError *error = nil;
     __block id<CSUser> createdUser = nil;
     [self callAndWait:^(void (^done)()) {
-        [self.app createUser:user
-                    callback:^(id<CSUser> returnedUser, NSError *returnedError)
+        [self.app createUserWithChange:^(id<CSUser> user) {
+            user.reference = userResource[@"reference"];
+            user.meta = userResource[@"meta"];
+        } callback:^(id<CSUser> returnedUser, NSError *returnedError)
          {
              createdUser = returnedUser;
              error = returnedError;
@@ -164,10 +159,8 @@ request_handler_t postCallback =
 
 - (void)testUsesCredential
 {
-    id<CSUser> user = [self.api newUser];
     [self callAndWait:^(void (^done)()) {
-        [self.app createUser:user
-                    callback:^(id<CSUser> returnedUser, NSError *returnedError)
+        [self.app createUser:^(id<CSUser> returnedUser, NSError *returnedError)
          {
              done();
          }];

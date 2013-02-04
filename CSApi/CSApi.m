@@ -65,16 +65,18 @@
     return self;
 }
 
-- (void)createUser:(id<CSUser>)user
-          callback:(void (^)(id<CSUser>, NSError *))callback
+- (void)createUserWithChange:(void (^)(id<CSUser>))change
+                    callback:(void (^)(id<CSUser>, NSError *))callback
 {
     NSURL *url = [resource linkForRelation:@"/rels/users"].URL;
     NSURL *baseURL = [resource linkForRelation:@"self"].URL;
     id<CSRepresentation> representation = [CSHALRepresentation
                                            representationWithBaseURL:baseURL];
+    id<CSUser> user = [[CSUser alloc] init];
+    change(user);
     
     [requester postURL:url
-           credential:credential
+            credential:credential
                   body:[user representWithRepresentation:representation]
               callback:^(id result, id etag, NSError *error)
     {
@@ -86,6 +88,13 @@
         CSUser *user = [[CSUser alloc] initWithHal:result];
         callback(user, nil);
     }];
+}
+
+- (void)createUser:(void (^)(id<CSUser>, NSError *))callback
+{
+    [self createUserWithChange:^(id<CSUser> user) {
+        // Do nothing
+    } callback:callback];
 }
 
 @end
@@ -208,11 +217,6 @@
     }];
 }
 
-- (id<CSUser>)newUser
-{
-    return [[CSUser alloc] init];
-}
-
 - (id)requester
 {
     return nil;
@@ -264,8 +268,9 @@
             return;
         }
         
-        [app createUser:[self newUser]
-               callback:^(id<CSUser> user, NSError *error)
+        [app createUserWithChange:^(id<CSUser> user) {
+            // Do nothing
+        } callback:^(id<CSUser> user, NSError *error)
         {
             if (error) {
                 callback(nil, error);
