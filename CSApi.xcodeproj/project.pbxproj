@@ -35,6 +35,7 @@
 		BEA65A1016B94DDF00F10CB0 /* CSApplicationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BEA65A0F16B94DDF00F10CB0 /* CSApplicationTests.m */; };
 		BEA65A1316B94E4900F10CB0 /* TestApi.m in Sources */ = {isa = PBXBuildFile; fileRef = BEA65A1216B94E4900F10CB0 /* TestApi.m */; };
 		BEA65A1616B9537300F10CB0 /* app.json in Resources */ = {isa = PBXBuildFile; fileRef = BEA65A1516B9537300F10CB0 /* app.json */; };
+		BEF5304016BC072F003B8B58 /* CSApiGetUserTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF5303F16BC072F003B8B58 /* CSApiGetUserTests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -102,6 +103,7 @@
 		BEA65A1116B94E4900F10CB0 /* TestApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestApi.h; sourceTree = "<group>"; };
 		BEA65A1216B94E4900F10CB0 /* TestApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestApi.m; sourceTree = "<group>"; };
 		BEA65A1516B9537300F10CB0 /* app.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = app.json; path = Fixtures/app.json; sourceTree = "<group>"; };
+		BEF5303F16BC072F003B8B58 /* CSApiGetUserTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSApiGetUserTests.m; sourceTree = "<group>"; };
 		D0A9D9C4BB3D41BCA4100D6F /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		E11FCF6D842F44979932768C /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
@@ -204,6 +206,7 @@
 				BEA65A0F16B94DDF00F10CB0 /* CSApplicationTests.m */,
 				BE57715016BA9073002F42E4 /* CSApiLoginTests.m */,
 				BE06A4D716B6E54A00F345F8 /* Supporting Files */,
+				BEF5303F16BC072F003B8B58 /* CSApiGetUserTests.m */,
 			);
 			path = CSApiTests;
 			sourceTree = "<group>";
@@ -383,6 +386,7 @@
 				BE57715116BA9073002F42E4 /* CSApiLoginTests.m in Sources */,
 				BE57715616BAD046002F42E4 /* TestConstants.m in Sources */,
 				BE57715A16BAD163002F42E4 /* CSAPITestCase.m in Sources */,
+				BEF5304016BC072F003B8B58 /* CSApiGetUserTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
