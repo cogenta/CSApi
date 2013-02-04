@@ -11,4 +11,5 @@
 NSData *appData();
 NSData *userPostResponseData();
 NSData *userGetResponseData();
+NSData *userPutRequestData();
 NSData *userPostReponseDataWithReferenceAndMeta();

@@ -9,6 +9,28 @@
 #import "TestRequester.h"
 #import "CSAuthenticator.h"
 #import "CSCredential.h"
+#import <CommonCrypto/CommonCrypto.h>   // For etag generation
+
+@interface NSData (CSHexString)
+
+- (NSString *)hexString;
+
+@end
+
+@implementation NSData (CSHexString)
+
+- (NSString *)hexString
+{
+    const char *bytes = [self bytes];
+    NSUInteger length = [self length];
+    NSMutableString *hex = [NSMutableString string];
+    for (NSUInteger i = 0; i < length; ++i) {
+        [hex appendFormat:@"%02X", *bytes++];
+    }
+    return hex;
+}
+
+@end
 
 @interface TestRequester () <CSAuthenticator>
 
@@ -42,7 +64,7 @@
 }
 
 
-- (void)addCallback:(void (^)(id body, void (^)(id, NSError *)))cb
+- (void)addCallback:(request_handler_t)cb
           forMethod:(NSString *)method
                 url:(NSURL *)url
 {
@@ -51,21 +73,45 @@
      forKey:method];
 }
 
++ (id)etagForBody:(id)body
+{
+    if ( ! body) {
+        return nil;
+    }
+    
+    NSError *error = nil;
+    NSData *data = [NSJSONSerialization dataWithJSONObject:[body dictionary]
+                                                   options:0
+                                                     error:&error];
+    NSString *tag = nil;
+    if ( ! data) {
+        tag = [error description];
+    } else {
+        unsigned char digest[CC_SHA1_DIGEST_LENGTH];
+        if (CC_SHA1([data bytes], [data length], digest)) {
+            tag = [data hexString];
+        }
+    }
+    
+    return [NSString stringWithFormat:@"\"%@\"", tag];
+}
+
 - (void)addResponse:(id)response forMethod:(NSString *)method url:(NSURL *)url
 {
-    [self addCallback:^(id body, void (^cb)(id, NSError *))
+    Class selfClass = [self class];
+    [self addCallback:^(id body, id etag, requester_callback_t cb)
     {
-         cb(response, nil);
-     }
+        cb(response, [selfClass etagForBody:response], nil);
+    }
             forMethod:method
                   url:url];
 }
 
 - (void)addError:(NSError *)error forMethod:(NSString *)method url:(NSURL *)url
 {
-    [self addCallback:^(id body, void (^cb)(id, NSError *))
+    [self addCallback:^(id body, id etag, requester_callback_t cb)
      {
-          cb(nil, error);
+          cb(nil, nil, error);
      }
             forMethod:method
                   url:url];
@@ -86,14 +132,30 @@
     [self addResponse:response forMethod:@"POST" url:url];
 }
 
-- (void)addPostCallback:(void (^)(id, void (^)(id, NSError *)))callback
+- (void)addPostCallback:(request_handler_t)callback
                  forURL:(NSURL *)url
 {
-    [self addCallback:^(id body, void (^cb)(id, NSError *))
+    [self addCallback:^(id body, id etag, requester_callback_t cb)
      {
-         callback(body, cb);
+         callback(body, nil, cb);
      }
             forMethod:@"POST"
+                  url:url];
+}
+
+- (void)addPutResponse:(id)response forURL:(NSURL *)url
+{
+    [self addResponse:response forMethod:@"PUT" url:url];
+}
+
+- (void)addPutCallback:(request_handler_t)callback
+                forURL:(NSURL *)url
+{
+    [self addCallback:^(id body, id etag, requester_callback_t cb)
+     {
+         callback(body, nil, cb);
+     }
+            forMethod:@"PUT"
                   url:url];
 }
 
@@ -107,7 +169,7 @@
            method:(NSString *)method
              body:(id)body
        credential:(id<CSCredential>)credential
-         callback:(void (^)(id, NSError *))callback
+         callback:(void (^)(id, id, NSError *))callback
 {
     [self resetLastCredentails];
     [credential applyWith:self];
@@ -119,30 +181,30 @@
         NSString *message = [NSString stringWithFormat:
                              @"%@ not in test requester",
                              url];
-        callback(nil, [NSError errorWithDomain:NSURLErrorDomain
-                                          code:404
-                                      userInfo:@{NSLocalizedDescriptionKey: message}]);
+        callback(nil, nil, [NSError errorWithDomain:NSURLErrorDomain
+                                               code:404
+                                           userInfo:@{NSLocalizedDescriptionKey: message}]);
         return;
     }
     
-    void (^response)(id, void (^)(id, NSError *)) = [methods objectForKey:method];
+    void (^response)(id, id, void (^)(id, id, NSError *)) = [methods objectForKey:method];
     
     if ( ! response) {
         NSString *message = [NSString stringWithFormat:
                              @"%@ not allowed on %@ in test requester",
                              method, url];
-        callback(nil, [NSError errorWithDomain:NSURLErrorDomain
-                                          code:405
-                                      userInfo:@{NSLocalizedDescriptionKey: message}]);
+        callback(nil, nil, [NSError errorWithDomain:NSURLErrorDomain
+                                               code:405
+                                           userInfo:@{NSLocalizedDescriptionKey: message}]);
         return;
     }
     
-    response(body, callback);
+    response(body, nil, callback);
 }
 
 - (void)getURL:(NSURL *)url
     credential:(id<CSCredential>)credential
-      callback:(void (^)(id, NSError *))callback
+      callback:(void (^)(id, id, NSError *))callback
 {
     [self invokeURL:url method:@"GET" body:nil credential:credential callback:callback];
 }
@@ -150,10 +212,23 @@
 - (void)postURL:(NSURL *)url
      credential:(id<CSCredential>)credential
            body:(id)body
-       callback:(void (^)(id, NSError *))callback
+       callback:(requester_callback_t)callback
 {
     [self invokeURL:url
              method:@"POST"
+               body:body
+         credential:credential
+           callback:callback];
+}
+
+- (void)putURL:(NSURL *)url
+    credential:(id<CSCredential>)credential
+          body:(id)body
+          etag:(id)etag
+      callback:(requester_callback_t)callback
+{
+    [self invokeURL:url
+             method:@"PUT"
                body:body
          credential:credential
            callback:callback];

@@ -10,6 +10,8 @@
 
 #import "CSRequester.h"
 
+typedef void (^request_handler_t)(id body, id etag, requester_callback_t cb);
+
 @interface TestRequester : NSObject <CSRequester>
 
 @property (nonatomic, readonly) NSString *lastUsername;
@@ -17,8 +19,12 @@
 
 - (void)addGetResponse:(id)response forURL:(NSURL *)url;
 - (void)addGetError:(NSError *)error forURL:(NSURL *)url;
+
 - (void)addPostResponse:(id)response forURL:(NSURL *)url;
-- (void)addPostCallback:(void (^)(id, void (^)(id, NSError *)))callback
+- (void)addPostCallback:(request_handler_t)callback
                  forURL:(NSURL *)url;
 
+- (void)addPutResponse:(id)response forURL:(NSURL *)url;
+- (void)addPutCallback:(request_handler_t)callback
+                forURL:(NSURL *)url;
 @end

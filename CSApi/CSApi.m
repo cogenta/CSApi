@@ -32,10 +32,13 @@
 @interface CSUser : NSObject <CSUser>
 
 @property (strong, nonatomic) NSURL *baseUrl;
+@property (strong, nonatomic) id<CSRequester> requester;
 
 - (id)initWithHal:(YBHALResource *)resource;
 - (id)initWithHal:(YBHALResource *)resource
-       credential:(id<CSCredential>)credential;
+        requester:(id<CSRequester>)requester
+       credential:(id<CSCredential>)credential
+             etag:(id)etag;
 
 @end
 
@@ -73,7 +76,7 @@
     [requester postURL:url
            credential:credential
                   body:[user representWithRepresentation:representation]
-              callback:^(id result, NSError *error)
+              callback:^(id result, id etag, NSError *error)
     {
         if (error) {
             callback(nil, error);
@@ -93,7 +96,9 @@
 @synthesize url;
 @synthesize reference;
 @synthesize meta;
+@synthesize requester;
 @synthesize credential;
+@synthesize etag;
 
 - (id)initWithHal:(YBHALResource *)resource
 {
@@ -112,14 +117,18 @@
 }
 
 - (id)initWithHal:(YBHALResource *)resource
+        requester:(id<CSRequester>)aRequester
        credential:(id<CSCredential>)aCredential
+             etag:(id)anEtag
 {
     self = [super init];
     if (self) {
         url = [resource linkForRelation:@"self"].URL;
         reference = resource[@"reference"];
         meta = resource[@"meta"];
+        requester = aRequester;
         credential = aCredential;
+        etag = anEtag;
     }
     return self;
 }
@@ -128,6 +137,26 @@
 {
     id result = [representation representUser:self];
     return result;
+}
+
+- (void)save:(void (^)(BOOL, NSError *))callback
+{
+    id<CSRepresentation> representation = [CSHALRepresentation
+                                           representationWithBaseURL:self.url];
+    [requester putURL:url
+           credential:self.credential
+                 body:[self representWithRepresentation:representation]
+                 etag:self.etag
+             callback:^(id result, id newEtag, NSError *error)
+    {
+        if ( ! result) {
+            callback(NO, error);
+            return;
+        }
+        
+        etag = newEtag;
+        callback(YES, nil);
+    }];
 }
 
 @end
@@ -164,7 +193,7 @@
     id<CSCredential> credential = [CSBasicCredential credentialWithApi:self];
     [requester getURL:appUrl
            credential:credential
-             callback:^(YBHALResource *result, NSError *error)
+             callback:^(YBHALResource *result, id etag, NSError *error)
     {
         if (error) {
             callback(nil, error);
@@ -198,7 +227,7 @@
 {
     [[self requester] getURL:url
                   credential:credential
-                    callback:^(YBHALResource *result, NSError *error)
+                    callback:^(YBHALResource *result, id etag, NSError *error)
      {
          if (error) {
              callback(nil, error);
@@ -206,7 +235,9 @@
          }
          
          CSUser *user = [[CSUser alloc] initWithHal:result
-                                         credential:credential];
+                                          requester:[self requester]
+                                         credential:credential
+                                               etag:etag];
          callback(user, nil);
      }];
 }

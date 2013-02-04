@@ -51,8 +51,11 @@
 @protocol CSUser <CSRepresentable>
 
 @property (readonly) NSURL *url;
+@property (readonly) id etag;
 @property (readonly) id<CSCredential> credential;
 @property (nonatomic, strong) NSString *reference;
 @property (nonatomic, strong) NSMutableDictionary *meta;
+
+- (void)save:(void (^)(BOOL success, NSError *error))callback;
 
 @end

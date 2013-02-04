@@ -10,12 +10,23 @@
 
 @protocol CSCredential;
 
+typedef void (^requester_callback_t)(id result, id etag, NSError *error);
+
 @protocol CSRequester <NSObject>
+
 - (void)getURL:(NSURL *)url
     credential:(id<CSCredential>)credential
-      callback:(void (^)(id result, NSError *error))callback;
+      callback:(requester_callback_t)callback;
+
 - (void)postURL:(NSURL *)url
      credential:(id<CSCredential>)credential
            body:(id)body
-       callback:(void (^)(id result, NSError *error))callback;
+       callback:(requester_callback_t)callback;
+
+- (void)putURL:(NSURL *)url
+    credential:(id<CSCredential>)credential
+          body:(id)body
+          etag:(id)etag
+      callback:(requester_callback_t)callback;
+
 @end

@@ -86,8 +86,8 @@
     STAssertEquals(app.name, appResource[@"name"], nil);
 }
 
-void (^postCallback)(id body, void (^cb)(id, NSError *)) =
-^(id body, void (^cb)(id, NSError *)) {
+request_handler_t postCallback =
+^(id body, id etag, requester_callback_t cb) {
     YBHALResource *halBody = body;
     NSData *data = userPostResponseData();
     NSMutableDictionary *json = [[CSApplicationTests jsonForData:data] mutableCopy];
@@ -98,7 +98,7 @@ void (^postCallback)(id body, void (^cb)(id, NSError *)) =
         json[@"meta"] = halBody[@"meta"];
     }
     YBHALResource *userResource = [CSApplicationTests resourceForJson:json];
-    cb(userResource, nil);
+    cb(userResource, nil, nil);
 };
 
 - (void)testCreateUser

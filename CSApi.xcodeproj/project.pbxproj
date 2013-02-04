@@ -36,6 +36,8 @@
 		BEA65A1316B94E4900F10CB0 /* TestApi.m in Sources */ = {isa = PBXBuildFile; fileRef = BEA65A1216B94E4900F10CB0 /* TestApi.m */; };
 		BEA65A1616B9537300F10CB0 /* app.json in Resources */ = {isa = PBXBuildFile; fileRef = BEA65A1516B9537300F10CB0 /* app.json */; };
 		BEF5304016BC072F003B8B58 /* CSApiGetUserTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF5303F16BC072F003B8B58 /* CSApiGetUserTests.m */; };
+		BEF5304316BFC851003B8B58 /* CSApiSaveUserTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF5304216BFC851003B8B58 /* CSApiSaveUserTests.m */; };
+		BEF5304516BFCB03003B8B58 /* user_get_response_2.json in Resources */ = {isa = PBXBuildFile; fileRef = BEF5304416BFCB03003B8B58 /* user_get_response_2.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -104,6 +106,8 @@
 		BEA65A1216B94E4900F10CB0 /* TestApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestApi.m; sourceTree = "<group>"; };
 		BEA65A1516B9537300F10CB0 /* app.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = app.json; path = Fixtures/app.json; sourceTree = "<group>"; };
 		BEF5303F16BC072F003B8B58 /* CSApiGetUserTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSApiGetUserTests.m; sourceTree = "<group>"; };
+		BEF5304216BFC851003B8B58 /* CSApiSaveUserTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSApiSaveUserTests.m; sourceTree = "<group>"; };
+		BEF5304416BFCB03003B8B58 /* user_get_response_2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = user_get_response_2.json; path = Fixtures/user_get_response_2.json; sourceTree = "<group>"; };
 		D0A9D9C4BB3D41BCA4100D6F /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		E11FCF6D842F44979932768C /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
@@ -207,6 +211,7 @@
 				BE57715016BA9073002F42E4 /* CSApiLoginTests.m */,
 				BE06A4D716B6E54A00F345F8 /* Supporting Files */,
 				BEF5303F16BC072F003B8B58 /* CSApiGetUserTests.m */,
+				BEF5304216BFC851003B8B58 /* CSApiSaveUserTests.m */,
 			);
 			path = CSApiTests;
 			sourceTree = "<group>";
@@ -246,6 +251,7 @@
 				BE4B14A616B9722A00BDDD08 /* user_post_response.json */,
 				BE57713E16B98EFF002F42E4 /* user_post_response_with_reference_and_meta.json */,
 				BE57715216BABC69002F42E4 /* user_get_response.json */,
+				BEF5304416BFCB03003B8B58 /* user_get_response_2.json */,
 			);
 			name = Fixtures;
 			sourceTree = "<group>";
@@ -327,6 +333,7 @@
 				BE4B14A716B9722A00BDDD08 /* user_post_response.json in Resources */,
 				BE57713F16B98EFF002F42E4 /* user_post_response_with_reference_and_meta.json in Resources */,
 				BE57715316BABC69002F42E4 /* user_get_response.json in Resources */,
+				BEF5304516BFCB03003B8B58 /* user_get_response_2.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -387,6 +394,7 @@
 				BE57715616BAD046002F42E4 /* TestConstants.m in Sources */,
 				BE57715A16BAD163002F42E4 /* CSAPITestCase.m in Sources */,
 				BEF5304016BC072F003B8B58 /* CSApiGetUserTests.m in Sources */,
+				BEF5304316BFC851003B8B58 /* CSApiSaveUserTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

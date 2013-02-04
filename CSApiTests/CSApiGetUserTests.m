@@ -76,6 +76,7 @@
     STAssertEqualObjects(requester.lastUsername, userPass[@"username"], nil);
     STAssertEqualObjects(requester.lastPassword, userPass[@"password"], nil);
     
+    STAssertNotNil(returnedUser.etag, nil);
     STAssertEqualObjects(returnedUser.reference, userResource[@"reference"], nil);
     STAssertEqualObjects(returnedUser.meta, userResource[@"meta"], nil);
 }
