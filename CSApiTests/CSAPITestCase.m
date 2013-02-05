@@ -13,17 +13,23 @@
 
 - (void)waitForSemaphore:(dispatch_semaphore_t)semaphore
 {
+    NSDate *start = [NSDate date];
     long timedout;
-    for (int tries = 0; tries < 3; tries++) {
-        timedout = dispatch_semaphore_wait(semaphore, DISPATCH_TIME_NOW);
+    int maxTries = 16;
+    double totalWait = 3.0;
+    double delayInSeconds = totalWait / maxTries;
+    dispatch_time_t wait_time = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+    for (int tries = 0; tries < maxTries; tries++) {
+        timedout = dispatch_semaphore_wait(semaphore, wait_time);
         if (! timedout) {
             break;
         }
         [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode
-                                 beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
+                                 beforeDate:[NSDate dateWithTimeIntervalSinceNow:delayInSeconds]];
     }
     
-    STAssertFalse(timedout, @"Timed out waiting for callback");
+    NSDate *end = [NSDate date];
+    STAssertFalse(timedout, @"Timed out waiting for callback: %0.2fs", [end timeIntervalSinceDate:start]);
 }
 
 - (void)callAndWait:(void (^)(void (^done)()))blk
