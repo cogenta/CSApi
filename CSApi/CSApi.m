@@ -15,6 +15,7 @@
 #import "CSHALRepresentation.h"
 #import "CSAPIStore.h"
 #import <HyperBek/HyperBek.h>
+#import "CSAPIRequester.h"
 
 @interface NSError (CSExtension)
 
@@ -334,7 +335,7 @@
 
 - (id)requester
 {
-    return nil;
+    return [[CSAPIRequester alloc] init];
 }
 
 - (id<CSAPIStore>)store
