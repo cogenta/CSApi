@@ -1,0 +1,19 @@
+{
+    "_links": {
+        "curie": {
+            "href": "/rels/{rel}",
+            "name": "api"
+        },
+        "self": {
+            "href": "/users/12345"
+        },
+        "app:developer": {
+            "href": "/developers/5101280670467949bd575fce"
+        }
+    },
+    "reference": "clientId_12345",
+    "meta": {
+        "field": "value",
+        "count": 1
+    }
+}

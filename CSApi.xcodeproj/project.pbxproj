@@ -38,6 +38,7 @@
 		BEF5304016BC072F003B8B58 /* CSApiGetUserTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF5303F16BC072F003B8B58 /* CSApiGetUserTests.m */; };
 		BEF5304316BFC851003B8B58 /* CSApiSaveUserTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF5304216BFC851003B8B58 /* CSApiSaveUserTests.m */; };
 		BEF5304516BFCB03003B8B58 /* user_get_response_2.json in Resources */ = {isa = PBXBuildFile; fileRef = BEF5304416BFCB03003B8B58 /* user_get_response_2.json */; };
+		BEF5306116C124B7003B8B58 /* user_conflict_1.json in Resources */ = {isa = PBXBuildFile; fileRef = BEF5306016C124B7003B8B58 /* user_conflict_1.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -108,6 +109,7 @@
 		BEF5303F16BC072F003B8B58 /* CSApiGetUserTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSApiGetUserTests.m; sourceTree = "<group>"; };
 		BEF5304216BFC851003B8B58 /* CSApiSaveUserTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSApiSaveUserTests.m; sourceTree = "<group>"; };
 		BEF5304416BFCB03003B8B58 /* user_get_response_2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = user_get_response_2.json; path = Fixtures/user_get_response_2.json; sourceTree = "<group>"; };
+		BEF5306016C124B7003B8B58 /* user_conflict_1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = user_conflict_1.json; path = Fixtures/user_conflict_1.json; sourceTree = "<group>"; };
 		D0A9D9C4BB3D41BCA4100D6F /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		E11FCF6D842F44979932768C /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
@@ -252,6 +254,7 @@
 				BE57713E16B98EFF002F42E4 /* user_post_response_with_reference_and_meta.json */,
 				BE57715216BABC69002F42E4 /* user_get_response.json */,
 				BEF5304416BFCB03003B8B58 /* user_get_response_2.json */,
+				BEF5306016C124B7003B8B58 /* user_conflict_1.json */,
 			);
 			name = Fixtures;
 			sourceTree = "<group>";
@@ -334,6 +337,7 @@
 				BE57713F16B98EFF002F42E4 /* user_post_response_with_reference_and_meta.json in Resources */,
 				BE57715316BABC69002F42E4 /* user_get_response.json in Resources */,
 				BEF5304516BFCB03003B8B58 /* user_get_response_2.json in Resources */,
+				BEF5306116C124B7003B8B58 /* user_conflict_1.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

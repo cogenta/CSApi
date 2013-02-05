@@ -16,6 +16,21 @@
 #import "CSAPIStore.h"
 #import <HyperBek/HyperBek.h>
 
+@interface NSError (CSExtension)
+
+- (BOOL) isHttpConflict;
+
+@end
+
+@implementation NSError (CSExtension)
+
+- (BOOL) isHttpConflict
+{
+    return [self.userInfo[@"NSHTTPPropertyStatusCodeKey"] isEqual:@409];
+}
+
+@end
+
 @interface CSApplication : NSObject <CSApplication>
 
 @property (strong, nonatomic) id<CSRequester> requester;
@@ -47,6 +62,8 @@
         requester:(id<CSRequester>)requester
        credential:(id<CSCredential>)credential
              etag:(id)etag;
+
+- (void)loadFromResource:(YBHALResource *)resource;
 
 @end
 
@@ -125,9 +142,7 @@
 {
     self = [super init];
     if (self) {
-        url = [resource linkForRelation:@"self"].URL;
-        reference = resource[@"reference"];
-        meta = resource[@"meta"];
+        [self loadFromResource:resource];
         
         requester = aRequester;
         if (resource[@"credential"]) {
@@ -145,14 +160,19 @@
 {
     self = [super init];
     if (self) {
-        url = [resource linkForRelation:@"self"].URL;
-        reference = resource[@"reference"];
-        meta = resource[@"meta"];
+        [self loadFromResource:resource];
         requester = aRequester;
         credential = aCredential;
         etag = anEtag;
     }
     return self;
+}
+
+- (void)loadFromResource:(YBHALResource *)resource
+{
+    url = [resource linkForRelation:@"self"].URL;
+    reference = resource[@"reference"];
+    meta = resource[@"meta"];
 }
 
 - (CSMutableUser *)mutableUser
@@ -176,49 +196,63 @@
         callback(NO, [NSError errorWithDomain:@"CSAPI" code:3 userInfo:@{NSLocalizedDescriptionKey: @"representation is nil"}]);
         return;
     }
-    
-    CSMutableUser *mutableUser = [self mutableUser];
-    change(mutableUser);
-    
-    id representedUser = [mutableUser representWithRepresentation:representation];
+
+    __block void (^doGet)() = ^{
+        callback(NO, [NSError errorWithDomain:@"CSApi" code:0 userInfo:@{NSLocalizedDescriptionKey: @"wrong doGet called"}]);
+    };
     
     void (^doPut)() = ^{
+        CSMutableUser *mutableUser = [self mutableUser];
+        change(mutableUser);
+        
+        id representedUser = [mutableUser representWithRepresentation:representation];
+        
         [requester putURL:self.url
                credential:self.credential
                      body:representedUser
                      etag:self.etag
-                 callback:^(id result, id newEtag, NSError *error)
+                 callback:^(id result, id etagFromPut, NSError *error)
          {
-             if ( ! result) {
-                 callback(NO, error);
+             if ( ! error) {
+                 [self loadFromResource:result];
+                 etag = etagFromPut;
+                 callback(YES, nil);
                  return;
              }
              
-             [self loadFromMutableUser:mutableUser];
-             etag = newEtag;
-             callback(YES, nil);
+             if ([error isHttpConflict]) {
+                 dispatch_async(dispatch_get_main_queue(), doGet);
+                 return;
+             }
+             
+             callback(NO, error);
+         }];
+    };
+
+    doGet = ^{
+        [requester getURL:self.url
+               credential:self.credential
+                 callback:^(id result, id etagFromGet, NSError *getError)
+         {
+             if ( ! result) {
+                 callback(false, getError);
+                 return;
+             }
+             
+             [self loadFromResource:result];
+             etag = etagFromGet;
+             
+             dispatch_async(dispatch_get_main_queue(), doPut);
          }];
     };
     
+
     if (etag) {
         doPut();
-        return;
+    } else {
+        doGet();
     }
     
-    [requester getURL:self.url
-           credential:self.credential
-             callback:^(id result, id etagFromGet, NSError *getError)
-    {
-        if ( ! result) {
-            callback(false, getError);
-            return;
-        }
-        
-        etag = etagFromGet;
-                 
-        doPut();
-    }];
-
 }
 
 @end
@@ -240,7 +274,7 @@
     if (self) {
         url = user.url;
         self.reference = user.reference;
-        self.meta = user.meta;
+        self.meta = [user.meta mutableCopy];
     }
     return self;
 }

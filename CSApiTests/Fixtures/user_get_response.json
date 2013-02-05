@@ -13,6 +13,7 @@
   },
   "reference": "clientId_12345",
   "meta": {
-      "field": "value"
+      "field": "value",
+      "count": 0
   }
 }

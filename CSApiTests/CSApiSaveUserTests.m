@@ -59,7 +59,9 @@
 {
     NSURL *userURL = [NSURL URLWithString:@"http://localhost:5000/users/12345"];
     YBHALResource *userResource = [self resourceForData:userGetResponseData()];
-    [requester addGetResponse:userResource forURL:userURL];
+    [requester addGetCallback:^(id body, id etag, requester_callback_t cb) {
+        cb(userResource, @"ORIGINAL ETAG", nil);
+    } forURL:userURL];
     
     userPass = @{@"username": @"user",
                  @"password": @"pass"};
@@ -69,7 +71,10 @@
     __block id<CSUser> returnedUser = nil;
     __block NSError *returnedError = nil;
     [self callAndWait:^(void (^done)()) {
-        [api getUser:userURL credential:credential callback:^(id<CSUser> aUser, NSError *error) {
+        [api getUser:userURL
+          credential:credential
+            callback:^(id<CSUser> aUser, NSError *error)
+        {
             returnedUser = aUser;
             returnedError = error;
             done();
@@ -168,6 +173,65 @@
                          @"change:callback: does not change user etag on error");
     STAssertEqualObjects(user.url, originalURL,
                          @"change:callback: does not change user url on error");
+}
+
+- (void)testRetriesConflictedChange
+{
+    NSURL *userURL = [user url];
+    YBHALResource *conflictResource = [self resourceForData:dataForFixture(@"user_conflict_1.json")];
+    STAssertNotNil(conflictResource, nil);
+    id originalEtag = user.etag;
+    STAssertNotNil(originalEtag, nil);
+    id newEtag = @"NEW ETAG";
+    __block id currentEtag = newEtag;
+    id lastEtag = @"LAST ETAG";
+    NSMutableArray *getEtags = [NSMutableArray array];
+    [requester addGetCallback:^(id body, id etag, requester_callback_t cb) {
+        [getEtags addObject:etag ? etag : @"(nil)"];
+        cb(conflictResource, newEtag, nil);
+    } forURL:userURL];
+    
+    NSMutableArray *putEtags = [NSMutableArray array];
+    [requester addPutCallback:^(id body, id etag, requester_callback_t cb) {
+        [putEtags addObject:etag ? etag : @"(nil)"];
+        if ( ! etag) {
+            cb(nil, nil, [NSError errorWithDomain:@"test" code:412 userInfo:@{NSLocalizedDescriptionKey: @"HTTP error 412 Precondition Failed",
+                          @"NSHTTPPropertyStatusCodeKey": @412}]);
+            return;
+        }
+        if ( ! [etag isEqual:currentEtag]) {
+            cb(nil, nil, [NSError errorWithDomain:@"test" code:409 userInfo:@{NSLocalizedDescriptionKey: @"HTTP error 409 Conflict",
+                          @"NSHTTPPropertyStatusCodeKey": @409}]);
+            return;
+        }
+        
+        currentEtag = lastEtag;
+        cb(body, lastEtag, nil);
+    } forURL:userURL];
+    
+    NSMutableArray *counts = [NSMutableArray array];
+    __block BOOL changeSuccess = NO;
+    __block NSError *changeError = nil;
+    [self callAndWait:^(void (^done)()) {
+        [user change:^(id<CSMutableUser> mutableUser) {
+            [counts addObject:mutableUser.meta[@"count"]];
+            NSInteger num = [mutableUser.meta[@"count"] intValue] + 1;
+            mutableUser.meta[@"count"] = @(num);
+        } callback:^(BOOL success, NSError *error) {
+            changeSuccess = success;
+            changeError = error;
+            done();
+        }];
+    }];
+    
+    STAssertEqualObjects(currentEtag, lastEtag, nil);
+    STAssertEqualObjects(putEtags, (@[originalEtag, newEtag]), nil);
+    STAssertEqualObjects(getEtags, (@[@"(nil)"]), nil);
+    STAssertTrue(changeSuccess, nil);
+    STAssertNil(changeError, @"%@", changeError);
+    STAssertEqualObjects(counts, (@[@0, @1]), nil);
+    STAssertEqualObjects(user.meta[@"count"], @2, nil);
+    STAssertEqualObjects(user.etag, @"LAST ETAG", nil);
 }
 
 @end
