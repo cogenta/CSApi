@@ -7,8 +7,11 @@
 //
 
 #import "CSAPIRequester.h"
+#import "CSAuthenticator.h"
+#import "CSCredential.h"
 #import "AFNetworking.h"
 #import <HyperBek/HyperBek.h>
+#import <Base64/MF_Base64Additions.h>
 
 @interface CSHALRequestOperation : AFJSONRequestOperation
 
@@ -19,6 +22,45 @@
 + (NSSet *)acceptableContentTypes
 {
     return [NSSet setWithObjects:@"application/hal+json", @"text/plain", nil];
+}
+
+@end
+
+@interface CSRequestAuthenticator : NSObject <CSAuthenticator>
+
+@property (nonatomic, strong) NSMutableURLRequest *request;
+
+- (id)initWithRequest:(NSMutableURLRequest *)request;
++ (instancetype)authenticatorWithRequest:(NSMutableURLRequest *)request;
+
+@end
+
+@implementation CSRequestAuthenticator
+
+@synthesize request;
+
+- (id)initWithRequest:(NSMutableURLRequest *)aRequest
+{
+    self = [super init];
+    if (self) {
+        request = aRequest;
+    }
+    return self;
+}
+
++ (instancetype)authenticatorWithRequest:(NSMutableURLRequest *)request
+{
+    return [[CSRequestAuthenticator alloc] initWithRequest:request];
+}
+
+- (void)applyBasicAuthWithUsername:(NSString *)username
+                          password:(NSString *)password
+{
+    NSString *userPass = [NSString stringWithFormat:@"%@:%@",
+                          username, password];
+    NSString *basicAuth = [NSString stringWithFormat:@"Basic %@",
+                           [userPass base64String]];
+    [request addValue:basicAuth forHTTPHeaderField:@"Authorization"];
 }
 
 @end
@@ -36,7 +78,7 @@
       callback:(requester_callback_t)callback
 {
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-    
+    [credential applyWith:[CSRequestAuthenticator authenticatorWithRequest:request]];
     AFHTTPRequestOperation *operation =
     [CSHALRequestOperation
      JSONRequestOperationWithRequest:request
@@ -57,10 +99,7 @@
         return;
     }
     
-    [operation setSuccessCallbackQueue:dispatch_get_main_queue()];
-    [operation setFailureCallbackQueue:dispatch_get_main_queue()];
     [operation start];
-    [operation waitUntilFinished];
 }
 
 - (void)postURL:(NSURL *)url

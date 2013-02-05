@@ -14,6 +14,7 @@
 #import "CSAPITestCase.h"
 #import "TestFixtures.h"
 #import <OCMock/OCMock.h>
+#import <Base64/MF_Base64Additions.h>
 
 @interface CSAPIRequesterTests : CSAPITestCase
 
@@ -45,18 +46,36 @@
     STAssertNotNil(userDict, nil);
     
     
-    YBHALResource *expectedResource = [[YBHALResource alloc] initWithDictionary:userDict
-                                                                        baseURL:baseUrl];
+    YBHALResource *expectedResource = [[YBHALResource alloc]
+                                       initWithDictionary:userDict
+                                       baseURL:baseUrl];
     STAssertNotNil(expectedResource, nil);
     
     NSURL *userURL = [expectedResource linkForRelation:@"self"].URL;
     STAssertNotNil(userURL, nil);
     
     NSString *userEtag = @"\"USERETAG\"";
+    NSDictionary *credentailDict = @{@"username": @"user",
+                                     @"password": @"pass"};
+    CSBasicCredential *basicCredential =
+    [CSBasicCredential credentialWithDictionary:credentailDict];
+    NSString *expectedAuth = [NSString stringWithFormat:@"Basic %@",
+                              [@"user:pass" base64String]];
+    
+    __block NSString *actualAuth = @"[NOT SET]";
 
     [OHHTTPStubs shouldStubRequestsPassingTest:^BOOL(NSURLRequest *request) {
         return [request.URL isEqual:userURL];
     } withStubResponse:^OHHTTPStubsResponse *(NSURLRequest *request) {
+        actualAuth = [request valueForHTTPHeaderField:@"Authorization"];
+        if ( ! [actualAuth isEqualToString:expectedAuth]) {
+            NSDictionary *headers = @{@"WWW-Authenticate":
+                                          @"Basic realm=\"hyperapi\""};
+            return [OHHTTPStubsResponse responseWithData:[NSData data]
+                                              statusCode:401
+                                            responseTime:0.0
+                                                 headers:headers];
+        }
         NSDictionary *headers = @{@"Etag": userEtag,
                                   @"Content-Type": @"application/hal+json"};
         return [OHHTTPStubsResponse responseWithData:userData
@@ -65,13 +84,12 @@
                                              headers:headers];
     }];
     
-    NSDictionary *credentailDict = @{@"username": @"user",
-                                     @"password": @"pass"};
-    CSBasicCredential *basicCredential = [CSBasicCredential credentialWithDictionary:
-                                          credentailDict];
+
     __block id actualResource = @"NOT SET";
     __block id actualEtag = @"NOT SET";
-    __block NSError *actualError = [NSError errorWithDomain:@"NOT SET" code:0 userInfo:nil];
+    __block NSError *actualError = [NSError errorWithDomain:@"NOT SET"
+                                                       code:0
+                                                   userInfo:nil];
     [self callAndWait:^(void (^done)()) {
         [requester getURL:userURL
                credential:basicCredential
@@ -84,7 +102,10 @@
          }];
     }];
 
-    STAssertEqualObjects([(id)actualResource dictionary], [(id)expectedResource dictionary], nil);
+    STAssertEqualObjects(actualAuth, expectedAuth, nil);
+    STAssertEqualObjects([(id)actualResource dictionary],
+                         [(id)expectedResource dictionary],
+                         nil);
     STAssertEqualObjects(actualEtag, userEtag, nil);
     STAssertNil(actualError, @"%@", actualError);
 }
