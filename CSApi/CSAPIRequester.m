@@ -78,21 +78,39 @@
       callback:(requester_callback_t)callback
 {
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-    [credential applyWith:[CSRequestAuthenticator authenticatorWithRequest:request]];
+    CSRequestAuthenticator *authenticator =
+        [CSRequestAuthenticator authenticatorWithRequest:request];
+    [credential applyWith:authenticator];
+    
     AFHTTPRequestOperation *operation =
     [CSHALRequestOperation
      JSONRequestOperationWithRequest:request
      success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON)
     {
-        YBHALResource *resource = [[YBHALResource alloc] initWithDictionary:JSON baseURL:url];
+        YBHALResource *resource = [[YBHALResource alloc]
+                                   initWithDictionary:JSON
+                                   baseURL:url];
         id etag = [[response allHeaderFields] objectForKey:@"Etag"];
         callback(resource, etag, nil);
-    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
+    } failure:^(NSURLRequest *request,
+                NSHTTPURLResponse *response,
+                NSError *error,
+                id JSON) {
+        NSMutableDictionary *userInfo = [error.userInfo mutableCopy];
+        if (response) {
+            userInfo[@"NSHTTPPropertyStatusCodeKey"] = @(response.statusCode);
+        }
+        
+        error = [NSError errorWithDomain:error.domain
+                                    code:error.code
+                                userInfo:userInfo];
         callback(nil, nil, error);
     }];
     
     if ( ! operation) {
-        NSError *error = [NSError errorWithDomain:@"Operation is nil" code:0 userInfo:nil];
+        NSError *error = [NSError errorWithDomain:@"Operation is nil"
+                                             code:0
+                                         userInfo:nil];
         dispatch_async(dispatch_get_main_queue(), ^{
             callback(nil, nil, error);
         });
