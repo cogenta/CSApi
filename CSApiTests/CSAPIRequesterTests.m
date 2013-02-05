@@ -20,6 +20,12 @@
 
 @property (nonatomic, strong) id<CSRequester> requester;
 @property (nonatomic, strong) NSURL *baseUrl;
+@property (nonatomic, strong) NSData *userData;
+@property (nonatomic, strong) YBHALResource *expectedResource;
+@property (nonatomic, strong) NSURL *userURL;
+@property (nonatomic, strong) NSString *userEtag;
+@property (nonatomic, strong) CSBasicCredential *basicCredential;
+@property (nonatomic, strong) NSString *expectedAuth;
 
 @end
 
@@ -28,16 +34,19 @@
 
 @synthesize requester;
 @synthesize baseUrl;
+@synthesize userData;
+@synthesize expectedResource;
+@synthesize userURL;
+@synthesize userEtag;
+@synthesize basicCredential;
+@synthesize expectedAuth;
 
 - (void)setUp
 {
     requester = [[CSAPIRequester alloc] init];
     baseUrl = [NSURL URLWithString:@"http://localhost:8192/"];
-}
-
-- (void)testGetReturnsHAL
-{
-    NSData *userData = userGetResponseData();
+    
+    userData = userGetResponseData();
     NSError *jsonError = nil;
     NSDictionary *userDict = [NSJSONSerialization JSONObjectWithData:userData
                                                              options:0
@@ -46,22 +55,24 @@
     STAssertNotNil(userDict, nil);
     
     
-    YBHALResource *expectedResource = [[YBHALResource alloc]
-                                       initWithDictionary:userDict
-                                       baseURL:baseUrl];
+    expectedResource = [[YBHALResource alloc] initWithDictionary:userDict
+                                                         baseURL:baseUrl];
     STAssertNotNil(expectedResource, nil);
     
-    NSURL *userURL = [expectedResource linkForRelation:@"self"].URL;
+    userURL = [expectedResource linkForRelation:@"self"].URL;
     STAssertNotNil(userURL, nil);
     
-    NSString *userEtag = @"\"USERETAG\"";
+    userEtag = @"\"USERETAG\"";
     NSDictionary *credentailDict = @{@"username": @"user",
                                      @"password": @"pass"};
-    CSBasicCredential *basicCredential =
-    [CSBasicCredential credentialWithDictionary:credentailDict];
-    NSString *expectedAuth = [NSString stringWithFormat:@"Basic %@",
+    basicCredential = [CSBasicCredential credentialWithDictionary:
+                       credentailDict];
+    expectedAuth = [NSString stringWithFormat:@"Basic %@",
                               [@"user:pass" base64String]];
-    
+}
+
+- (void)testGetReturnsHAL
+{
     [OHHTTPStubs shouldStubRequestsPassingTest:^BOOL(NSURLRequest *request) {
         return [request.URL isEqual:userURL];
     } withStubResponse:^OHHTTPStubsResponse *(NSURLRequest *request) {
@@ -111,30 +122,6 @@
 {
     NSData *badData = [@"this is not valid JSON"
                        dataUsingEncoding:NSUTF8StringEncoding];
-    NSData *userData = userGetResponseData();
-    NSError *jsonError = nil;
-    NSDictionary *userDict = [NSJSONSerialization JSONObjectWithData:userData
-                                                             options:0
-                                                               error:&jsonError];
-    STAssertNil(jsonError, @"@%", jsonError);
-    STAssertNotNil(userDict, nil);
-    
-    
-    YBHALResource *expectedResource = [[YBHALResource alloc]
-                                       initWithDictionary:userDict
-                                       baseURL:baseUrl];
-    STAssertNotNil(expectedResource, nil);
-    
-    NSURL *userURL = [expectedResource linkForRelation:@"self"].URL;
-    STAssertNotNil(userURL, nil);
-    
-    NSString *userEtag = @"\"USERETAG\"";
-    NSDictionary *credentailDict = @{@"username": @"user",
-                                     @"password": @"pass"};
-    CSBasicCredential *basicCredential =
-    [CSBasicCredential credentialWithDictionary:credentailDict];
-    NSString *expectedAuth = [NSString stringWithFormat:@"Basic %@",
-                              [@"user:pass" base64String]];
     
     [OHHTTPStubs shouldStubRequestsPassingTest:^BOOL(NSURLRequest *request) {
         return [request.URL isEqual:userURL];
@@ -180,30 +167,7 @@
 }
 
 - (void)testGetReturnsErrorForValidHalWithError
-{
-    NSData *userData = userGetResponseData();
-    NSError *jsonError = nil;
-    NSDictionary *userDict = [NSJSONSerialization JSONObjectWithData:userData
-                                                             options:0
-                                                               error:&jsonError];
-    STAssertNil(jsonError, @"@%", jsonError);
-    STAssertNotNil(userDict, nil);
-    
-    
-    YBHALResource *expectedResource = [[YBHALResource alloc]
-                                       initWithDictionary:userDict
-                                       baseURL:baseUrl];
-    STAssertNotNil(expectedResource, nil);
-    
-    NSURL *userURL = [expectedResource linkForRelation:@"self"].URL;
-    STAssertNotNil(userURL, nil);
-    
-    NSString *userEtag = @"\"USERETAG\"";
-    NSDictionary *credentailDict = @{@"username": @"user",
-                                     @"password": @"pass"};
-    CSBasicCredential *basicCredential =
-    [CSBasicCredential credentialWithDictionary:credentailDict];
-    
+{    
     [OHHTTPStubs shouldStubRequestsPassingTest:^BOOL(NSURLRequest *request) {
         return [request.URL isEqual:userURL];
     } withStubResponse:^OHHTTPStubsResponse *(NSURLRequest *request) {
