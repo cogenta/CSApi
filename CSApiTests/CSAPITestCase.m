@@ -14,8 +14,11 @@
 - (void)waitForSemaphore:(dispatch_semaphore_t)semaphore
 {
     long timedout;
-    for (int tries = 0; tries < 1; tries++) {
+    for (int tries = 0; tries < 3; tries++) {
         timedout = dispatch_semaphore_wait(semaphore, DISPATCH_TIME_NOW);
+        if (! timedout) {
+            break;
+        }
         [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode
                                  beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
     }
