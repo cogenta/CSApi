@@ -40,7 +40,9 @@
 @property (strong, nonatomic) NSURL *baseUrl;
 @property (strong, nonatomic) id<CSRequester> requester;
 
-- (id)initWithHal:(YBHALResource *)resource;
+- (id)initWithHal:(YBHALResource *)resource
+        requester:(id<CSRequester>)requester
+             etag:(id)etag;
 - (id)initWithHal:(YBHALResource *)resource
         requester:(id<CSRequester>)requester
        credential:(id<CSCredential>)credential
@@ -91,7 +93,9 @@
             return;
         }
         
-        CSUser *user = [[CSUser alloc] initWithHal:result];
+        CSUser *user = [[CSUser alloc] initWithHal:result
+                                         requester:requester
+                                              etag:etag];
         callback(user, nil);
     }];
 }
@@ -116,6 +120,8 @@
 @synthesize etag;
 
 - (id)initWithHal:(YBHALResource *)resource
+        requester:(id<CSRequester>)aRequester
+             etag:(id)anEtag
 {
     self = [super init];
     if (self) {
@@ -123,6 +129,7 @@
         reference = resource[@"reference"];
         meta = resource[@"meta"];
         
+        requester = aRequester;
         if (resource[@"credential"]) {
             credential = [CSBasicCredential
                           credentialWithDictionary:resource[@"credential"]];
@@ -164,24 +171,54 @@
 {
     id<CSRepresentation> representation = [CSHALRepresentation
                                            representationWithBaseURL:self.url];
+    
+    if ( ! representation) {
+        callback(NO, [NSError errorWithDomain:@"CSAPI" code:3 userInfo:@{NSLocalizedDescriptionKey: @"representation is nil"}]);
+        return;
+    }
+    
     CSMutableUser *mutableUser = [self mutableUser];
     change(mutableUser);
-
-    [requester putURL:url
+    
+    id representedUser = [mutableUser representWithRepresentation:representation];
+    
+    void (^doPut)() = ^{
+        [requester putURL:self.url
+               credential:self.credential
+                     body:representedUser
+                     etag:self.etag
+                 callback:^(id result, id newEtag, NSError *error)
+         {
+             if ( ! result) {
+                 callback(NO, error);
+                 return;
+             }
+             
+             [self loadFromMutableUser:mutableUser];
+             etag = newEtag;
+             callback(YES, nil);
+         }];
+    };
+    
+    if (etag) {
+        doPut();
+        return;
+    }
+    
+    [requester getURL:self.url
            credential:self.credential
-                 body:[mutableUser representWithRepresentation:representation]
-                 etag:self.etag
-             callback:^(id result, id newEtag, NSError *error)
+             callback:^(id result, id etagFromGet, NSError *getError)
     {
         if ( ! result) {
-            callback(NO, error);
+            callback(false, getError);
             return;
         }
         
-        [self loadFromMutableUser:mutableUser];
-        etag = newEtag;
-        callback(YES, nil);
+        etag = etagFromGet;
+                 
+        doPut();
     }];
+
 }
 
 @end

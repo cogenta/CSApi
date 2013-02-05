@@ -1,7 +1,7 @@
 {
     "credential": {
-        "username": "c6dd81c6-af73-4ffd-ba8d-5419cbf8a0cb",
-        "password": "2af58818-c7c0-4503-b7e6-b95d661474f4"
+        "username": "app.json username",
+        "password": "app.json password"
     },
     "_links": {
         "api:usersbyreference": {

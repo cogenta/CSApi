@@ -118,4 +118,73 @@
     STAssertEqualObjects(returnedUser.meta, userResource[@"meta"], nil);
 }
 
+- (void)testNewUserCanBeChanged
+{
+    YBHALResource *appResource = [self resourceForData:appData()];
+    YBHALResource *userResource = [self resourceForData:userPostResponseData()];
+    YBHALResource *userGetResource = [self resourceForData:userGetResponseData()];
+    STAssertNotNil(userGetResource, nil);
+    [requester addGetResponse:appResource forURL:[NSURL URLWithString:kBookmark]];
+    
+    NSURL *createUserURL = [appResource linkForRelation:@"/rels/users"].URL;
+    [requester addPostCallback:^(id body, id etag, requester_callback_t cb) {
+        cb(userResource, nil, nil);
+    } forURL:createUserURL];
+    __block BOOL didCallGet = NO;
+    
+    [requester addGetCallback:^(id body, id etag, requester_callback_t cb) {
+        didCallGet = YES;
+        cb(userGetResource, @"ETAG FROM GET", nil);
+    } forURL:[userResource linkForRelation:@"self"].URL];
+    
+    [store resetToFirstLogin];
+    
+    __block id<CSUser> returnedUser = nil;
+    [self callAndWait:^(void (^done)()) {
+        [api login:^(id<CSUser> user, NSError *error) {
+            returnedUser = user;
+            done();
+        }];
+    }];
+    
+    id originalEtag = returnedUser.etag;
+    STAssertNil(originalEtag, [originalEtag description]);
+    
+    __block id putEtag = nil;
+    [requester addPutCallback:^(id body, id etag, requester_callback_t cb) {
+        putEtag = etag;
+        if ( ! etag) {
+            cb(nil, nil, [NSError errorWithDomain:@"test" code:412 userInfo:@{NSLocalizedDescriptionKey: @"HTTP error 412 Precondition Failed",
+                          @"NSHTTPPropertyStatusCodeKey": @412}]);
+            return;
+        }
+        if ( ! [etag isEqual:@"ETAG FROM GET"]) {
+            cb(nil, nil, [NSError errorWithDomain:@"test" code:409 userInfo:@{NSLocalizedDescriptionKey: @"HTTP error 409 Conflict",
+                      @"NSHTTPPropertyStatusCodeKey": @409}]);
+            return;
+        }
+        cb(body, @"NEW ETAG", nil);
+    } forURL:returnedUser.url];
+
+    __block BOOL returnedSuccess = NO;
+    __block NSError *returnedError = nil;
+    
+    [self callAndWait:^(void (^done)()){
+        [returnedUser change:^(id<CSMutableUser> user) {
+            user.reference = @"changed reference";
+        } callback:^(BOOL success, NSError *error) {
+            returnedSuccess = success;
+            returnedError = error;
+            done();
+        }];
+    }];
+    
+    STAssertTrue(didCallGet, nil);
+    STAssertEqualObjects(putEtag, @"ETAG FROM GET", nil);
+    STAssertTrue(returnedSuccess, nil);
+    STAssertNil(returnedError, @"%@", [returnedError localizedDescription]);
+    STAssertEqualObjects(returnedUser.reference, @"changed reference", nil);
+    STAssertEqualObjects(@"NEW ETAG", returnedUser.etag, nil);
+}
+
 @end

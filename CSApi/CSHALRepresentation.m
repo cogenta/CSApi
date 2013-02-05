@@ -32,7 +32,7 @@
 {
     NSMutableDictionary *json = [NSMutableDictionary dictionary];
     if (user.url) {
-        json[@"_links"] = @{@"self": [user.url absoluteString]};
+        json[@"_links"] = @{@"self": @{@"href": [user.url absoluteString]}};
     }
     
     if (user.reference) {

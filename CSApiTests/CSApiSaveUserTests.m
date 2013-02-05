@@ -83,12 +83,13 @@
 
 - (void)testChangeRefAndMeta
 {
+    id originalEtag = user.etag;
     NSURL *userURL = [user url];
     YBHALResource *newUserResource = [self resourceForData:userPutRequestData()];
     __block id requestedEtag = nil;
     [requester addPutCallback:^(id body, id etag, requester_callback_t cb) {
         requestedEtag = etag;
-        cb(newUserResource, nil, nil);
+        cb(newUserResource, @"NEW ETAG", nil);
     }
                        forURL:userURL];
     
@@ -108,7 +109,8 @@
     STAssertTrue(success, nil);
     STAssertNil(error, @"%@", [error localizedDescription]);
     
-    STAssertEqualObjects(requestedEtag, user.etag, nil);
+    STAssertEqualObjects(requestedEtag, originalEtag, nil);
+    STAssertEqualObjects(user.etag, @"NEW ETAG", nil);
     
     STAssertNotNil(user.url, nil);
     STAssertEqualObjects(user.url, userURL, nil);

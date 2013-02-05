@@ -127,17 +127,26 @@
     [self addError:error forMethod:@"GET" url:url];
 }
 
+- (void)addGetCallback:(request_handler_t)callback forURL:(NSURL *)url
+{
+    [self addCallback:^(id body, id etag, requester_callback_t cb)
+     {
+         callback(body, etag, cb);
+     }
+            forMethod:@"GET"
+                  url:url];
+}
+
 - (void)addPostResponse:(id)response forURL:(NSURL *)url
 {
     [self addResponse:response forMethod:@"POST" url:url];
 }
 
-- (void)addPostCallback:(request_handler_t)callback
-                 forURL:(NSURL *)url
+- (void)addPostCallback:(request_handler_t)callback forURL:(NSURL *)url
 {
     [self addCallback:^(id body, id etag, requester_callback_t cb)
      {
-         callback(body, nil, cb);
+         callback(body, etag, cb);
      }
             forMethod:@"POST"
                   url:url];
@@ -148,12 +157,11 @@
     [self addResponse:response forMethod:@"PUT" url:url];
 }
 
-- (void)addPutCallback:(request_handler_t)callback
-                forURL:(NSURL *)url
+- (void)addPutCallback:(request_handler_t)callback forURL:(NSURL *)url
 {
     [self addCallback:^(id body, id etag, requester_callback_t cb)
      {
-         callback(body, nil, cb);
+         callback(body, etag, cb);
      }
             forMethod:@"PUT"
                   url:url];
@@ -168,6 +176,7 @@
 - (void)invokeURL:(NSURL *)url
            method:(NSString *)method
              body:(id)body
+             etag:(id)etag
        credential:(id<CSCredential>)credential
          callback:(void (^)(id, id, NSError *))callback
 {
@@ -199,14 +208,19 @@
         return;
     }
     
-    response(body, nil, callback);
+    response(body, etag, callback);
 }
 
 - (void)getURL:(NSURL *)url
     credential:(id<CSCredential>)credential
       callback:(void (^)(id, id, NSError *))callback
 {
-    [self invokeURL:url method:@"GET" body:nil credential:credential callback:callback];
+    [self invokeURL:url
+             method:@"GET"
+               body:nil
+               etag:nil
+         credential:credential
+           callback:callback];
 }
 
 - (void)postURL:(NSURL *)url
@@ -217,6 +231,7 @@
     [self invokeURL:url
              method:@"POST"
                body:body
+               etag:nil
          credential:credential
            callback:callback];
 }
@@ -227,9 +242,14 @@
           etag:(id)etag
       callback:(requester_callback_t)callback
 {
+    if ( ! body) {
+        callback(nil, nil, [NSError errorWithDomain:@"NO PUT BODY" code:0 userInfo:nil]);
+        return;
+    }
     [self invokeURL:url
              method:@"PUT"
                body:body
+               etag:etag
          credential:credential
            callback:callback];
 }

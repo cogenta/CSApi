@@ -141,11 +141,11 @@ request_handler_t postCallback =
             user.reference = userResource[@"reference"];
             user.meta = userResource[@"meta"];
         } callback:^(id<CSUser> returnedUser, NSError *returnedError)
-         {
-             createdUser = returnedUser;
-             error = returnedError;
-             done();
-         }];
+        {
+            createdUser = returnedUser;
+            error = returnedError;
+            done();
+        }];
     }];
     
     STAssertNil(error, @"%@", error);
