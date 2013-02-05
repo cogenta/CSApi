@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
+NSData *dataForFixture(NSString *fixture);
 NSData *appData();
 NSData *userPostResponseData();
 NSData *userGetResponseData();

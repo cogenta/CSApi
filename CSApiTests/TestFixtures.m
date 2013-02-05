@@ -9,96 +9,56 @@
 #import "TestFixtures.h"
 
 NSData *
-appData() {
-    static NSData *result = nil;
+dataForFixture(NSString *fixture)
+{
+    static NSMutableDictionary *results = nil;
+    NSData *result = results[fixture];
+    
     if (result) {
         return result;
     }
     
     NSString *thisPath = @"" __FILE__;
     NSURL *thisURL = [NSURL fileURLWithPath:thisPath];
-    NSURL *dataURL = [NSURL URLWithString:@"Fixtures/app.json"
-                            relativeToURL:thisURL];
+    NSURL *fixturesURL = [NSURL URLWithString:@"Fixtures/"
+                                relativeToURL:thisURL];
+    NSURL *dataURL = [NSURL URLWithString:fixture
+                            relativeToURL:fixturesURL];
     NSError *error = nil;
     result = [NSData dataWithContentsOfURL:dataURL
                                    options:0
                                      error:&error];
     
+    if ( ! results) {
+        results = [[NSMutableDictionary alloc] init];
+    }
+    
+    results[fixture] = result;
+    
     return result;
+}
+
+NSData *
+appData() {
+    return dataForFixture(@"app.json");
 }
 
 NSData *
 userPostResponseData() {
-    static NSData *result = nil;
-    if (result) {
-        return result;
-    }
-    
-    NSString *thisPath = @"" __FILE__;
-    NSURL *thisURL = [NSURL fileURLWithPath:thisPath];
-    NSURL *dataURL = [NSURL URLWithString:@"Fixtures/user_post_response.json"
-                            relativeToURL:thisURL];
-    NSError *error = nil;
-    result = [NSData dataWithContentsOfURL:dataURL
-                                   options:0
-                                     error:&error];
-    
-    return result;
+    return dataForFixture(@"user_post_response.json");
 }
 
 NSData *
 userGetResponseData() {
-    static NSData *result = nil;
-    if (result) {
-        return result;
-    }
-    
-    NSString *thisPath = @"" __FILE__;
-    NSURL *thisURL = [NSURL fileURLWithPath:thisPath];
-    NSURL *dataURL = [NSURL URLWithString:@"Fixtures/user_get_response.json"
-                            relativeToURL:thisURL];
-    NSError *error = nil;
-    result = [NSData dataWithContentsOfURL:dataURL
-                                   options:0
-                                     error:&error];
-    
-    return result;
+    return dataForFixture(@"user_get_response.json");
 }
 
 NSData *
 userPutRequestData() {
-    static NSData *result = nil;
-    if (result) {
-        return result;
-    }
-    
-    NSString *thisPath = @"" __FILE__;
-    NSURL *thisURL = [NSURL fileURLWithPath:thisPath];
-    NSURL *dataURL = [NSURL URLWithString:@"Fixtures/user_get_response_2.json"
-                            relativeToURL:thisURL];
-    NSError *error = nil;
-    result = [NSData dataWithContentsOfURL:dataURL
-                                   options:0
-                                     error:&error];
-    
-    return result;
+    return dataForFixture(@"user_get_response_2.json");
 }
 
 NSData *
 userPostReponseDataWithReferenceAndMeta() {
-    static NSData *result = nil;
-    if (result) {
-        return result;
-    }
-    
-    NSString *thisPath = @"" __FILE__;
-    NSURL *thisURL = [NSURL fileURLWithPath:thisPath];
-    NSURL *dataURL = [NSURL URLWithString:@"Fixtures/user_post_response_with_reference_and_meta.json"
-                            relativeToURL:thisURL];
-    NSError *error = nil;
-    result = [NSData dataWithContentsOfURL:dataURL
-                                   options:0
-                                     error:&error];
-    
-    return result;
+    return dataForFixture(@"user_post_response_with_reference_and_meta.json");
 }
