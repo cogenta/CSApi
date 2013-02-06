@@ -27,6 +27,7 @@
 @property (nonatomic, strong) CSBasicCredential *basicCredential;
 @property (nonatomic, strong) NSString *expectedAuth;
 @property (nonatomic, strong) NSData *badData;
+@property (nonatomic, strong) id putEtag;
 
 @end
 
@@ -42,6 +43,7 @@
 @synthesize basicCredential;
 @synthesize expectedAuth;
 @synthesize badData;
+@synthesize putEtag;
 
 - (void)setUp
 {
@@ -73,6 +75,8 @@
                               [@"user:pass" base64String]];
     
     badData = [@"this is not valid JSON" dataUsingEncoding:NSUTF8StringEncoding];
+    
+    putEtag = @"\"SENTETAG\"";
 }
 
 - (void)tearDown
@@ -80,11 +84,15 @@
     [OHHTTPStubs removeAllRequestHandlers];
 }
 
+#pragma mark - GET requests
+
 - (void)testGetReturnsHAL
 {
+    __block id actualMethod = @"NOT SET";
     [OHHTTPStubs shouldStubRequestsPassingTest:^BOOL(NSURLRequest *request) {
         return [request.URL isEqual:userURL];
     } withStubResponse:^OHHTTPStubsResponse *(NSURLRequest *request) {
+        actualMethod = request.HTTPMethod;
         NSString *auth = [request valueForHTTPHeaderField:@"Authorization"];
         if ( ! [auth isEqualToString:expectedAuth]) {
             NSDictionary *headers = @{@"WWW-Authenticate":
@@ -120,6 +128,7 @@
          }];
     }];
 
+    STAssertEqualObjects(actualMethod, @"GET", nil);
     STAssertEqualObjects([(id)actualResource dictionary],
                          [(id)userResource dictionary],
                          nil);
@@ -210,12 +219,16 @@
                          nil);
 }
 
+#pragma mark - POST requests
+
 - (void)testPostReturnsHAL
 {
+    __block id actualMethod = @"NOT SET";
     __block id actualPostBody = [@"{\"not\": \"set\"}" dataUsingEncoding:NSUTF8StringEncoding];
     [OHHTTPStubs shouldStubRequestsPassingTest:^BOOL(NSURLRequest *request) {
         return [request.URL isEqual:userURL];
     } withStubResponse:^OHHTTPStubsResponse *(NSURLRequest *request) {
+        actualMethod = request.HTTPMethod;
         NSString *auth = [request valueForHTTPHeaderField:@"Authorization"];
         if ( ! [auth isEqualToString:expectedAuth]) {
             NSDictionary *headers = @{@"WWW-Authenticate":
@@ -253,6 +266,7 @@
          }];
     }];
     
+    STAssertEqualObjects(actualMethod, @"POST", nil);
     STAssertNotNil(actualPostBody, nil);
     NSError *jsonError = nil;
     NSDictionary *bodyJSON = [NSJSONSerialization
@@ -438,6 +452,265 @@
                 credential:basicCredential
                       body:userResource
                   callback:^(id result, id etag, NSError *error)
+         {
+             actualResource = result;
+             actualEtag = etag;
+             actualError = error;
+             done();
+         }];
+    }];
+    
+    STAssertNil(actualResource, nil);
+    STAssertNil(actualEtag, nil);
+    STAssertNotNil(actualError, nil);
+    STAssertEqualObjects(actualError.userInfo[@"NSHTTPPropertyStatusCodeKey"],
+                         @409,
+                         nil);
+}
+
+#pragma mark - PUT requests
+
+- (void)testPutReturnsHAL
+{
+    __block id actualMethod = @"NOT SET";
+    __block id actualPutBody = [@"{\"not\": \"set\"}" dataUsingEncoding:NSUTF8StringEncoding];
+    __block id actualIfMatch = @"NOT SET";
+    [OHHTTPStubs shouldStubRequestsPassingTest:^BOOL(NSURLRequest *request) {
+        return [request.URL isEqual:userURL];
+    } withStubResponse:^OHHTTPStubsResponse *(NSURLRequest *request) {
+        actualMethod = request.HTTPMethod;
+        NSString *auth = [request valueForHTTPHeaderField:@"Authorization"];
+        if ( ! [auth isEqualToString:expectedAuth]) {
+            NSDictionary *headers = @{@"WWW-Authenticate":
+                                          @"Basic realm=\"hyperapi\""};
+            return [OHHTTPStubsResponse responseWithData:[NSData data]
+                                              statusCode:401
+                                            responseTime:0.0
+                                                 headers:headers];
+        }
+        
+        actualIfMatch = [request valueForHTTPHeaderField:@"If-Match"];
+        
+        NSDictionary *headers = @{@"Etag": userEtag,
+                                  @"Content-Type": @"application/hal+json",
+                                  @"Location": [userURL absoluteString]};
+        actualPutBody = request.HTTPBody;
+        return [OHHTTPStubsResponse responseWithData:userData
+                                          statusCode:201
+                                        responseTime:0.0
+                                             headers:headers];
+    }];
+    
+    __block id actualResource = @"NOT SET";
+    __block id actualEtag = @"NOT SET";
+    __block NSError *actualError = [NSError errorWithDomain:@"NOT SET"
+                                                       code:0
+                                                   userInfo:nil];
+    [self callAndWait:^(void (^done)()) {
+        [requester putURL:userURL
+               credential:basicCredential
+                     body:userResource
+                     etag:putEtag
+                 callback:^(id result, id etag, NSError *error)
+         {
+             actualResource = result;
+             actualEtag = etag;
+             actualError = error;
+             done();
+         }];
+    }];
+    
+    STAssertEqualObjects(actualMethod, @"PUT", nil);
+    STAssertNotNil(actualPutBody, nil);
+    NSError *jsonError = nil;
+    NSDictionary *bodyJSON = [NSJSONSerialization
+                              JSONObjectWithData:actualPutBody
+                              options:0
+                              error:&jsonError];
+    STAssertNotNil(bodyJSON, nil);
+    STAssertNil(jsonError, @"%@", jsonError);
+    YBHALResource *bodyResource = [[YBHALResource alloc]
+                                   initWithDictionary:bodyJSON
+                                   baseURL:userURL];
+    
+    STAssertEqualObjects([(id)bodyResource dictionary],
+                         [(id)userResource dictionary],
+                         nil);
+    
+    STAssertEqualObjects([(id)actualResource dictionary],
+                         [(id)userResource dictionary],
+                         nil);
+    STAssertEqualObjects(actualEtag, userEtag, nil);
+    STAssertNil(actualError, @"%@", actualError);
+    STAssertEqualObjects(actualIfMatch, putEtag, nil);
+}
+
+- (void)testPutReturnsErrorForInvalidResponseJSON
+{
+    __block id actualPostBody = [@"{\"not\": \"set\"}" dataUsingEncoding:NSUTF8StringEncoding];
+    [OHHTTPStubs shouldStubRequestsPassingTest:^BOOL(NSURLRequest *request) {
+        return [request.URL isEqual:userURL];
+    } withStubResponse:^OHHTTPStubsResponse *(NSURLRequest *request) {
+        NSString *auth = [request valueForHTTPHeaderField:@"Authorization"];
+        if ( ! [auth isEqualToString:expectedAuth]) {
+            NSDictionary *headers = @{@"WWW-Authenticate":
+                                          @"Basic realm=\"hyperapi\""};
+            return [OHHTTPStubsResponse responseWithData:[NSData data]
+                                              statusCode:401
+                                            responseTime:0.0
+                                                 headers:headers];
+        }
+        NSDictionary *headers = @{@"Etag": userEtag,
+                                  @"Content-Type": @"application/hal+json",
+                                  @"Location": [userURL absoluteString]};
+        actualPostBody = request.HTTPBody;
+        return [OHHTTPStubsResponse responseWithData:badData
+                                          statusCode:200
+                                        responseTime:0.0
+                                             headers:headers];
+    }];
+    
+    __block id actualResource = @"NOT SET";
+    __block id actualEtag = @"NOT SET";
+    __block NSError *actualError = [NSError errorWithDomain:@"NOT SET"
+                                                       code:0
+                                                   userInfo:nil];
+    [self callAndWait:^(void (^done)()) {
+        [requester putURL:userURL
+               credential:basicCredential
+                     body:userResource
+                     etag:putEtag
+                 callback:^(id result, id etag, NSError *error)
+         {
+             actualResource = result;
+             actualEtag = etag;
+             actualError = error;
+             done();
+         }];
+    }];
+    
+    STAssertNotNil(actualPostBody, nil);
+    NSError *jsonError = nil;
+    NSDictionary *bodyJSON = [NSJSONSerialization
+                              JSONObjectWithData:actualPostBody
+                              options:0
+                              error:&jsonError];
+    STAssertNotNil(bodyJSON, nil);
+    STAssertNil(jsonError, @"%@", jsonError);
+    YBHALResource *bodyResource = [[YBHALResource alloc]
+                                   initWithDictionary:bodyJSON
+                                   baseURL:userURL];
+    
+    STAssertEqualObjects([(id)bodyResource dictionary],
+                         [(id)userResource dictionary],
+                         nil);
+    
+    STAssertNil(actualResource, nil);
+    STAssertNil(actualEtag, nil);
+    STAssertNotNil(actualError, nil);
+}
+
+- (void)testPutReturnsErrorForNilRequestBody
+{
+    __block BOOL didMakeRequest = NO;
+    [OHHTTPStubs shouldStubRequestsPassingTest:^BOOL(NSURLRequest *request) {
+        return [request.URL isEqual:userURL];
+    } withStubResponse:^OHHTTPStubsResponse *(NSURLRequest *request) {
+        didMakeRequest = YES;
+        return nil;
+    }];
+    
+    __block id actualResource = @"NOT SET";
+    __block id actualEtag = @"NOT SET";
+    __block NSError *actualError = [NSError errorWithDomain:@"NOT SET"
+                                                       code:0
+                                                   userInfo:nil];
+    [self callAndWait:^(void (^done)()) {
+        [requester putURL:userURL
+               credential:basicCredential
+                     body:@"BAD RESOURCE"
+                     etag:putEtag
+                 callback:^(id result, id etag, NSError *error)
+         {
+             actualResource = result;
+             actualEtag = etag;
+             actualError = error;
+             done();
+         }];
+    }];
+    
+    STAssertFalse(didMakeRequest, nil);
+    
+    STAssertNil(actualResource, nil);
+    STAssertNil(actualEtag, nil);
+    STAssertNotNil(actualError, nil);
+}
+
+- (void)testPutReturnsErrorForInvalidRequestBody
+{
+    NSMutableDictionary *circularJSON = [NSMutableDictionary dictionary];
+    [circularJSON setObject:circularJSON forKey:@"self"];
+    id badResource = [OCMockObject mockForClass:[YBHALResource class]];
+    [[[badResource stub] andReturn:circularJSON] dictionary];
+    
+    __block BOOL didMakeRequest = NO;
+    [OHHTTPStubs shouldStubRequestsPassingTest:^BOOL(NSURLRequest *request) {
+        return [request.URL isEqual:userURL];
+    } withStubResponse:^OHHTTPStubsResponse *(NSURLRequest *request) {
+        didMakeRequest = YES;
+        return nil;
+    }];
+    
+    __block id actualResource = @"NOT SET";
+    __block id actualEtag = @"NOT SET";
+    __block NSError *actualError = [NSError errorWithDomain:@"NOT SET"
+                                                       code:0
+                                                   userInfo:nil];
+    [self callAndWait:^(void (^done)()) {
+        [requester putURL:userURL
+               credential:basicCredential
+                     body:badResource
+                     etag:putEtag
+                 callback:^(id result, id etag, NSError *error)
+         {
+             actualResource = result;
+             actualEtag = etag;
+             actualError = error;
+             done();
+         }];
+    }];
+    
+    STAssertFalse(didMakeRequest, nil);
+    
+    STAssertNil(actualResource, nil);
+    STAssertNil(actualEtag, nil);
+    STAssertNotNil(actualError, nil);
+}
+
+- (void)testPutReturnsErrorForValidHalWithError
+{
+    [OHHTTPStubs shouldStubRequestsPassingTest:^BOOL(NSURLRequest *request) {
+        return [request.URL isEqual:userURL];
+    } withStubResponse:^OHHTTPStubsResponse *(NSURLRequest *request) {
+        NSDictionary *headers = @{@"Etag": userEtag,
+                                  @"Content-Type": @"application/hal+json"};
+        return [OHHTTPStubsResponse responseWithData:userData
+                                          statusCode:409
+                                        responseTime:0.0
+                                             headers:headers];
+    }];
+    
+    __block id actualResource = @"NOT SET";
+    __block id actualEtag = @"NOT SET";
+    __block NSError *actualError = [NSError errorWithDomain:@"NOT SET"
+                                                       code:0
+                                                   userInfo:nil];
+    [self callAndWait:^(void (^done)()) {
+        [requester putURL:userURL
+               credential:basicCredential
+                     body:userResource
+                     etag:putEtag
+                 callback:^(id result, id etag, NSError *error)
          {
              actualResource = result;
              actualEtag = etag;
