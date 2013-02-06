@@ -67,10 +67,51 @@
 
 @implementation CSAPIRequester
 
-- (void)sendNotImplementedToCallback:(requester_callback_t)callback
+- (NSData *)dataForBodyObject:(id)body {
+    if ( ! [body respondsToSelector:@selector(dictionary)]) {
+        return nil;
+    }
+    
+    NSDictionary *bodyJSON = [body dictionary];
+
+    if ( ! [NSJSONSerialization isValidJSONObject:bodyJSON]) {
+        return nil;
+    }
+    
+    NSError *jsonError = nil;
+    NSData *bodyData = [NSJSONSerialization dataWithJSONObject:bodyJSON
+                                                       options:0
+                                                         error:&jsonError];
+    return bodyData;
+}
+
+- (void)applyCredential:(id)credential request:(NSMutableURLRequest *)request
 {
-    callback(nil, nil,
-             [NSError errorWithDomain:@"Not Implemented" code:0 userInfo:@{}]);
+    CSRequestAuthenticator *authenticator = [CSRequestAuthenticator
+                                             authenticatorWithRequest:request];
+    [credential applyWith:authenticator];
+}
+
+- (void)applyEtag:(id)etag request:(NSMutableURLRequest *)request
+{
+    if (etag) {
+        [request addValue:etag forHTTPHeaderField:@"If-Match"];
+    }
+}
+
+- (BOOL)applyBody:(id)body request:(NSMutableURLRequest *)request
+{
+    if ( ! body) {
+        return YES;
+    }
+    
+    NSData *bodyData = [self dataForBodyObject:body];
+    if ( ! bodyData) {
+        return NO;
+    }
+        
+    [request setHTTPBody:bodyData];
+    return YES;
 }
 
 - (void)requestURL:(NSURL *)url
@@ -82,39 +123,18 @@
 {
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     request.HTTPMethod = method;
-    CSRequestAuthenticator *authenticator = [CSRequestAuthenticator
-                                             authenticatorWithRequest:request];
-    [credential applyWith:authenticator];
     
-    if (etag) {
-        [request addValue:etag forHTTPHeaderField:@"If-Match"];
-    }
+    [self applyCredential:credential request:request];
+    [self applyEtag:etag request:request];
     
-    if (body) {
-        if ( ! [body respondsToSelector:@selector(dictionary)]) {
-            NSDictionary *userInfo = @{NSLocalizedDescriptionKey: @"bad body"};
-            NSError *error = [NSError errorWithDomain:@"CSAPI"
-                                                 code:0
-                                             userInfo:userInfo];
-            callback(nil, nil, error);
-            return;
-        }
-        
-        NSDictionary *bodyJSON = [body dictionary];
-        if ( ! [NSJSONSerialization isValidJSONObject:bodyJSON]) {
-            NSDictionary *userInfo = @{NSLocalizedDescriptionKey:
-                                           @"body object is not valid"};
-            NSError *error = [NSError errorWithDomain:@"CSAPI" code:0 userInfo:userInfo];
-            callback(nil, nil, error);
-            return;
-        }
-        
-        NSError *jsonError = nil;
-        NSData *bodyData = [NSJSONSerialization dataWithJSONObject:bodyJSON
-                                                           options:0
-                                                             error:&jsonError];
-        
-        [request setHTTPBody:bodyData];
+    if ( ! [self applyBody:body request:request]) {
+        NSDictionary *userInfo = @{NSLocalizedDescriptionKey:
+                                       @"body object is not valid"};
+        NSError *error = [NSError errorWithDomain:@"CSAPI"
+                                             code:0
+                                         userInfo:userInfo];
+        callback(nil, nil, error);
+        return;
     }
 
     AFHTTPRequestOperation *operation =
