@@ -8,8 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-#import "CSRepresentable.h"
-
 @protocol CSApplication;
 @protocol CSUser;
 @protocol CSMutableUser;
@@ -62,7 +60,7 @@
 
 @end
 
-@protocol CSMutableUser <CSRepresentable>
+@protocol CSMutableUser
 
 @property (readonly, strong) NSURL *url;
 @property (nonatomic, strong) NSString *reference;

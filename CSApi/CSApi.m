@@ -11,6 +11,7 @@
 #import "CSAuthenticator.h"
 #import "CSRequester.h"
 #import "CSRepresentation.h"
+#import "CSRepresentable.h"
 #import "CSBasicCredential.h"
 #import "CSHALRepresentation.h"
 #import "CSAPIStore.h"
@@ -44,7 +45,7 @@
 
 @end
 
-@interface CSMutableUser : NSObject <CSMutableUser>
+@interface CSMutableUser : NSObject <CSMutableUser, CSRepresentable>
 
 - (id)init;
 - (id)initWithUser:(id<CSUser>)user;
@@ -53,6 +54,7 @@
 
 @interface CSUser : NSObject <CSUser>
 
+@property (readonly) id<CSCredential> credential;
 @property (strong, nonatomic) NSURL *baseUrl;
 @property (strong, nonatomic) id<CSRequester> requester;
 
@@ -98,7 +100,7 @@
     NSURL *baseURL = [resource linkForRelation:@"self"].URL;
     id<CSRepresentation> representation = [CSHALRepresentation
                                            representationWithBaseURL:baseURL];
-    id<CSMutableUser> user = [[CSMutableUser alloc] init];
+    CSMutableUser *user = [[CSMutableUser alloc] init];
     change(user);
     
     [requester postURL:url
