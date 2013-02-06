@@ -17,6 +17,7 @@
 #import "CSAPIStore.h"
 #import <HyperBek/HyperBek.h>
 #import "CSAPIRequester.h"
+#import "CSUserDefaultsAPIStore.h"
 
 @interface NSError (CSExtension)
 
@@ -342,7 +343,7 @@
 
 - (id<CSAPIStore>)store
 {
-    return nil;
+    return [[CSUserDefaultsAPIStore alloc] init];
 }
 
 - (void)getUser:(NSURL *)url
