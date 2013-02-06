@@ -13,13 +13,13 @@
 #import "TestApi.h"
 #import "TestConstants.h"
 
-#import "CSApi.h"
+#import "CSAPI.h"
 
 #import "CSAPITestCase.h"
 
 @interface CSApiTests : CSAPITestCase
 
-@property (weak) CSApi *api;
+@property (weak) CSAPI *api;
 @property (strong) TestApi *testApi;
 @property (strong) TestRequester *requester;
 
@@ -38,7 +38,7 @@
     testApi = [[TestApi alloc] initWithBookmark:kBookmark
                                        username:kUsername
                                        password:kPassword];
-    api = (CSApi *)testApi;
+    api = (CSAPI *)testApi;
     requester = [[TestRequester alloc] init];
     testApi.requester = requester;
 }

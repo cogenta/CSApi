@@ -12,7 +12,7 @@
 #import "TestRequester.h"
 #import "TestApi.h"
 
-#import "CSApi.h"
+#import "CSAPI.h"
 #import "TestFixtures.h"
 #import "TestConstants.h"
 
@@ -20,7 +20,7 @@
 
 @interface CSApplicationTests : CSAPITestCase
 
-@property (weak) CSApi *api;
+@property (weak) CSAPI *api;
 @property (strong) TestApi *testApi;
 @property (strong) TestRequester *requester;
 @property (strong) YBHALResource *appResource;
@@ -45,7 +45,7 @@
     testApi = [[TestApi alloc] initWithBookmark:kBookmark
                                        username:kUsername
                                        password:kPassword];
-    api = (CSApi *)testApi;
+    api = (CSAPI *)testApi;
     requester = [[TestRequester alloc] init];
     testApi.requester = requester;
     

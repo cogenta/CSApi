@@ -8,7 +8,7 @@
 
 #import <SenTestingKit/SenTestingKit.h>
 #import <OCMock/OCClassMockObject.h>
-#import "CSApi.h"
+#import "CSAPI.h"
 #import "CSCredential.h"
 #import "CSAuthenticator.h"
 #import "TestApi.h"
@@ -22,7 +22,7 @@
 
 @interface CSApiLoginTests : CSAPITestCase
 
-@property (weak) CSApi *api;
+@property (weak) CSAPI *api;
 @property (strong) TestApi *testApi;
 @property (strong) TestRequester *requester;
 @property (strong) TestAPIStore *store;
@@ -43,7 +43,7 @@
     testApi = [[TestApi alloc] initWithBookmark:kBookmark
                                        username:kUsername
                                        password:kPassword];
-    api = (CSApi *)testApi;
+    api = (CSAPI *)testApi;
     requester = [[TestRequester alloc] init];
     testApi.requester = requester;
     store = [[TestAPIStore alloc] init];

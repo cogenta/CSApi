@@ -13,7 +13,7 @@
 @protocol CSMutableUser;
 @protocol CSCredential;
 
-@interface CSApi : NSObject
+@interface CSAPI : NSObject
 
 @property (readonly) NSString *bookmark;
 @property (readonly) NSString *username;

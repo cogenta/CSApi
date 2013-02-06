@@ -6,12 +6,12 @@
 //  Copyright (c) 2013 Cogenta Systems Ltd. All rights reserved.
 //
 
-#import "CSApi.h"
+#import "CSAPI.h"
 
 @class TestRequester;
 @class TestAPIStore;
 
-@interface TestApi : CSApi
+@interface TestApi : CSAPI
 
 @property (weak, readwrite) TestRequester *requester;
 @property (weak, readwrite) TestAPIStore *store;

@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Cogenta Systems Ltd. All rights reserved.
 //
 
-#import "CSApi.h"
+#import "CSAPI.h"
 #import "CSCredential.h"
 #import "CSAuthenticator.h"
 #import "CSRequester.h"
@@ -290,13 +290,13 @@
 
 @end
 
-@interface CSApi ()
+@interface CSAPI ()
 
 - (id<CSRequester>) requester;
 
 @end
 
-@implementation CSApi
+@implementation CSAPI
 
 @synthesize bookmark;
 @synthesize username;

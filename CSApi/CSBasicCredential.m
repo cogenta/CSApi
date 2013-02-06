@@ -8,14 +8,14 @@
 
 #import "CSBasicCredential.h"
 #import "CSAuthenticator.h"
-#import "CSApi.h"
+#import "CSAPI.h"
 
 @implementation CSBasicCredential
 
 @synthesize username;
 @synthesize password;
 
-- (id)initWithApi:(CSApi *)api
+- (id)initWithApi:(CSAPI *)api
 {
     self = [super init];
     if (self) {
@@ -35,7 +35,7 @@
     return self;
 }
 
-+ (instancetype)credentialWithApi:(CSApi *)api
++ (instancetype)credentialWithApi:(CSAPI *)api
 {
     return [[CSBasicCredential alloc] initWithApi:api];
 }

@@ -7,7 +7,7 @@
 //
 
 #import "TestAPIStore.h"
-#import "CSApi.h"
+#import "CSAPI.h"
 #import "CSBasicCredential.h"
 
 @implementation TestAPIStore

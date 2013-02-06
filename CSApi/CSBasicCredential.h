@@ -9,17 +9,17 @@
 #import <Foundation/Foundation.h>
 #import "CSCredential.h"
 
-@class CSApi;
+@class CSAPI;
 
 @interface CSBasicCredential : NSObject <CSCredential>
 
 @property (nonatomic, strong) NSString *username;
 @property (nonatomic, strong) NSString *password;
 
-- (id)initWithApi:(CSApi *)api;
+- (id)initWithApi:(CSAPI *)api;
 - (id)initWithDictionary:(NSDictionary *)credential;
 
-+ (instancetype) credentialWithApi:(CSApi *)api;
++ (instancetype) credentialWithApi:(CSAPI *)api;
 + (instancetype) credentialWithDictionary:(NSDictionary *)credential;
 
 @end
