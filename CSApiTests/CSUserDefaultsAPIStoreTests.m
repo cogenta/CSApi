@@ -16,11 +16,18 @@
 
 @interface MockUserDefaultsAPIStore : CSUserDefaultsAPIStore
 @property (nonatomic, strong) NSUserDefaults *userDefaults;
+@end
+
+@implementation MockUserDefaultsAPIStore
+@end
+
+@interface MockKeyUserDefaultsAPIStore : MockUserDefaultsAPIStore
+
 - (NSString *)userUrlKey;
 - (NSString *)userCredentialKey;
 @end
 
-@implementation MockUserDefaultsAPIStore
+@implementation MockKeyUserDefaultsAPIStore
 
 - (NSString *)userUrlKey
 {
@@ -34,10 +41,12 @@
 
 @end
 
+
+
 @interface CSUserDefaultsAPIStoreTests : SenTestCase
 
 @property (nonatomic, strong) id<CSAPIStore> apiStore;
-@property (nonatomic, strong) MockUserDefaultsAPIStore *testAPIStore;
+@property (nonatomic, strong) MockKeyUserDefaultsAPIStore *testAPIStore;
 @property (nonatomic, strong) id mockUserDefaults;
 
 @end
@@ -47,7 +56,8 @@
 - (void)setUp
 {
     self.mockUserDefaults = [OCMockObject mockForClass:[NSUserDefaults class]];
-    self.testAPIStore = [[MockUserDefaultsAPIStore alloc] init];
+    self.testAPIStore = [[MockKeyUserDefaultsAPIStore alloc]
+                         initWithBookmark:@"test"];
     self.testAPIStore.userDefaults = self.mockUserDefaults;
     self.apiStore = self.testAPIStore;
 }
@@ -109,6 +119,52 @@
     [self.apiStore didCreateUser:mockUser];
     
     STAssertNoThrow([self.mockUserDefaults verify], nil);
+}
+
+@end
+
+@interface CSUserDefaultsAPIStoreKeysTests : SenTestCase
+
+@property (nonatomic, strong) id<CSAPIStore> apiStore;
+@property (nonatomic, strong) MockUserDefaultsAPIStore *testAPIStore1;
+@property (nonatomic, strong) MockUserDefaultsAPIStore *testAPIStore2;
+@property (nonatomic, strong) id mockUserDefaults;
+
+@end
+
+@implementation CSUserDefaultsAPIStoreKeysTests
+
+- (void)setUp
+{
+    self.mockUserDefaults = [OCMockObject mockForClass:[NSUserDefaults class]];
+    self.testAPIStore1 = [[MockUserDefaultsAPIStore alloc]
+                          initWithBookmark:@"http://localhost:5000/apps/1"];
+    self.testAPIStore1.userDefaults = self.mockUserDefaults;
+    self.testAPIStore2 = [[MockUserDefaultsAPIStore alloc]
+                         initWithBookmark:@"http://localhost:5000/apps/2"];
+    self.testAPIStore2.userDefaults = self.mockUserDefaults;
+}
+
+- (void)testUsesDifferentKeysForDifferentBookmarks
+{
+    __block NSString *urlKey = @"NOT SET";
+    [[[self.mockUserDefaults stub] andDo:^(NSInvocation *inv) {
+        NSString *key = nil;
+        [inv getArgument:&key atIndex:2];
+        urlKey = key;
+        [inv setReturnValue:
+         (void *)CFBridgingRetain([NSURL URLWithString:@"http://localhost"])];
+    }] URLForKey:OCMOCK_ANY];
+    
+    [self.testAPIStore1 userUrl];
+    NSString *key1 = urlKey;
+    [self.testAPIStore2 userUrl];
+    NSString *key2 = urlKey;
+    
+    STAssertNotNil(key1, nil);
+    STAssertNotNil(key2, nil);
+    
+    STAssertFalse([key1 isEqualToString:key2], @"%@ == %@", key1, key2);
 }
 
 @end

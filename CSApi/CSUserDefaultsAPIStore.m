@@ -13,9 +13,20 @@
 
 @interface CSUserDefaultsAPIStore () <CSAuthenticator>
 
+@property (nonatomic, strong) NSString *bookmark;
+
 @end
 
 @implementation CSUserDefaultsAPIStore
+
+- (id)initWithBookmark:(NSString *)bookmark
+{
+    self = [super init];
+    if (self) {
+        self.bookmark = bookmark;
+    }
+    return self;
+}
 
 - (NSUserDefaults *)userDefaults
 {
@@ -24,12 +35,14 @@
 
 - (NSString *)userUrlKey
 {
-    return @"CSAPI_userURL";
+    return [NSString stringWithFormat:@"CSAPI_userURL_for_%@",
+            self.bookmark];
 }
 
 - (NSString *)userCredentialKey
 {
-    return @"CSAPI_userCredential";
+    return [NSString stringWithFormat:@"CSAPI_userCredential_for_%@",
+            self.bookmark];
 }
 
 - (void)didCreateUser:(id<CSUser>)user

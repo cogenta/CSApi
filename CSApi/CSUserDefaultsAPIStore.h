@@ -11,4 +11,6 @@
 
 @interface CSUserDefaultsAPIStore : NSObject <CSAPIStore>
 
+- (id)initWithBookmark:(NSString *)bookmark;
+
 @end

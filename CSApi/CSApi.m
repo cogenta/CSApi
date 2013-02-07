@@ -343,7 +343,7 @@
 
 - (id<CSAPIStore>)store
 {
-    return [[CSUserDefaultsAPIStore alloc] init];
+    return [[CSUserDefaultsAPIStore alloc] initWithBookmark:bookmark];
 }
 
 - (void)getUser:(NSURL *)url
