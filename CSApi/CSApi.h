@@ -18,23 +18,16 @@
  */
 @interface CSAPI : NSObject
 
-/**
- The bookmark for this endpoint.
- */
+/** The bookmark for this endpoint. */
 @property (readonly) NSString *bookmark;
 
-/**
- The username used to authenticate with the server.
- */
+/** The username used to authenticate with the server. */
 @property (readonly) NSString *username;
 
-/**
- The password used to authenticate with the server.
- */
+/** The password used to authenticate with the server. */
 @property (readonly) NSString *password;
 
-/**
- Initializes a newly allocated API endpoint with the given settings.
+/** Initializes a newly allocated API endpoint with the given settings.
  
  @param bookmark The bookmark identifying the application using the API.
  @param username The username used to authenticate API calls with the server.
@@ -45,20 +38,47 @@
               username:(NSString *)username
               password:(NSString *)password;
 
+/** Tries to get an application object.
+ 
+ Control returns from getApplication:callback: immediately. If the operation is
+ successful, callback is invoked with a non-nil
+ [id\<CSApplication\>](CSApplication) in app and a nil error. If the operation
+ fails, callback is invoked with a nil app and a non-nil error.
+ 
+ @param url the URL of the application to fetch.
+ @param callback The block to invoke when the application has been successfully
+ obtained, or when the operation has failed.
+ */
 - (void)getApplication:(NSURL *)url
               callback:(void (^)(id<CSApplication> app, NSError *error))callback;
 
+/** Tries to get a user object.
+ 
+ Control returns from getUser:credential:callback: immediately. If the
+ operation is successful, callback is invoked with a non-nil
+ [id\<CSUser\>](CSUser) in user and a nil error. If the operation fails,
+ callback is invoked with a nil user and a non-nil error.
+ 
+ @param url the URL of the user to fetch.
+ @param credential the credential to use to get the user.
+ @param callback The block to invoke when the user has been successfully
+ obtained, or when the operation has failed.
+ */
 - (void)getUser:(NSURL *)url
      credential:(id<CSCredential>)credential
-       callback:(void (^)(id<CSUser>, NSError *))callback;
+       callback:(void (^)(id<CSUser> user, NSError *error))callback;
 
-/**
- Tries to obtain a user from the endpoint and invokes the given callback on
- success or failure.
+/** Tries to obtain a the app's user.
+ 
+ If the app has not had a user for this CSAPI's bookmark before, login: will
+ try to create a new user and, if successful, will persist the URI and
+ credential of the new user. If the app has already created a user, login: will
+ try to fetch the latest version of the user.
  
  Control returns from login: immediately. If the login operation is successful
- callback is invoked with a non-nil [id\<CSUser\>](CSUser) in user and a nil error. If the
- login operation fails, callback is invoked with a nil user and a non-nil error.
+ callback is invoked with a non-nil [id\<CSUser\>](CSUser) in user and a nil
+ error. If the login operation fails, callback is invoked with a nil user and a
+ non-nil error.
  
  @param callback The block to invoke when the user has been successfully
  obtained, or when the operation has failed.
@@ -69,44 +89,59 @@
 
 @end
 
-
+/** Protocol for interacting with an application resource. */
 @protocol CSApplication <NSObject>
 
+/** The application's name. */
 @property (readonly) NSString *name;
 
+/** Tries to create an new user resource.
+ 
+ Control returns from createUser: immediately. If the operation is successful,
+ callback is invoked with a non-nil [id\<CSUser\>](CSUser) in user and a nil
+ error. If the operation fails, callback is invoked with a nil user and a
+ non-nil error.
+ 
+ @param callback The block to invoke when the user has been successfully
+ created, or when the operation has failed.
+ */
 - (void)createUser:(void (^)(id<CSUser> user, NSError *error))callback;
 
+/** Tries to create a user with the state defined by the given change.
+ 
+ Control returns from createUserWithChange:callback: immediately after the
+ block, change, finishes and an attempt is made to create the resource in the
+ background. If the operation is successful, callback is invoked with a non-nil
+ [id\<CSUser\>](CSUser) in user and a nil error. If the operation fails,
+ callback is invoked with a nil user and a non-nil error.
+  
+ @param change A block accepting an object conforming to CSMutableUser that
+ makes edits to that object.
+ @param callback The block to invoke when the user has been successfully
+ created, or when the operation has failed.
+ */
 - (void)createUserWithChange:(void (^)(id<CSMutableUser> user))change
                     callback:(void (^)(id<CSUser> user, NSError *error))callback;
 
 @end
 
-/**
- Protocol for interacting with the user resource.
- */
+/** Protocol for interacting with a user resource. */
 @protocol CSUser <NSObject>
 
 /** @name Bookkeeping */
 
-/**
- URL of the user resource.
- */
+/** URL of the user resource. */
 @property (readonly) NSURL *url;
 
-/**
- Entity tag of the user resource.
- */
+/** Entity tag of the user resource. */
 @property (readonly) id etag;
 
-/**
- The user's credential.
- */
+/** The user's credential. */
 @property (readonly) id<CSCredential> credential;
 
 /** @name User state */
 
-/**
- The user's reference string.
+/** The user's reference string.
  
  The reference is intended to be used to link the Cogenta Shopping API user
  with the developer's own system. The developer's administrative API provides
@@ -114,15 +149,12 @@
  */
 @property (readonly) NSString *reference;
 
-/**
- A dictionary of additional information about the user.
- */
+/** A dictionary of additional information about the user. */
 @property (readonly) NSDictionary *meta;
 
 /** @name Mutability */
 
-/**
- Attempts to apply the given change to the user resource.
+/** Attempts to apply the given change to the user resource.
  
  change:callback: returns immediately after the block, change, finishes and an
  attempt is made to apply any edits in the background. If the user is found to
