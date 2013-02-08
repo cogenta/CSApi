@@ -45,7 +45,7 @@
               username:(NSString *)username
               password:(NSString *)password;
 
-- (void)getApplication:(NSString *)path
+- (void)getApplication:(NSURL *)url
               callback:(void (^)(id<CSApplication> app, NSError *error))callback;
 
 - (void)getUser:(NSURL *)url
