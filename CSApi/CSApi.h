@@ -93,18 +93,6 @@
 /** The application's name. */
 @property (readonly) NSString *name;
 
-/** Tries to create an new user resource.
- 
- Control returns from createUser: immediately. If the operation is successful,
- callback is invoked with a non-nil [id\<CSUser\>](CSUser) in user and a nil
- error. If the operation fails, callback is invoked with a nil user and a
- non-nil error.
- 
- @param callback The block to invoke when the user has been successfully
- created, or when the operation has failed.
- */
-- (void)createUser:(void (^)(id<CSUser> user, NSError *error))callback;
-
 /** Tries to create a user with the state defined by the given change.
  
  Control returns from createUserWithChange:callback: immediately after the

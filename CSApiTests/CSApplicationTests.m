@@ -109,7 +109,9 @@ request_handler_t postCallback =
     __block NSError *error = nil;
     __block id<CSUser> createdUser = nil;
     [self callAndWait:^(void (^done)()) {
-        [self.app createUser:^(id<CSUser> returnedUser, NSError *returnedError)
+        [self.app
+         createUserWithChange:nil
+         callback:^(id<CSUser> returnedUser, NSError *returnedError)
         {
             createdUser = returnedUser;
             error = returnedError;
@@ -159,7 +161,9 @@ request_handler_t postCallback =
 - (void)testUsesCredential
 {
     [self callAndWait:^(void (^done)()) {
-        [self.app createUser:^(id<CSUser> returnedUser, NSError *returnedError)
+        [self.app
+         createUserWithChange:nil
+         callback:^(id<CSUser> returnedUser, NSError *returnedError)
          {
              done();
          }];

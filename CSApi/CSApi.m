@@ -102,7 +102,9 @@
     id<CSRepresentation> representation = [CSHALRepresentation
                                            representationWithBaseURL:baseURL];
     CSMutableUser *user = [[CSMutableUser alloc] init];
-    change(user);
+    if (change) {
+        change(user);
+    }
     
     [requester postURL:url
             credential:credential
@@ -119,13 +121,6 @@
                                               etag:etag];
         callback(user, nil);
     }];
-}
-
-- (void)createUser:(void (^)(id<CSUser>, NSError *))callback
-{
-    [self createUserWithChange:^(id<CSMutableUser> user) {
-        // Do nothing
-    } callback:callback];
 }
 
 @end
