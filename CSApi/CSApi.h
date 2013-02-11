@@ -14,7 +14,43 @@
 @protocol CSCredential;
 
 /**
- CSAPI is used to access the Cogenta Shopping API.
+ Provides access to the Cogenta Shopping API.
+ 
+ Once you have obtains a bookmark, username, and password for your application
+ from Cogenta, use them to initialize a CSAPI object. Here's an example that
+ initialzes the API in the app's delegate:
+ 
+    #define kAPIBookmark @"https://api.cogenta.com/apps/51139a687046797035ad6db6"
+    #define kAPIUsername @"53a2abd8-5a96-47a8-8a1f-82cf4a462b57"
+    #define kAPIPassword @"ecd50b80-f1f1-4500-816e-ae16f179dd98"
+ 
+    @implementation MyAppDelegate
+ 
+    - (BOOL)application:(UIApplication *)application
+        didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+    {
+        CSAPI *api = [CSAPI apiWithBookmark:kAPIBookmark
+                                   username:kAPIUsername
+                                   password:kAPIPassword];
+        // ...
+    }
+ 
+    // ...
+ 
+    @end
+ 
+ Most applications should then use the convenience method login: to obtain a
+ user object. login: creates a user if necessary and returns it via the callback
+ provided by the app. login: also persists the URI and credentials of the user,
+ so subsequent calls to the login: will get the same user.
+ 
+ Apps that require more control over user creation (for example, to use more
+ than one user resource) can obtain an application object with
+ [getApplication:]([CSAPI getApplication:]), create users with
+ [createUserWithChange:callback:]([CSApplication createUserWithChange:callback:]),
+ and retreive existing users with
+ [getUser:credential:callback:]([CSAPI getUser:credential:callback:]).
+ 
  */
 @interface CSAPI : NSObject
 
@@ -77,6 +113,12 @@
  callback is invoked with a non-nil [id\<CSUser\>](CSUser) in user and a nil
  error. If the login operation fails, callback is invoked with a nil user and a
  non-nil error.
+ 
+ Example:
+ 
+    [self.api login:^(id<CSUser> user, NSError *error) {
+    // do stuff with user
+    }];
  
  @param callback The block to invoke when the user has been successfully
  obtained, or when the operation has failed.
