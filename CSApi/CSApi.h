@@ -24,16 +24,16 @@
 /** The credential for this endpoint. */
 @property (readonly) id<CSCredential> credential;
 
-/** Initializes a newly allocated API endpoint with the given settings.
+/** Returns an endpoint with the given settings.
  
  @param bookmark The bookmark identifying the application using the API.
  @param username The username used to authenticate API calls with the server.
  @param password The password used to authenticate API calls with the server.
  @return An API endpoint initialized with the given settings.
  */
-- (id)initWithBookmark:(NSString *)bookmark
-              username:(NSString *)username
-              password:(NSString *)password;
++ (instancetype)apiWithBookmark:(NSString *)bookmark
+                       username:(NSString *)username
+                       password:(NSString *)password;
 
 /** Tries to get an application object.
  

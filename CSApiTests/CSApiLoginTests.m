@@ -40,9 +40,9 @@
 {
     [super setUp];
     
-    testApi = [[TestApi alloc] initWithBookmark:kBookmark
-                                       username:kUsername
-                                       password:kPassword];
+    testApi = [TestApi apiWithBookmark:kBookmark
+                              username:kUsername
+                              password:kPassword];
     api = (CSAPI *)testApi;
     requester = [[TestRequester alloc] init];
     testApi.requester = requester;

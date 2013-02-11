@@ -315,6 +315,13 @@
     return self;
 }
 
++ (instancetype)apiWithBookmark:(NSString *)bookmark username:(NSString *)username password:(NSString *)password
+{
+    return [[CSAPI alloc] initWithBookmark:bookmark
+                                  username:username
+                                  password:password];
+}
+
 - (void)getApplication:(void (^)(id<CSApplication> app, NSError *error))callback
 {
     id<CSRequester> requester = [self requester];
@@ -347,9 +354,10 @@
      credential:(id<CSCredential>)aCredential
        callback:(void (^)(id<CSUser>, NSError *))callback
 {
-    [[self requester] getURL:url
-                  credential:aCredential
-                    callback:^(YBHALResource *result, id etag, NSError *error)
+    id requester = [self requester];
+    [requester getURL:url
+           credential:aCredential
+             callback:^(YBHALResource *result, id etag, NSError *error)
      {
          if (error) {
              callback(nil, error);
@@ -357,7 +365,7 @@
          }
          
          CSUser *user = [[CSUser alloc] initWithHal:result
-                                          requester:[self requester]
+                                          requester:requester
                                          credential:aCredential
                                                etag:etag];
          callback(user, nil);

@@ -8,9 +8,23 @@
 
 #import "TestApi.h"
 
+@interface CSAPI ()
+
+- (id)initWithBookmark:(NSString *)aBookmark
+              username:(NSString *)aUsername
+              password:(NSString *)aPassword;
+@end
+
 @implementation TestApi
 
 @synthesize requester;
 @synthesize store;
+
++ (instancetype)apiWithBookmark:(NSString *)bookmark username:(NSString *)username password:(NSString *)password
+{
+    return [[TestApi alloc] initWithBookmark:bookmark
+                                    username:username
+                                    password:password];
+}
 
 @end
