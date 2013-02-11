@@ -59,8 +59,7 @@
     __block NSError *error = nil;
 
     [self callAndWait:^(void (^done)()) {
-        [api getApplication:[NSURL URLWithString:kBookmark]
-                   callback:^(id<CSApplication> anApp, NSError *anError)
+        [api getApplication:^(id<CSApplication> anApp, NSError *anError)
          {
              app = anApp;
              error = anError;

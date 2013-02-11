@@ -37,17 +37,18 @@
 
 /** Tries to get an application object.
  
- Control returns from getApplication:callback: immediately. If the operation is
+ This method uses the CSAPI's bookmark and credentials to fetch the application
+ resource.
+ 
+ Control returns from getApplication: immediately. If the operation is
  successful, callback is invoked with a non-nil
  [id\<CSApplication\>](CSApplication) in app and a nil error. If the operation
  fails, callback is invoked with a nil app and a non-nil error.
  
- @param url the URL of the application to fetch.
  @param callback The block to invoke when the application has been successfully
  obtained, or when the operation has failed.
  */
-- (void)getApplication:(NSURL *)url
-              callback:(void (^)(id<CSApplication> app, NSError *error))callback;
+- (void)getApplication:(void (^)(id<CSApplication> app, NSError *error))callback;
 
 /** Tries to get an arbitrary user object.
  

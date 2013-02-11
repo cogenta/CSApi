@@ -315,11 +315,10 @@
     return self;
 }
 
-- (void)getApplication:(NSURL *)appUrl
-              callback:(void (^)(id<CSApplication> app, NSError *error))callback
+- (void)getApplication:(void (^)(id<CSApplication> app, NSError *error))callback
 {
     id<CSRequester> requester = [self requester];
-    [requester getURL:appUrl
+    [requester getURL:[NSURL URLWithString:bookmark]
            credential:credential
              callback:^(YBHALResource *result, id etag, NSError *error)
     {
@@ -377,8 +376,7 @@
         return;
     }
     
-    [self getApplication:[NSURL URLWithString:bookmark]
-                callback:^(id<CSApplication> app, NSError *error)
+    [self getApplication:^(id<CSApplication> app, NSError *error)
     {
         if (error) {
             callback(nil, error);

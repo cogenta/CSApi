@@ -62,8 +62,7 @@
     __block id<CSApplication> app = nil;
     __block NSError *error = nil;
     [self callAndWait:^(void (^done)()) {
-        [api getApplication:[NSURL URLWithString:kBookmark]
-                   callback:^(id<CSApplication> anApp, NSError *anError)
+        [api getApplication:^(id<CSApplication> anApp, NSError *anError)
         {
             app = anApp;
             error = anError;
@@ -88,8 +87,7 @@
     __block id<CSApplication> app = nil;
     __block NSError *errorResponse = nil;
     [self callAndWait:^(void (^done)()) {
-        [api getApplication:[NSURL URLWithString:kBookmark]
-                   callback:^(id<CSApplication> anApp, NSError *anError)
+        [api getApplication:^(id<CSApplication> anApp, NSError *anError)
          {
              app = anApp;
              errorResponse = anError;
@@ -105,8 +103,7 @@
 - (void)testUsesCredential
 {
     [self callAndWait:^(void (^done)()) {
-        [api getApplication:[NSURL URLWithString:kBookmark]
-                   callback:^(id<CSApplication> anApp, NSError *anError)
+        [api getApplication:^(id<CSApplication> anApp, NSError *anError)
          {
              done();
          }];
