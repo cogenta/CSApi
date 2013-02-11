@@ -300,8 +300,7 @@
 @implementation CSAPI
 
 @synthesize bookmark;
-@synthesize username;
-@synthesize password;
+@synthesize credential;
 
 - (id)initWithBookmark:(NSString *)aBookmark
               username:(NSString *)aUsername
@@ -310,8 +309,8 @@
     self = [super init];
     if (self) {
         bookmark = aBookmark;
-        username = aUsername;
-        password = aPassword;
+        credential = [CSBasicCredential credentialWithUsername:aUsername
+                                                      password:aPassword];
     }
     return self;
 }
@@ -320,7 +319,6 @@
               callback:(void (^)(id<CSApplication> app, NSError *error))callback
 {
     id<CSRequester> requester = [self requester];
-    id<CSCredential> credential = [CSBasicCredential credentialWithApi:self];
     [requester getURL:appUrl
            credential:credential
              callback:^(YBHALResource *result, id etag, NSError *error)
@@ -347,11 +345,11 @@
 }
 
 - (void)getUser:(NSURL *)url
-     credential:(id<CSCredential>)credential
+     credential:(id<CSCredential>)aCredential
        callback:(void (^)(id<CSUser>, NSError *))callback
 {
     [[self requester] getURL:url
-                  credential:credential
+                  credential:aCredential
                     callback:^(YBHALResource *result, id etag, NSError *error)
      {
          if (error) {
@@ -361,7 +359,7 @@
          
          CSUser *user = [[CSUser alloc] initWithHal:result
                                           requester:[self requester]
-                                         credential:credential
+                                         credential:aCredential
                                                etag:etag];
          callback(user, nil);
      }];

@@ -76,7 +76,7 @@
 		BE06A4BF16B6E54900F345F8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		BE06A4C316B6E54900F345F8 /* CSApi-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CSApi-Prefix.pch"; sourceTree = "<group>"; };
 		BE06A4C416B6E54900F345F8 /* CSAPI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSAPI.h; sourceTree = "<group>"; };
-		BE06A4C616B6E54900F345F8 /* CSAPI.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CSAPI.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		BE06A4C616B6E54900F345F8 /* CSAPI.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CSAPI.m; sourceTree = "<group>"; };
 		BE06A4CD16B6E54A00F345F8 /* CSApiTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CSApiTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE06A4CE16B6E54A00F345F8 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		BE06A4D016B6E54A00F345F8 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };

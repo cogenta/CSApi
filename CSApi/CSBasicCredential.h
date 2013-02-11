@@ -16,10 +16,11 @@
 @property (nonatomic, strong) NSString *username;
 @property (nonatomic, strong) NSString *password;
 
-- (id)initWithApi:(CSAPI *)api;
+- (id)initWithUsername:(NSString *)aUsername password:(NSString *)aPassword;
 - (id)initWithDictionary:(NSDictionary *)credential;
 
-+ (instancetype) credentialWithApi:(CSAPI *)api;
-+ (instancetype) credentialWithDictionary:(NSDictionary *)credential;
++ (instancetype)credentialWithUsername:(NSString *)username
+                              password:(NSString *)password;
++ (instancetype)credentialWithDictionary:(NSDictionary *)credential;
 
 @end

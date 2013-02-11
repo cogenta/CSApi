@@ -21,11 +21,8 @@
 /** The bookmark for this endpoint. */
 @property (readonly) NSString *bookmark;
 
-/** The username used to authenticate with the server. */
-@property (readonly) NSString *username;
-
-/** The password used to authenticate with the server. */
-@property (readonly) NSString *password;
+/** The credential for this endpoint. */
+@property (readonly) id<CSCredential> credential;
 
 /** Initializes a newly allocated API endpoint with the given settings.
  
@@ -52,7 +49,7 @@
 - (void)getApplication:(NSURL *)url
               callback:(void (^)(id<CSApplication> app, NSError *error))callback;
 
-/** Tries to get a user object.
+/** Tries to get an arbitrary user object.
  
  Control returns from getUser:credential:callback: immediately. If the
  operation is successful, callback is invoked with a non-nil

@@ -15,29 +15,27 @@
 @synthesize username;
 @synthesize password;
 
-- (id)initWithApi:(CSAPI *)api
+- (id)initWithUsername:(NSString *)aUsername password:(NSString *)aPassword
 {
     self = [super init];
     if (self) {
-        username = api.username;
-        password = api.password;
+        username = aUsername;
+        password = aPassword;
     }
     return self;
 }
 
 - (id)initWithDictionary:(NSDictionary *)credential
 {
-    self = [super init];
-    if (self) {
-        username = credential[@"username"];
-        password = credential[@"password"];
-    }
-    return self;
+    return [self initWithUsername:credential[@"username"]
+                         password:credential[@"password"]];
 }
 
-+ (instancetype)credentialWithApi:(CSAPI *)api
++ (instancetype)credentialWithUsername:(NSString *)username
+                              password:(NSString *)password
 {
-    return [[CSBasicCredential alloc] initWithApi:api];
+    return [[CSBasicCredential alloc] initWithUsername:username
+                                              password:password];
 }
 
 + (instancetype)credentialWithDictionary:(NSDictionary *)credential
