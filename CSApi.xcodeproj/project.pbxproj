@@ -293,6 +293,7 @@
 				BE06A4B916B6E54900F345F8 /* Frameworks */,
 				BE06A4BA16B6E54900F345F8 /* CopyFiles */,
 				A4ED4B9F6B394FE5AF81B8BA /* Copy Pods Resources */,
+				BE20CC8A16C9456600C010AB /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -408,6 +409,19 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+		BE20CC8A16C9456600C010AB /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/appledoc \\\n--project-name CSAPI \\\n--project-company \"Cogenta Systems Ltd\" \\\n--company-id com.cogenta \\\n--output Docs/ \\\n--logformat xcode \\\n--exit-threshold 2 \\\nCSApi/CSApi.h";
 		};
 /* End PBXShellScriptBuildPhase section */
 
