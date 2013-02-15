@@ -48,7 +48,7 @@
 - (void)didCreateUser:(id<CSUser>)user
 {
     NSUserDefaults *userDefaults = [self userDefaults];
-    [userDefaults setURL:[user url] forKey:[self userUrlKey]];
+    [userDefaults setURL:[user URL] forKey:[self userUrlKey]];
     [[user credential] applyWith:self];
     [userDefaults synchronize];
 }

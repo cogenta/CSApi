@@ -14,16 +14,16 @@ typedef void (^requester_callback_t)(id result, id etag, NSError *error);
 
 @protocol CSRequester <NSObject>
 
-- (void)getURL:(NSURL *)url
+- (void)getURL:(NSURL *)URL
     credential:(id<CSCredential>)credential
       callback:(requester_callback_t)callback;
 
-- (void)postURL:(NSURL *)url
+- (void)postURL:(NSURL *)URL
      credential:(id<CSCredential>)credential
            body:(id)body
        callback:(requester_callback_t)callback;
 
-- (void)putURL:(NSURL *)url
+- (void)putURL:(NSURL *)URL
     credential:(id<CSCredential>)credential
           body:(id)body
           etag:(id)etag

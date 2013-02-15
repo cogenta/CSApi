@@ -114,14 +114,14 @@
     return YES;
 }
 
-- (void)requestURL:(NSURL *)url
+- (void)requestURL:(NSURL *)URL
             method:(NSString *)method
         credential:(id<CSCredential>)credential
               body:(id)body
               etag:(id)etag
           callback:(requester_callback_t)callback
 {
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL];
     request.HTTPMethod = method;
     
     [self applyCredential:credential request:request];
@@ -144,7 +144,7 @@
      {
          YBHALResource *resource = [[YBHALResource alloc]
                                     initWithDictionary:JSON
-                                    baseURL:url];
+                                    baseURL:URL];
          id etag = [[response allHeaderFields] objectForKey:@"Etag"];
          callback(resource, etag, nil);
      } failure:^(NSURLRequest *request,
@@ -175,11 +175,11 @@
     [operation start];
 }
 
-- (void)getURL:(NSURL *)url
+- (void)getURL:(NSURL *)URL
     credential:(id<CSCredential>)credential
       callback:(requester_callback_t)callback
 {
-    [self requestURL:url
+    [self requestURL:URL
               method:@"GET"
           credential:credential
                 body:nil
@@ -187,12 +187,12 @@
             callback:callback];
 }
 
-- (void)postURL:(NSURL *)url
+- (void)postURL:(NSURL *)URL
      credential:(id<CSCredential>)credential
            body:(id)body
        callback:(requester_callback_t)callback
 {
-    [self requestURL:url
+    [self requestURL:URL
               method:@"POST"
           credential:credential
                 body:body
@@ -200,13 +200,13 @@
             callback:callback];
 }
 
-- (void)putURL:(NSURL *)url
+- (void)putURL:(NSURL *)URL
     credential:(id<CSCredential>)credential
           body:(id)body
           etag:(id)etag
       callback:(requester_callback_t)callback
 {
-    [self requestURL:url
+    [self requestURL:URL
               method:@"PUT"
           credential:credential
                 body:body

@@ -89,7 +89,7 @@
 - (void)testChangeRefAndMeta
 {
     id originalEtag = user.etag;
-    NSURL *userURL = [user url];
+    NSURL *userURL = [user URL];
     YBHALResource *newUserResource = [self resourceForData:userPutRequestData()];
     __block id requestedEtag = nil;
     [requester addPutCallback:^(id body, id etag, requester_callback_t cb) {
@@ -117,8 +117,8 @@
     STAssertEqualObjects(requestedEtag, originalEtag, nil);
     STAssertEqualObjects(user.etag, @"NEW ETAG", nil);
     
-    STAssertNotNil(user.url, nil);
-    STAssertEqualObjects(user.url, userURL, nil);
+    STAssertNotNil(user.URL, nil);
+    STAssertEqualObjects(user.URL, userURL, nil);
     
     STAssertEqualObjects(requester.lastUsername, userPass[@"username"], nil);
     STAssertEqualObjects(requester.lastPassword, userPass[@"password"], nil);
@@ -129,7 +129,7 @@
 
 - (void)testSaveReturnsError
 {
-    NSURL *userURL = [user url];
+    NSURL *userURL = [user URL];
     YBHALResource *newUserResource = [self resourceForData:userPutRequestData()];
     __block id requestedEtag = nil;
     [requester addPutCallback:^(id body, id etag, requester_callback_t cb) {
@@ -147,7 +147,7 @@
     NSString *originalReference = user.reference;
     NSDictionary *originalMeta = user.meta;
     id originalEtag = user.etag;
-    NSURL *originalURL = user.url;
+    NSURL *originalURL = user.URL;
     
     __block BOOL success = nil;
     __block NSError *error = nil;
@@ -171,13 +171,13 @@
                          @"change:callback: does not change user meta on error");
     STAssertEqualObjects(user.etag, originalEtag,
                          @"change:callback: does not change user etag on error");
-    STAssertEqualObjects(user.url, originalURL,
-                         @"change:callback: does not change user url on error");
+    STAssertEqualObjects(user.URL, originalURL,
+                         @"change:callback: does not change user URL on error");
 }
 
 - (void)testRetriesConflictedChange
 {
-    NSURL *userURL = [user url];
+    NSURL *userURL = [user URL];
     YBHALResource *conflictResource = [self resourceForData:dataForFixture(@"user_conflict_1.json")];
     STAssertNotNil(conflictResource, nil);
     id originalEtag = user.etag;

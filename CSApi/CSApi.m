@@ -43,13 +43,13 @@
 - (id)initWithRequester:(id<CSRequester>)requester
              credential:(id<CSCredential>)credential;
 
-- (void)postURL:(NSURL *)url
+- (void)postURL:(NSURL *)URL
            body:(id)body
        callback:(requester_callback_t)callback;
 
-- (void)getURL:(NSURL *)url callback:(requester_callback_t)callback;
+- (void)getURL:(NSURL *)URL callback:(requester_callback_t)callback;
 
-- (void)putURL:(NSURL *)url
+- (void)putURL:(NSURL *)URL
           body:(id)body
           etag:(id)etag
       callback:(requester_callback_t)callback;
@@ -128,24 +128,24 @@
     return self;
 }
 
-- (void)postURL:(NSURL *)url
+- (void)postURL:(NSURL *)URL
            body:(id)body
        callback:(requester_callback_t)callback
 {
-    [requester postURL:url credential:credential body:body callback:callback];
+    [requester postURL:URL credential:credential body:body callback:callback];
 }
 
-- (void)getURL:(NSURL *)url callback:(requester_callback_t)callback
+- (void)getURL:(NSURL *)URL callback:(requester_callback_t)callback
 {
-    [requester getURL:url credential:credential callback:callback];
+    [requester getURL:URL credential:credential callback:callback];
 }
 
-- (void)putURL:(NSURL *)url
+- (void)putURL:(NSURL *)URL
           body:(id)body
           etag:(id)etag
       callback:(requester_callback_t)callback
 {
-    [requester putURL:url
+    [requester putURL:URL
            credential:credential
                  body:body
                  etag:etag
@@ -176,7 +176,7 @@
 - (void)createUserWithChange:(void (^)(id<CSMutableUser>))change
                     callback:(void (^)(id<CSUser>, NSError *))callback
 {
-    NSURL *url = [resource linkForRelation:@"/rels/users"].URL;
+    NSURL *URL = [resource linkForRelation:@"/rels/users"].URL;
     NSURL *baseURL = [resource linkForRelation:@"self"].URL;
     id<CSRepresentation> representation = [CSHALRepresentation
                                            representationWithBaseURL:baseURL];
@@ -185,7 +185,7 @@
         change(user);
     }
     
-    [self postURL:url
+    [self postURL:URL
              body:[user representWithRepresentation:representation]
          callback:^(id result, id etag, NSError *error)
     {
@@ -203,8 +203,8 @@
 
 - (void)getRetailers:(void (^)(id<CSListPage> page, NSError *error))callback
 {
-    NSURL *url = [resource linkForRelation:@"/rels/retailers"].URL;
-    [self getURL:url callback:^(YBHALResource *result, id etag, NSError *error)
+    NSURL *URL = [resource linkForRelation:@"/rels/retailers"].URL;
+    [self getURL:URL callback:^(YBHALResource *result, id etag, NSError *error)
     {
         if (error) {
             callback(nil, error);
@@ -223,7 +223,7 @@
 
 @implementation CSUser
 
-@synthesize url;
+@synthesize URL;
 @synthesize reference;
 @synthesize meta;
 @synthesize etag;
@@ -259,7 +259,7 @@
 
 - (void)loadFromResource:(YBHALResource *)resource
 {
-    url = [resource linkForRelation:@"self"].URL;
+    URL = [resource linkForRelation:@"self"].URL;
     reference = resource[@"reference"];
     meta = resource[@"meta"];
 }
@@ -279,7 +279,7 @@
       callback:(void (^)(BOOL, NSError *))callback
 {
     id<CSRepresentation> representation = [CSHALRepresentation
-                                           representationWithBaseURL:self.url];
+                                           representationWithBaseURL:self.URL];
     
     if ( ! representation) {
         callback(NO, [NSError errorWithDomain:@"CSAPI" code:3 userInfo:@{NSLocalizedDescriptionKey: @"representation is nil"}]);
@@ -297,7 +297,7 @@
         id representedUser = [mutableUser
                               representWithRepresentation:representation];
         
-        [self putURL:self.url
+        [self putURL:self.URL
                 body:representedUser
                 etag:self.etag
             callback:^(id result, id etagFromPut, NSError *error)
@@ -319,7 +319,7 @@
     };
 
     doGet = ^{
-        [self getURL:self.url
+        [self getURL:self.URL
             callback:^(id result, id etagFromGet, NSError *getError)
          {
              if ( ! result) {
@@ -347,7 +347,7 @@
 
 @implementation CSMutableUser
 
-@synthesize url;
+@synthesize URL;
 @synthesize reference;
 @synthesize meta;
 
@@ -360,7 +360,7 @@
 {
     self = [super init];
     if (self) {
-        url = user.url;
+        URL = user.URL;
         self.reference = user.reference;
         self.meta = [user.meta mutableCopy];
     }
@@ -436,12 +436,12 @@
     return [[CSUserDefaultsAPIStore alloc] initWithBookmark:bookmark];
 }
 
-- (void)getUser:(NSURL *)url
+- (void)getUser:(NSURL *)URL
      credential:(id<CSCredential>)aCredential
        callback:(void (^)(id<CSUser>, NSError *))callback
 {
     id requester = [self requester];
-    [requester getURL:url
+    [requester getURL:URL
            credential:aCredential
              callback:^(YBHALResource *result, id etag, NSError *error)
      {
@@ -565,15 +565,15 @@
     return prev != nil;
 }
 
-- (void)getListURL:(NSURL *)url
+- (void)getListURL:(NSURL *)URL
           callback:(void (^)(id<CSListPage>, NSError *))callback
 {
-    if ( ! url) {
+    if ( ! URL) {
         callback(nil, nil);
         return;
     }
     
-    [self getURL:url callback:^(id result, id etag, NSError *error)
+    [self getURL:URL callback:^(id result, id etag, NSError *error)
      {
          if (error) {
              callback(nil, error);

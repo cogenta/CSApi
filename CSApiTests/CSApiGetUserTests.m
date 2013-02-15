@@ -70,8 +70,8 @@
     
     STAssertNil(returnedError, @"%@", [returnedError localizedDescription]);
     
-    STAssertNotNil(returnedUser.url, nil);
-    STAssertEqualObjects(returnedUser.url, userURL, nil);
+    STAssertNotNil(returnedUser.URL, nil);
+    STAssertEqualObjects(returnedUser.URL, userURL, nil);
     
     STAssertEqualObjects(requester.lastUsername, userPass[@"username"], nil);
     STAssertEqualObjects(requester.lastPassword, userPass[@"password"], nil);

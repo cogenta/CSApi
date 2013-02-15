@@ -17,14 +17,14 @@ typedef void (^request_handler_t)(id body, id etag, requester_callback_t cb);
 @property (nonatomic, readonly) NSString *lastUsername;
 @property (nonatomic, readonly) NSString *lastPassword;
 
-- (void)addGetResponse:(id)response forURL:(NSURL *)url;
-- (void)addGetError:(NSError *)error forURL:(NSURL *)url;
-- (void)addGetCallback:(request_handler_t)callback forURL:(NSURL *)url;
+- (void)addGetResponse:(id)response forURL:(NSURL *)URL;
+- (void)addGetError:(NSError *)error forURL:(NSURL *)URL;
+- (void)addGetCallback:(request_handler_t)callback forURL:(NSURL *)URL;
 
-- (void)addPostResponse:(id)response forURL:(NSURL *)url;
-- (void)addPostCallback:(request_handler_t)callback forURL:(NSURL *)url;
+- (void)addPostResponse:(id)response forURL:(NSURL *)URL;
+- (void)addPostCallback:(request_handler_t)callback forURL:(NSURL *)URL;
 
-- (void)addPutResponse:(id)response forURL:(NSURL *)url;
-- (void)addPutCallback:(request_handler_t)callback forURL:(NSURL *)url;
+- (void)addPutResponse:(id)response forURL:(NSURL *)URL;
+- (void)addPutCallback:(request_handler_t)callback forURL:(NSURL *)URL;
 
 @end

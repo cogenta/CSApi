@@ -51,11 +51,11 @@
     testApi.requester = requester;
     
     
-    NSURL *url = [NSURL URLWithString:kBookmark];
+    NSURL *URL = [NSURL URLWithString:kBookmark];
     appResource = [self resourceForData:appData()];
     STAssertNotNil(appResource, nil);
     
-    [requester addGetResponse:appResource forURL:url];
+    [requester addGetResponse:appResource forURL:URL];
     
     __block NSError *error = nil;
 
@@ -122,7 +122,7 @@ request_handler_t postCallback =
     
     STAssertNil(error, @"%@", error);
     STAssertNotNil(createdUser, nil);
-    STAssertNotNil(createdUser.url, nil);
+    STAssertNotNil(createdUser.URL, nil);
     STAssertNil(createdUser.reference, nil);
     STAssertNil(createdUser.meta, nil);
 }
@@ -152,7 +152,7 @@ request_handler_t postCallback =
     
     STAssertNil(error, @"%@", error);
     STAssertNotNil(createdUser, nil);
-    STAssertEqualObjects(createdUser.url,
+    STAssertEqualObjects(createdUser.URL,
                          [userResource linkForRelation:@"self"].URL,
                          nil);
     STAssertEqualObjects(createdUser.reference, userResource[@"reference"], nil);

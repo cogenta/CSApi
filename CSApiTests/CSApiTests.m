@@ -55,9 +55,9 @@
 - (void)testGetApplicationWithResult
 {
     NSDictionary *resultDict = [NSDictionary dictionary];
-    NSURL *url = [NSURL URLWithString:kBookmark];
-    YBHALResource *result = [resultDict HALResourceWithBaseURL:url];
-    [requester addGetResponse:result forURL:url];
+    NSURL *URL = [NSURL URLWithString:kBookmark];
+    YBHALResource *result = [resultDict HALResourceWithBaseURL:URL];
+    [requester addGetResponse:result forURL:URL];
     
     __block id<CSApplication> app = nil;
     __block NSError *error = nil;
@@ -76,13 +76,13 @@
 
 - (void)testGetApplicationWithError
 {
-    NSURL *url = [NSURL URLWithString:kBookmark];
+    NSURL *URL = [NSURL URLWithString:kBookmark];
     NSString *message = @"Not Authorized";
     NSDictionary *userInfo = @{NSLocalizedDescriptionKey: message};
     NSError *expectedError = [NSError errorWithDomain:NSURLErrorDomain
                                                  code:404
                                              userInfo:userInfo];
-    [requester addGetError:expectedError forURL:url];
+    [requester addGetError:expectedError forURL:URL];
     
     __block id<CSApplication> app = nil;
     __block NSError *errorResponse = nil;

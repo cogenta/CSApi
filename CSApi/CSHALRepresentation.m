@@ -31,8 +31,8 @@
 - (id)representMutableUser:(id<CSMutableUser>)user
 {
     NSMutableDictionary *json = [NSMutableDictionary dictionary];
-    if (user.url) {
-        json[@"_links"] = @{@"self": @{@"href": [user.url absoluteString]}};
+    if (user.URL) {
+        json[@"_links"] = @{@"self": @{@"href": [user.URL absoluteString]}};
     }
     
     if (user.reference) {

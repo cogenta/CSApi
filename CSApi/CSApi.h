@@ -94,12 +94,12 @@
  [id\<CSUser\>](CSUser) in user and a nil error. If the operation fails,
  callback is invoked with a nil user and a non-nil error.
  
- @param url the URL of the user to fetch.
+ @param URL the URL of the user to fetch.
  @param credential the credential to use to get the user.
  @param callback The block to invoke when the user has been successfully
  obtained, or when the operation has failed.
  */
-- (void)getUser:(NSURL *)url
+- (void)getUser:(NSURL *)URL
      credential:(id<CSCredential>)credential
        callback:(void (^)(id<CSUser> user, NSError *error))callback;
 
@@ -162,7 +162,7 @@
 /** @name Bookkeeping */
 
 /** URL of the user resource. */
-@property (readonly) NSURL *url;
+@property (readonly) NSURL *URL;
 
 /** Entity tag of the user resource. */
 @property (readonly) id etag;
@@ -217,7 +217,7 @@
 @protocol CSMutableUser <NSObject>
 
 /** URL for the user. */
-@property (readonly, strong) NSURL *url;
+@property (readonly, strong) NSURL *URL;
 
 /** The user's reference string. */
 @property (nonatomic, strong) NSString *reference;

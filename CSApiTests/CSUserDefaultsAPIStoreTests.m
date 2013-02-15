@@ -68,8 +68,8 @@
     [[[self.mockUserDefaults expect] andReturn:expectedURL]
      URLForKey:[self.testAPIStore userUrlKey]];
     
-    NSURL *url = [self.apiStore userUrl];
-    STAssertEqualObjects(url, expectedURL, nil);
+    NSURL *URL = [self.apiStore userUrl];
+    STAssertEqualObjects(URL, expectedURL, nil);
     
     STAssertNoThrow(([self.mockUserDefaults verify]), nil);
 }
@@ -107,7 +107,7 @@
                                      @"password": @"pass"}];
 
     id mockUser = [OCMockObject mockForProtocol:@protocol(CSUser)];
-    [[[mockUser stub] andReturn:expectedURL] url];
+    [[[mockUser stub] andReturn:expectedURL] URL];
     [[[mockUser stub] andReturn:credential] credential];
     
     [[self.mockUserDefaults expect] setURL:expectedURL

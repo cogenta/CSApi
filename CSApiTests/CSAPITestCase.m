@@ -62,8 +62,8 @@
 
 + (YBHALResource *)resourceForJson:(NSDictionary *)json
 {
-    NSURL *url = [NSURL URLWithString:kBookmark];
-    YBHALResource *resource = [json HALResourceWithBaseURL:url];
+    NSURL *URL = [NSURL URLWithString:kBookmark];
+    YBHALResource *resource = [json HALResourceWithBaseURL:URL];
     return resource;
 }
 

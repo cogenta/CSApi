@@ -53,12 +53,12 @@
     return self;
 }
 
-- (NSMutableDictionary *)methodsForURL:(NSURL *)url
+- (NSMutableDictionary *)methodsForURL:(NSURL *)URL
 {
-    NSMutableDictionary *result = [responses objectForKey:url];
+    NSMutableDictionary *result = [responses objectForKey:URL];
     if ( ! result) {
         result = [NSMutableDictionary dictionary];
-        [responses setObject:result forKey:url];
+        [responses setObject:result forKey:URL];
     }
     return result;
 }
@@ -66,15 +66,15 @@
 
 - (void)addCallback:(request_handler_t)cb
           forMethod:(NSString *)method
-                url:(NSURL *)url
+                URL:(NSURL *)URL
 {
-    if ( ! url) {
+    if ( ! URL) {
         @throw [NSException
-                exceptionWithName:@"bad url"
+                exceptionWithName:@"bad URL"
                 reason:@"cannot mock requests with nil URL"
                 userInfo:nil];
     }
-    [[self methodsForURL:url]
+    [[self methodsForURL:URL]
      setObject:cb
      forKey:method];
 }
@@ -102,7 +102,7 @@
     return [NSString stringWithFormat:@"\"%@\"", tag];
 }
 
-- (void)addResponse:(id)response forMethod:(NSString *)method url:(NSURL *)url
+- (void)addResponse:(id)response forMethod:(NSString *)method URL:(NSURL *)URL
 {
     Class selfClass = [self class];
     [self addCallback:^(id body, id etag, requester_callback_t cb)
@@ -110,67 +110,67 @@
         cb(response, [selfClass etagForBody:response], nil);
     }
             forMethod:method
-                  url:url];
+                  URL:URL];
 }
 
-- (void)addError:(NSError *)error forMethod:(NSString *)method url:(NSURL *)url
+- (void)addError:(NSError *)error forMethod:(NSString *)method URL:(NSURL *)URL
 {
     [self addCallback:^(id body, id etag, requester_callback_t cb)
      {
           cb(nil, nil, error);
      }
             forMethod:method
-                  url:url];
+                  URL:URL];
 }
 
-- (void)addGetResponse:(id)response forURL:(NSURL *)url
+- (void)addGetResponse:(id)response forURL:(NSURL *)URL
 {
-    [self addResponse:response forMethod:@"GET" url:url];
+    [self addResponse:response forMethod:@"GET" URL:URL];
 }
 
-- (void)addGetError:(id)error forURL:(NSURL *)url
+- (void)addGetError:(id)error forURL:(NSURL *)URL
 {
-    [self addError:error forMethod:@"GET" url:url];
+    [self addError:error forMethod:@"GET" URL:URL];
 }
 
-- (void)addGetCallback:(request_handler_t)callback forURL:(NSURL *)url
+- (void)addGetCallback:(request_handler_t)callback forURL:(NSURL *)URL
 {
     [self addCallback:^(id body, id etag, requester_callback_t cb)
      {
          callback(body, etag, cb);
      }
             forMethod:@"GET"
-                  url:url];
+                  URL:URL];
 }
 
-- (void)addPostResponse:(id)response forURL:(NSURL *)url
+- (void)addPostResponse:(id)response forURL:(NSURL *)URL
 {
-    [self addResponse:response forMethod:@"POST" url:url];
+    [self addResponse:response forMethod:@"POST" URL:URL];
 }
 
-- (void)addPostCallback:(request_handler_t)callback forURL:(NSURL *)url
+- (void)addPostCallback:(request_handler_t)callback forURL:(NSURL *)URL
 {
     [self addCallback:^(id body, id etag, requester_callback_t cb)
      {
          callback(body, etag, cb);
      }
             forMethod:@"POST"
-                  url:url];
+                  URL:URL];
 }
 
-- (void)addPutResponse:(id)response forURL:(NSURL *)url
+- (void)addPutResponse:(id)response forURL:(NSURL *)URL
 {
-    [self addResponse:response forMethod:@"PUT" url:url];
+    [self addResponse:response forMethod:@"PUT" URL:URL];
 }
 
-- (void)addPutCallback:(request_handler_t)callback forURL:(NSURL *)url
+- (void)addPutCallback:(request_handler_t)callback forURL:(NSURL *)URL
 {
     [self addCallback:^(id body, id etag, requester_callback_t cb)
      {
          callback(body, etag, cb);
      }
             forMethod:@"PUT"
-                  url:url];
+                  URL:URL];
 }
 
 - (void)resetLastCredentails
@@ -179,7 +179,7 @@
     lastPassword = nil;
 }
 
-- (void)invokeURL:(NSURL *)url
+- (void)invokeURL:(NSURL *)URL
            method:(NSString *)method
              body:(id)body
              etag:(id)etag
@@ -189,13 +189,13 @@
     [self resetLastCredentails];
     [credential applyWith:self];
     
-    NSDictionary *methods = [responses objectForKey:url];
+    NSDictionary *methods = [responses objectForKey:URL];
     
     
     if ( ! [methods count]) {
         NSString *message = [NSString stringWithFormat:
                              @"%@ not in test requester",
-                             url];
+                             URL];
         callback(nil, nil, [NSError errorWithDomain:NSURLErrorDomain
                                                code:404
                                            userInfo:@{NSLocalizedDescriptionKey: message}]);
@@ -207,7 +207,7 @@
     if ( ! response) {
         NSString *message = [NSString stringWithFormat:
                              @"%@ not allowed on %@ in test requester",
-                             method, url];
+                             method, URL];
         callback(nil, nil, [NSError errorWithDomain:NSURLErrorDomain
                                                code:405
                                            userInfo:@{NSLocalizedDescriptionKey: message}]);
@@ -217,11 +217,11 @@
     response(body, etag, callback);
 }
 
-- (void)getURL:(NSURL *)url
+- (void)getURL:(NSURL *)URL
     credential:(id<CSCredential>)credential
       callback:(void (^)(id, id, NSError *))callback
 {
-    [self invokeURL:url
+    [self invokeURL:URL
              method:@"GET"
                body:nil
                etag:nil
@@ -229,12 +229,12 @@
            callback:callback];
 }
 
-- (void)postURL:(NSURL *)url
+- (void)postURL:(NSURL *)URL
      credential:(id<CSCredential>)credential
            body:(id)body
        callback:(requester_callback_t)callback
 {
-    [self invokeURL:url
+    [self invokeURL:URL
              method:@"POST"
                body:body
                etag:nil
@@ -242,7 +242,7 @@
            callback:callback];
 }
 
-- (void)putURL:(NSURL *)url
+- (void)putURL:(NSURL *)URL
     credential:(id<CSCredential>)credential
           body:(id)body
           etag:(id)etag
@@ -252,7 +252,7 @@
         callback(nil, nil, [NSError errorWithDomain:@"NO PUT BODY" code:0 userInfo:nil]);
         return;
     }
-    [self invokeURL:url
+    [self invokeURL:URL
              method:@"PUT"
                body:body
                etag:etag

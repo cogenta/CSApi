@@ -21,15 +21,15 @@
     userCredential = nil;
 }
 
-- (void)resetWithURL:(NSURL *)url credential:(NSDictionary *)credential
+- (void)resetWithURL:(NSURL *)URL credential:(NSDictionary *)credential
 {
-    userUrl = url;
+    userUrl = URL;
     userCredential = [CSBasicCredential credentialWithDictionary:credential];
 }
 
 - (void)didCreateUser:(id<CSUser>)user
 {
-    userUrl = user.url;
+    userUrl = user.URL;
     userCredential = user.credential;
 }
 

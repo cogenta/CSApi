@@ -71,9 +71,9 @@
     }];
     STAssertNil(returnedError, @"%@", [returnedError localizedDescription]);
     
-    STAssertNotNil(returnedUser.url, nil);
+    STAssertNotNil(returnedUser.URL, nil);
     STAssertNotNil(store.userUrl, nil);
-    STAssertEqualObjects(store.userUrl, returnedUser.url, nil);
+    STAssertEqualObjects(store.userUrl, returnedUser.URL, nil);
     
     id mockAuthenticator = [OCMockObject mockForProtocol:@protocol(CSAuthenticator)];
     [[mockAuthenticator expect] applyBasicAuthWithUsername:userResource[@"credential"][@"username"]
@@ -104,9 +104,9 @@
     
     STAssertNil(returnedError, @"%@", [returnedError localizedDescription]);
     
-    STAssertNotNil(returnedUser.url, nil);
+    STAssertNotNil(returnedUser.URL, nil);
     STAssertEqualObjects(store.userUrl, userURL, nil);
-    STAssertEqualObjects(returnedUser.url, userURL, nil);
+    STAssertEqualObjects(returnedUser.URL, userURL, nil);
     
     id mockAuthenticator = [OCMockObject mockForProtocol:@protocol(CSAuthenticator)];
     [[mockAuthenticator expect] applyBasicAuthWithUsername:@"user"
@@ -164,7 +164,7 @@
             return;
         }
         cb(body, @"NEW ETAG", nil);
-    } forURL:returnedUser.url];
+    } forURL:returnedUser.URL];
 
     __block BOOL returnedSuccess = NO;
     __block NSError *returnedError = nil;
