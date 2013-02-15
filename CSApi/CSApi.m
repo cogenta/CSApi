@@ -35,11 +35,30 @@
 
 @end
 
-@interface CSApplication : NSObject <CSApplication>
+@interface CSCredentialEntity : NSObject
 
 @property (strong, nonatomic) id<CSRequester> requester;
-@property (strong, nonatomic) YBHALResource *resource;
 @property (strong, nonatomic) id<CSCredential> credential;
+
+- (id)initWithRequester:(id<CSRequester>)requester
+             credential:(id<CSCredential>)credential;
+
+- (void)postURL:(NSURL *)url
+           body:(id)body
+       callback:(requester_callback_t)callback;
+
+- (void)getURL:(NSURL *)url callback:(requester_callback_t)callback;
+
+- (void)putURL:(NSURL *)url
+          body:(id)body
+          etag:(id)etag
+      callback:(requester_callback_t)callback;
+
+@end
+
+@interface CSApplication : CSCredentialEntity <CSApplication>
+
+@property (strong, nonatomic) YBHALResource *resource;
 
 - (id)initWithHAL:(YBHALResource *)resource
         requester:(id<CSRequester>)requester
@@ -54,10 +73,8 @@
 
 @end
 
-@interface CSUser : NSObject <CSUser>
+@interface CSUser : CSCredentialEntity <CSUser>
 
-@property (readonly) id<CSCredential> credential;
-@property (strong, nonatomic) NSURL *baseUrl;
 @property (strong, nonatomic) id<CSRequester> requester;
 
 - (id)initWithHal:(YBHALResource *)resource
@@ -84,10 +101,8 @@
 
 @end
 
-@interface CSListPage : NSObject <CSListPage>
+@interface CSListPage : CSCredentialEntity <CSListPage>
 
-@property (readonly) id<CSRequester> requester;
-@property (readonly) id<CSCredential> credential;
 @property (readonly) NSURL *next;
 @property (readonly) NSURL *prev;
 
@@ -97,22 +112,61 @@
 
 @end
 
-@implementation CSApplication
+@implementation CSCredentialEntity
 
 @synthesize requester;
-@synthesize resource;
 @synthesize credential;
+
+- (id)initWithRequester:(id<CSRequester>)aRequester
+             credential:(id<CSCredential>)aCredential
+{
+    self = [super init];
+    if (self) {
+        requester = aRequester;
+        credential = aCredential;
+    }
+    return self;
+}
+
+- (void)postURL:(NSURL *)url
+           body:(id)body
+       callback:(requester_callback_t)callback
+{
+    [requester postURL:url credential:credential body:body callback:callback];
+}
+
+- (void)getURL:(NSURL *)url callback:(requester_callback_t)callback
+{
+    [requester getURL:url credential:credential callback:callback];
+}
+
+- (void)putURL:(NSURL *)url
+          body:(id)body
+          etag:(id)etag
+      callback:(requester_callback_t)callback
+{
+    [requester putURL:url
+           credential:credential
+                 body:body
+                 etag:etag
+             callback:callback];
+}
+
+@end
+
+@implementation CSApplication
+
+@synthesize resource;
 @synthesize name;
 
 - (id)initWithHAL:(YBHALResource *)aResource
         requester:(id<CSRequester>)aRequester
        credential:(id<CSCredential>)aCredential
 {
-    self = [super init];
+    self = [super initWithRequester:aRequester
+                         credential:aCredential];
     if (self) {
-        requester = aRequester;
         resource = aResource;
-        credential = aCredential;
         
         name = resource[@"name"];
     }
@@ -131,10 +185,9 @@
         change(user);
     }
     
-    [requester postURL:url
-            credential:credential
-                  body:[user representWithRepresentation:representation]
-              callback:^(id result, id etag, NSError *error)
+    [self postURL:url
+             body:[user representWithRepresentation:representation]
+         callback:^(id result, id etag, NSError *error)
     {
         if (error) {
             callback(nil, error);
@@ -142,7 +195,7 @@
         }
         
         CSUser *user = [[CSUser alloc] initWithHal:result
-                                         requester:requester
+                                         requester:self.requester
                                               etag:etag];
         callback(user, nil);
     }];
@@ -151,9 +204,7 @@
 - (void)getRetailers:(void (^)(id<CSListPage> page, NSError *error))callback
 {
     NSURL *url = [resource linkForRelation:@"/rels/retailers"].URL;
-    [requester getURL:url
-           credential:credential
-             callback:^(YBHALResource *result, id etag, NSError *error)
+    [self getURL:url callback:^(YBHALResource *result, id etag, NSError *error)
     {
         if (error) {
             callback(nil, error);
@@ -161,8 +212,8 @@
         }
         
         callback([[CSListPage alloc] initWithHal:result
-                                       requester:requester
-                                      credential:credential],
+                                       requester:self.requester
+                                      credential:self.credential],
                  nil);
     }];
 }
@@ -175,25 +226,22 @@
 @synthesize url;
 @synthesize reference;
 @synthesize meta;
-@synthesize requester;
-@synthesize credential;
 @synthesize etag;
 
 - (id)initWithHal:(YBHALResource *)resource
         requester:(id<CSRequester>)aRequester
              etag:(id)anEtag
 {
-    self = [super init];
-    if (self) {
-        [self loadFromResource:resource];
-        
-        requester = aRequester;
-        if (resource[@"credential"]) {
-            credential = [CSBasicCredential
-                          credentialWithDictionary:resource[@"credential"]];
-        }
+    id<CSCredential> aCredential = nil;
+    if (resource[@"credential"]) {
+        aCredential = [CSBasicCredential
+                       credentialWithDictionary:resource[@"credential"]];
     }
-    return self;
+    
+    return [self initWithHal:resource
+                   requester:aRequester
+                  credential:aCredential
+                        etag:anEtag];
 }
 
 - (id)initWithHal:(YBHALResource *)resource
@@ -201,11 +249,9 @@
        credential:(id<CSCredential>)aCredential
              etag:(id)anEtag
 {
-    self = [super init];
+    self = [super initWithRequester:aRequester credential:aCredential];
     if (self) {
         [self loadFromResource:resource];
-        requester = aRequester;
-        credential = aCredential;
         etag = anEtag;
     }
     return self;
@@ -251,11 +297,10 @@
         id representedUser = [mutableUser
                               representWithRepresentation:representation];
         
-        [requester putURL:self.url
-               credential:self.credential
-                     body:representedUser
-                     etag:self.etag
-                 callback:^(id result, id etagFromPut, NSError *error)
+        [self putURL:self.url
+                body:representedUser
+                etag:self.etag
+            callback:^(id result, id etagFromPut, NSError *error)
          {
              if ( ! error) {
                  [self loadFromResource:result];
@@ -274,9 +319,8 @@
     };
 
     doGet = ^{
-        [requester getURL:self.url
-               credential:self.credential
-                 callback:^(id result, id etagFromGet, NSError *getError)
+        [self getURL:self.url
+            callback:^(id result, id etagFromGet, NSError *getError)
          {
              if ( ! result) {
                  callback(false, getError);
@@ -484,8 +528,6 @@
 
 @synthesize count;
 @synthesize items;
-@synthesize requester;
-@synthesize credential;
 @synthesize next;
 @synthesize prev;
 
@@ -493,10 +535,8 @@
         requester:(id<CSRequester>)aRequester
        credential:(id<CSCredential>)aCredential
 {
-    self = [super init];
+    self = [super initWithRequester:aRequester credential:aCredential];
     if (self) {
-        requester = aRequester;
-        credential = aCredential;
         count = [resource[@"count"] unsignedIntegerValue];
         next = [resource linkForRelation:@"next"].URL;
         prev = [resource linkForRelation:@"prev"].URL;
@@ -525,39 +565,15 @@
     return prev != nil;
 }
 
-- (void)getNext:(void (^)(id<CSListPage>, NSError *))callback
+- (void)getListURL:(NSURL *)url
+          callback:(void (^)(id<CSListPage>, NSError *))callback
 {
-    if ( ! next) {
+    if ( ! url) {
         callback(nil, nil);
         return;
     }
     
-    [requester getURL:next
-           credential:credential
-             callback:^(id result, id etag, NSError *error)
-    {
-        if (error) {
-            callback(nil, error);
-            return;
-        }
-        
-        callback([[CSListPage alloc] initWithHal:result
-                                       requester:requester
-                                      credential:credential],
-                 nil);
-    }];
-}
-
-- (void)getPrev:(void (^)(id<CSListPage>, NSError *))callback
-{
-    if ( ! prev) {
-        callback(nil, nil);
-        return;
-    }
-    
-    [requester getURL:prev
-           credential:credential
-             callback:^(id result, id etag, NSError *error)
+    [self getURL:url callback:^(id result, id etag, NSError *error)
      {
          if (error) {
              callback(nil, error);
@@ -565,10 +581,20 @@
          }
          
          callback([[CSListPage alloc] initWithHal:result
-                                        requester:requester
-                                       credential:credential],
+                                        requester:self.requester
+                                       credential:self.credential],
                   nil);
      }];
+}
+
+- (void)getNext:(void (^)(id<CSListPage>, NSError *))callback
+{
+    [self getListURL:next callback:callback];
+}
+
+- (void)getPrev:(void (^)(id<CSListPage>, NSError *))callback
+{
+    [self getListURL:prev callback:callback];
 }
 
 @end
