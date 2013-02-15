@@ -8,6 +8,7 @@
 
 #import "CSAPITestCase.h"
 #import "TestConstants.h"
+#import "TestFixtures.h"
 
 @implementation CSAPITestCase
 
@@ -75,6 +76,11 @@
 {
     NSDictionary *json = [self jsonForData:data];
     return [self resourceForJson:json];
+}
+
+- (YBHALResource *)resourceForFixture:(NSString *)fixture
+{
+    return [self resourceForData:dataForFixture(fixture)];
 }
 
 @end

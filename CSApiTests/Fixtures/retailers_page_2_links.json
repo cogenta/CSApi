@@ -1,0 +1,58 @@
+{
+  
+  "count": 30,
+  "_links": {
+    "self": {
+      "href": "/retailers/?start=20"
+    },
+    "curie": {
+      "href": "/rels/{rel}",
+      "name": "api"
+    },
+    "api:retailer": [
+      {
+        "href": "/retailers/192",
+        "label": "BARRATTS"
+      },
+      {
+        "href": "/retailers/18",
+        "label": "Bathstore"
+      },
+      {
+        "href": "/retailers/146",
+        "label": "Best Buy"
+      },
+      {
+        "href": "/retailers/154",
+        "label": "Beyond Television"
+      },
+      {
+        "href": "/retailers/164",
+        "label": "BHS"
+      },
+      {
+        "href": "/retailers/165",
+        "label": "BHS Direct"
+      },
+      {
+        "href": "/retailers/136",
+        "label": "Blacks"
+      },
+      {
+        "href": "/retailers/19",
+        "label": "Blackwell"
+      },
+      {
+        "href": "/retailers/181",
+        "label": "boohoo"
+      },
+      {
+        "href": "/retailers/20",
+        "label": "Boots"
+      }
+    ],
+    "prev": {
+      "href": "/retailers/?start=10"
+    }
+  }
+}

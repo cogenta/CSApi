@@ -1,0 +1,50 @@
+{
+  "count": 9,
+  "_links": {
+    "curie": {
+      "href": "/rels/{rel}",
+      "name": "api"
+    },
+    "self": {
+      "href": "/retailers/"
+    },
+    "api:retailer": [
+      {
+        "href": "/retailers/159",
+        "label": "1stAudioVisual"
+      },
+      {
+        "href": "/retailers/1",
+        "label": "365 Electrical"
+      },
+      {
+        "href": "/retailers/238",
+        "label": "99p Stores"
+      },
+      {
+        "href": "/retailers/232",
+        "label": "Accessorize"
+      },
+      {
+        "href": "/retailers/156",
+        "label": "AJ Electronics"
+      },
+      {
+        "href": "/retailers/2",
+        "label": "Amazon"
+      },
+      {
+        "href": "/retailers/9",
+        "label": "Apple Store"
+      },
+      {
+        "href": "/retailers/153",
+        "label": "Appliance City"
+      },
+      {
+        "href": "/retailers/10",
+        "label": "Appliance Deals"
+      }
+    ]
+  }
+}

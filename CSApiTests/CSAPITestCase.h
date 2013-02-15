@@ -11,18 +11,20 @@
 
 @interface CSAPITestCase : SenTestCase
 
-- (void)waitForSemaphore: (dispatch_semaphore_t)semaphore;
+- (void)waitForSemaphore:(dispatch_semaphore_t)semaphore;
 
-- (void)callAndWait: (void (^)(void (^)()))blk;
+- (void)callAndWait:(void (^)(void (^)()))blk;
 
-+ (NSDictionary*)jsonForData: (NSData*)data;
++ (NSDictionary*)jsonForData:(NSData*)data;
 
-- (NSDictionary*)jsonForData: (NSData*)data;
+- (NSDictionary*)jsonForData:(NSData*)data;
 
-+ (YBHALResource*)resourceForJson: (NSDictionary*)json;
++ (YBHALResource*)resourceForJson:(NSDictionary*)json;
 
-- (YBHALResource*)resourceForJson: (NSDictionary*)json;
+- (YBHALResource*)resourceForJson:(NSDictionary*)json;
 
-- (YBHALResource*)resourceForData: (NSData*)data;
+- (YBHALResource*)resourceForData:(NSData*)data;
+
+- (YBHALResource *)resourceForFixture:(NSString *)fixture;
 
 @end

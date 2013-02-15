@@ -1,0 +1,61 @@
+{
+  
+  "count": 30,
+  "_links": {
+    "self": {
+      "href": "/retailers/?start=10"
+    },
+    "next": {
+      "href": "/retailers/?start=20"
+    },
+    "curie": {
+      "href": "/rels/{rel}",
+      "name": "api"
+    },
+    "api:retailer": [
+      {
+        "href": "/retailers/150",
+        "label": "Appliances Online"
+      },
+      {
+        "href": "/retailers/207",
+        "label": "Arena Flowers"
+      },
+      {
+        "href": "/retailers/12",
+        "label": "Argos"
+      },
+      {
+        "href": "/retailers/13",
+        "label": "Asda"
+      },
+      {
+        "href": "/retailers/158",
+        "label": "Ashbee and Wood"
+      },
+      {
+        "href": "/retailers/187",
+        "label": "Austin Reed"
+      },
+      {
+        "href": "/retailers/148",
+        "label": "B&M"
+      },
+      {
+        "href": "/retailers/17",
+        "label": "B&Q"
+      },
+      {
+        "href": "/retailers/217",
+        "label": "Banana Republic"
+      },
+      {
+        "href": "/retailers/256",
+        "label": "BANK"
+      }
+    ],
+    "prev": {
+      "href": "/retailers/"
+    }
+  }
+}

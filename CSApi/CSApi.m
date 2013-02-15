@@ -18,6 +18,7 @@
 #import <HyperBek/HyperBek.h>
 #import "CSAPIRequester.h"
 #import "CSUserDefaultsAPIStore.h"
+#import <NSArray+Functional.h>
 
 @interface NSError (CSExtension)
 
@@ -71,6 +72,30 @@
 
 @end
 
+@interface CSLinkListItem : NSObject <CSListItem>
+
+- (id)initWithLink:(YBHALLink *)link;
+
+@end
+
+@interface CSResourceListItem : NSObject <CSListItem>
+
+- (id)initWithResource:(YBHALResource *)resource;
+
+@end
+
+@interface CSListPage : NSObject <CSListPage>
+
+@property (readonly) id<CSRequester> requester;
+@property (readonly) id<CSCredential> credential;
+@property (readonly) NSURL *next;
+@property (readonly) NSURL *prev;
+
+- (id)initWithHal:(YBHALResource *)resource
+        requester:(id<CSRequester>)requester
+       credential:(id<CSCredential>)credential;
+
+@end
 
 @implementation CSApplication
 
@@ -120,6 +145,25 @@
                                          requester:requester
                                               etag:etag];
         callback(user, nil);
+    }];
+}
+
+- (void)getRetailers:(void (^)(id<CSListPage> page, NSError *error))callback
+{
+    NSURL *url = [resource linkForRelation:@"/rels/retailers"].URL;
+    [requester getURL:url
+           credential:credential
+             callback:^(YBHALResource *result, id etag, NSError *error)
+    {
+        if (error) {
+            callback(nil, error);
+            return;
+        }
+        
+        callback([[CSListPage alloc] initWithHal:result
+                                       requester:requester
+                                      credential:credential],
+                 nil);
     }];
 }
 
@@ -204,7 +248,8 @@
         CSMutableUser *mutableUser = [self mutableUser];
         change(mutableUser);
         
-        id representedUser = [mutableUser representWithRepresentation:representation];
+        id representedUser = [mutableUser
+                              representWithRepresentation:representation];
         
         [requester putURL:self.url
                credential:self.credential
@@ -310,7 +355,9 @@
     return self;
 }
 
-+ (instancetype)apiWithBookmark:(NSString *)bookmark username:(NSString *)username password:(NSString *)password
++ (instancetype)apiWithBookmark:(NSString *)bookmark
+                       username:(NSString *)username
+                       password:(NSString *)password
 {
     return [[CSAPI alloc] initWithBookmark:bookmark
                                   username:username
@@ -401,7 +448,131 @@
     }];
 }
 
+@end
+
+@implementation CSLinkListItem
+
+@synthesize URL;
+
+- (id)initWithLink:(YBHALLink *)link
+{
+    self = [super init];
+    if (self) {
+        URL = link.URL;
+    }
+    return self;
+}
 
 @end
+
+@implementation CSResourceListItem
+
+@synthesize URL;
+
+- (id)initWithResource:(YBHALResource *)resource
+{
+    self = [super init];
+    if (self) {
+        URL = [resource linkForRelation:@"self"].URL;
+    }
+    return self;
+}
+
+@end
+
+@implementation CSListPage
+
+@synthesize count;
+@synthesize items;
+@synthesize requester;
+@synthesize credential;
+@synthesize next;
+@synthesize prev;
+
+- (id)initWithHal:(YBHALResource *)resource
+        requester:(id<CSRequester>)aRequester
+       credential:(id<CSCredential>)aCredential
+{
+    self = [super init];
+    if (self) {
+        requester = aRequester;
+        credential = aCredential;
+        count = [resource[@"count"] unsignedIntegerValue];
+        next = [resource linkForRelation:@"next"].URL;
+        prev = [resource linkForRelation:@"prev"].URL;
+        NSArray *resources = [resource resourcesForRelation:@"/rels/retailer"];
+        if (resources) {
+            items = [resources mapUsingBlock:^id(id obj) {
+                return [[CSResourceListItem alloc] initWithResource:obj];
+            }];
+        } else {
+            NSArray *links = [resource linksForRelation:@"/rels/retailer"];
+            items = [links mapUsingBlock:^id(id obj) {
+                return [[CSLinkListItem alloc] initWithLink:obj];
+            }];
+        }
+    }
+    return self;
+}
+
+- (BOOL)hasNext
+{
+    return next != nil;
+}
+
+- (BOOL)hasPrev
+{
+    return prev != nil;
+}
+
+- (void)getNext:(void (^)(id<CSListPage>, NSError *))callback
+{
+    if ( ! next) {
+        callback(nil, nil);
+        return;
+    }
+    
+    [requester getURL:next
+           credential:credential
+             callback:^(id result, id etag, NSError *error)
+    {
+        if (error) {
+            callback(nil, error);
+            return;
+        }
+        
+        callback([[CSListPage alloc] initWithHal:result
+                                       requester:requester
+                                      credential:credential],
+                 nil);
+    }];
+}
+
+- (void)getPrev:(void (^)(id<CSListPage>, NSError *))callback
+{
+    if ( ! prev) {
+        callback(nil, nil);
+        return;
+    }
+    
+    [requester getURL:prev
+           credential:credential
+             callback:^(id result, id etag, NSError *error)
+     {
+         if (error) {
+             callback(nil, error);
+             return;
+         }
+         
+         callback([[CSListPage alloc] initWithHal:result
+                                        requester:requester
+                                       credential:credential],
+                  nil);
+     }];
+}
+
+@end
+
+
 
 

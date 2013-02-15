@@ -12,6 +12,7 @@
 @protocol CSUser;
 @protocol CSMutableUser;
 @protocol CSCredential;
+@protocol CSListPage;
 
 /**
  Provides access to the Cogenta Shopping API.
@@ -151,6 +152,8 @@
 - (void)createUserWithChange:(void (^)(id<CSMutableUser> user))change
                     callback:(void (^)(id<CSUser> user, NSError *error))callback;
 
+- (void)getRetailers:(void (^)(id<CSListPage> firstPage, NSError *error))callback;
+
 @end
 
 /** Protocol for interacting with a user resource. */
@@ -223,3 +226,23 @@
 @property (nonatomic, strong) NSMutableDictionary *meta;
 
 @end
+
+@protocol CSListPage <NSObject>
+
+@property (readonly) NSUInteger count;
+@property (readonly) NSArray *items;
+
+@property (readonly) BOOL hasNext;
+- (void)getNext:(void (^)(id<CSListPage> page, NSError *error))callback;
+
+@property (readonly) BOOL hasPrev;
+- (void)getPrev:(void (^)(id<CSListPage> page, NSError *error))callback;
+
+@end
+
+@protocol CSListItem <NSObject>
+
+@property (readonly, strong) NSURL *URL;
+
+@end
+

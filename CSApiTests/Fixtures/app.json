@@ -19,6 +19,9 @@
         },
         "api:developer": {
             "href": "/developers/5106b341704679b792e221a4"
+        },
+        "api:retailers": {
+            "href": "/retailers/"
         }
     }, 
     "name": "Test Application"

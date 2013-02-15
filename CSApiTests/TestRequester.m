@@ -68,6 +68,12 @@
           forMethod:(NSString *)method
                 url:(NSURL *)url
 {
+    if ( ! url) {
+        @throw [NSException
+                exceptionWithName:@"bad url"
+                reason:@"cannot mock requests with nil URL"
+                userInfo:nil];
+    }
     [[self methodsForURL:url]
      setObject:cb
      forKey:method];

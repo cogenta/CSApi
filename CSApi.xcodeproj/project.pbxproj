@@ -38,6 +38,11 @@
 		BEA65A1016B94DDF00F10CB0 /* CSApplicationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BEA65A0F16B94DDF00F10CB0 /* CSApplicationTests.m */; };
 		BEA65A1316B94E4900F10CB0 /* TestApi.m in Sources */ = {isa = PBXBuildFile; fileRef = BEA65A1216B94E4900F10CB0 /* TestApi.m */; };
 		BEA65A1616B9537300F10CB0 /* app.json in Resources */ = {isa = PBXBuildFile; fileRef = BEA65A1516B9537300F10CB0 /* app.json */; };
+		BEE0A88816CE8D8B00EB3BB8 /* retailers_page_0_links.json in Resources */ = {isa = PBXBuildFile; fileRef = BEE0A88716CE8D8B00EB3BB8 /* retailers_page_0_links.json */; };
+		BEE0A88A16CE8DAD00EB3BB8 /* retailers_page_1_links.json in Resources */ = {isa = PBXBuildFile; fileRef = BEE0A88916CE8DAD00EB3BB8 /* retailers_page_1_links.json */; };
+		BEE0A88C16CE8ED400EB3BB8 /* retailers_page_2_links.json in Resources */ = {isa = PBXBuildFile; fileRef = BEE0A88B16CE8ED400EB3BB8 /* retailers_page_2_links.json */; };
+		BEF43CC316CE3BED00EC1BAE /* retailers_single_page.json in Resources */ = {isa = PBXBuildFile; fileRef = BEF43CC216CE3BED00EC1BAE /* retailers_single_page.json */; };
+		BEF43CC516CE732800EC1BAE /* retailers_single_page_embedded.json in Resources */ = {isa = PBXBuildFile; fileRef = BEF43CC416CE732800EC1BAE /* retailers_single_page_embedded.json */; };
 		BEF5304016BC072F003B8B58 /* CSApiGetUserTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF5303F16BC072F003B8B58 /* CSApiGetUserTests.m */; };
 		BEF5304316BFC851003B8B58 /* CSApiSaveUserTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF5304216BFC851003B8B58 /* CSApiSaveUserTests.m */; };
 		BEF5304516BFCB03003B8B58 /* user_get_response_2.json in Resources */ = {isa = PBXBuildFile; fileRef = BEF5304416BFCB03003B8B58 /* user_get_response_2.json */; };
@@ -114,6 +119,11 @@
 		BEA65A1116B94E4900F10CB0 /* TestApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestApi.h; sourceTree = "<group>"; };
 		BEA65A1216B94E4900F10CB0 /* TestApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestApi.m; sourceTree = "<group>"; };
 		BEA65A1516B9537300F10CB0 /* app.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = app.json; path = Fixtures/app.json; sourceTree = "<group>"; };
+		BEE0A88716CE8D8B00EB3BB8 /* retailers_page_0_links.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = retailers_page_0_links.json; path = Fixtures/retailers_page_0_links.json; sourceTree = "<group>"; };
+		BEE0A88916CE8DAD00EB3BB8 /* retailers_page_1_links.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = retailers_page_1_links.json; path = Fixtures/retailers_page_1_links.json; sourceTree = "<group>"; };
+		BEE0A88B16CE8ED400EB3BB8 /* retailers_page_2_links.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = retailers_page_2_links.json; path = Fixtures/retailers_page_2_links.json; sourceTree = "<group>"; };
+		BEF43CC216CE3BED00EC1BAE /* retailers_single_page.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = retailers_single_page.json; path = Fixtures/retailers_single_page.json; sourceTree = "<group>"; };
+		BEF43CC416CE732800EC1BAE /* retailers_single_page_embedded.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = retailers_single_page_embedded.json; path = Fixtures/retailers_single_page_embedded.json; sourceTree = "<group>"; };
 		BEF5303F16BC072F003B8B58 /* CSApiGetUserTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSApiGetUserTests.m; sourceTree = "<group>"; };
 		BEF5304216BFC851003B8B58 /* CSApiSaveUserTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSApiSaveUserTests.m; sourceTree = "<group>"; };
 		BEF5304416BFCB03003B8B58 /* user_get_response_2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = user_get_response_2.json; path = Fixtures/user_get_response_2.json; sourceTree = "<group>"; };
@@ -229,10 +239,10 @@
 			children = (
 				BEA65A1416B9535300F10CB0 /* Fixtures */,
 				BEA65A0A16B92F1200F10CB0 /* Utils */,
+				BE06A4D716B6E54A00F345F8 /* Supporting Files */,
 				BE06A4DD16B6E54A00F345F8 /* CSApiTests.m */,
 				BEA65A0F16B94DDF00F10CB0 /* CSApplicationTests.m */,
 				BE57715016BA9073002F42E4 /* CSApiLoginTests.m */,
-				BE06A4D716B6E54A00F345F8 /* Supporting Files */,
 				BEF5303F16BC072F003B8B58 /* CSApiGetUserTests.m */,
 				BEF5304216BFC851003B8B58 /* CSApiSaveUserTests.m */,
 				BEF5306616C144BF003B8B58 /* CSAPIRequesterTests.m */,
@@ -278,6 +288,11 @@
 				BE57715216BABC69002F42E4 /* user_get_response.json */,
 				BEF5304416BFCB03003B8B58 /* user_get_response_2.json */,
 				BEF5306016C124B7003B8B58 /* user_conflict_1.json */,
+				BEF43CC216CE3BED00EC1BAE /* retailers_single_page.json */,
+				BEF43CC416CE732800EC1BAE /* retailers_single_page_embedded.json */,
+				BEE0A88716CE8D8B00EB3BB8 /* retailers_page_0_links.json */,
+				BEE0A88916CE8DAD00EB3BB8 /* retailers_page_1_links.json */,
+				BEE0A88B16CE8ED400EB3BB8 /* retailers_page_2_links.json */,
 			);
 			name = Fixtures;
 			sourceTree = "<group>";
@@ -363,6 +378,11 @@
 				BE57715316BABC69002F42E4 /* user_get_response.json in Resources */,
 				BEF5304516BFCB03003B8B58 /* user_get_response_2.json in Resources */,
 				BEF5306116C124B7003B8B58 /* user_conflict_1.json in Resources */,
+				BEF43CC316CE3BED00EC1BAE /* retailers_single_page.json in Resources */,
+				BEF43CC516CE732800EC1BAE /* retailers_single_page_embedded.json in Resources */,
+				BEE0A88816CE8D8B00EB3BB8 /* retailers_page_0_links.json in Resources */,
+				BEE0A88A16CE8DAD00EB3BB8 /* retailers_page_1_links.json in Resources */,
+				BEE0A88C16CE8ED400EB3BB8 /* retailers_page_2_links.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
