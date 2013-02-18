@@ -1,0 +1,162 @@
+{
+  
+  "count": 30,
+  "_embedded": {
+    "api:retailer": [
+      {
+        
+        "_links": {
+          "curie": {
+            "href": "/rels/{rel}",
+            "name": "api"
+          },
+          "self": {
+            "href": "/retailers/192"
+          }
+        },
+        "name": "BARRATTS"
+      },
+      {
+        
+        "_links": {
+          "curie": {
+            "href": "/rels/{rel}",
+            "name": "api"
+          },
+          "self": {
+            "href": "/retailers/18"
+          }
+        },
+        "name": "Bathstore"
+      },
+      {
+        
+        "_links": {
+          "curie": {
+            "href": "/rels/{rel}",
+            "name": "api"
+          },
+          "self": {
+            "href": "/retailers/146"
+          }
+        },
+        "name": "Best Buy"
+      },
+      {
+        
+        "_links": {
+          "curie": {
+            "href": "/rels/{rel}",
+            "name": "api"
+          },
+          "self": {
+            "href": "/retailers/154"
+          }
+        },
+        "name": "Beyond Television"
+      },
+      {
+        
+        "_links": {
+          "curie": {
+            "href": "/rels/{rel}",
+            "name": "api"
+          },
+          "self": {
+            "href": "/retailers/164"
+          }
+        },
+        "name": "BHS"
+      },
+      {
+        
+        "_links": {
+          "curie": {
+            "href": "/rels/{rel}",
+            "name": "api"
+          },
+          "self": {
+            "href": "/retailers/165"
+          }
+        },
+        "name": "BHS Direct"
+      },
+      {
+        
+        "_links": {
+          "curie": {
+            "href": "/rels/{rel}",
+            "name": "api"
+          },
+          "self": {
+            "href": "/retailers/136"
+          },
+          "api:telephone": {
+            "href": "tel:+441604597101",
+            "label": "0160 459 7101"
+          }
+        },
+        "name": "Blacks"
+      },
+      {
+        
+        "_links": {
+          "curie": {
+            "href": "/rels/{rel}",
+            "name": "api"
+          },
+          "self": {
+            "href": "/retailers/19"
+          },
+          "api:telephone": {
+            "href": "tel:+441865333536",
+            "label": "0186 533 3536"
+          }
+        },
+        "name": "Blackwell"
+      },
+      {
+        
+        "_links": {
+          "curie": {
+            "href": "/rels/{rel}",
+            "name": "api"
+          },
+          "self": {
+            "href": "/retailers/181"
+          }
+        },
+        "name": "boohoo"
+      },
+      {
+        
+        "_links": {
+          "curie": {
+            "href": "/rels/{rel}",
+            "name": "api"
+          },
+          "self": {
+            "href": "/retailers/20"
+          },
+          "api:telephone": {
+            "href": "tel:+448448793483",
+            "label": "0844 879 3483"
+          }
+        },
+        "name": "Boots"
+      }
+    ]
+  },
+  "_links": {
+    "self": {
+      "href": "/retailers/?start=20"
+    },
+    "curie": {
+      "href": "/rels/{rel}",
+      "name": "api"
+    },
+    "prev": {
+      "href": "/retailers/?start=10"
+    }
+  }
+}

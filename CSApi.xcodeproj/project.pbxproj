@@ -9,8 +9,6 @@
 /* Begin PBXBuildFile section */
 		314A6C7236354189A46E252F /* libPods-test.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FCAF943180214A46BE940C0E /* libPods-test.a */; };
 		9807DF74FCE84807AA7A905A /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D0A9D9C4BB3D41BCA4100D6F /* libPods.a */; };
-		BE01AA7116B7FEE500982D27 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE01AA7016B7FEE500982D27 /* SystemConfiguration.framework */; };
-		BE01AA7316B7FF0800982D27 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE01AA7216B7FF0800982D27 /* MobileCoreServices.framework */; };
 		BE01AA7416B7FF3000982D27 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE01AA7216B7FF0800982D27 /* MobileCoreServices.framework */; };
 		BE01AA7516B7FF3500982D27 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE01AA7016B7FEE500982D27 /* SystemConfiguration.framework */; };
 		BE06A4C016B6E54900F345F8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE06A4BF16B6E54900F345F8 /* Foundation.framework */; };
@@ -41,6 +39,9 @@
 		BEE0A88816CE8D8B00EB3BB8 /* retailers_page_0_links.json in Resources */ = {isa = PBXBuildFile; fileRef = BEE0A88716CE8D8B00EB3BB8 /* retailers_page_0_links.json */; };
 		BEE0A88A16CE8DAD00EB3BB8 /* retailers_page_1_links.json in Resources */ = {isa = PBXBuildFile; fileRef = BEE0A88916CE8DAD00EB3BB8 /* retailers_page_1_links.json */; };
 		BEE0A88C16CE8ED400EB3BB8 /* retailers_page_2_links.json in Resources */ = {isa = PBXBuildFile; fileRef = BEE0A88B16CE8ED400EB3BB8 /* retailers_page_2_links.json */; };
+		BEE0A88E16D2520B00EB3BB8 /* retailers_page_0_embedded.json in Resources */ = {isa = PBXBuildFile; fileRef = BEE0A88D16D2520B00EB3BB8 /* retailers_page_0_embedded.json */; };
+		BEE0A89016D2524500EB3BB8 /* retailers_page_1_embedded.json in Resources */ = {isa = PBXBuildFile; fileRef = BEE0A88F16D2524500EB3BB8 /* retailers_page_1_embedded.json */; };
+		BEE0A89216D2527500EB3BB8 /* retailers_page_2_embedded.json in Resources */ = {isa = PBXBuildFile; fileRef = BEE0A89116D2527500EB3BB8 /* retailers_page_2_embedded.json */; };
 		BEF43CC316CE3BED00EC1BAE /* retailers_single_page.json in Resources */ = {isa = PBXBuildFile; fileRef = BEF43CC216CE3BED00EC1BAE /* retailers_single_page.json */; };
 		BEF43CC516CE732800EC1BAE /* retailers_single_page_embedded.json in Resources */ = {isa = PBXBuildFile; fileRef = BEF43CC416CE732800EC1BAE /* retailers_single_page_embedded.json */; };
 		BEF5304016BC072F003B8B58 /* CSApiGetUserTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF5303F16BC072F003B8B58 /* CSApiGetUserTests.m */; };
@@ -122,6 +123,9 @@
 		BEE0A88716CE8D8B00EB3BB8 /* retailers_page_0_links.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = retailers_page_0_links.json; path = Fixtures/retailers_page_0_links.json; sourceTree = "<group>"; };
 		BEE0A88916CE8DAD00EB3BB8 /* retailers_page_1_links.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = retailers_page_1_links.json; path = Fixtures/retailers_page_1_links.json; sourceTree = "<group>"; };
 		BEE0A88B16CE8ED400EB3BB8 /* retailers_page_2_links.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = retailers_page_2_links.json; path = Fixtures/retailers_page_2_links.json; sourceTree = "<group>"; };
+		BEE0A88D16D2520B00EB3BB8 /* retailers_page_0_embedded.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = retailers_page_0_embedded.json; path = Fixtures/retailers_page_0_embedded.json; sourceTree = "<group>"; };
+		BEE0A88F16D2524500EB3BB8 /* retailers_page_1_embedded.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = retailers_page_1_embedded.json; path = Fixtures/retailers_page_1_embedded.json; sourceTree = "<group>"; };
+		BEE0A89116D2527500EB3BB8 /* retailers_page_2_embedded.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = retailers_page_2_embedded.json; path = Fixtures/retailers_page_2_embedded.json; sourceTree = "<group>"; };
 		BEF43CC216CE3BED00EC1BAE /* retailers_single_page.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = retailers_single_page.json; path = Fixtures/retailers_single_page.json; sourceTree = "<group>"; };
 		BEF43CC416CE732800EC1BAE /* retailers_single_page_embedded.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = retailers_single_page_embedded.json; path = Fixtures/retailers_single_page_embedded.json; sourceTree = "<group>"; };
 		BEF5303F16BC072F003B8B58 /* CSApiGetUserTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSApiGetUserTests.m; sourceTree = "<group>"; };
@@ -142,8 +146,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BE01AA7316B7FF0800982D27 /* MobileCoreServices.framework in Frameworks */,
-				BE01AA7116B7FEE500982D27 /* SystemConfiguration.framework in Frameworks */,
 				BE06A4C016B6E54900F345F8 /* Foundation.framework in Frameworks */,
 				9807DF74FCE84807AA7A905A /* libPods.a in Frameworks */,
 			);
@@ -293,6 +295,9 @@
 				BEE0A88716CE8D8B00EB3BB8 /* retailers_page_0_links.json */,
 				BEE0A88916CE8DAD00EB3BB8 /* retailers_page_1_links.json */,
 				BEE0A88B16CE8ED400EB3BB8 /* retailers_page_2_links.json */,
+				BEE0A88D16D2520B00EB3BB8 /* retailers_page_0_embedded.json */,
+				BEE0A88F16D2524500EB3BB8 /* retailers_page_1_embedded.json */,
+				BEE0A89116D2527500EB3BB8 /* retailers_page_2_embedded.json */,
 			);
 			name = Fixtures;
 			sourceTree = "<group>";
@@ -383,6 +388,9 @@
 				BEE0A88816CE8D8B00EB3BB8 /* retailers_page_0_links.json in Resources */,
 				BEE0A88A16CE8DAD00EB3BB8 /* retailers_page_1_links.json in Resources */,
 				BEE0A88C16CE8ED400EB3BB8 /* retailers_page_2_links.json in Resources */,
+				BEE0A88E16D2520B00EB3BB8 /* retailers_page_0_embedded.json in Resources */,
+				BEE0A89016D2524500EB3BB8 /* retailers_page_1_embedded.json in Resources */,
+				BEE0A89216D2527500EB3BB8 /* retailers_page_2_embedded.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

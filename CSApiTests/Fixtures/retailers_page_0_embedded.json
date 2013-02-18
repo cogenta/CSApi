@@ -1,0 +1,166 @@
+{
+  
+  "count": 30,
+  "_embedded": {
+    "api:retailer": [
+      {
+        
+        "_links": {
+          "curie": {
+            "href": "/rels/{rel}",
+            "name": "api"
+          },
+          "self": {
+            "href": "/retailers/159"
+          }
+        },
+        "name": "1stAudioVisual"
+      },
+      {
+        
+        "_links": {
+          "curie": {
+            "href": "/rels/{rel}",
+            "name": "api"
+          },
+          "self": {
+            "href": "/retailers/1"
+          },
+          "api:telephone": {
+            "href": "tel:+441162421365",
+            "label": "0116 242 1365"
+          }
+        },
+        "name": "365 Electrical"
+      },
+      {
+        
+        "_links": {
+          "curie": {
+            "href": "/rels/{rel}",
+            "name": "api"
+          },
+          "self": {
+            "href": "/retailers/238"
+          }
+        },
+        "name": "99p Stores"
+      },
+      {
+        
+        "_links": {
+          "curie": {
+            "href": "/rels/{rel}",
+            "name": "api"
+          },
+          "self": {
+            "href": "/retailers/232"
+          }
+        },
+        "name": "Accessorize"
+      },
+      {
+        
+        "_links": {
+          "curie": {
+            "href": "/rels/{rel}",
+            "name": "api"
+          },
+          "self": {
+            "href": "/retailers/156"
+          }
+        },
+        "name": "AJ Electronics"
+      },
+      {
+        
+        "_links": {
+          "curie": {
+            "href": "/rels/{rel}",
+            "name": "api"
+          },
+          "self": {
+            "href": "/retailers/2"
+          },
+          "api:telephone": {
+            "href": "tel:+448004961081",
+            "label": "0800 496 1081"
+          }
+        },
+        "name": "Amazon"
+      },
+      {
+        
+        "_links": {
+          "curie": {
+            "href": "/rels/{rel}",
+            "name": "api"
+          },
+          "self": {
+            "href": "/retailers/9"
+          }
+        },
+        "name": "Apple Store"
+      },
+      {
+        
+        "_links": {
+          "curie": {
+            "href": "/rels/{rel}",
+            "name": "api"
+          },
+          "self": {
+            "href": "/retailers/153"
+          }
+        },
+        "name": "Appliance City"
+      },
+      {
+        
+        "_links": {
+          "curie": {
+            "href": "/rels/{rel}",
+            "name": "api"
+          },
+          "self": {
+            "href": "/retailers/10"
+          },
+          "api:telephone": {
+            "href": "tel:+448448793491",
+            "label": "0844 879 3491"
+          }
+        },
+        "name": "Appliance Deals"
+      },
+      {
+        
+        "_links": {
+          "curie": {
+            "href": "/rels/{rel}",
+            "name": "api"
+          },
+          "self": {
+            "href": "/retailers/11"
+          },
+          "api:telephone": {
+            "href": "tel:+448719844415",
+            "label": "0871 984 4415"
+          }
+        },
+        "name": "Appliances Direct"
+      }
+    ]
+  },
+  "_links": {
+    "curie": {
+      "href": "/rels/{rel}",
+      "name": "api"
+    },
+    "self": {
+      "href": "/retailers/"
+    },
+    "next": {
+      "href": "/retailers/?start=10"
+    }
+  }
+}

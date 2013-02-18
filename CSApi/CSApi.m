@@ -89,19 +89,34 @@
 
 @end
 
-@interface CSLinkListItem : NSObject <CSListItem>
+@interface CSListItem : CSCredentialEntity <CSListItem>
 
-- (id)initWithLink:(YBHALLink *)link;
+- (id)initWithRequester:(id<CSRequester>)requester
+             credential:(id<CSCredential>)credential;
 
-@end
-
-@interface CSResourceListItem : NSObject <CSListItem>
-
-- (id)initWithResource:(YBHALResource *)resource;
+- (void)getSelf:(void (^)(YBHALResource *resource, NSError *error))callback;
 
 @end
 
-@interface CSListPage : CSCredentialEntity <CSListPage>
+@interface CSLinkListItem : CSListItem
+
+- (id)initWithLink:(YBHALLink *)link
+         requester:(id<CSRequester>)requester
+        credential:(id<CSCredential>)credential;
+
+@end
+
+@interface CSResourceListItem : CSListItem
+
+@property (readonly) YBHALResource *resource;
+
+- (id)initWithResource:(YBHALResource *)resource
+             requester:(id<CSRequester>)requester
+            credential:(id<CSCredential>)credential;
+
+@end
+
+@interface CSListPage : CSCredentialEntity <CSRetailerListPage>
 
 @property (readonly) NSURL *next;
 @property (readonly) NSURL *prev;
@@ -109,6 +124,28 @@
 - (id)initWithHal:(YBHALResource *)resource
         requester:(id<CSRequester>)requester
        credential:(id<CSCredential>)credential;
+
+@end
+
+@interface CSRetailerList : CSCredentialEntity <CSRetailerList>
+
+@property (readonly) id<CSListPage> firstPage;
+@property (readonly) id<CSListPage> lastPage;
+@property (readonly) NSMutableArray *items;
+
+- (id)initWithPage:(CSListPage *)page
+         requester:(id<CSRequester>)requester
+        credential:(id<CSCredential>)credential;
+
+- (void)loadPage:(id<CSListPage>)page;
+
+@end
+
+@interface CSRetailer : CSCredentialEntity <CSRetailer, CSListItem>
+
+- (id)initWithResource:(YBHALResource *)resource
+             requester:(id<CSRequester>)requester
+            credential:(id<CSCredential>)credential;
 
 @end
 
@@ -201,7 +238,7 @@
     }];
 }
 
-- (void)getRetailers:(void (^)(id<CSListPage> page, NSError *error))callback
+- (void)getRetailers:(void (^)(id<CSRetailerListPage> page, NSError *error))callback
 {
     NSURL *URL = [resource linkForRelation:@"/rels/retailers"].URL;
     [self getURL:URL callback:^(YBHALResource *result, id etag, NSError *error)
@@ -494,32 +531,75 @@
 
 @end
 
+@implementation CSListItem
+
+- (id)initWithRequester:(id<CSRequester>)requester
+             credential:(id<CSCredential>)credential
+{
+    self = [super initWithRequester:requester credential:credential];
+    return self;
+}
+
+- (void)getSelf:(void (^)(YBHALResource *, NSError *))callback
+{
+    callback(nil, nil);
+}
+
+- (NSURL *)URL
+{
+    return nil;
+}
+
+@end
+
+
 @implementation CSLinkListItem
 
 @synthesize URL;
 
 - (id)initWithLink:(YBHALLink *)link
+         requester:(id<CSRequester>)aRequester
+        credential:(id<CSCredential>)aCredential;
 {
-    self = [super init];
+    self = [super initWithRequester:aRequester credential:aCredential];
     if (self) {
         URL = link.URL;
     }
     return self;
 }
 
+- (void)getSelf:(void (^)(YBHALResource *, NSError *))callback
+{
+    [self getURL:URL callback:^(id result, id etag, NSError *error) {
+        callback(result, error);
+    }];
+}
+
 @end
 
 @implementation CSResourceListItem
 
-@synthesize URL;
+@synthesize resource;
 
-- (id)initWithResource:(YBHALResource *)resource
+- (id)initWithResource:(YBHALResource *)aResource
+             requester:(id<CSRequester>)aRequester
+            credential:(id<CSCredential>)aCredential
 {
-    self = [super init];
+    self = [super initWithRequester:aRequester credential:aCredential];
     if (self) {
-        URL = [resource linkForRelation:@"self"].URL;
+        resource = aResource;
     }
     return self;
+}
+
+- (NSURL *)URL
+{
+    return [resource linkForRelation:@"self"].URL;
+}
+
+- (void)getSelf:(void (^)(YBHALResource *, NSError *))callback
+{
+    callback(resource, nil);
 }
 
 @end
@@ -543,12 +623,16 @@
         NSArray *resources = [resource resourcesForRelation:@"/rels/retailer"];
         if (resources) {
             items = [resources mapUsingBlock:^id(id obj) {
-                return [[CSResourceListItem alloc] initWithResource:obj];
+                return [[CSResourceListItem alloc] initWithResource:obj
+                                                          requester:aRequester
+                                                         credential:aCredential];
             }];
         } else {
             NSArray *links = [resource linksForRelation:@"/rels/retailer"];
             items = [links mapUsingBlock:^id(id obj) {
-                return [[CSLinkListItem alloc] initWithLink:obj];
+                return [[CSLinkListItem alloc] initWithLink:obj
+                                                  requester:aRequester
+                                                 credential:aCredential];
             }];
         }
     }
@@ -566,7 +650,7 @@
 }
 
 - (void)getListURL:(NSURL *)URL
-          callback:(void (^)(id<CSListPage>, NSError *))callback
+          callback:(void (^)(id<CSRetailerListPage>, NSError *))callback
 {
     if ( ! URL) {
         callback(nil, nil);
@@ -587,18 +671,135 @@
      }];
 }
 
-- (void)getNext:(void (^)(id<CSListPage>, NSError *))callback
+- (void)getNext:(void (^)(id<CSRetailerListPage>, NSError *))callback
 {
     [self getListURL:next callback:callback];
 }
 
-- (void)getPrev:(void (^)(id<CSListPage>, NSError *))callback
+- (void)getPrev:(void (^)(id<CSRetailerListPage>, NSError *))callback
 {
     [self getListURL:prev callback:callback];
+}
+
+- (id<CSRetailerList>)retailerList
+{
+    return [[CSRetailerList alloc] initWithPage:self
+                                      requester:self.requester
+                                     credential:self.credential];
+}
+
+@end
+
+@implementation CSRetailerList
+
+@synthesize firstPage;
+@synthesize lastPage;
+@synthesize items;
+
+- (id)initWithPage:(CSListPage *)page
+         requester:(id<CSRequester>)aRequester
+        credential:(id<CSCredential>)aCredential
+{
+    self = [super initWithRequester:aRequester credential:aCredential];
+    if (self) {
+        firstPage = page;
+        items = [NSMutableArray array];
+        [self loadPage:firstPage];
+    }
+    return self;
+}
+
+- (NSUInteger)count
+{
+    return [firstPage count];
+}
+
+- (void)getRetailerAtIndex:(NSUInteger)index
+                  callback:(void (^)(id<CSRetailer>, NSError *))callback
+{
+    void (^loadMore)(void (^cb)(BOOL success, NSError *error));
+    __block void (^maybeLoadMore)(void (^cb)(BOOL success, NSError *error));
+    
+    loadMore = ^(void (^cb)(BOOL success, NSError *error)) {
+        if ( ! lastPage.hasNext) {
+            NSDictionary *userInfo = @{@"index": @(index),
+                                       @"items": @([items count]),
+                                       @"count": @([firstPage count])};
+            NSError *outOfRange = [NSError errorWithDomain:@"CSAPI"
+                                                      code:0
+                                                  userInfo:userInfo];
+            cb(NO, outOfRange);
+            return;
+        }
+        
+        [lastPage getNext:^(id<CSListPage> nextPage, NSError *error) {
+            if (error) {
+                cb(NO, error);
+                return;
+            }
+            
+            [self loadPage:nextPage];
+            
+            maybeLoadMore(cb);
+        }];
+    };
+    
+    maybeLoadMore = ^(void (^cb)(BOOL success, NSError *error)) {
+        if ([items count] > index) {
+            cb(YES, nil);
+            return;
+        }
+        
+        loadMore(cb);
+    };
+
+    maybeLoadMore(^(BOOL success, NSError *error) {
+        if ( ! success) {
+            callback(nil, error);
+            return;
+        }
+    
+        [[items objectAtIndex:index] getSelf:^(YBHALResource *resource,
+                                               NSError *error) {
+            if (error) {
+                callback(nil, error);
+                return;
+            }
+            
+            callback([[CSRetailer alloc] initWithResource:resource
+                                                requester:self.requester
+                                               credential:self.credential],
+                     nil);
+        }];
+        
+    });
+
+}
+
+- (void)loadPage:(id<CSListPage>)page
+{
+    [items addObjectsFromArray:page.items];
+    lastPage = page;
 }
 
 @end
 
 
+@implementation CSRetailer
 
+@synthesize URL;
+@synthesize name;
 
+- (id)initWithResource:(YBHALResource *)resource
+             requester:(id<CSRequester>)aRequester
+            credential:(id<CSCredential>)aCredential
+{
+    self = [super initWithRequester:aRequester credential:aCredential];
+    if (self) {
+        URL = [resource linkForRelation:@"self"].URL;
+        name = resource[@"name"];
+    }
+    return self;
+}
+
+@end

@@ -1,0 +1,165 @@
+{
+  
+  "count": 30,
+  "_embedded": {
+    "api:retailer": [
+      {
+        
+        "_links": {
+          "curie": {
+            "href": "/rels/{rel}",
+            "name": "api"
+          },
+          "self": {
+            "href": "/retailers/150"
+          }
+        },
+        "name": "Appliances Online"
+      },
+      {
+        
+        "_links": {
+          "curie": {
+            "href": "/rels/{rel}",
+            "name": "api"
+          },
+          "self": {
+            "href": "/retailers/207"
+          }
+        },
+        "name": "Arena Flowers"
+      },
+      {
+        
+        "_links": {
+          "curie": {
+            "href": "/rels/{rel}",
+            "name": "api"
+          },
+          "self": {
+            "href": "/retailers/12"
+          },
+          "api:telephone": {
+            "href": "tel:+448456402020",
+            "label": "0845 640 2020"
+          }
+        },
+        "name": "Argos"
+      },
+      {
+        
+        "_links": {
+          "curie": {
+            "href": "/rels/{rel}",
+            "name": "api"
+          },
+          "self": {
+            "href": "/retailers/13"
+          },
+          "api:telephone": {
+            "href": "tel:+448448243000",
+            "label": "0844 824 3000"
+          }
+        },
+        "name": "Asda"
+      },
+      {
+        
+        "_links": {
+          "curie": {
+            "href": "/rels/{rel}",
+            "name": "api"
+          },
+          "self": {
+            "href": "/retailers/158"
+          }
+        },
+        "name": "Ashbee and Wood"
+      },
+      {
+        
+        "_links": {
+          "curie": {
+            "href": "/rels/{rel}",
+            "name": "api"
+          },
+          "self": {
+            "href": "/retailers/187"
+          }
+        },
+        "name": "Austin Reed"
+      },
+      {
+        
+        "_links": {
+          "curie": {
+            "href": "/rels/{rel}",
+            "name": "api"
+          },
+          "self": {
+            "href": "/retailers/148"
+          }
+        },
+        "name": "B&M"
+      },
+      {
+        
+        "_links": {
+          "curie": {
+            "href": "/rels/{rel}",
+            "name": "api"
+          },
+          "self": {
+            "href": "/retailers/17"
+          },
+          "api:telephone": {
+            "href": "tel:+448456096688",
+            "label": "0845 609 6688"
+          }
+        },
+        "name": "B&Q"
+      },
+      {
+        
+        "_links": {
+          "curie": {
+            "href": "/rels/{rel}",
+            "name": "api"
+          },
+          "self": {
+            "href": "/retailers/217"
+          }
+        },
+        "name": "Banana Republic"
+      },
+      {
+        
+        "_links": {
+          "curie": {
+            "href": "/rels/{rel}",
+            "name": "api"
+          },
+          "self": {
+            "href": "/retailers/256"
+          }
+        },
+        "name": "BANK"
+      }
+    ]
+  },
+  "_links": {
+    "self": {
+      "href": "/retailers/?start=10"
+    },
+    "next": {
+      "href": "/retailers/?start=20"
+    },
+    "curie": {
+      "href": "/rels/{rel}",
+      "name": "api"
+    },
+    "prev": {
+      "href": "/retailers/"
+    }
+  }
+}

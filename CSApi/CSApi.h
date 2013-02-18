@@ -13,6 +13,9 @@
 @protocol CSMutableUser;
 @protocol CSCredential;
 @protocol CSListPage;
+@protocol CSRetailer;
+@protocol CSRetailerList;
+@protocol CSRetailerListPage;
 
 /**
  Provides access to the Cogenta Shopping API.
@@ -85,7 +88,8 @@
  @param callback The block to invoke when the application has been successfully
  obtained, or when the operation has failed.
  */
-- (void)getApplication:(void (^)(id<CSApplication> app, NSError *error))callback;
+- (void)getApplication:(void (^)(id<CSApplication> app,
+                                 NSError *error))callback;
 
 /** Tries to get an arbitrary user object.
  
@@ -150,9 +154,11 @@
  created, or when the operation has failed.
  */
 - (void)createUserWithChange:(void (^)(id<CSMutableUser> user))change
-                    callback:(void (^)(id<CSUser> user, NSError *error))callback;
+                    callback:(void (^)(id<CSUser> user,
+                                       NSError *error))callback;
 
-- (void)getRetailers:(void (^)(id<CSListPage> firstPage, NSError *error))callback;
+- (void)getRetailers:(void (^)(id<CSRetailerListPage> firstPage,
+                               NSError *error))callback;
 
 @end
 
@@ -240,9 +246,33 @@
 
 @end
 
+
 @protocol CSListItem <NSObject>
 
 @property (readonly, strong) NSURL *URL;
 
 @end
+
+@protocol CSRetailer <NSObject>
+
+@property (readonly) NSString *name;
+
+@end
+
+@protocol CSRetailerList <NSObject>
+
+@property (readonly) NSUInteger count;
+
+- (void)getRetailerAtIndex:(NSUInteger)index
+                  callback:(void (^)(id<CSRetailer> retailer,
+                                     NSError *error))callback;
+
+@end
+
+@protocol CSRetailerListPage <CSListPage>
+
+@property (readonly) id<CSRetailerList> retailerList;
+
+@end
+
 

@@ -174,14 +174,14 @@ request_handler_t postCallback =
     STAssertEqualObjects(requester.lastPassword, kPassword, nil);
 }
 
-- (void)checkNoNextForPage:(id<CSListPage>)page
+- (void)checkNoNextForPage:(id<CSRetailerListPage>)page
 {
     STAssertFalse(page.hasNext, nil);
     
     __block id nextPage = @"not set";
     __block id nextPageError = @"not set";
     [self callAndWait:^(void (^done)()) {
-        [page getNext:^(id<CSListPage> page, NSError *error) {
+        [page getNext:^(id<CSRetailerListPage> page, NSError *error) {
             nextPage = page;
             nextPageError = error;
             done();
@@ -192,14 +192,14 @@ request_handler_t postCallback =
     STAssertNil(nextPageError, @"%@", nextPageError);
 }
 
-- (void)checkNoPrevForPage:(id<CSListPage>)page
+- (void)checkNoPrevForPage:(id<CSRetailerListPage>)page
 {
     STAssertFalse(page.hasPrev, nil);
     
     __block id prevPage = @"not set";
     __block id prevPageError = @"not set";
     [self callAndWait:^(void (^done)()) {
-        [page getPrev:^(id<CSListPage> page, NSError *error) {
+        [page getPrev:^(id<CSRetailerListPage> page, NSError *error) {
             prevPage = page;
             prevPageError = error;
             done();
@@ -210,7 +210,7 @@ request_handler_t postCallback =
     STAssertNil(prevPageError, @"%@", prevPageError);
 }
 
-- (void)checkNoNextOfPrevPageForPage:(id<CSListPage>)page
+- (void)checkNoNextOfPrevPageForPage:(id<CSRetailerListPage>)page
 {
     [self checkNoNextForPage:page];
     [self checkNoPrevForPage:page];
@@ -223,12 +223,12 @@ request_handler_t postCallback =
     NSURL *retailersURL = [appResource linkForRelation:@"/rels/retailers"].URL;
     [requester addGetResponse:retailersResource forURL:retailersURL];
     
-    __block id<CSListPage> page = nil;
+    __block id<CSRetailerListPage> page = nil;
     __block NSError *error = [NSError errorWithDomain:@"not called"
                                                  code:0
                                              userInfo:nil];
     [self callAndWait:^(void (^done)()){
-        [app getRetailers:^(id<CSListPage> firstPage, NSError *theError) {
+        [app getRetailers:^(id<CSRetailerListPage> firstPage, NSError *theError) {
             page = firstPage;
             error = theError;
             done();
@@ -257,12 +257,12 @@ request_handler_t postCallback =
     NSURL *retailersURL = [appResource linkForRelation:@"/rels/retailers"].URL;
     [requester addGetResponse:retailersResource forURL:retailersURL];
     
-    __block id<CSListPage> page = nil;
+    __block id<CSRetailerListPage> page = nil;
     __block NSError *error = [NSError errorWithDomain:@"not called"
                                                  code:0
                                              userInfo:nil];
     [self callAndWait:^(void (^done)()){
-        [app getRetailers:^(id<CSListPage> firstPage, NSError *theError) {
+        [app getRetailers:^(id<CSRetailerListPage> firstPage, NSError *theError) {
             page = firstPage;
             error = theError;
             done();
@@ -289,7 +289,7 @@ request_handler_t postCallback =
 - (void)testGetRetailersUsesCredential
 {
     [self callAndWait:^(void (^done)()) {
-        [app getRetailers:^(id<CSListPage> page, NSError *theError) {
+        [app getRetailers:^(id<CSRetailerListPage> page, NSError *theError) {
             done();
         }];
 
@@ -316,7 +316,7 @@ request_handler_t postCallback =
                                                  code:0
                                              userInfo:nil];
     [self callAndWait:^(void (^done)()){
-        [app getRetailers:^(id<CSListPage> page, NSError *theError) {
+        [app getRetailers:^(id<CSRetailerListPage> page, NSError *theError) {
             retailers = page.items;
             error = theError;
             done();
@@ -358,12 +358,12 @@ request_handler_t postCallback =
     
     //
     
-    __block id<CSListPage> page0 = nil;
+    __block id<CSRetailerListPage> page0 = nil;
     __block NSError *error0 = [NSError errorWithDomain:@"not called"
                                                       code:0
                                                   userInfo:nil];
     [self callAndWait:^(void (^done)()){
-        [app getRetailers:^(id<CSListPage> page, NSError *error) {
+        [app getRetailers:^(id<CSRetailerListPage> page, NSError *error) {
             page0 = page;
             error0 = error;
             done();
@@ -382,12 +382,12 @@ request_handler_t postCallback =
     
     //
     
-    __block id<CSListPage> page1 = nil;
+    __block id<CSRetailerListPage> page1 = nil;
     __block NSError *error1 = [NSError errorWithDomain:@"not called"
                                                   code:0
                                               userInfo:nil];
     [self callAndWait:^(void (^done)()) {
-        [page0 getNext:^(id<CSListPage> page, NSError *error) {
+        [page0 getNext:^(id<CSRetailerListPage> page, NSError *error) {
             page1 = page;
             error1 = error;
             done();
@@ -407,12 +407,12 @@ request_handler_t postCallback =
     
     //
     
-    __block id<CSListPage> page2 = nil;
+    __block id<CSRetailerListPage> page2 = nil;
     __block NSError *error2 = [NSError errorWithDomain:@"not called"
                                                   code:0
                                               userInfo:nil];
     [self callAndWait:^(void (^done)()) {
-        [page1 getNext:^(id<CSListPage> page, NSError *error) {
+        [page1 getNext:^(id<CSRetailerListPage> page, NSError *error) {
             page2 = page;
             error2 = error;
             done();
@@ -432,12 +432,12 @@ request_handler_t postCallback =
     
     //
     
-    __block id<CSListPage> page1again = nil;
+    __block id<CSRetailerListPage> page1again = nil;
     __block NSError *error1again = [NSError errorWithDomain:@"not called"
                                                        code:0
                                                    userInfo:nil];
     [self callAndWait:^(void (^done)()) {
-        [page2 getPrev:^(id<CSListPage> page, NSError *error) {
+        [page2 getPrev:^(id<CSRetailerListPage> page, NSError *error) {
             page1again = page;
             error1again = error;
             done();
@@ -457,12 +457,12 @@ request_handler_t postCallback =
     
     //
     
-    __block id<CSListPage> page0again = nil;
+    __block id<CSRetailerListPage> page0again = nil;
     __block NSError *error0again = [NSError errorWithDomain:@"not called"
                                                        code:0
                                                    userInfo:nil];
     [self callAndWait:^(void (^done)()) {
-        [page1 getPrev:^(id<CSListPage> page, NSError *error) {
+        [page1 getPrev:^(id<CSRetailerListPage> page, NSError *error) {
             page0again = page;
             error0again = error;
             done();
@@ -497,18 +497,18 @@ request_handler_t postCallback =
     
     //
     
-    __block id<CSListPage> page1 = nil;
+    __block id<CSRetailerListPage> page1 = nil;
     __block NSError *error = [NSError errorWithDomain:@"not called"
                                                  code:0
                                              userInfo:nil];
     [self callAndWait:^(void (^done)()){
-        [app getRetailers:^(id<CSListPage> page0, NSError *error0) {
+        [app getRetailers:^(id<CSRetailerListPage> page0, NSError *error0) {
             if (error0) {
                 error = error0;
                 done();
                 return;
             }
-            [page0 getNext:^(id<CSListPage> page, NSError *error1) {
+            [page0 getNext:^(id<CSRetailerListPage> page, NSError *error1) {
                 page1 = page;
                 error = error1;
                 done();
@@ -538,7 +538,7 @@ request_handler_t postCallback =
                                                      code:0
                                                  userInfo:nil];
     [self callAndWait:^(void (^done)()) {
-        [page1 getNext:^(id<CSListPage> page, NSError *error) {
+        [page1 getNext:^(id<CSRetailerListPage> page, NSError *error) {
             nextPage = page;
             nextError = error;
             done();
@@ -554,7 +554,7 @@ request_handler_t postCallback =
                                                      code:0
                                                  userInfo:nil];
     [self callAndWait:^(void (^done)()) {
-        [page1 getPrev:^(id<CSListPage> page, NSError *error) {
+        [page1 getPrev:^(id<CSRetailerListPage> page, NSError *error) {
             prevPage = page;
             prevError = error;
             done();
@@ -563,6 +563,231 @@ request_handler_t postCallback =
     
     STAssertNil(prevPage, @"%@", prevPage);
     STAssertEqualObjects(prevError, expectedError, nil);
+}
+
+- (void)testRetailerListGetsDetailsFromEmbeddedResources
+{
+    YBHALResource *retailersResource = [self resourceForFixture:
+                                        @"retailers_single_page_embedded.json"];
+    NSURL *retailersURL = [appResource linkForRelation:@"/rels/retailers"].URL;
+    [requester addGetResponse:retailersResource forURL:retailersURL];
+    
+    __block id<CSRetailerListPage> page = nil;
+    __block NSError *error = [NSError errorWithDomain:@"not called"
+                                                 code:0
+                                             userInfo:nil];
+    [self callAndWait:^(void (^done)()) {
+        [app getRetailers:^(id<CSRetailerListPage> p, NSError *e) {
+            page = p;
+            error = e;
+            done();
+        }];
+    }];
+    
+    STAssertNil(error, @"%@", error);
+    STAssertNotNil(page, nil);
+    
+    STAssertEqualObjects(@(page.retailerList.count),
+                         retailersResource[@"count"],
+                         nil);
+    
+    __block id<CSRetailer> retailer = nil;
+    error = nil;
+    
+    [self callAndWait:^(void (^done)()) {
+        [page.retailerList getRetailerAtIndex:0
+                                     callback:^(id<CSRetailer> r, NSError *e)
+         {
+             retailer = r;
+             error = e;
+             done();
+         }];
+    }];
+    
+    STAssertNil(error, @"%@", error);
+    
+    NSString *expectedName = [[retailersResource
+                               resourcesForRelation:@"/rels/retailer"]
+                              objectAtIndex:0][@"name"];
+    STAssertEqualObjects(retailer.name, expectedName, nil);
+}
+
+- (void)addRetailers
+{
+    for (NSString *fixture in @[
+         @"retailers_page_0_embedded.json",
+         @"retailers_page_1_embedded.json",
+         @"retailers_page_2_embedded.json"]) {
+        YBHALResource *retailersResource = [self resourceForFixture:fixture];
+        NSArray *retailers = [retailersResource
+                              resourcesForRelation:@"/rels/retailer"];
+        for (YBHALResource *retailer in retailers) {
+            NSURL *url = [retailer linkForRelation:@"self"].URL;
+            [requester addGetResponse:retailer forURL:url];
+        }
+    }
+}
+
+- (void)testRetailerListGetsDetailsFromLink
+{
+    YBHALResource *retailersResource = [self resourceForFixture:
+                                        @"retailers_single_page.json"];
+    NSURL *retailersURL = [appResource linkForRelation:@"/rels/retailers"].URL;
+    [requester addGetResponse:retailersResource forURL:retailersURL];
+    
+    [self addRetailers];
+    
+    __block id<CSRetailerListPage> page = nil;
+    __block NSError *error = [NSError errorWithDomain:@"not called"
+                                                 code:0
+                                             userInfo:nil];
+    [self callAndWait:^(void (^done)()) {
+        [app getRetailers:^(id<CSRetailerListPage> p, NSError *e) {
+            page = p;
+            error = e;
+            done();
+        }];
+    }];
+    
+    STAssertNil(error, @"%@", error);
+    STAssertNotNil(page, nil);
+    
+    STAssertEqualObjects(@(page.retailerList.count),
+                         retailersResource[@"count"],
+                         nil);
+    
+    __block id<CSRetailer> retailer = nil;
+    error = nil;
+    
+    [self callAndWait:^(void (^done)()) {
+        [page.retailerList getRetailerAtIndex:0
+                                     callback:^(id<CSRetailer> r, NSError *e)
+         {
+             retailer = r;
+             error = e;
+             done();
+         }];
+    }];
+    
+    STAssertNil(error, @"%@", error);
+
+    YBHALResource *embeddedRetailers = [self resourceForFixture:
+                                        @"retailers_single_page_embedded.json"];
+    NSString *expectedName = [[embeddedRetailers
+                               resourcesForRelation:@"/rels/retailer"]
+                              objectAtIndex:0][@"name"];
+    STAssertEqualObjects(retailer.name, expectedName, nil);
+}
+
+- (NSArray *)retailerNames
+{
+    NSMutableArray *names = [[NSMutableArray alloc] init];
+    for (NSString *fixture in @[
+         @"retailers_page_0_embedded.json",
+         @"retailers_page_1_embedded.json",
+         @"retailers_page_2_embedded.json"]) {
+        YBHALResource *retailersResource = [self resourceForFixture:fixture];
+        NSArray *retailers = [retailersResource
+                              resourcesForRelation:@"/rels/retailer"];
+        for (YBHALResource *retailer in retailers) {
+            [names addObject:retailer[@"name"]];
+        }
+    }
+    return names;
+}
+
+- (void)testRetailerListGetsDetailsFromMultiplePages
+{
+    NSArray *names = [self retailerNames];
+    NSUInteger count = 0;
+    for (NSString *fixture in @[
+         @"retailers_page_0_links.json",
+         @"retailers_page_1_links.json",
+         @"retailers_page_2_links.json"]) {
+        YBHALResource *retailersResource = [self resourceForFixture:fixture];
+        NSURL *url = [retailersResource linkForRelation:@"self"].URL;
+        [requester addGetResponse:retailersResource forURL:url];
+        
+        NSArray *retailers = [retailersResource
+                              linksForRelation:@"/rels/retailer"];
+        count += [retailers count];
+    }
+    STAssertEqualObjects(@([names count]), @(count), nil);
+    
+    [self addRetailers];
+    
+    for (NSUInteger i = 0; i < count; ++i) {
+        __block id<CSRetailerListPage> page = nil;
+        __block NSError *error = [NSError errorWithDomain:@"not called"
+                                                     code:0
+                                                 userInfo:nil];
+        [self callAndWait:^(void (^done)()) {
+            [app getRetailers:^(id<CSRetailerListPage> p, NSError *e) {
+                page = p;
+                error = e;
+                done();
+            }];
+        }];
+        
+        STAssertNil(error, @"%@", error);
+        STAssertNotNil(page, nil);
+        
+        id<CSRetailerList> list = page.retailerList;
+        STAssertEqualObjects(@(list.count), @(count), nil);
+        
+        __block id<CSRetailer> retailer = nil;
+        __block NSError *getError = [NSError errorWithDomain:@"not called"
+                                                     code:0
+                                                 userInfo:nil];
+        [self callAndWait:^(void (^done)()) {
+            [page.retailerList getRetailerAtIndex:i
+                                         callback:^(id<CSRetailer> r, NSError *e)
+             {
+                 retailer = r;
+                 getError = e;
+                 done();
+             }];
+        }];
+        
+        STAssertNil(getError, @"%@", getError);
+        STAssertNotNil(retailer, nil);
+        
+        STAssertEqualObjects(retailer.name, names[i], nil);
+    }
+    
+
+    
+    __block id<CSRetailerListPage> page = nil;
+    __block NSError *error = [NSError errorWithDomain:@"not called"
+                                                 code:0
+                                             userInfo:nil];
+    [self callAndWait:^(void (^done)()) {
+        [app getRetailers:^(id<CSRetailerListPage> p, NSError *e) {
+            page = p;
+            error = e;
+            done();
+        }];
+    }];
+    
+    STAssertNil(error, @"%@", error);
+    STAssertNotNil(page, nil);
+    
+    __block id<CSRetailer> outOfRangeRetailer = nil;
+    __block NSError *outOfRangeError = nil;
+    
+    [self callAndWait:^(void (^done)()) {
+        
+        [page.retailerList getRetailerAtIndex:count
+                                     callback:^(id<CSRetailer> r, NSError *e)
+         {
+             outOfRangeRetailer = r;
+             outOfRangeError = e;
+             done();
+         }];
+    }];
+    
+    STAssertNil(outOfRangeRetailer, @"%@", outOfRangeRetailer);
+    STAssertNotNil(outOfRangeError, nil);
 }
 
 
