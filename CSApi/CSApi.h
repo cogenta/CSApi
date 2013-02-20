@@ -22,7 +22,7 @@
  
  Once you have obtains a bookmark, username, and password for your application
  from Cogenta, use them to initialize a CSAPI object. Here's an example that
- initialzes the API in the app's delegate:
+ initializes the API in the app's delegate:
  
     #define kAPIBookmark @"https://api.cogenta.com/apps/51139a687046797035ad6db6"
     #define kAPIUsername @"53a2abd8-5a96-47a8-8a1f-82cf4a462b57"
@@ -52,7 +52,7 @@
  than one user resource) can obtain an application object with
  [getApplication:]([CSAPI getApplication:]), create users with
  [createUserWithChange:callback:]([CSApplication createUserWithChange:callback:]),
- and retreive existing users with
+ and retrieve existing users with
  [getUser:credential:callback:]([CSAPI getUser:credential:callback:]).
  
  */
