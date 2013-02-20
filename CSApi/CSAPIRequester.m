@@ -121,6 +121,15 @@
               etag:(id)etag
           callback:(requester_callback_t)callback
 {
+    if ( ! URL) {
+        NSDictionary *userInfo = @{NSLocalizedDescriptionKey:@"URL is nil"};
+        NSError *error = [NSError errorWithDomain:@"CSAPI"
+                                             code:0
+                                         userInfo:userInfo];
+        callback(nil, nil, error);
+        return;
+    }
+    
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL];
     request.HTTPMethod = method;
     

@@ -12,7 +12,7 @@
 
 @implementation CSAPITestCase
 
-- (void)waitForSemaphore:(dispatch_semaphore_t)semaphore
+- (NSTimeInterval)waitForSemaphore:(dispatch_semaphore_t)semaphore
 {
     NSDate *start = [NSDate date];
     long timedout;
@@ -30,10 +30,14 @@
     }
     
     NSDate *end = [NSDate date];
-    STAssertFalse(timedout, @"Timed out waiting for callback: %0.2fs", [end timeIntervalSinceDate:start]);
+    if (timedout != 0) {
+        return [end timeIntervalSinceDate:start];
+    } else {
+        return 0;
+    }
 }
 
-- (void)callAndWait:(void (^)(void (^done)()))blk
+- (NSTimeInterval)timeoutInterval:(void (^)(void (^done)()))blk
 {
     dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
     
@@ -42,7 +46,14 @@
     };
     
     blk(done);
-    [self waitForSemaphore:semaphore];
+    
+    return [self waitForSemaphore:semaphore];
+}
+
+- (void)callAndWait:(void (^)(void (^done)()))blk
+{
+    NSTimeInterval interval = [self timeoutInterval:blk];
+    STAssertFalse(interval, @"Timed out waiting for callback: %0.2fs", interval);
 }
 
 + (NSDictionary *)jsonForData:(NSData *)data

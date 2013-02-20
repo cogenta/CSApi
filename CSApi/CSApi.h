@@ -223,7 +223,7 @@
 @protocol CSMutableUser <NSObject>
 
 /** URL for the user. */
-@property (readonly, strong) NSURL *URL;
+@property (readonly) NSURL *URL;
 
 /** The user's reference string. */
 @property (nonatomic, strong) NSString *reference;
@@ -249,7 +249,7 @@
 
 @protocol CSListItem <NSObject>
 
-@property (readonly, strong) NSURL *URL;
+@property (readonly) NSURL *URL;
 
 @end
 

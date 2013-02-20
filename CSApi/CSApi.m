@@ -19,6 +19,7 @@
 #import "CSAPIRequester.h"
 #import "CSUserDefaultsAPIStore.h"
 #import <NSArray+Functional.h>
+#import <objc/runtime.h>
 
 @interface NSError (CSExtension)
 
@@ -118,8 +119,10 @@
 
 @interface CSListPage : CSCredentialEntity <CSRetailerListPage>
 
+@property (readonly) NSURL *URL;
 @property (readonly) NSURL *next;
 @property (readonly) NSURL *prev;
+@property (readonly) id<CSRetailerList> retailerList;
 
 - (id)initWithHal:(YBHALResource *)resource
         requester:(id<CSRequester>)requester
@@ -132,6 +135,7 @@
 @property (readonly) id<CSListPage> firstPage;
 @property (readonly) id<CSListPage> lastPage;
 @property (readonly) NSMutableArray *items;
+@property (readonly) BOOL isLoading;
 
 - (id)initWithPage:(CSListPage *)page
          requester:(id<CSRequester>)requester
@@ -642,6 +646,7 @@
 @synthesize URL;
 @synthesize next;
 @synthesize prev;
+@synthesize retailerList;
 
 - (id)initWithHal:(YBHALResource *)resource
         requester:(id<CSRequester>)aRequester
@@ -716,9 +721,14 @@
 
 - (id<CSRetailerList>)retailerList
 {
-    return [[CSRetailerList alloc] initWithPage:self
-                                      requester:self.requester
-                                     credential:self.credential];
+    if (  ! retailerList) {
+        retailerList = [[CSRetailerList alloc] initWithPage:self
+                                                  requester:self.requester
+                                                 credential:self.credential];
+    }
+    
+    return retailerList;
+}
 
 - (NSString *)description
 {
@@ -733,6 +743,7 @@
 @synthesize firstPage;
 @synthesize lastPage;
 @synthesize items;
+@synthesize isLoading;
 
 - (id)initWithPage:(CSListPage *)page
          requester:(id<CSRequester>)aRequester
@@ -752,72 +763,96 @@
     return [firstPage count];
 }
 
-- (void)getRetailerAtIndex:(NSUInteger)index
-                  callback:(void (^)(id<CSRetailer>, NSError *))callback
+- (void)loadMoreForIndex:(NSUInteger)index
+                callback:(void (^)(BOOL success, NSError *error))cb
 {
-    void (^loadMore)(void (^cb)(BOOL success, NSError *error));
-    __block void (^maybeLoadMore)(void (^cb)(BOOL success, NSError *error));
+    if ( ! lastPage.hasNext) {
+        NSDictionary *userInfo = @{@"index": @(index),
+                                   @"items": @([items count]),
+                                   @"count": @([firstPage count])};
+        NSError *outOfRange = [NSError errorWithDomain:@"CSAPI"
+                                                  code:0
+                                              userInfo:userInfo];
+        cb(NO, outOfRange);
+        return;
+    }
     
-    loadMore = ^(void (^cb)(BOOL success, NSError *error)) {
-        if ( ! lastPage.hasNext) {
-            NSDictionary *userInfo = @{@"index": @(index),
-                                       @"items": @([items count]),
-                                       @"count": @([firstPage count])};
-            NSError *outOfRange = [NSError errorWithDomain:@"CSAPI"
-                                                      code:0
-                                                  userInfo:userInfo];
-            cb(NO, outOfRange);
+    isLoading = YES;
+    [lastPage getNext:^(id<CSListPage> nextPage, NSError *error) {
+        if (error) {
+            cb(NO, error);
             return;
         }
         
-        [lastPage getNext:^(id<CSListPage> nextPage, NSError *error) {
-            if (error) {
-                cb(NO, error);
+        [self loadPage:nextPage];
+        
+        [self maybeLoadMoreForIndex:index callback:cb];
+    }];
+}
+
+- (void)maybeLoadMoreForIndex:(NSUInteger)index
+                     callback:(void (^)(BOOL success, NSError *error))cb
+{
+    if (isLoading) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self maybeLoadMoreForIndex:index callback:cb];
+        });
+        return;
+    }
+    
+    if ([items count] > index) {
+        cb(YES, nil);
+        return;
+    }
+    
+    [self loadMoreForIndex:index callback:cb];
+}
+
+- (void)getItemAtIndex:(NSUInteger)index
+              callback:(void (^)(CSListItem *, NSError *))callback
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self maybeLoadMoreForIndex:index callback:^(BOOL success, NSError *error) {
+            if ( ! success) {
+                callback(nil, error);
                 return;
             }
             
-            [self loadPage:nextPage];
-            
-            maybeLoadMore(cb);
+            CSListItem *item = [items objectAtIndex:index];
+            callback(item, nil);
         }];
-    };
-    
-    maybeLoadMore = ^(void (^cb)(BOOL success, NSError *error)) {
-        if ([items count] > index) {
-            cb(YES, nil);
-            return;
-        }
-        
-        loadMore(cb);
-    };
+    });
+}
 
-    maybeLoadMore(^(BOOL success, NSError *error) {
-        if ( ! success) {
+- (void)getRetailerAtIndex:(NSUInteger)index
+                  callback:(void (^)(id<CSRetailer>, NSError *))callback
+{
+    [self getItemAtIndex:index callback:^(CSListItem *item, NSError *error) {
+        if ( ! item) {
             callback(nil, error);
             return;
         }
-    
-        [[items objectAtIndex:index] getSelf:^(YBHALResource *resource,
-                                               NSError *error) {
+        
+        [item getSelf:^(YBHALResource *resource, NSError *error) {
             if (error) {
                 callback(nil, error);
                 return;
             }
             
-            callback([[CSRetailer alloc] initWithResource:resource
-                                                requester:self.requester
-                                               credential:self.credential],
-                     nil);
+            CSRetailer *retailer = [[CSRetailer alloc]
+                                    initWithResource:resource
+                                    requester:self.requester
+                                    credential:self.credential];
+            callback(retailer, nil);
         }];
-        
-    });
-
+    }];
 }
 
 - (void)loadPage:(id<CSListPage>)page
 {
     [items addObjectsFromArray:page.items];
     lastPage = page;
+    isLoading = NO;
 }
 
 @end

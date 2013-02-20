@@ -81,6 +81,39 @@
     [super tearDown];
 }
 
+- (void)addRetailers
+{
+    for (NSString *fixture in @[
+         @"retailers_page_0_embedded.json",
+         @"retailers_page_1_embedded.json",
+         @"retailers_page_2_embedded.json"]) {
+        YBHALResource *retailersResource = [self resourceForFixture:fixture];
+        NSArray *retailers = [retailersResource
+                              resourcesForRelation:@"/rels/retailer"];
+        for (YBHALResource *retailer in retailers) {
+            NSURL *url = [retailer linkForRelation:@"self"].URL;
+            [requester addGetResponse:retailer forURL:url];
+        }
+    }
+}
+
+- (NSArray *)retailerNames
+{
+    NSMutableArray *names = [[NSMutableArray alloc] init];
+    for (NSString *fixture in @[
+         @"retailers_page_0_embedded.json",
+         @"retailers_page_1_embedded.json",
+         @"retailers_page_2_embedded.json"]) {
+        YBHALResource *retailersResource = [self resourceForFixture:fixture];
+        NSArray *retailers = [retailersResource
+                              resourcesForRelation:@"/rels/retailer"];
+        for (YBHALResource *retailer in retailers) {
+            [names addObject:retailer[@"name"]];
+        }
+    }
+    return names;
+}
+
 - (void)testName
 {
     STAssertEquals(app.name, appResource[@"name"], nil);
@@ -612,22 +645,6 @@ request_handler_t postCallback =
     STAssertEqualObjects(retailer.name, expectedName, nil);
 }
 
-- (void)addRetailers
-{
-    for (NSString *fixture in @[
-         @"retailers_page_0_embedded.json",
-         @"retailers_page_1_embedded.json",
-         @"retailers_page_2_embedded.json"]) {
-        YBHALResource *retailersResource = [self resourceForFixture:fixture];
-        NSArray *retailers = [retailersResource
-                              resourcesForRelation:@"/rels/retailer"];
-        for (YBHALResource *retailer in retailers) {
-            NSURL *url = [retailer linkForRelation:@"self"].URL;
-            [requester addGetResponse:retailer forURL:url];
-        }
-    }
-}
-
 - (void)testRetailerListGetsDetailsFromLink
 {
     YBHALResource *retailersResource = [self resourceForFixture:
@@ -677,23 +694,6 @@ request_handler_t postCallback =
                                resourcesForRelation:@"/rels/retailer"]
                               objectAtIndex:0][@"name"];
     STAssertEqualObjects(retailer.name, expectedName, nil);
-}
-
-- (NSArray *)retailerNames
-{
-    NSMutableArray *names = [[NSMutableArray alloc] init];
-    for (NSString *fixture in @[
-         @"retailers_page_0_embedded.json",
-         @"retailers_page_1_embedded.json",
-         @"retailers_page_2_embedded.json"]) {
-        YBHALResource *retailersResource = [self resourceForFixture:fixture];
-        NSArray *retailers = [retailersResource
-                              resourcesForRelation:@"/rels/retailer"];
-        for (YBHALResource *retailer in retailers) {
-            [names addObject:retailer[@"name"]];
-        }
-    }
-    return names;
 }
 
 - (void)testRetailerListGetsDetailsFromMultiplePages
@@ -747,6 +747,9 @@ request_handler_t postCallback =
                  getError = e;
                  done();
              }];
+            CALL_AND_WAIT(^(void (^done)()) {
+                dispatch_async(dispatch_get_main_queue(), done);
+            });
         }];
         
         STAssertNil(getError, @"%@", getError);
@@ -790,5 +793,100 @@ request_handler_t postCallback =
     STAssertNotNil(outOfRangeError, nil);
 }
 
+- (void)testRetailerListHandlesSlowPageResponse
+{
+    NSMutableDictionary *requests = [NSMutableDictionary dictionary];
+    NSArray *names = [self retailerNames];
+    NSMutableArray *requestURLs = [NSMutableArray array];
+    NSUInteger count = 0;
+    for (NSString *fixture in @[
+         @"retailers_page_0_links.json",
+         @"retailers_page_1_links.json",
+         @"retailers_page_2_links.json"]) {
+        YBHALResource *retailersResource = [self resourceForFixture:fixture];
+        NSURL *url = [retailersResource linkForRelation:@"self"].URL;
+        [requester addGetCallback:^(id body, id etag, requester_callback_t cb)
+        {
+            void (^existingRequest)() = [requests objectForKey:url];
+
+            if (existingRequest) {
+                [requests setObject:^{
+                    existingRequest();
+                    cb(retailersResource, nil, nil);
+                } forKey:url];
+                return;
+            }
+            [requests setObject:^{
+                cb(retailersResource, nil, nil);
+            } forKey:url];
+            [requestURLs addObject:url];
+        } forURL:url];
+        
+        NSArray *retailers = [retailersResource
+                              linksForRelation:@"/rels/retailer"];
+        count += [retailers count];
+    }
+    STAssertEqualObjects(@([names count]), @(count), nil);
+    
+    [self addRetailers];
+    
+    __block id<CSRetailerListPage> page = nil;
+    __block NSError *error = [NSError errorWithDomain:@"not called"
+                                                 code:0
+                                             userInfo:nil];
+    __block id<CSRetailerList> list = nil;
+    __block NSMutableArray *loadedNames = nil;
+    [app getRetailers:^(id<CSRetailerListPage> p, NSError *e) {
+        error = e;
+        page = p;
+        if ( ! page) {
+            return;
+        }
+        
+        list = page.retailerList;
+        
+        loadedNames = [NSMutableArray arrayWithCapacity:count];
+        
+        for (NSUInteger i = 0; i < count; ++i) {
+            [loadedNames addObject:[NSString stringWithFormat:@".(%d -)", i]];
+            
+            [list getRetailerAtIndex:i callback:^(id<CSRetailer> r, NSError *e)
+             {
+                 if (r) {
+                     loadedNames[i] = r.name;
+                     return;
+                 }
+                 
+                 if (e) {
+                     loadedNames[i] = [NSString stringWithFormat:@"X(%d %@)", i, e];
+                     return;
+                 }
+                 
+                 loadedNames[i] = [NSString stringWithFormat:@"X(%d nil)", i];
+             }];
+        }
+    }];
+    
+    STAssertNil(page, @"%@", page);
+    STAssertNil(list, @"%@", list);
+    STAssertNil(loadedNames, @"%@", loadedNames);
+    
+    for (int i = 0; i < [requestURLs count]; ++i) {
+        void (^request)();
+        request = requests[requestURLs[i]];
+        request();
+
+        CALL_AND_WAIT(^(void (^done)()) {
+            dispatch_async(dispatch_get_main_queue(), done);
+        });
+
+        STAssertNil(error, @"%@", error);
+        STAssertNotNil(page, nil);
+    }
+    
+    STAssertEqualObjects(@(list.count), @(count), nil);
+    
+    STAssertEqualObjects(loadedNames, names, nil);
+}
 
 @end

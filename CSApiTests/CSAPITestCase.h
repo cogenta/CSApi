@@ -9,11 +9,19 @@
 #import <SenTestingKit/SenTestingKit.h>
 #import <HyperBek/HyperBek.h>
 
+#define CALL_AND_WAIT(blk) \
+{ \
+    if ([self timeoutInterval:(blk)] > 0.0) { \
+        STFail(@"timed out"); \
+    } \
+}
+
 @interface CSAPITestCase : SenTestCase
 
-- (void)waitForSemaphore:(dispatch_semaphore_t)semaphore;
+- (NSTimeInterval)waitForSemaphore:(dispatch_semaphore_t)semaphore;
 
 - (void)callAndWait:(void (^)(void (^)()))blk;
+- (NSTimeInterval)timeoutInterval:(void (^)(void (^)()))blk;
 
 + (NSDictionary*)jsonForData:(NSData*)data;
 
