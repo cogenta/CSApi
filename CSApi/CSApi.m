@@ -255,6 +255,13 @@
     }];
 }
 
+- (NSString *)description
+{
+    return [NSString stringWithFormat:@"<%s URL=%@>",
+            class_getName([self class]),
+            [resource linkForRelation:@"self"].URL];
+}
+
 @end
 
 
@@ -380,6 +387,12 @@
     
 }
 
+- (NSString *)description
+{
+    return [NSString stringWithFormat:@"<%s URL=%@>",
+            class_getName([self class]), URL];
+}
+
 @end
 
 @implementation CSMutableUser
@@ -408,6 +421,12 @@
 {
     id result = [representation representMutableUser:self];
     return result;
+}
+
+- (NSString *)description
+{
+    return [NSString stringWithFormat:@"<%s URL=%@>",
+            class_getName([self class]), URL];
 }
 
 @end
@@ -529,6 +548,12 @@
     }];
 }
 
+- (NSString *)description
+{
+    return [NSString stringWithFormat:@"<%s bookmark=%@>",
+            class_getName([self class]), bookmark];
+}
+
 @end
 
 @implementation CSListItem
@@ -548,6 +573,12 @@
 - (NSURL *)URL
 {
     return nil;
+}
+
+- (NSString *)description
+{
+    return [NSString stringWithFormat:@"<%s URL=%@>",
+            class_getName([self class]), self.URL];
 }
 
 @end
@@ -608,6 +639,7 @@
 
 @synthesize count;
 @synthesize items;
+@synthesize URL;
 @synthesize next;
 @synthesize prev;
 
@@ -618,6 +650,7 @@
     self = [super initWithRequester:aRequester credential:aCredential];
     if (self) {
         count = [resource[@"count"] unsignedIntegerValue];
+        URL = [resource linkForRelation:@"next"].URL;
         next = [resource linkForRelation:@"next"].URL;
         prev = [resource linkForRelation:@"prev"].URL;
         NSArray *resources = [resource resourcesForRelation:@"/rels/retailer"];
@@ -649,15 +682,15 @@
     return prev != nil;
 }
 
-- (void)getListURL:(NSURL *)URL
+- (void)getListURL:(NSURL *)aURL
           callback:(void (^)(id<CSRetailerListPage>, NSError *))callback
 {
-    if ( ! URL) {
+    if ( ! aURL) {
         callback(nil, nil);
         return;
     }
     
-    [self getURL:URL callback:^(id result, id etag, NSError *error)
+    [self getURL:aURL callback:^(id result, id etag, NSError *error)
      {
          if (error) {
              callback(nil, error);
@@ -686,6 +719,11 @@
     return [[CSRetailerList alloc] initWithPage:self
                                       requester:self.requester
                                      credential:self.credential];
+
+- (NSString *)description
+{
+    return [NSString stringWithFormat:@"<%s URL=%@>",
+            class_getName([self class]), URL];
 }
 
 @end
@@ -800,6 +838,12 @@
         name = resource[@"name"];
     }
     return self;
+}
+
+- (NSString *)description
+{
+    return [NSString stringWithFormat:@"<%s URL=%@>",
+            class_getName([self class]), URL];
 }
 
 @end
