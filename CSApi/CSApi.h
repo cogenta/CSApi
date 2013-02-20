@@ -157,6 +157,25 @@
                     callback:(void (^)(id<CSUser> user,
                                        NSError *error))callback;
 
+/** Tries to get a list of retailers for the application.
+ 
+ This method uses the application's credentials to fetch the retailers resource.
+ 
+ Control returns from getRetailers: immediately. If the operation is
+ successful, the given callback is invoked with a non-nil
+ [id\<CSRetailerListPage\>](CSRetailerListPage) in firstPage and a nil error.
+ firstPage is the first page of the result set. It is recommended that client
+ code uses firstPage.retailerList to get an
+ [id\<CSRetailerList\>](CSRetailerList), which provides convenient access to
+ retailers in the list.
+ 
+ If the operation fails, callback is invoked with a nil firstPage and a non-nil
+ error.
+
+ @param callback The block to invoke when the retailer list has been
+ successfully obtained, or when the operation has failed.
+ 
+ */
 - (void)getRetailers:(void (^)(id<CSRetailerListPage> firstPage,
                                NSError *error))callback;
 
@@ -233,44 +252,116 @@
 
 @end
 
+
+/** Protocol for accessing pages of items in a sequence of results.
+ 
+ The API may break large lists of results (for example from a search) into
+ a sequence of pages. Except for the first and last pages, every page has a link
+ to the previous page in sequence and a link the the next page in sequence. The
+ first and last pages lack links to the previous and next pages respectively. If
+ there is only one page of results, that page will have neither a previous page
+ nor a next page.
+ 
+ */
 @protocol CSListPage <NSObject>
 
+/** The number of items in the entire result set. */
 @property (readonly) NSUInteger count;
+
+/** The items on this page.
+ 
+ Each object in the array conforms to CSListItem.
+ */
 @property (readonly) NSArray *items;
 
+/** Boolean indicating whether there is a page after this page. */
 @property (readonly) BOOL hasNext;
+
+/** Tries to fetch the page after this page in sequence.
+ 
+ Control returns from getNext: immediately. If the operation is
+ successful, the given callback is invoked with a non-nil
+ [id\<CSListPage\>](CSListPage) in page and a nil error. If the operation fails,
+ callback is invoked with a nil page and a non-nil error.
+
+ The operation will fail if hasNext is false.
+ 
+ @param callback The block to invoke when the next page has been
+ successfully obtained, or when the operation has failed.
+ */
 - (void)getNext:(void (^)(id<CSListPage> page, NSError *error))callback;
 
+/** Boolean indicating whether there is a page before this page. */
 @property (readonly) BOOL hasPrev;
+
+/** Tries to fetch the page before this page in sequence.
+ 
+ Control returns from getPrev: immediately. If the operation is
+ successful, the given callback is invoked with a non-nil
+ [id\<CSListPage\>](CSListPage) in page and a nil error. If the operation fails,
+ callback is invoked with a nil page and a non-nil error.
+ 
+ The operation will fail if hasPrev is false.
+ 
+ @param callback The block to invoke when the previous page has been
+ successfully obtained, or when the operation has failed.
+ */
 - (void)getPrev:(void (^)(id<CSListPage> page, NSError *error))callback;
 
 @end
 
 
+/** Protocol for accessing an item in a sequence of results. */
 @protocol CSListItem <NSObject>
 
+/** A URL identifying the item. */
 @property (readonly) NSURL *URL;
 
 @end
 
+/** Protocol for accessing a retailer. */
 @protocol CSRetailer <NSObject>
 
+/** The name of the retailer. */
 @property (readonly) NSString *name;
 
 @end
 
+/** Protocol for accessing a list of retailers.
+ */
 @protocol CSRetailerList <NSObject>
 
+/** The number of retailers in the list. */
 @property (readonly) NSUInteger count;
 
+/** Tries to fetch the retailer at the given index.
+ 
+ Control returns from getRetailerAtIndex:callback: immediately. If the operation
+ is successful, the given callback is invoked with a non-nil
+ [id\<CSRetailer\>](CSRetailer) in retailer and a nil error. If the operation
+ fails, callback is invoked with a nil retailer and a non-nil error.
+ 
+ @param index The index in the sequence of the retailer to retrieve.
+ @param callback The block to invoke when the retailer has been
+ successfully obtained, or when the operation has failed.
+ */
 - (void)getRetailerAtIndex:(NSUInteger)index
                   callback:(void (^)(id<CSRetailer> retailer,
                                      NSError *error))callback;
 
 @end
 
+/** Protocol for accessing pages of retailers in a sequence of results.
+ 
+ Client code is expected to use this protocol's retailerList property to get
+ an object conforming to CSRetailerList.
+ 
+ */
 @protocol CSRetailerListPage <CSListPage>
 
+/** An object conforming to CSRetailerList that provides convenient access to
+ the list of retailers.
+ */
 @property (readonly) id<CSRetailerList> retailerList;
 
 @end
