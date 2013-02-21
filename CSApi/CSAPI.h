@@ -18,6 +18,8 @@
 @protocol CSRetailerListPage;
 @protocol CSLike;
 @protocol CSMutableLike;
+@protocol CSLikeList;
+@protocol CSLikeListPage;
 
 /**
  Provides access to the Cogenta Shopping API.
@@ -238,6 +240,8 @@
 - (void)createLikeWithChange:(void (^)(id<CSMutableLike>))change
                     callback:(void (^)(id<CSLike> like, NSError *error))callback;
 
+- (void)getLikes:(void (^)(id<CSLikeListPage> firstPage, NSError *error))callback;
+
 @end
 
 /** Protocol for making changes to a user.
@@ -269,6 +273,9 @@
  
  */
 @protocol CSListPage <NSObject>
+
+/** URL for the page. */
+@property (readonly) NSURL *URL;
 
 /** The number of items in the entire result set. */
 @property (readonly) NSUInteger count;
@@ -335,12 +342,20 @@
 
 @end
 
+/** Protocol for accessing a list of items. */
+@protocol CSList <NSObject>
+
+/** The number of items in the list. */
+@property (readonly) NSUInteger count;
+
+- (void)getItemAtIndex:(NSUInteger)index
+              callback:(void (^)(id<CSListItem> item, NSError *error))callback;
+
+@end
+
 /** Protocol for accessing a list of retailers.
  */
-@protocol CSRetailerList <NSObject>
-
-/** The number of retailers in the list. */
-@property (readonly) NSUInteger count;
+@protocol CSRetailerList <CSList>
 
 /** Tries to fetch the retailer at the given index.
  
@@ -356,6 +371,14 @@
 - (void)getRetailerAtIndex:(NSUInteger)index
                   callback:(void (^)(id<CSRetailer> retailer,
                                      NSError *error))callback;
+
+@end
+
+
+@protocol CSLikeList <CSList>
+
+- (void)getLikeAtIndex:(NSUInteger)index
+              callback:(void (^)(id<CSLike> retailer, NSError *error))callback;
 
 @end
 
@@ -387,3 +410,8 @@
 @end
 
 
+@protocol CSLikeListPage <CSListPage>
+
+@property (readonly) id<CSLikeList> likeList;
+
+@end

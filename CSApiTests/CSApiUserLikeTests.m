@@ -75,7 +75,7 @@
     STAssertNotNil(likesURL, nil);
 }
 
-- (void)testLikesInitiallyEmpty
+- (void)testCreateLike
 {
     YBHALResource *postResponse = [self resourceForFixture:@"like.json"];
     __block YBHALResource *sentBody = nil;
@@ -117,6 +117,65 @@
     NSURL *sentRetailerURL = [sentBody linkForRelation:@"/rels/retailer"].URL;
     STAssertNotNil(sentRetailerURL, nil);
     STAssertEqualObjects(sentRetailerURL, retailerURL, nil);
+}
+
+- (void)testGetLikes
+{
+    NSMutableArray *likedURLs = [NSMutableArray array];
+    NSUInteger count = 0;
+    for (NSString *fixture in @[
+         @"likes_page_0_embedded.json",
+         @"likes_page_1_embedded.json",
+         @"likes_page_2_embedded.json"]) {
+        YBHALResource *likesResource = [self resourceForFixture:fixture];
+        NSURL *url = [likesResource linkForRelation:@"self"].URL;
+        [requester addGetResponse:likesResource forURL:url];
+        
+        NSArray *likes = [likesResource resourcesForRelation:@"/rels/like"];
+        count += [likes count];
+        for (YBHALResource *like in likes) {
+            [likedURLs addObject:[like linkForRelation:@"/rels/retailer"].URL];
+        }
+    }
+    STAssertEqualObjects(@([likedURLs count]), @(count), nil);
+    
+    __block id<CSLikeList> list = nil;
+    __block NSError *error = nil;
+    CALL_AND_WAIT(^(void (^done)()) {
+        [self.user getLikes:^(id<CSLikeListPage> firstPage, NSError *anError) {
+            list = firstPage.likeList;
+            error = anError;
+            done();
+        }];
+    });
+    
+    STAssertNil(error, @"%@", error);
+    STAssertNotNil(list, nil);
+    STAssertEqualObjects(@(list.count), @(count), nil);
+    
+    NSMutableArray *returnedURLs = [NSMutableArray arrayWithCapacity:count];
+    for (int i = 0; i < count; ++i) {
+        [returnedURLs addObject:@"(not set)"];
+        [list getLikeAtIndex:i callback:^(id<CSLike> like, NSError *error) {
+            if (like) {
+                returnedURLs[i] = like.retailerURL;
+                return;
+            }
+            
+            if (error) {
+                returnedURLs[i] = error;
+                return;
+            }
+            
+            returnedURLs[i] = @"(nil)";
+        }];
+    }
+    
+    CALL_AND_WAIT(^(void (^done)()) {
+        dispatch_async(dispatch_get_main_queue(), done);
+    });
+    
+    STAssertEqualObjects(returnedURLs, likedURLs, nil);
 }
 
 @end
