@@ -9,7 +9,9 @@
 #import <Foundation/Foundation.h>
 
 @protocol CSMutableUser;
+@protocol CSMutableLike;
 
 @protocol CSRepresentation <NSObject>
 - (id)representMutableUser:(id<CSMutableUser>)user;
+- (id)representMutableLike:(id<CSMutableLike>)like;
 @end

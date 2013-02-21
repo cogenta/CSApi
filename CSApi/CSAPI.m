@@ -77,6 +77,7 @@
 @interface CSUser : CSCredentialEntity <CSUser>
 
 @property (strong, nonatomic) id<CSRequester> requester;
+@property (strong, nonatomic) YBHALResource *resource;
 
 - (id)initWithHal:(YBHALResource *)resource
         requester:(id<CSRequester>)requester
@@ -150,6 +151,19 @@
 - (id)initWithResource:(YBHALResource *)resource
              requester:(id<CSRequester>)requester
             credential:(id<CSCredential>)credential;
+
+@end
+
+@interface CSLike : NSObject <CSLike>
+
+- (id)initWithHal:(YBHALResource *)resource
+        requester:(id<CSRequester>)requester
+       credential:(id<CSCredential>)credential
+             etag:(id)etag;
+
+@end
+
+@interface CSMutableLike : NSObject <CSMutableLike, CSRepresentable>
 
 @end
 
@@ -229,34 +243,34 @@
     [self postURL:URL
              body:[user representWithRepresentation:representation]
          callback:^(id result, id etag, NSError *error)
-    {
-        if (error) {
-            callback(nil, error);
-            return;
-        }
-        
-        CSUser *user = [[CSUser alloc] initWithHal:result
-                                         requester:self.requester
-                                              etag:etag];
-        callback(user, nil);
-    }];
+     {
+         if (error) {
+             callback(nil, error);
+             return;
+         }
+         
+         CSUser *user = [[CSUser alloc] initWithHal:result
+                                          requester:self.requester
+                                               etag:etag];
+         callback(user, nil);
+     }];
 }
 
 - (void)getRetailers:(void (^)(id<CSRetailerListPage> page, NSError *error))callback
 {
     NSURL *URL = [resource linkForRelation:@"/rels/retailers"].URL;
     [self getURL:URL callback:^(YBHALResource *result, id etag, NSError *error)
-    {
-        if (error) {
-            callback(nil, error);
-            return;
-        }
-        
-        callback([[CSListPage alloc] initWithHal:result
-                                       requester:self.requester
-                                      credential:self.credential],
-                 nil);
-    }];
+     {
+         if (error) {
+             callback(nil, error);
+             return;
+         }
+         
+         callback([[CSListPage alloc] initWithHal:result
+                                        requester:self.requester
+                                       credential:self.credential],
+                  nil);
+     }];
 }
 
 - (NSString *)description
@@ -275,38 +289,40 @@
 @synthesize reference;
 @synthesize meta;
 @synthesize etag;
+@synthesize resource;
 
-- (id)initWithHal:(YBHALResource *)resource
+- (id)initWithHal:(YBHALResource *)aResource
         requester:(id<CSRequester>)aRequester
              etag:(id)anEtag
 {
     id<CSCredential> aCredential = nil;
-    if (resource[@"credential"]) {
+    if (aResource[@"credential"]) {
         aCredential = [CSBasicCredential
-                       credentialWithDictionary:resource[@"credential"]];
+                       credentialWithDictionary:aResource[@"credential"]];
     }
     
-    return [self initWithHal:resource
+    return [self initWithHal:aResource
                    requester:aRequester
                   credential:aCredential
                         etag:anEtag];
 }
 
-- (id)initWithHal:(YBHALResource *)resource
+- (id)initWithHal:(YBHALResource *)aResource
         requester:(id<CSRequester>)aRequester
        credential:(id<CSCredential>)aCredential
              etag:(id)anEtag
 {
     self = [super initWithRequester:aRequester credential:aCredential];
     if (self) {
-        [self loadFromResource:resource];
+        [self loadFromResource:aResource];
         etag = anEtag;
     }
     return self;
 }
 
-- (void)loadFromResource:(YBHALResource *)resource
+- (void)loadFromResource:(YBHALResource *)aResource
 {
+    resource = aResource;
     URL = [resource linkForRelation:@"self"].URL;
     reference = resource[@"reference"];
     meta = resource[@"meta"];
@@ -333,7 +349,7 @@
         callback(NO, [NSError errorWithDomain:@"CSAPI" code:3 userInfo:@{NSLocalizedDescriptionKey: @"representation is nil"}]);
         return;
     }
-
+    
     __block void (^doGet)() = ^{
         callback(NO, [NSError errorWithDomain:@"CSApi" code:0 userInfo:@{NSLocalizedDescriptionKey: @"wrong doGet called"}]);
     };
@@ -365,7 +381,7 @@
              callback(NO, error);
          }];
     };
-
+    
     doGet = ^{
         [self getURL:self.URL
             callback:^(id result, id etagFromGet, NSError *getError)
@@ -382,13 +398,47 @@
          }];
     };
     
-
+    
     if (etag) {
         doPut();
     } else {
         doGet();
     }
     
+}
+
+- (void)createLikeWithChange:(void (^)(id<CSMutableLike>))change
+                    callback:(void (^)(id<CSLike>, NSError *))callback
+{
+    CSMutableLike *like = [[CSMutableLike alloc] init];
+    change(like);
+    
+    id<CSRepresentation> representation = [CSHALRepresentation
+                                           representationWithBaseURL:self.URL];
+    
+    if ( ! representation) {
+        callback(NO, [NSError errorWithDomain:@"CSAPI" code:3 userInfo:@{NSLocalizedDescriptionKey: @"representation is nil"}]);
+        return;
+    }
+    
+    NSURL *likesURL = [resource linkForRelation:@"/rels/likes"].URL;
+    id body = [like representWithRepresentation:representation];
+    [self.requester postURL:likesURL
+                 credential:self.credential
+                       body:body
+                   callback:^(id result, id newEtag, NSError *error)
+     {
+         if ( ! result) {
+             callback(nil, error);
+             return;
+         }
+         
+         CSLike *like = [[CSLike alloc] initWithHal:result
+                                          requester:self.requester
+                                         credential:self.credential
+                                               etag:newEtag];
+         callback(like, nil);
+     }];
 }
 
 - (NSString *)description
@@ -474,16 +524,16 @@
     [requester getURL:[NSURL URLWithString:bookmark]
            credential:credential
              callback:^(YBHALResource *result, id etag, NSError *error)
-    {
-        if (error) {
-            callback(nil, error);
-            return;
-        }
-        CSApplication *app = [[CSApplication alloc] initWithHAL:result
-                                                      requester:requester
-                                                     credential:credential];
-        callback(app, nil);
-    }];
+     {
+         if (error) {
+             callback(nil, error);
+             return;
+         }
+         CSApplication *app = [[CSApplication alloc] initWithHAL:result
+                                                       requester:requester
+                                                      credential:credential];
+         callback(app, nil);
+     }];
 }
 
 - (id)requester
@@ -531,25 +581,25 @@
     }
     
     [self getApplication:^(id<CSApplication> app, NSError *error)
-    {
-        if (error) {
-            callback(nil, error);
-            return;
-        }
-        
-        [app createUserWithChange:^(id<CSMutableUser> user) {
-            // Do nothing
-        } callback:^(id<CSUser> user, NSError *error)
-        {
-            if (error) {
-                callback(nil, error);
-                return;
-            }
-            
-            [[self store] didCreateUser:user];
-            callback(user, nil);
-        }];
-    }];
+     {
+         if (error) {
+             callback(nil, error);
+             return;
+         }
+         
+         [app createUserWithChange:^(id<CSMutableUser> user) {
+             // Do nothing
+         } callback:^(id<CSUser> user, NSError *error)
+          {
+              if (error) {
+                  callback(nil, error);
+                  return;
+              }
+              
+              [[self store] didCreateUser:user];
+              callback(user, nil);
+          }];
+     }];
 }
 
 - (NSString *)description
@@ -879,6 +929,43 @@
 {
     return [NSString stringWithFormat:@"<%s URL=%@>",
             class_getName([self class]), URL];
+}
+
+@end
+
+
+@implementation CSLike
+
+@synthesize retailerURL;
+
+- (id)initWithHal:(YBHALResource *)resource
+        requester:(id<CSRequester>)requester
+       credential:(id<CSCredential>)credential
+             etag:(id)etag
+{
+    self = [super init];
+    if (self) {
+        retailerURL = [resource linkForRelation:@"/rels/retailer"].URL;
+    }
+    return self;
+}
+
+@end
+
+@implementation CSMutableLike
+
+@synthesize retailer;
+
+- (id)representWithRepresentation:(id<CSRepresentation>)representation
+{
+    return [representation representMutableLike:self];
+}
+
+- (NSString *)description
+{
+    return [NSString stringWithFormat:@"<%s retailer=%@>",
+            class_getName([self class]),
+            self.retailer];
 }
 
 @end

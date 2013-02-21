@@ -7,8 +7,11 @@
     "self": {
       "href": "/users/12345"
     }, 
-    "app:developer": {
+    "api:developer": {
       "href": "/developers/5101280670467949bd575fce"
+    },
+    "api:likes": {
+      "href": "/users/12345/likes/"
     }
   },
   "reference": "clientId_12345",

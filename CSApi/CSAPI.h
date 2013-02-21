@@ -16,6 +16,8 @@
 @protocol CSRetailer;
 @protocol CSRetailerList;
 @protocol CSRetailerListPage;
+@protocol CSLike;
+@protocol CSMutableLike;
 
 /**
  Provides access to the Cogenta Shopping API.
@@ -233,6 +235,9 @@
 - (void)change:(void (^)(id<CSMutableUser> user))change
       callback:(void (^)(BOOL success, NSError *error))callback;
 
+- (void)createLikeWithChange:(void (^)(id<CSMutableLike>))change
+                    callback:(void (^)(id<CSLike> like, NSError *error))callback;
+
 @end
 
 /** Protocol for making changes to a user.
@@ -322,6 +327,9 @@
 /** Protocol for accessing a retailer. */
 @protocol CSRetailer <NSObject>
 
+/** The URL of the retailer. */
+@property (readonly) NSURL *URL;
+
 /** The name of the retailer. */
 @property (readonly) NSString *name;
 
@@ -363,6 +371,18 @@
  the list of retailers.
  */
 @property (readonly) id<CSRetailerList> retailerList;
+
+@end
+
+@protocol CSLike <NSObject>
+
+@property (readonly) NSURL *retailerURL;
+
+@end
+
+@protocol CSMutableLike <NSObject>
+
+@property (nonatomic, strong) id<CSRetailer> retailer;
 
 @end
 

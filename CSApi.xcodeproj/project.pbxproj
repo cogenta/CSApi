@@ -32,10 +32,12 @@
 		BE57715316BABC69002F42E4 /* user_get_response.json in Resources */ = {isa = PBXBuildFile; fileRef = BE57715216BABC69002F42E4 /* user_get_response.json */; };
 		BE57715616BAD046002F42E4 /* TestConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = BE57715516BAD046002F42E4 /* TestConstants.m */; };
 		BE57715A16BAD163002F42E4 /* CSAPITestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = BE57715816BAD162002F42E4 /* CSAPITestCase.m */; };
+		BE68DA8D16D62B64008ED350 /* CSApiUserLikeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BE68DA8C16D62B64008ED350 /* CSApiUserLikeTests.m */; };
 		BEA65A0D16B92F3100F10CB0 /* TestRequester.m in Sources */ = {isa = PBXBuildFile; fileRef = BEA65A0C16B92F3100F10CB0 /* TestRequester.m */; };
 		BEA65A1016B94DDF00F10CB0 /* CSApplicationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BEA65A0F16B94DDF00F10CB0 /* CSApplicationTests.m */; };
 		BEA65A1316B94E4900F10CB0 /* TestApi.m in Sources */ = {isa = PBXBuildFile; fileRef = BEA65A1216B94E4900F10CB0 /* TestApi.m */; };
 		BEA65A1616B9537300F10CB0 /* app.json in Resources */ = {isa = PBXBuildFile; fileRef = BEA65A1516B9537300F10CB0 /* app.json */; };
+		BECAC13216D63D2000F055EF /* like.json in Resources */ = {isa = PBXBuildFile; fileRef = BECAC13116D63D2000F055EF /* like.json */; };
 		BEE0A88816CE8D8B00EB3BB8 /* retailers_page_0_links.json in Resources */ = {isa = PBXBuildFile; fileRef = BEE0A88716CE8D8B00EB3BB8 /* retailers_page_0_links.json */; };
 		BEE0A88A16CE8DAD00EB3BB8 /* retailers_page_1_links.json in Resources */ = {isa = PBXBuildFile; fileRef = BEE0A88916CE8DAD00EB3BB8 /* retailers_page_1_links.json */; };
 		BEE0A88C16CE8ED400EB3BB8 /* retailers_page_2_links.json in Resources */ = {isa = PBXBuildFile; fileRef = BEE0A88B16CE8ED400EB3BB8 /* retailers_page_2_links.json */; };
@@ -114,12 +116,14 @@
 		BE57715516BAD046002F42E4 /* TestConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestConstants.m; sourceTree = "<group>"; };
 		BE57715716BAD162002F42E4 /* CSAPITestCase.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.h; path = CSAPITestCase.h; sourceTree = "<group>"; tabWidth = 4; usesTabs = 0; wrapsLines = 1; };
 		BE57715816BAD162002F42E4 /* CSAPITestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = CSAPITestCase.m; sourceTree = "<group>"; tabWidth = 4; usesTabs = 0; wrapsLines = 1; };
+		BE68DA8C16D62B64008ED350 /* CSApiUserLikeTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSApiUserLikeTests.m; sourceTree = "<group>"; };
 		BEA65A0B16B92F3100F10CB0 /* TestRequester.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestRequester.h; sourceTree = "<group>"; };
 		BEA65A0C16B92F3100F10CB0 /* TestRequester.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestRequester.m; sourceTree = "<group>"; };
 		BEA65A0F16B94DDF00F10CB0 /* CSApplicationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSApplicationTests.m; sourceTree = "<group>"; };
 		BEA65A1116B94E4900F10CB0 /* TestApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestApi.h; sourceTree = "<group>"; };
 		BEA65A1216B94E4900F10CB0 /* TestApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestApi.m; sourceTree = "<group>"; };
 		BEA65A1516B9537300F10CB0 /* app.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = app.json; path = Fixtures/app.json; sourceTree = "<group>"; };
+		BECAC13116D63D2000F055EF /* like.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = like.json; path = Fixtures/like.json; sourceTree = "<group>"; };
 		BEE0A88716CE8D8B00EB3BB8 /* retailers_page_0_links.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = retailers_page_0_links.json; path = Fixtures/retailers_page_0_links.json; sourceTree = "<group>"; };
 		BEE0A88916CE8DAD00EB3BB8 /* retailers_page_1_links.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = retailers_page_1_links.json; path = Fixtures/retailers_page_1_links.json; sourceTree = "<group>"; };
 		BEE0A88B16CE8ED400EB3BB8 /* retailers_page_2_links.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = retailers_page_2_links.json; path = Fixtures/retailers_page_2_links.json; sourceTree = "<group>"; };
@@ -247,6 +251,7 @@
 				BE57715016BA9073002F42E4 /* CSApiLoginTests.m */,
 				BEF5303F16BC072F003B8B58 /* CSApiGetUserTests.m */,
 				BEF5304216BFC851003B8B58 /* CSApiSaveUserTests.m */,
+				BE68DA8C16D62B64008ED350 /* CSApiUserLikeTests.m */,
 				BEF5306616C144BF003B8B58 /* CSAPIRequesterTests.m */,
 				BE0D502716C2C527005A1DC1 /* CSUserDefaultsAPIStoreTests.m */,
 			);
@@ -298,6 +303,7 @@
 				BEE0A88D16D2520B00EB3BB8 /* retailers_page_0_embedded.json */,
 				BEE0A88F16D2524500EB3BB8 /* retailers_page_1_embedded.json */,
 				BEE0A89116D2527500EB3BB8 /* retailers_page_2_embedded.json */,
+				BECAC13116D63D2000F055EF /* like.json */,
 			);
 			name = Fixtures;
 			sourceTree = "<group>";
@@ -391,6 +397,7 @@
 				BEE0A88E16D2520B00EB3BB8 /* retailers_page_0_embedded.json in Resources */,
 				BEE0A89016D2524500EB3BB8 /* retailers_page_1_embedded.json in Resources */,
 				BEE0A89216D2527500EB3BB8 /* retailers_page_2_embedded.json in Resources */,
+				BECAC13216D63D2000F055EF /* like.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -483,6 +490,7 @@
 				BEF5304316BFC851003B8B58 /* CSApiSaveUserTests.m in Sources */,
 				BEF5306716C144BF003B8B58 /* CSAPIRequesterTests.m in Sources */,
 				BE0D502816C2C527005A1DC1 /* CSUserDefaultsAPIStoreTests.m in Sources */,
+				BE68DA8D16D62B64008ED350 /* CSApiUserLikeTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

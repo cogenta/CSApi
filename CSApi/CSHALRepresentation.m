@@ -46,4 +46,16 @@
     return [json HALResourceWithBaseURL:baseURL];
 }
 
+- (id)representMutableLike:(id<CSMutableLike>)like
+{
+    NSMutableDictionary *json = [NSMutableDictionary dictionary];
+    NSMutableDictionary *links = [NSMutableDictionary dictionary];
+    
+    links[@"/rels/retailer"] = @{@"href": [like.retailer.URL absoluteString]};
+    
+    json[@"_links"] = links;
+    
+    return [json HALResourceWithBaseURL:baseURL];
+}
+
 @end
