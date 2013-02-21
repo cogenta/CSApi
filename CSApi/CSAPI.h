@@ -447,6 +447,16 @@
 /** The URL of the resource in which the user is interested. */
 @property (readonly) NSURL *likedURL;
 
+/** Tries to delete the like.
+ 
+ Control returns from remove: immediately. If the operation is successful, the
+ given callback is invoked with a YES in success and a nil error. If the
+ operation fails, callback is invoked with a FALSE success value and a non-nil
+ error.
+ 
+ @param callback The block to invoke when the like has been successfully
+ deleted, or when the operation has failed.
+ */
 - (void)remove:(void (^)(BOOL success, NSError *error))callback;
 
 @end
