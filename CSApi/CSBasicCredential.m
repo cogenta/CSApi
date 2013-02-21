@@ -9,6 +9,7 @@
 #import "CSBasicCredential.h"
 #import "CSAuthenticator.h"
 #import "CSAPI.h"
+#import <objc/runtime.h>
 
 @implementation CSBasicCredential
 
@@ -47,6 +48,13 @@
 {
     [authenticator applyBasicAuthWithUsername:username
                                      password:password];
+}
+
+- (NSString *)description
+{
+    return [NSString stringWithFormat:@"<%s %@:%@>",
+            class_getName([self class]),
+            username, password];
 }
 
 @end
