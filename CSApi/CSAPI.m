@@ -157,7 +157,7 @@
 - (void)loadPage:(id<CSListPage>)page;
 
 - (void)getItemAtIndex:(NSUInteger)index
-              callback:(void (^)(id<CSListItem>, NSError *))callback;
+              callback:(void (^)(id<CSListItem> item, NSError *))callback;
 
 @end
 

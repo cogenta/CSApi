@@ -237,9 +237,40 @@
 - (void)change:(void (^)(id<CSMutableUser> user))change
       callback:(void (^)(BOOL success, NSError *error))callback;
 
+/** Tries to create a like with the state defined by the given change.
+ 
+ Control returns from createLikeWithChange:callback: immediately after the
+ block, change, finishes and an attempt is made to create the resource in the
+ background. If the operation is successful, callback is invoked with a non-nil
+ [id\<CSLike\>](CSLike) in like and a nil error. If the operation fails,
+ callback is invoked with a nil like and a non-nil error.
+ 
+ @param change A block accepting an object conforming to CSMutableLike that
+ makes edits to that object.
+ @param callback The block to invoke when the like has been successfully
+ created, or when the operation has failed.
+ */
 - (void)createLikeWithChange:(void (^)(id<CSMutableLike>))change
                     callback:(void (^)(id<CSLike> like, NSError *error))callback;
 
+/** Tries to get a list of likes for the user.
+ 
+ This method uses the user's credentials to fetch the likes resource.
+ 
+ Control returns from getLikes: immediately. If the operation is successful,
+ the given callback is invoked with a non-nil
+ [id\<CSLikesListPage\>](CSLikesListPage) in firstPage and a nil error.
+ firstPage is the first page of the result set. It is recommended that client
+ code uses firstPage.liksList to get an [id\<CSLikesList\>](CSLikesList), which
+ provides convenient access to likes in the list.
+ 
+ If the operation fails, callback is invoked with a nil firstPage and a non-nil
+ error.
+ 
+ @param callback The block to invoke when the likes list has been
+ successfully obtained, or when the operation has failed.
+ 
+ */
 - (void)getLikes:(void (^)(id<CSLikeListPage> firstPage, NSError *error))callback;
 
 @end
@@ -348,13 +379,9 @@
 /** The number of items in the list. */
 @property (readonly) NSUInteger count;
 
-- (void)getItemAtIndex:(NSUInteger)index
-              callback:(void (^)(id<CSListItem> item, NSError *error))callback;
-
 @end
 
-/** Protocol for accessing a list of retailers.
- */
+/** Protocol for accessing a list of retailers. */
 @protocol CSRetailerList <CSList>
 
 /** Tries to fetch the retailer at the given index.
@@ -365,8 +392,8 @@
  fails, callback is invoked with a nil retailer and a non-nil error.
  
  @param index The index in the sequence of the retailer to retrieve.
- @param callback The block to invoke when the retailer has been
- successfully obtained, or when the operation has failed.
+ @param callback The block to invoke when the retailer has been successfully
+ obtained, or when the operation has failed.
  */
 - (void)getRetailerAtIndex:(NSUInteger)index
                   callback:(void (^)(id<CSRetailer> retailer,
@@ -375,10 +402,22 @@
 @end
 
 
+/** Protocol for accessing a list of likes. */
 @protocol CSLikeList <CSList>
 
+/** Tries to fetch the like at the given index.
+ 
+ Control returns from getLikeAtIndex:callback: immediately. If the operation
+ is successful, the given callback is invoked with a non-nil
+ [id\<CSLike\>](CSLike) in like and a nil error. If the operation
+ fails, callback is invoked with a nil like and a non-nil error.
+ 
+ @param index The index in the sequence of the like to retrieve.
+ @param callback The block to invoke when the like has been successfully
+ obtained, or when the operation has failed.
+ */
 - (void)getLikeAtIndex:(NSUInteger)index
-              callback:(void (^)(id<CSLike> retailer, NSError *error))callback;
+              callback:(void (^)(id<CSLike> like, NSError *error))callback;
 
 @end
 
@@ -397,21 +436,40 @@
 
 @end
 
+/** Protocol for accessing likes.
+ 
+ A like is a record of the fact that a user is interested in a particular
+ resource. Likes are created using the createLikeWithChange:callback: method
+ on CSUser.
+ */
 @protocol CSLike <NSObject>
 
+/** The URL of the resource in which the user is interested. */
 @property (readonly) NSURL *retailerURL;
 
 @end
 
+/** Protocol for making changes to a like.
+ 
+ See [CSUser createLikeWithChange:callback:].
+ */
 @protocol CSMutableLike <NSObject>
 
+/** The retailer in which the user is interested. */
 @property (nonatomic, strong) id<CSRetailer> retailer;
 
 @end
 
-
+/** Protocol for accessing pages of likes in a sequence of results.
+ 
+ Client code is expected to use this protocol's likeList property to get an
+ object conforming to CSLikeList.
+ */
 @protocol CSLikeListPage <CSListPage>
 
+/** An object conforming to CSLikeList that provides convenient access to the
+ list of likes.
+ */
 @property (readonly) id<CSLikeList> likeList;
 
 @end
