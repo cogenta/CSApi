@@ -176,4 +176,48 @@
     STAssertEqualObjects(returnedURLs, likedURLs, nil);
 }
 
+- (void)testRemoveLike
+{
+    YBHALResource *postResponse = [self resourceForFixture:@"like.json"];
+    [requester addPostResponse:postResponse forURL:likesURL];
+    NSURL *retailerURL = [postResponse linkForRelation:@"/rels/retailer"].URL;
+    NSURL *likeURL = [postResponse linkForRelation:@"self"].URL;
+    
+    __block id<CSLike> like = nil;
+    __block NSError *error = nil;
+    CALL_AND_WAIT(^(void (^done)()) {
+        [user createLikeWithChange:^(id<CSMutableLike> mutableLike) {
+            mutableLike.likedURL = retailerURL;
+        }
+                          callback:^(id<CSLike> aLike, NSError *anError)
+         {
+             like = aLike;
+             error = anError;
+             done();
+         }];
+    });
+    
+    STAssertNil(error, @"%@", error);
+    STAssertNotNil(like, nil);
+    
+    __block BOOL deleted = NO;
+    [requester addDeleteCallback:^(id body, id etag, requester_callback_t cb) {
+        deleted = YES;
+        cb(nil, nil, nil);
+    } forURL:likeURL];
+    
+    __block NSNumber *success = nil;
+    CALL_AND_WAIT(^(void (^done)()) {
+        [like remove:^(BOOL removeSuccess, NSError *removeError) {
+            success = @(removeSuccess);
+            error = removeError;
+            done();
+        }];
+    });
+    
+    STAssertTrue(deleted, nil);
+    STAssertNil(error, @"%@", error);
+    STAssertEqualObjects(success, @(YES), nil);
+}
+
 @end

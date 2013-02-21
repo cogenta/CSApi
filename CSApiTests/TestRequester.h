@@ -27,4 +27,7 @@ typedef void (^request_handler_t)(id body, id etag, requester_callback_t cb);
 - (void)addPutResponse:(id)response forURL:(NSURL *)URL;
 - (void)addPutCallback:(request_handler_t)callback forURL:(NSURL *)URL;
 
+- (void)addDeleteResponse:(id)response forURL:(NSURL *)URL;
+- (void)addDeleteCallback:(request_handler_t)callback forURL:(NSURL *)URL;
+
 @end

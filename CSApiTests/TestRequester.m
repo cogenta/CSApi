@@ -173,6 +173,21 @@
                   URL:URL];
 }
 
+- (void)addDeleteResponse:(id)response forURL:(NSURL *)URL
+{
+    [self addResponse:response forMethod:@"DELETE" URL:URL];
+}
+
+- (void)addDeleteCallback:(request_handler_t)callback forURL:(NSURL *)URL
+{
+    [self addCallback:^(id body, id etag, requester_callback_t cb)
+     {
+         callback(body, etag, cb);
+     }
+            forMethod:@"DELETE"
+                  URL:URL];
+}
+
 - (void)resetLastCredentails
 {
     lastUsername = nil;
@@ -256,6 +271,18 @@
              method:@"PUT"
                body:body
                etag:etag
+         credential:credential
+           callback:callback];
+}
+
+- (void)deleteURL:(NSURL *)URL
+       credential:(id<CSCredential>)credential
+         callback:(requester_callback_t)callback
+{
+    [self invokeURL:URL
+             method:@"DELETE"
+               body:nil
+               etag:nil
          credential:credential
            callback:callback];
 }

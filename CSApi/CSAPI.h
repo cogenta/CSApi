@@ -447,6 +447,8 @@
 /** The URL of the resource in which the user is interested. */
 @property (readonly) NSURL *likedURL;
 
+- (void)remove:(void (^)(BOOL success, NSError *error))callback;
+
 @end
 
 /** Protocol for making changes to a like.

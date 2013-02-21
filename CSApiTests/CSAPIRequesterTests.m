@@ -727,4 +727,90 @@
                          nil);
 }
 
+#pragma mark - DELETE requests
+
+- (void)testDeleteReturnsHAL
+{
+    __block id actualMethod = @"NOT SET";
+    [OHHTTPStubs shouldStubRequestsPassingTest:^BOOL(NSURLRequest *request) {
+        return [request.URL isEqual:userURL];
+    } withStubResponse:^OHHTTPStubsResponse *(NSURLRequest *request) {
+        actualMethod = request.HTTPMethod;
+        NSString *auth = [request valueForHTTPHeaderField:@"Authorization"];
+        if ( ! [auth isEqualToString:expectedAuth]) {
+            NSDictionary *headers = @{@"WWW-Authenticate":
+                                          @"Basic realm=\"hyperapi\""};
+            return [OHHTTPStubsResponse responseWithData:[NSData data]
+                                              statusCode:401
+                                            responseTime:0.0
+                                                 headers:headers];
+        }
+        NSDictionary *headers = @{@"Content-Type": @"application/hal+json"};
+        return [OHHTTPStubsResponse responseWithData:[NSData data]
+                                          statusCode:200
+                                        responseTime:0.0
+                                             headers:headers];
+    }];
+    
+    
+    __block id actualResource = @"NOT SET";
+    __block id actualEtag = @"NOT SET";
+    __block NSError *actualError = [NSError errorWithDomain:@"NOT SET"
+                                                       code:0
+                                                   userInfo:nil];
+    [self callAndWait:^(void (^done)()) {
+        [requester deleteURL:userURL
+                  credential:basicCredential
+                    callback:^(id result, id etag, NSError *error)
+         {
+             actualResource = result;
+             actualEtag = etag;
+             actualError = error;
+             done();
+         }];
+    }];
+    
+    STAssertEqualObjects(actualMethod, @"DELETE", nil);
+    STAssertNil(actualResource, @"%@", actualResource);
+    STAssertNil(actualEtag, @"%@", actualEtag);
+    STAssertNil(actualError, @"%@", actualError);
+}
+
+- (void)testDeleteReturnsErrorResponseWithError
+{
+    [OHHTTPStubs shouldStubRequestsPassingTest:^BOOL(NSURLRequest *request) {
+        return [request.URL isEqual:userURL];
+    } withStubResponse:^OHHTTPStubsResponse *(NSURLRequest *request) {
+        NSDictionary *headers = @{@"Content-Type": @"application/hal+json"};
+        return [OHHTTPStubsResponse responseWithData:userData
+                                          statusCode:404
+                                        responseTime:0.0
+                                             headers:headers];
+    }];
+    
+    __block id actualResource = @"NOT SET";
+    __block id actualEtag = @"NOT SET";
+    __block NSError *actualError = [NSError errorWithDomain:@"NOT SET"
+                                                       code:0
+                                                   userInfo:nil];
+    [self callAndWait:^(void (^done)()) {
+        [requester deleteURL:userURL
+                  credential:basicCredential
+                    callback:^(id result, id etag, NSError *error)
+         {
+             actualResource = result;
+             actualEtag = etag;
+             actualError = error;
+             done();
+         }];
+    }];
+    
+    STAssertNil(actualResource, nil);
+    STAssertNil(actualEtag, nil);
+    STAssertNotNil(actualError, nil);
+    STAssertEqualObjects(actualError.userInfo[@"NSHTTPPropertyStatusCodeKey"],
+                         @404,
+                         nil);
+}
+
 @end

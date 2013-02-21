@@ -223,4 +223,16 @@
             callback:callback];
 }
 
+- (void)deleteURL:(NSURL *)URL
+       credential:(id<CSCredential>)credential
+         callback:(requester_callback_t)callback
+{
+    [self requestURL:URL
+              method:@"DELETE"
+          credential:credential
+                body:nil
+                etag:nil
+            callback:callback];
+}
+
 @end

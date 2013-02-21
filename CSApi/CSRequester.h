@@ -29,4 +29,8 @@ typedef void (^requester_callback_t)(id result, id etag, NSError *error);
           etag:(id)etag
       callback:(requester_callback_t)callback;
 
+- (void)deleteURL:(NSURL *)URL
+       credential:(id<CSCredential>)credential
+         callback:(requester_callback_t)callback;
+
 @end
