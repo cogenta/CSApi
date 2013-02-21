@@ -445,7 +445,7 @@
 @protocol CSLike <NSObject>
 
 /** The URL of the resource in which the user is interested. */
-@property (readonly) NSURL *retailerURL;
+@property (readonly) NSURL *likedURL;
 
 @end
 
@@ -455,8 +455,8 @@
  */
 @protocol CSMutableLike <NSObject>
 
-/** The retailer in which the user is interested. */
-@property (nonatomic, strong) id<CSRetailer> retailer;
+/** The URL of the resource in which the user is interested. */
+@property (nonatomic, strong) NSURL *likedURL;
 
 @end
 

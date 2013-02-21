@@ -1079,7 +1079,7 @@
 
 @implementation CSLike
 
-@synthesize retailerURL;
+@synthesize likedURL;
 
 - (id)initWithResource:(YBHALResource *)resource
              requester:(id<CSRequester>)requester
@@ -1087,7 +1087,7 @@
 {
     self = [super init];
     if (self) {
-        retailerURL = [resource linkForRelation:@"/rels/retailer"].URL;
+        likedURL = [resource linkForRelation:@"/rels/retailer"].URL;
     }
     return self;
 }
@@ -1096,7 +1096,7 @@
 
 @implementation CSMutableLike
 
-@synthesize retailer;
+@synthesize likedURL;
 
 - (id)representWithRepresentation:(id<CSRepresentation>)representation
 {
@@ -1105,9 +1105,9 @@
 
 - (NSString *)description
 {
-    return [NSString stringWithFormat:@"<%s retailer=%@>",
+    return [NSString stringWithFormat:@"<%s likedURL=%@>",
             class_getName([self class]),
-            self.retailer];
+            self.likedURL];
 }
 
 @end

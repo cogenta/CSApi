@@ -51,7 +51,7 @@
     NSMutableDictionary *json = [NSMutableDictionary dictionary];
     NSMutableDictionary *links = [NSMutableDictionary dictionary];
     
-    links[@"/rels/retailer"] = @{@"href": [like.retailer.URL absoluteString]};
+    links[@"/rels/retailer"] = @{@"href": [like.likedURL absoluteString]};
     
     json[@"_links"] = links;
     

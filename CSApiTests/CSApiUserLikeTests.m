@@ -93,14 +93,12 @@
     NSURL *retailerURL = [[NSURL URLWithString:@"/retailers/test"
                                  relativeToURL:apiURL]
                           absoluteURL];
-    id retailer = [OCMockObject mockForProtocol:@protocol(CSRetailer)];
-    [[[retailer stub] andReturn:retailerURL] URL];
     
     __block id<CSLike> like = nil;
     __block NSError *error = nil;
     CALL_AND_WAIT(^(void (^done)()) {
         [user createLikeWithChange:^(id<CSMutableLike> mutableLike) {
-             mutableLike.retailer = retailer;
+             mutableLike.likedURL = retailerURL;
         }
                           callback:^(id<CSLike> aLike, NSError *anError)
         {
@@ -158,7 +156,7 @@
         [returnedURLs addObject:@"(not set)"];
         [list getLikeAtIndex:i callback:^(id<CSLike> like, NSError *error) {
             if (like) {
-                returnedURLs[i] = like.retailerURL;
+                returnedURLs[i] = like.likedURL;
                 return;
             }
             
