@@ -20,21 +20,7 @@
 #import "CSUserDefaultsAPIStore.h"
 #import <NSArray+Functional.h>
 #import <objc/runtime.h>
-
-@interface NSError (CSExtension)
-
-- (BOOL) isHttpConflict;
-
-@end
-
-@implementation NSError (CSExtension)
-
-- (BOOL) isHttpConflict
-{
-    return [self.userInfo[@"NSHTTPPropertyStatusCodeKey"] isEqual:@409];
-}
-
-@end
+#import "NSError+CSExtension.h"
 
 @interface CSCredentialEntity : NSObject
 
