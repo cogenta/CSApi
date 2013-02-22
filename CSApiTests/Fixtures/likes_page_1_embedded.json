@@ -6,7 +6,7 @@
       {
         
         "_links": {
-          "/rels/retailer": {
+          "api:liked": {
             "href": "http://192.168.1.16:5000/retailers/102"
           },
           "curie": {
@@ -24,7 +24,7 @@
       {
         
         "_links": {
-          "/rels/retailer": {
+          "api:liked": {
             "href": "http://192.168.1.16:5000/retailers/108"
           },
           "curie": {
@@ -42,7 +42,7 @@
       {
         
         "_links": {
-          "/rels/retailer": {
+          "api:liked": {
             "href": "http://192.168.1.16:5000/retailers/34"
           },
           "curie": {
@@ -60,7 +60,7 @@
       {
         
         "_links": {
-          "/rels/retailer": {
+          "api:liked": {
             "href": "http://192.168.1.16:5000/retailers/29"
           },
           "curie": {
@@ -78,7 +78,7 @@
       {
         
         "_links": {
-          "/rels/retailer": {
+          "api:liked": {
             "href": "http://192.168.1.16:5000/retailers/171"
           },
           "curie": {
@@ -96,7 +96,7 @@
       {
         
         "_links": {
-          "/rels/retailer": {
+          "api:liked": {
             "href": "http://192.168.1.16:5000/retailers/43"
           },
           "curie": {
@@ -114,7 +114,7 @@
       {
         
         "_links": {
-          "/rels/retailer": {
+          "api:liked": {
             "href": "http://192.168.1.16:5000/retailers/205"
           },
           "curie": {
@@ -132,7 +132,7 @@
       {
         
         "_links": {
-          "/rels/retailer": {
+          "api:liked": {
             "href": "http://192.168.1.16:5000/retailers/48"
           },
           "curie": {
@@ -150,7 +150,7 @@
       {
         
         "_links": {
-          "/rels/retailer": {
+          "api:liked": {
             "href": "http://192.168.1.16:5000/retailers/157"
           },
           "curie": {
@@ -168,7 +168,7 @@
       {
         
         "_links": {
-          "/rels/retailer": {
+          "api:liked": {
             "href": "http://192.168.1.16:5000/retailers/62"
           },
           "curie": {

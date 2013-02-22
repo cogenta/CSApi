@@ -6,7 +6,7 @@
       {
         
         "_links": {
-          "/rels/retailer": {
+          "api:liked": {
             "href": "http://192.168.1.16:5000/retailers/61"
           },
           "curie": {
@@ -24,7 +24,7 @@
       {
         
         "_links": {
-          "/rels/retailer": {
+          "api:liked": {
             "href": "http://192.168.1.16:5000/retailers/65"
           },
           "curie": {
@@ -42,7 +42,7 @@
       {
         
         "_links": {
-          "/rels/retailer": {
+          "api:liked": {
             "href": "http://192.168.1.16:5000/retailers/197"
           },
           "curie": {
@@ -60,7 +60,7 @@
       {
         
         "_links": {
-          "/rels/retailer": {
+          "api:liked": {
             "href": "http://192.168.1.16:5000/retailers/130"
           },
           "curie": {
@@ -78,7 +78,7 @@
       {
         
         "_links": {
-          "/rels/retailer": {
+          "api:liked": {
             "href": "http://192.168.1.16:5000/retailers/98"
           },
           "curie": {

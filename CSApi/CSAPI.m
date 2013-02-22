@@ -1091,7 +1091,7 @@
     self = [super initWithRequester:requester credential:credential];
     if (self) {
         URL = [resource linkForRelation:@"self"].URL;
-        likedURL = [resource linkForRelation:@"/rels/retailer"].URL;
+        likedURL = [resource linkForRelation:@"/rels/liked"].URL;
     }
     return self;
 }
@@ -1109,6 +1109,12 @@
         
         callback(YES, nil);
     }];
+}
+
+- (NSString *)description
+{
+    return [NSString stringWithFormat:@"<%s URL=%@ likedURL=%@>",
+            class_getName([self class]), URL, likedURL];
 }
 
 @end

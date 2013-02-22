@@ -112,7 +112,7 @@
     STAssertNotNil(like, nil);
     STAssertNotNil(sentBody, nil);
     
-    NSURL *sentRetailerURL = [sentBody linkForRelation:@"/rels/retailer"].URL;
+    NSURL *sentRetailerURL = [sentBody linkForRelation:@"/rels/liked"].URL;
     STAssertNotNil(sentRetailerURL, nil);
     STAssertEqualObjects(sentRetailerURL, retailerURL, nil);
 }
@@ -132,7 +132,7 @@
         NSArray *likes = [likesResource resourcesForRelation:@"/rels/like"];
         count += [likes count];
         for (YBHALResource *like in likes) {
-            [likedURLs addObject:[like linkForRelation:@"/rels/retailer"].URL];
+            [likedURLs addObject:[like linkForRelation:@"/rels/liked"].URL];
         }
     }
     STAssertEqualObjects(@([likedURLs count]), @(count), nil);
