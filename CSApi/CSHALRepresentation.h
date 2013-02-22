@@ -6,7 +6,6 @@
 //  Copyright (c) 2013 Cogenta Systems Ltd. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 #import "CSRepresentation.h"
 
 @interface CSHALRepresentation : NSObject <CSRepresentation>

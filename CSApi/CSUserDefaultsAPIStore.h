@@ -6,7 +6,6 @@
 //  Copyright (c) 2013 Cogenta Systems Ltd. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
 #import "CSAPIStore.h"
 
 @interface CSUserDefaultsAPIStore : NSObject <CSAPIStore>
