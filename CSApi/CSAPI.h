@@ -8,18 +8,28 @@
 
 #import <Foundation/Foundation.h>
 
+@protocol CSCredential;
+
 @protocol CSApplication;
+
 @protocol CSUser;
 @protocol CSMutableUser;
-@protocol CSCredential;
+
 @protocol CSListPage;
+
 @protocol CSRetailer;
 @protocol CSRetailerList;
 @protocol CSRetailerListPage;
+
 @protocol CSLike;
 @protocol CSMutableLike;
 @protocol CSLikeList;
 @protocol CSLikeListPage;
+
+@protocol CSGroup;
+@protocol CSMutableGroup;
+@protocol CSGroupList;
+@protocol CSGroupListPage;
 
 /**
  Provides access to the Cogenta Shopping API.
@@ -237,21 +247,21 @@
 - (void)change:(void (^)(id<CSMutableUser> user))change
       callback:(void (^)(BOOL success, NSError *error))callback;
 
-/** Tries to create a like with the state defined by the given change.
- 
- Control returns from createLikeWithChange:callback: immediately after the
- block, change, finishes and an attempt is made to create the resource in the
- background. If the operation is successful, callback is invoked with a non-nil
- [id\<CSLike\>](CSLike) in like and a nil error. If the operation fails,
- callback is invoked with a nil like and a non-nil error.
- 
- @param change A block accepting an object conforming to CSMutableLike that
- makes edits to that object.
- @param callback The block to invoke when the like has been successfully
- created, or when the operation has failed.
- */
-- (void)createLikeWithChange:(void (^)(id<CSMutableLike>))change
-                    callback:(void (^)(id<CSLike> like, NSError *error))callback;
+///** Tries to create a like with the state defined by the given change.
+// 
+// Control returns from createLikeWithChange:callback: immediately after the
+// block, change, finishes and an attempt is made to create the resource in the
+// background. If the operation is successful, callback is invoked with a non-nil
+// [id\<CSLike\>](CSLike) in like and a nil error. If the operation fails,
+// callback is invoked with a nil like and a non-nil error.
+// 
+// @param change A block accepting an object conforming to CSMutableLike that
+// makes edits to that object.
+// @param callback The block to invoke when the like has been successfully
+// created, or when the operation has failed.
+// */
+//- (void)createLikeWithChange:(void (^)(id<CSMutableLike>))change
+//                    callback:(void (^)(id<CSLike> like, NSError *error))callback;
 
 /** Tries to get a list of likes for the user.
  
@@ -273,6 +283,13 @@
  */
 - (void)getLikes:(void (^)(id<CSLikeListPage> firstPage, NSError *error))callback;
 
+- (void)createGroupWithChange:(void (^)(id<CSMutableGroup>))change
+                     callback:(void (^)(id<CSGroup> like, NSError *error))callback;
+
+- (void)getGroups:(void (^)(id<CSGroupListPage> firstPage, NSError *error))callback;
+
+- (void)getGroupsWithReference:(NSString *)reference
+                      callback:(void (^)(id<CSGroupListPage> firstPage, NSError *error))callback;
 @end
 
 /** Protocol for making changes to a user.
@@ -421,6 +438,27 @@
 
 @end
 
+
+/** Protocol for accessing a list of groups. */
+@protocol CSGroupList <CSList>
+
+/** Tries to fetch the groups at the given index.
+ 
+ Control returns from getGroupAtIndex:callback: immediately. If the operation
+ is successful, the given callback is invoked with a non-nil
+ [id\<CSGroup\>](CSGroup) in group and a nil error. If the operation
+ fails, callback is invoked with a nil group and a non-nil error.
+ 
+ @param index The index in the sequence of the group to retrieve.
+ @param callback The block to invoke when the group has been successfully
+ obtained, or when the operation has failed.
+ */
+- (void)getGroupAtIndex:(NSUInteger)index
+               callback:(void (^)(id<CSGroup> group, NSError *error))callback;
+
+@end
+
+
 /** Protocol for accessing pages of retailers in a sequence of results.
  
  Client code is expected to use this protocol's retailerList property to get
@@ -472,6 +510,33 @@
 
 @end
 
+@protocol CSGroup <NSObject>
+
+@property (readonly) NSString *reference;
+@property (readonly) NSDictionary *meta;
+
+- (void)change:(void (^)(id<CSMutableGroup> group))change
+      callback:(void (^)(BOOL success, NSError *error))callback;
+
+- (void)getLikes:(void (^)(id<CSLikeListPage> firstPage, NSError *error))callback;
+
+- (void)createLikeWithChange:(void (^)(id<CSMutableLike>))change
+                    callback:(void (^)(id<CSLike> like, NSError *error))callback;
+
+- (void)remove:(void (^)(BOOL success, NSError *error))callback;
+
+@end
+
+@protocol CSMutableGroup <NSObject>
+
+@property (readonly) NSURL *URL;
+
+@property (nonatomic, strong) NSString *reference;
+
+@property (nonatomic, strong) NSMutableDictionary *meta;
+
+@end
+
 /** Protocol for accessing pages of likes in a sequence of results.
  
  Client code is expected to use this protocol's likeList property to get an
@@ -483,5 +548,19 @@
  list of likes.
  */
 @property (readonly) id<CSLikeList> likeList;
+
+@end
+
+/** Protocol for accessing pages of group in a sequence of results.
+ 
+ Client code is expected to use this protocol's groupList property to get an
+ object conforming to CSGroupList.
+ */
+@protocol CSGroupListPage <CSListPage>
+
+/** An object conforming to CSGroupList that provides convenient access to the
+ list of groups.
+ */
+@property (readonly) id<CSGroupList> groupList;
 
 @end
