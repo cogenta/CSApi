@@ -21,27 +21,7 @@
 #import <NSArray+Functional.h>
 #import <objc/runtime.h>
 #import "NSError+CSExtension.h"
-
-@interface CSCredentialEntity : NSObject
-
-@property (strong, nonatomic) id<CSRequester> requester;
-@property (strong, nonatomic) id<CSCredential> credential;
-
-- (id)initWithRequester:(id<CSRequester>)requester
-             credential:(id<CSCredential>)credential;
-
-- (void)postURL:(NSURL *)URL
-           body:(id)body
-       callback:(requester_callback_t)callback;
-
-- (void)getURL:(NSURL *)URL callback:(requester_callback_t)callback;
-
-- (void)putURL:(NSURL *)URL
-          body:(id)body
-          etag:(id)etag
-      callback:(requester_callback_t)callback;
-
-@end
+#import "CSCredentialEntity.h"
 
 @interface CSApplication : CSCredentialEntity <CSApplication>
 
@@ -177,47 +157,6 @@
 
 @end
 
-@implementation CSCredentialEntity
-
-@synthesize requester;
-@synthesize credential;
-
-- (id)initWithRequester:(id<CSRequester>)aRequester
-             credential:(id<CSCredential>)aCredential
-{
-    self = [super init];
-    if (self) {
-        requester = aRequester;
-        credential = aCredential;
-    }
-    return self;
-}
-
-- (void)postURL:(NSURL *)URL
-           body:(id)body
-       callback:(requester_callback_t)callback
-{
-    [requester postURL:URL credential:credential body:body callback:callback];
-}
-
-- (void)getURL:(NSURL *)URL callback:(requester_callback_t)callback
-{
-    [requester getURL:URL credential:credential callback:callback];
-}
-
-- (void)putURL:(NSURL *)URL
-          body:(id)body
-          etag:(id)etag
-      callback:(requester_callback_t)callback
-{
-    [requester putURL:URL
-           credential:credential
-                 body:body
-                 etag:etag
-             callback:callback];
-}
-
-@end
 
 @implementation CSApplication
 
