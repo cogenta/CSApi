@@ -7,7 +7,6 @@
 //
 
 #import "CSCredentialEntity.h"
-#import "CSAPI.h"
 
 @implementation CSCredentialEntity
 

@@ -6,8 +6,6 @@
 //  Copyright (c) 2013 Cogenta Systems Ltd. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-
 #import "CSRequester.h"
 
 @interface CSAPIRequester : NSObject <CSRequester>

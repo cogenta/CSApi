@@ -38,6 +38,21 @@
 		BE68DA8D16D62B64008ED350 /* CSApiUserLikeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BE68DA8C16D62B64008ED350 /* CSApiUserLikeTests.m */; };
 		BE7E6E7F16D7D0D6000AA883 /* NSError+CSExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7E6E7E16D7D0D6000AA883 /* NSError+CSExtension.m */; };
 		BE7E6E8316D7D17C000AA883 /* CSCredentialEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7E6E8216D7D17C000AA883 /* CSCredentialEntity.m */; };
+		BE7E6E8616D7D235000AA883 /* CSApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7E6E8516D7D235000AA883 /* CSApplication.m */; };
+		BE7E6E8916D7D2C6000AA883 /* CSMutableUser.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7E6E8816D7D2C6000AA883 /* CSMutableUser.m */; };
+		BE7E6E8C16D7D397000AA883 /* CSUser.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7E6E8B16D7D397000AA883 /* CSUser.m */; };
+		BE7E6E8F16D7D48E000AA883 /* CSMutableLike.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7E6E8E16D7D48E000AA883 /* CSMutableLike.m */; };
+		BE7E6E9216D7D536000AA883 /* CSLike.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7E6E9116D7D536000AA883 /* CSLike.m */; };
+		BE7E6E9516D7D5ED000AA883 /* CSRetailer.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7E6E9416D7D5EC000AA883 /* CSRetailer.m */; };
+		BE7E6E9816D7D695000AA883 /* CSListPage.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7E6E9716D7D694000AA883 /* CSListPage.m */; };
+		BE7E6E9B16D7D723000AA883 /* CSListItem.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7E6E9A16D7D723000AA883 /* CSListItem.m */; };
+		BE7E6E9E16D7D777000AA883 /* CSLinkListItem.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7E6E9D16D7D777000AA883 /* CSLinkListItem.m */; };
+		BE7E6EA116D7D7D9000AA883 /* CSResourceListItem.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7E6EA016D7D7D8000AA883 /* CSResourceListItem.m */; };
+		BE7E6EA416D7D872000AA883 /* CSRetailerListPage.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7E6EA316D7D871000AA883 /* CSRetailerListPage.m */; };
+		BE7E6EA716D7D8C0000AA883 /* CSLikeListPage.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7E6EA616D7D8C0000AA883 /* CSLikeListPage.m */; };
+		BE7E6EAA16D7D90D000AA883 /* CSList.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7E6EA916D7D90D000AA883 /* CSList.m */; };
+		BE7E6EAD16D7D971000AA883 /* CSRetailerList.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7E6EAC16D7D971000AA883 /* CSRetailerList.m */; };
+		BE7E6EB016D7D9C4000AA883 /* CSLikeList.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7E6EAF16D7D9C4000AA883 /* CSLikeList.m */; };
 		BEA65A0D16B92F3100F10CB0 /* TestRequester.m in Sources */ = {isa = PBXBuildFile; fileRef = BEA65A0C16B92F3100F10CB0 /* TestRequester.m */; };
 		BEA65A1016B94DDF00F10CB0 /* CSApplicationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BEA65A0F16B94DDF00F10CB0 /* CSApplicationTests.m */; };
 		BEA65A1316B94E4900F10CB0 /* TestApi.m in Sources */ = {isa = PBXBuildFile; fileRef = BEA65A1216B94E4900F10CB0 /* TestApi.m */; };
@@ -129,6 +144,36 @@
 		BE7E6E7E16D7D0D6000AA883 /* NSError+CSExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+CSExtension.m"; sourceTree = "<group>"; };
 		BE7E6E8116D7D17C000AA883 /* CSCredentialEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSCredentialEntity.h; sourceTree = "<group>"; };
 		BE7E6E8216D7D17C000AA883 /* CSCredentialEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSCredentialEntity.m; sourceTree = "<group>"; };
+		BE7E6E8416D7D235000AA883 /* CSApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSApplication.h; sourceTree = "<group>"; };
+		BE7E6E8516D7D235000AA883 /* CSApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSApplication.m; sourceTree = "<group>"; };
+		BE7E6E8716D7D2C6000AA883 /* CSMutableUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSMutableUser.h; sourceTree = "<group>"; };
+		BE7E6E8816D7D2C6000AA883 /* CSMutableUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSMutableUser.m; sourceTree = "<group>"; };
+		BE7E6E8A16D7D397000AA883 /* CSUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSUser.h; sourceTree = "<group>"; };
+		BE7E6E8B16D7D397000AA883 /* CSUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSUser.m; sourceTree = "<group>"; };
+		BE7E6E8D16D7D48E000AA883 /* CSMutableLike.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSMutableLike.h; sourceTree = "<group>"; };
+		BE7E6E8E16D7D48E000AA883 /* CSMutableLike.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSMutableLike.m; sourceTree = "<group>"; };
+		BE7E6E9016D7D536000AA883 /* CSLike.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSLike.h; sourceTree = "<group>"; };
+		BE7E6E9116D7D536000AA883 /* CSLike.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSLike.m; sourceTree = "<group>"; };
+		BE7E6E9316D7D5EC000AA883 /* CSRetailer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSRetailer.h; sourceTree = "<group>"; };
+		BE7E6E9416D7D5EC000AA883 /* CSRetailer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSRetailer.m; sourceTree = "<group>"; };
+		BE7E6E9616D7D694000AA883 /* CSListPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSListPage.h; sourceTree = "<group>"; };
+		BE7E6E9716D7D694000AA883 /* CSListPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSListPage.m; sourceTree = "<group>"; };
+		BE7E6E9916D7D723000AA883 /* CSListItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSListItem.h; sourceTree = "<group>"; };
+		BE7E6E9A16D7D723000AA883 /* CSListItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSListItem.m; sourceTree = "<group>"; };
+		BE7E6E9C16D7D777000AA883 /* CSLinkListItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSLinkListItem.h; sourceTree = "<group>"; };
+		BE7E6E9D16D7D777000AA883 /* CSLinkListItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSLinkListItem.m; sourceTree = "<group>"; };
+		BE7E6E9F16D7D7D8000AA883 /* CSResourceListItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSResourceListItem.h; sourceTree = "<group>"; };
+		BE7E6EA016D7D7D8000AA883 /* CSResourceListItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSResourceListItem.m; sourceTree = "<group>"; };
+		BE7E6EA216D7D871000AA883 /* CSRetailerListPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSRetailerListPage.h; sourceTree = "<group>"; };
+		BE7E6EA316D7D871000AA883 /* CSRetailerListPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSRetailerListPage.m; sourceTree = "<group>"; };
+		BE7E6EA516D7D8C0000AA883 /* CSLikeListPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSLikeListPage.h; sourceTree = "<group>"; };
+		BE7E6EA616D7D8C0000AA883 /* CSLikeListPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSLikeListPage.m; sourceTree = "<group>"; };
+		BE7E6EA816D7D90D000AA883 /* CSList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSList.h; sourceTree = "<group>"; };
+		BE7E6EA916D7D90D000AA883 /* CSList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSList.m; sourceTree = "<group>"; };
+		BE7E6EAB16D7D971000AA883 /* CSRetailerList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSRetailerList.h; sourceTree = "<group>"; };
+		BE7E6EAC16D7D971000AA883 /* CSRetailerList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSRetailerList.m; sourceTree = "<group>"; };
+		BE7E6EAE16D7D9C3000AA883 /* CSLikeList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSLikeList.h; sourceTree = "<group>"; };
+		BE7E6EAF16D7D9C4000AA883 /* CSLikeList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSLikeList.m; sourceTree = "<group>"; };
 		BEA65A0B16B92F3100F10CB0 /* TestRequester.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestRequester.h; sourceTree = "<group>"; };
 		BEA65A0C16B92F3100F10CB0 /* TestRequester.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestRequester.m; sourceTree = "<group>"; };
 		BEA65A0F16B94DDF00F10CB0 /* CSApplicationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSApplicationTests.m; sourceTree = "<group>"; };
@@ -243,6 +288,36 @@
 				BE7E6E7E16D7D0D6000AA883 /* NSError+CSExtension.m */,
 				BE7E6E8116D7D17C000AA883 /* CSCredentialEntity.h */,
 				BE7E6E8216D7D17C000AA883 /* CSCredentialEntity.m */,
+				BE7E6E8416D7D235000AA883 /* CSApplication.h */,
+				BE7E6E8516D7D235000AA883 /* CSApplication.m */,
+				BE7E6E8716D7D2C6000AA883 /* CSMutableUser.h */,
+				BE7E6E8816D7D2C6000AA883 /* CSMutableUser.m */,
+				BE7E6E8A16D7D397000AA883 /* CSUser.h */,
+				BE7E6E8B16D7D397000AA883 /* CSUser.m */,
+				BE7E6E8D16D7D48E000AA883 /* CSMutableLike.h */,
+				BE7E6E8E16D7D48E000AA883 /* CSMutableLike.m */,
+				BE7E6E9016D7D536000AA883 /* CSLike.h */,
+				BE7E6E9116D7D536000AA883 /* CSLike.m */,
+				BE7E6E9316D7D5EC000AA883 /* CSRetailer.h */,
+				BE7E6E9416D7D5EC000AA883 /* CSRetailer.m */,
+				BE7E6E9616D7D694000AA883 /* CSListPage.h */,
+				BE7E6E9716D7D694000AA883 /* CSListPage.m */,
+				BE7E6E9916D7D723000AA883 /* CSListItem.h */,
+				BE7E6E9A16D7D723000AA883 /* CSListItem.m */,
+				BE7E6E9C16D7D777000AA883 /* CSLinkListItem.h */,
+				BE7E6E9D16D7D777000AA883 /* CSLinkListItem.m */,
+				BE7E6E9F16D7D7D8000AA883 /* CSResourceListItem.h */,
+				BE7E6EA016D7D7D8000AA883 /* CSResourceListItem.m */,
+				BE7E6EA216D7D871000AA883 /* CSRetailerListPage.h */,
+				BE7E6EA316D7D871000AA883 /* CSRetailerListPage.m */,
+				BE7E6EA516D7D8C0000AA883 /* CSLikeListPage.h */,
+				BE7E6EA616D7D8C0000AA883 /* CSLikeListPage.m */,
+				BE7E6EA816D7D90D000AA883 /* CSList.h */,
+				BE7E6EA916D7D90D000AA883 /* CSList.m */,
+				BE7E6EAB16D7D971000AA883 /* CSRetailerList.h */,
+				BE7E6EAC16D7D971000AA883 /* CSRetailerList.m */,
+				BE7E6EAE16D7D9C3000AA883 /* CSLikeList.h */,
+				BE7E6EAF16D7D9C4000AA883 /* CSLikeList.m */,
 			);
 			name = CSAPI;
 			path = CSApi;
@@ -494,6 +569,21 @@
 				BE0D502516C2C4B2005A1DC1 /* CSUserDefaultsAPIStore.m in Sources */,
 				BE7E6E7F16D7D0D6000AA883 /* NSError+CSExtension.m in Sources */,
 				BE7E6E8316D7D17C000AA883 /* CSCredentialEntity.m in Sources */,
+				BE7E6E8616D7D235000AA883 /* CSApplication.m in Sources */,
+				BE7E6E8916D7D2C6000AA883 /* CSMutableUser.m in Sources */,
+				BE7E6E8C16D7D397000AA883 /* CSUser.m in Sources */,
+				BE7E6E8F16D7D48E000AA883 /* CSMutableLike.m in Sources */,
+				BE7E6E9216D7D536000AA883 /* CSLike.m in Sources */,
+				BE7E6E9516D7D5ED000AA883 /* CSRetailer.m in Sources */,
+				BE7E6E9816D7D695000AA883 /* CSListPage.m in Sources */,
+				BE7E6E9B16D7D723000AA883 /* CSListItem.m in Sources */,
+				BE7E6E9E16D7D777000AA883 /* CSLinkListItem.m in Sources */,
+				BE7E6EA116D7D7D9000AA883 /* CSResourceListItem.m in Sources */,
+				BE7E6EA416D7D872000AA883 /* CSRetailerListPage.m in Sources */,
+				BE7E6EA716D7D8C0000AA883 /* CSLikeListPage.m in Sources */,
+				BE7E6EAA16D7D90D000AA883 /* CSList.m in Sources */,
+				BE7E6EAD16D7D971000AA883 /* CSRetailerList.m in Sources */,
+				BE7E6EB016D7D9C4000AA883 /* CSLikeList.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

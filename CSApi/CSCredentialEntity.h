@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Cogenta Systems Ltd. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "CSAPI.h"
 #import "CSRequester.h"
 
 @interface CSCredentialEntity : NSObject
