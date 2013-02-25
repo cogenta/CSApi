@@ -24,11 +24,11 @@
 - (NSTimeInterval)timeoutInterval:(void (^)(void (^)()))blk;
 
 + (NSDictionary*)jsonForData:(NSData*)data;
-
 - (NSDictionary*)jsonForData:(NSData*)data;
 
-+ (YBHALResource*)resourceForJson:(NSDictionary*)json;
+- (NSDictionary *)jsonForFixture:(NSString *)fixture;
 
++ (YBHALResource*)resourceForJson:(NSDictionary*)json;
 - (YBHALResource*)resourceForJson:(NSDictionary*)json;
 
 - (YBHALResource*)resourceForData:(NSData*)data;

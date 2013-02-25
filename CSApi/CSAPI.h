@@ -247,22 +247,6 @@
 - (void)change:(void (^)(id<CSMutableUser> user))change
       callback:(void (^)(BOOL success, NSError *error))callback;
 
-///** Tries to create a like with the state defined by the given change.
-// 
-// Control returns from createLikeWithChange:callback: immediately after the
-// block, change, finishes and an attempt is made to create the resource in the
-// background. If the operation is successful, callback is invoked with a non-nil
-// [id\<CSLike\>](CSLike) in like and a nil error. If the operation fails,
-// callback is invoked with a nil like and a non-nil error.
-// 
-// @param change A block accepting an object conforming to CSMutableLike that
-// makes edits to that object.
-// @param callback The block to invoke when the like has been successfully
-// created, or when the operation has failed.
-// */
-//- (void)createLikeWithChange:(void (^)(id<CSMutableLike>))change
-//                    callback:(void (^)(id<CSLike> like, NSError *error))callback;
-
 /** Tries to get a list of likes for the user.
  
  This method uses the user's credentials to fetch the likes resource.
@@ -271,7 +255,7 @@
  the given callback is invoked with a non-nil
  [id\<CSLikesListPage\>](CSLikesListPage) in firstPage and a nil error.
  firstPage is the first page of the result set. It is recommended that client
- code uses firstPage.liksList to get an [id\<CSLikesList\>](CSLikesList), which
+ code uses firstPage.likesList to get an [id\<CSLikesList\>](CSLikesList), which
  provides convenient access to likes in the list.
  
  If the operation fails, callback is invoked with a nil firstPage and a non-nil
@@ -478,7 +462,7 @@
  
  A like is a record of the fact that a user is interested in a particular
  resource. Likes are created using the createLikeWithChange:callback: method
- on CSUser.
+ on CSGroup.
  */
 @protocol CSLike <NSObject>
 
@@ -501,7 +485,7 @@
 
 /** Protocol for making changes to a like.
  
- See [CSUser createLikeWithChange:callback:].
+ See [CSGroup createLikeWithChange:callback:].
  */
 @protocol CSMutableLike <NSObject>
 
@@ -510,29 +494,113 @@
 
 @end
 
+/** Protocol for accessing a group of likes.
+ 
+ A group is a collection of likes with additional reference and meta data.
+ Groups are created using the createGroupWithChange:callback: method on CSUser.
+ */
 @protocol CSGroup <NSObject>
 
+/** URL of the user resource. */
+@property (readonly) NSURL *URL;
+
+/** The group's reference string.
+ 
+ The reference is intended to be used to link the Cogenta Shopping API group
+ with the developer's own system. A method on CSUser provides access to the
+ user's groups that match a particular reference.
+ */
 @property (readonly) NSString *reference;
+
+/** A dictionary of additional information about the group. */
 @property (readonly) NSDictionary *meta;
 
+/** Attempts to apply the given change to the group resource.
+ 
+ change:callback: returns immediately after the block, change, finishes and an
+ attempt is made to apply any edits in the background. If the group is found to
+ be out of date, for example if another client has modified the underlying group
+ since the group was obtained, the change block will be invoked again with the
+ new user data.
+ 
+ If the edits are applied successfully, this group object is made up-to-date then
+ `callback(YES, nil)` is invoked. If an error is detected, callback will be
+ invoked with `NO` in the first argument an the error in the second argument.
+ 
+ @param change A block accepting an object conforming to CSMutableGroup that
+ makes edits to that object.
+ 
+ @param callback A block accepting a boolean success value and an error object
+ that is invoked when the API call has finished.
+ 
+ @see CSMutableGroup
+ */
 - (void)change:(void (^)(id<CSMutableGroup> group))change
       callback:(void (^)(BOOL success, NSError *error))callback;
 
+/** Tries to get a list of likes for the group.
+ 
+ This method uses the user's credentials to fetch the likes resource.
+ 
+ Control returns from getLikes: immediately. If the operation is successful,
+ the given callback is invoked with a non-nil
+ [id\<CSLikesListPage\>](CSLikesListPage) in firstPage and a nil error.
+ firstPage is the first page of the result set. It is recommended that client
+ code uses firstPage.likesList to get an [id\<CSLikesList\>](CSLikesList), which
+ provides convenient access to likes in the list.
+ 
+ If the operation fails, callback is invoked with a nil firstPage and a non-nil
+ error.
+ 
+ @param callback The block to invoke when the likes list has been
+ successfully obtained, or when the operation has failed.
+ 
+ */
 - (void)getLikes:(void (^)(id<CSLikeListPage> firstPage, NSError *error))callback;
 
+/** Tries to create a like with the state defined by the given change.
+ 
+ Control returns from createLikeWithChange:callback: immediately after the
+ block, change, finishes and an attempt is made to create the resource in the
+ background. If the operation is successful, callback is invoked with a non-nil
+ [id\<CSLike\>](CSLike) in like and a nil error. If the operation fails,
+ callback is invoked with a nil like and a non-nil error.
+ 
+ @param change A block accepting an object conforming to CSMutableLike that
+ makes edits to that object.
+ @param callback The block to invoke when the like has been successfully
+ created, or when the operation has failed.
+ */
 - (void)createLikeWithChange:(void (^)(id<CSMutableLike>))change
                     callback:(void (^)(id<CSLike> like, NSError *error))callback;
 
+/** Tries to delete the group.
+ 
+ Control returns from remove: immediately. If the operation is successful, the
+ given callback is invoked with a YES in success and a nil error. If the
+ operation fails, callback is invoked with a FALSE success value and a non-nil
+ error.
+ 
+ @param callback The block to invoke when the group has been successfully
+ deleted, or when the operation has failed.
+ */
 - (void)remove:(void (^)(BOOL success, NSError *error))callback;
 
 @end
 
+/** Protocol for making changes to a group.
+ 
+ See [CSGroup change:callback:] and [CSUser createGroupWithChange:callback:].
+ */
 @protocol CSMutableGroup <NSObject>
 
+/** URL for the group. */
 @property (readonly) NSURL *URL;
 
+/** The group's reference string. */
 @property (nonatomic, strong) NSString *reference;
 
+/** A dictionary of additional information about the group. */
 @property (nonatomic, strong) NSMutableDictionary *meta;
 
 @end

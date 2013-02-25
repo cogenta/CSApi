@@ -10,8 +10,10 @@
 
 @protocol CSMutableUser;
 @protocol CSMutableLike;
+@protocol CSMutableGroup;
 
 @protocol CSRepresentation <NSObject>
 - (id)representMutableUser:(id<CSMutableUser>)user;
 - (id)representMutableLike:(id<CSMutableLike>)like;
+- (id)representMutableGroup:(id<CSMutableGroup>)group;
 @end

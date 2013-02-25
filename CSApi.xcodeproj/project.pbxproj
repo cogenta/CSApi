@@ -53,6 +53,11 @@
 		BE7E6EAA16D7D90D000AA883 /* CSList.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7E6EA916D7D90D000AA883 /* CSList.m */; };
 		BE7E6EAD16D7D971000AA883 /* CSRetailerList.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7E6EAC16D7D971000AA883 /* CSRetailerList.m */; };
 		BE7E6EB016D7D9C4000AA883 /* CSLikeList.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7E6EAF16D7D9C4000AA883 /* CSLikeList.m */; };
+		BE7E6EB316D7DF1E000AA883 /* CSMutableGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7E6EB216D7DF1E000AA883 /* CSMutableGroup.m */; };
+		BE7E6EB616D7E09D000AA883 /* CSGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7E6EB516D7E09D000AA883 /* CSGroup.m */; };
+		BE7E6EB916D7E4CA000AA883 /* CSGroupListPage.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7E6EB816D7E4CA000AA883 /* CSGroupListPage.m */; };
+		BE7E6EBF16DB6FD9000AA883 /* CSGroupTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7E6EBE16DB6FD9000AA883 /* CSGroupTests.m */; };
+		BE7E6EC216DBA701000AA883 /* CSLikeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7E6EC116DBA701000AA883 /* CSLikeTests.m */; };
 		BEA65A0D16B92F3100F10CB0 /* TestRequester.m in Sources */ = {isa = PBXBuildFile; fileRef = BEA65A0C16B92F3100F10CB0 /* TestRequester.m */; };
 		BEA65A1016B94DDF00F10CB0 /* CSApplicationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BEA65A0F16B94DDF00F10CB0 /* CSApplicationTests.m */; };
 		BEA65A1316B94E4900F10CB0 /* TestApi.m in Sources */ = {isa = PBXBuildFile; fileRef = BEA65A1216B94E4900F10CB0 /* TestApi.m */; };
@@ -174,6 +179,14 @@
 		BE7E6EAC16D7D971000AA883 /* CSRetailerList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSRetailerList.m; sourceTree = "<group>"; };
 		BE7E6EAE16D7D9C3000AA883 /* CSLikeList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSLikeList.h; sourceTree = "<group>"; };
 		BE7E6EAF16D7D9C4000AA883 /* CSLikeList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSLikeList.m; sourceTree = "<group>"; };
+		BE7E6EB116D7DF1E000AA883 /* CSMutableGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSMutableGroup.h; sourceTree = "<group>"; };
+		BE7E6EB216D7DF1E000AA883 /* CSMutableGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSMutableGroup.m; sourceTree = "<group>"; };
+		BE7E6EB416D7E09D000AA883 /* CSGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSGroup.h; sourceTree = "<group>"; };
+		BE7E6EB516D7E09D000AA883 /* CSGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSGroup.m; sourceTree = "<group>"; };
+		BE7E6EB716D7E4CA000AA883 /* CSGroupListPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSGroupListPage.h; sourceTree = "<group>"; };
+		BE7E6EB816D7E4CA000AA883 /* CSGroupListPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSGroupListPage.m; sourceTree = "<group>"; };
+		BE7E6EBE16DB6FD9000AA883 /* CSGroupTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSGroupTests.m; sourceTree = "<group>"; };
+		BE7E6EC116DBA701000AA883 /* CSLikeTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSLikeTests.m; sourceTree = "<group>"; };
 		BEA65A0B16B92F3100F10CB0 /* TestRequester.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestRequester.h; sourceTree = "<group>"; };
 		BEA65A0C16B92F3100F10CB0 /* TestRequester.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestRequester.m; sourceTree = "<group>"; };
 		BEA65A0F16B94DDF00F10CB0 /* CSApplicationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSApplicationTests.m; sourceTree = "<group>"; };
@@ -309,6 +322,8 @@
 				BE7E6E9F16D7D7D8000AA883 /* CSResourceListItem.h */,
 				BE7E6EA016D7D7D8000AA883 /* CSResourceListItem.m */,
 				BE7E6EA216D7D871000AA883 /* CSRetailerListPage.h */,
+				BE7E6EB716D7E4CA000AA883 /* CSGroupListPage.h */,
+				BE7E6EB816D7E4CA000AA883 /* CSGroupListPage.m */,
 				BE7E6EA316D7D871000AA883 /* CSRetailerListPage.m */,
 				BE7E6EA516D7D8C0000AA883 /* CSLikeListPage.h */,
 				BE7E6EA616D7D8C0000AA883 /* CSLikeListPage.m */,
@@ -318,6 +333,10 @@
 				BE7E6EAC16D7D971000AA883 /* CSRetailerList.m */,
 				BE7E6EAE16D7D9C3000AA883 /* CSLikeList.h */,
 				BE7E6EAF16D7D9C4000AA883 /* CSLikeList.m */,
+				BE7E6EB116D7DF1E000AA883 /* CSMutableGroup.h */,
+				BE7E6EB216D7DF1E000AA883 /* CSMutableGroup.m */,
+				BE7E6EB416D7E09D000AA883 /* CSGroup.h */,
+				BE7E6EB516D7E09D000AA883 /* CSGroup.m */,
 			);
 			name = CSAPI;
 			path = CSApi;
@@ -345,6 +364,8 @@
 				BE68DA8C16D62B64008ED350 /* CSApiUserLikeTests.m */,
 				BEF5306616C144BF003B8B58 /* CSAPIRequesterTests.m */,
 				BE0D502716C2C527005A1DC1 /* CSUserDefaultsAPIStoreTests.m */,
+				BE7E6EBE16DB6FD9000AA883 /* CSGroupTests.m */,
+				BE7E6EC116DBA701000AA883 /* CSLikeTests.m */,
 			);
 			path = CSApiTests;
 			sourceTree = "<group>";
@@ -584,6 +605,9 @@
 				BE7E6EAA16D7D90D000AA883 /* CSList.m in Sources */,
 				BE7E6EAD16D7D971000AA883 /* CSRetailerList.m in Sources */,
 				BE7E6EB016D7D9C4000AA883 /* CSLikeList.m in Sources */,
+				BE7E6EB316D7DF1E000AA883 /* CSMutableGroup.m in Sources */,
+				BE7E6EB616D7E09D000AA883 /* CSGroup.m in Sources */,
+				BE7E6EB916D7E4CA000AA883 /* CSGroupListPage.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -605,6 +629,8 @@
 				BEF5306716C144BF003B8B58 /* CSAPIRequesterTests.m in Sources */,
 				BE0D502816C2C527005A1DC1 /* CSUserDefaultsAPIStoreTests.m in Sources */,
 				BE68DA8D16D62B64008ED350 /* CSApiUserLikeTests.m in Sources */,
+				BE7E6EBF16DB6FD9000AA883 /* CSGroupTests.m in Sources */,
+				BE7E6EC216DBA701000AA883 /* CSLikeTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

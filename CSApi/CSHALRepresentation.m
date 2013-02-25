@@ -58,4 +58,22 @@
     return [json HALResourceWithBaseURL:baseURL];
 }
 
+- (id)representMutableGroup:(id<CSMutableGroup>)group
+{
+    NSMutableDictionary *json = [NSMutableDictionary dictionary];
+    if (group.URL) {
+        json[@"_links"] = @{@"self": @{@"href": [group.URL absoluteString]}};
+    }
+    
+    if (group.reference) {
+        json[@"reference"] = group.reference;
+    }
+    
+    if (group.meta) {
+        json[@"meta"] = group.meta;
+    }
+    
+    return [json HALResourceWithBaseURL:baseURL];
+}
+
 @end

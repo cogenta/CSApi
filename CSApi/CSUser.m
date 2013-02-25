@@ -142,39 +142,6 @@
     
 }
 
-- (void)createLikeWithChange:(void (^)(id<CSMutableLike>))change
-                    callback:(void (^)(id<CSLike>, NSError *))callback
-{
-    CSMutableLike *like = [[CSMutableLike alloc] init];
-    change(like);
-    
-    id<CSRepresentation> representation = [CSHALRepresentation
-                                           representationWithBaseURL:self.URL];
-    
-    if ( ! representation) {
-        callback(NO, [NSError errorWithDomain:@"CSAPI" code:3 userInfo:@{NSLocalizedDescriptionKey: @"representation is nil"}]);
-        return;
-    }
-    
-    NSURL *likesURL = [resource linkForRelation:@"/rels/likes"].URL;
-    id body = [like representWithRepresentation:representation];
-    [self.requester postURL:likesURL
-                 credential:self.credential
-                       body:body
-                   callback:^(id result, id newEtag, NSError *error)
-     {
-         if ( ! result) {
-             callback(nil, error);
-             return;
-         }
-         
-         CSLike *like = [[CSLike alloc] initWithResource:result
-                                               requester:self.requester
-                                              credential:self.credential];
-         callback(like, nil);
-     }];
-}
-
 - (void)getLikes:(void (^)(id<CSLikeListPage>, NSError *))callback
 {
     NSURL *likesURL = [resource linkForRelation:@"/rels/likes"].URL;
@@ -192,6 +159,24 @@
                                            credential:self.credential],
                   nil);
      }];
+}
+
+- (void)getGroupsWithReference:(NSString *)reference callback:(void (^)(id<CSGroupListPage>, NSError *))callback
+{
+    NSError *notImplemented = [NSError errorWithDomain:@"Not Implemented" code:0 userInfo:nil];
+    callback(nil, notImplemented);
+}
+
+- (void)getGroups:(void (^)(id<CSGroupListPage>, NSError *))callback
+{
+    NSError *notImplemented = [NSError errorWithDomain:@"Not Implemented" code:0 userInfo:nil];
+    callback(nil, notImplemented);
+}
+
+- (void)createGroupWithChange:(void (^)(id<CSMutableGroup>))change callback:(void (^)(id<CSGroup>, NSError *))callback
+{
+    NSError *notImplemented = [NSError errorWithDomain:@"Not Implemented" code:0 userInfo:nil];
+    callback(nil, notImplemented);
 }
 
 - (NSString *)description

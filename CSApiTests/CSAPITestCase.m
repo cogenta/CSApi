@@ -53,7 +53,9 @@
 - (void)callAndWait:(void (^)(void (^done)()))blk
 {
     NSTimeInterval interval = [self timeoutInterval:blk];
-    STAssertFalse(interval, @"Timed out waiting for callback: %0.2fs", interval);
+    if (interval != 0) {
+        STFail(@"Timed out waiting for callback: %0.2fs", interval);
+    }
 }
 
 + (NSDictionary *)jsonForData:(NSData *)data
@@ -69,6 +71,11 @@
 - (NSDictionary *)jsonForData:(NSData *)data
 {
     return [[self class] jsonForData:data];
+}
+
+- (NSDictionary *)jsonForFixture:(NSString *)fixture
+{
+    return [self jsonForData:dataForFixture(fixture)];
 }
 
 + (YBHALResource *)resourceForJson:(NSDictionary *)json

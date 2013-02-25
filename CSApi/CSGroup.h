@@ -1,5 +1,5 @@
 //
-//  CSUser.h
+//  CSGroup.h
 //  CSApi
 //
 //  Created by Will Harris on 22/02/2013.
@@ -10,18 +10,14 @@
 
 @class YBHALResource;
 
-@interface CSUser : CSCredentialEntity <CSUser>
+@interface CSGroup : CSCredentialEntity <CSGroup>
 
 @property (strong, nonatomic) YBHALResource *resource;
+@property (readonly) id etag;
 
-- (id)initWithHal:(YBHALResource *)resource
-        requester:(id<CSRequester>)requester
-             etag:(id)etag;
 - (id)initWithHal:(YBHALResource *)resource
         requester:(id<CSRequester>)requester
        credential:(id<CSCredential>)credential
              etag:(id)etag;
-
-- (void)loadFromResource:(YBHALResource *)resource;
 
 @end
