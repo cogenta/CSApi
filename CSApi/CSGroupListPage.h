@@ -8,6 +8,6 @@
 
 #import "CSListPage.h"
 
-@interface CSGroupListPage : CSListPage
+@interface CSGroupListPage : CSListPage <CSGroupListPage>
 
 @end

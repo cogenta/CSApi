@@ -38,6 +38,17 @@
     return self;
 }
 
+- (id)initWithResource:(YBHALResource *)aResource
+             requester:(id<CSRequester>)aRequester
+            credential:(id<CSCredential>)aCredential
+{
+    return [self initWithHal:aResource
+                   requester:aRequester
+                  credential:aCredential
+                        etag:nil];
+}
+
+
 - (void)loadFromResource:(YBHALResource *)aResource
 {
     resource = aResource;

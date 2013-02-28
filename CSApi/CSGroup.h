@@ -19,5 +19,7 @@
         requester:(id<CSRequester>)requester
        credential:(id<CSCredential>)credential
              etag:(id)etag;
-
+- (id)initWithResource:(YBHALResource *)aResource
+             requester:(id<CSRequester>)aRequester
+            credential:(id<CSCredential>)aCredential;
 @end

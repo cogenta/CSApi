@@ -1,6 +1,6 @@
 platform :ios, '6.0'
 pod 'AFNetworking'
-pod 'HyperBek'
+pod 'HyperBek', :hg => 'https://will_harris@bitbucket.org/will_harris/hyperbek', :tag => 'uritemplate'
 pod 'Base64'
 pod 'NSArray+Functional'
 

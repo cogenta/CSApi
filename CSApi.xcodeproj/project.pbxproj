@@ -58,6 +58,10 @@
 		BE7E6EB916D7E4CA000AA883 /* CSGroupListPage.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7E6EB816D7E4CA000AA883 /* CSGroupListPage.m */; };
 		BE7E6EBF16DB6FD9000AA883 /* CSGroupTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7E6EBE16DB6FD9000AA883 /* CSGroupTests.m */; };
 		BE7E6EC216DBA701000AA883 /* CSLikeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7E6EC116DBA701000AA883 /* CSLikeTests.m */; };
+		BE7E6EC516DBAE5C000AA883 /* CSUserGroupTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7E6EC416DBAE5C000AA883 /* CSUserGroupTests.m */; };
+		BE7E6EC916DBB25A000AA883 /* group.json in Resources */ = {isa = PBXBuildFile; fileRef = BE7E6EC816DBB25A000AA883 /* group.json */; };
+		BE7E6ECD16DBB753000AA883 /* groups.json in Resources */ = {isa = PBXBuildFile; fileRef = BE7E6ECC16DBB753000AA883 /* groups.json */; };
+		BE7E6ED016DBBAF2000AA883 /* CSGroupList.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7E6ECF16DBBAF1000AA883 /* CSGroupList.m */; };
 		BEA65A0D16B92F3100F10CB0 /* TestRequester.m in Sources */ = {isa = PBXBuildFile; fileRef = BEA65A0C16B92F3100F10CB0 /* TestRequester.m */; };
 		BEA65A1016B94DDF00F10CB0 /* CSApplicationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BEA65A0F16B94DDF00F10CB0 /* CSApplicationTests.m */; };
 		BEA65A1316B94E4900F10CB0 /* TestApi.m in Sources */ = {isa = PBXBuildFile; fileRef = BEA65A1216B94E4900F10CB0 /* TestApi.m */; };
@@ -119,10 +123,10 @@
 		BE0D502316C2C4B2005A1DC1 /* CSUserDefaultsAPIStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSUserDefaultsAPIStore.h; sourceTree = "<group>"; };
 		BE0D502416C2C4B2005A1DC1 /* CSUserDefaultsAPIStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSUserDefaultsAPIStore.m; sourceTree = "<group>"; };
 		BE0D502716C2C527005A1DC1 /* CSUserDefaultsAPIStoreTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSUserDefaultsAPIStoreTests.m; sourceTree = "<group>"; };
-		BE4B14A616B9722A00BDDD08 /* user_post_response.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = user_post_response.json; path = Fixtures/user_post_response.json; sourceTree = "<group>"; };
+		BE4B14A616B9722A00BDDD08 /* user_post_response.json */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = text.json; name = user_post_response.json; path = Fixtures/user_post_response.json; sourceTree = "<group>"; tabWidth = 2; };
 		BE4B14A816B9727300BDDD08 /* TestFixtures.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFixtures.h; sourceTree = "<group>"; };
 		BE4B14A916B9727300BDDD08 /* TestFixtures.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestFixtures.m; sourceTree = "<group>"; };
-		BE57713E16B98EFF002F42E4 /* user_post_response_with_reference_and_meta.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = user_post_response_with_reference_and_meta.json; path = Fixtures/user_post_response_with_reference_and_meta.json; sourceTree = "<group>"; };
+		BE57713E16B98EFF002F42E4 /* user_post_response_with_reference_and_meta.json */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = text.json; name = user_post_response_with_reference_and_meta.json; path = Fixtures/user_post_response_with_reference_and_meta.json; sourceTree = "<group>"; tabWidth = 2; };
 		BE57714016BA7C19002F42E4 /* CSAuthenticator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSAuthenticator.h; sourceTree = "<group>"; };
 		BE57714116BA7C44002F42E4 /* CSCredential.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSCredential.h; sourceTree = "<group>"; };
 		BE57714216BA7C8A002F42E4 /* CSRequester.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSRequester.h; sourceTree = "<group>"; };
@@ -144,6 +148,9 @@
 		BE62340F16D662530062A4D8 /* likes_page_0_embedded.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = likes_page_0_embedded.json; path = Fixtures/likes_page_0_embedded.json; sourceTree = "<group>"; };
 		BE62341116D6628D0062A4D8 /* likes_page_1_embedded.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = likes_page_1_embedded.json; path = Fixtures/likes_page_1_embedded.json; sourceTree = "<group>"; };
 		BE62341316D662B60062A4D8 /* likes_page_2_embedded.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = likes_page_2_embedded.json; path = Fixtures/likes_page_2_embedded.json; sourceTree = "<group>"; };
+		BE6439C516DFB1790015E822 /* CSApi.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CSApi.podspec; sourceTree = "<group>"; };
+		BE6439C616DFB1790015E822 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; fileEncoding = 4; path = Podfile; sourceTree = "<group>"; };
+		BE6439C716DFB1790015E822 /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
 		BE68DA8C16D62B64008ED350 /* CSApiUserLikeTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSApiUserLikeTests.m; sourceTree = "<group>"; };
 		BE7E6E7D16D7D0D6000AA883 /* NSError+CSExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+CSExtension.h"; sourceTree = "<group>"; };
 		BE7E6E7E16D7D0D6000AA883 /* NSError+CSExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+CSExtension.m"; sourceTree = "<group>"; };
@@ -187,6 +194,11 @@
 		BE7E6EB816D7E4CA000AA883 /* CSGroupListPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSGroupListPage.m; sourceTree = "<group>"; };
 		BE7E6EBE16DB6FD9000AA883 /* CSGroupTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSGroupTests.m; sourceTree = "<group>"; };
 		BE7E6EC116DBA701000AA883 /* CSLikeTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSLikeTests.m; sourceTree = "<group>"; };
+		BE7E6EC416DBAE5C000AA883 /* CSUserGroupTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSUserGroupTests.m; sourceTree = "<group>"; };
+		BE7E6EC816DBB25A000AA883 /* group.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = group.json; path = Fixtures/group.json; sourceTree = "<group>"; };
+		BE7E6ECC16DBB753000AA883 /* groups.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = groups.json; path = Fixtures/groups.json; sourceTree = "<group>"; };
+		BE7E6ECE16DBBAF1000AA883 /* CSGroupList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSGroupList.h; sourceTree = "<group>"; };
+		BE7E6ECF16DBBAF1000AA883 /* CSGroupList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSGroupList.m; sourceTree = "<group>"; };
 		BEA65A0B16B92F3100F10CB0 /* TestRequester.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestRequester.h; sourceTree = "<group>"; };
 		BEA65A0C16B92F3100F10CB0 /* TestRequester.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestRequester.m; sourceTree = "<group>"; };
 		BEA65A0F16B94DDF00F10CB0 /* CSApplicationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSApplicationTests.m; sourceTree = "<group>"; };
@@ -245,6 +257,9 @@
 		BE06A4B116B6E54900F345F8 = {
 			isa = PBXGroup;
 			children = (
+				BE6439C516DFB1790015E822 /* CSApi.podspec */,
+				BE6439C616DFB1790015E822 /* Podfile */,
+				BE6439C716DFB1790015E822 /* LICENSE.txt */,
 				BE01AA7216B7FF0800982D27 /* MobileCoreServices.framework */,
 				BE01AA7016B7FEE500982D27 /* SystemConfiguration.framework */,
 				BE06A4C116B6E54900F345F8 /* CSAPI */,
@@ -337,6 +352,8 @@
 				BE7E6EB216D7DF1E000AA883 /* CSMutableGroup.m */,
 				BE7E6EB416D7E09D000AA883 /* CSGroup.h */,
 				BE7E6EB516D7E09D000AA883 /* CSGroup.m */,
+				BE7E6ECE16DBBAF1000AA883 /* CSGroupList.h */,
+				BE7E6ECF16DBBAF1000AA883 /* CSGroupList.m */,
 			);
 			name = CSAPI;
 			path = CSApi;
@@ -366,6 +383,7 @@
 				BE0D502716C2C527005A1DC1 /* CSUserDefaultsAPIStoreTests.m */,
 				BE7E6EBE16DB6FD9000AA883 /* CSGroupTests.m */,
 				BE7E6EC116DBA701000AA883 /* CSLikeTests.m */,
+				BE7E6EC416DBAE5C000AA883 /* CSUserGroupTests.m */,
 			);
 			path = CSApiTests;
 			sourceTree = "<group>";
@@ -419,6 +437,8 @@
 				BE62340F16D662530062A4D8 /* likes_page_0_embedded.json */,
 				BE62341116D6628D0062A4D8 /* likes_page_1_embedded.json */,
 				BE62341316D662B60062A4D8 /* likes_page_2_embedded.json */,
+				BE7E6EC816DBB25A000AA883 /* group.json */,
+				BE7E6ECC16DBB753000AA883 /* groups.json */,
 			);
 			name = Fixtures;
 			sourceTree = "<group>";
@@ -516,6 +536,8 @@
 				BE62341016D662530062A4D8 /* likes_page_0_embedded.json in Resources */,
 				BE62341216D6628D0062A4D8 /* likes_page_1_embedded.json in Resources */,
 				BE62341416D662B60062A4D8 /* likes_page_2_embedded.json in Resources */,
+				BE7E6EC916DBB25A000AA883 /* group.json in Resources */,
+				BE7E6ECD16DBB753000AA883 /* groups.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -608,6 +630,7 @@
 				BE7E6EB316D7DF1E000AA883 /* CSMutableGroup.m in Sources */,
 				BE7E6EB616D7E09D000AA883 /* CSGroup.m in Sources */,
 				BE7E6EB916D7E4CA000AA883 /* CSGroupListPage.m in Sources */,
+				BE7E6ED016DBBAF2000AA883 /* CSGroupList.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -631,6 +654,7 @@
 				BE68DA8D16D62B64008ED350 /* CSApiUserLikeTests.m in Sources */,
 				BE7E6EBF16DB6FD9000AA883 /* CSGroupTests.m in Sources */,
 				BE7E6EC216DBA701000AA883 /* CSLikeTests.m in Sources */,
+				BE7E6EC516DBAE5C000AA883 /* CSUserGroupTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

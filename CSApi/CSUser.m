@@ -13,9 +13,11 @@
 #import "CSMutableUser.h"
 #import "CSHALRepresentation.h"
 #import "NSError+CSExtension.h"
-#import "CSMutableLike.h"
 #import "CSLike.h"
 #import "CSLikeListPage.h"
+#import "CSMutableGroup.h"
+#import "CSGroup.h"
+#import "CSGroupListPage.h"
 #import <objc/runtime.h>
 
 @implementation CSUser
@@ -161,22 +163,80 @@
      }];
 }
 
-- (void)getGroupsWithReference:(NSString *)reference callback:(void (^)(id<CSGroupListPage>, NSError *))callback
+- (void)getGroupsWithReference:(NSString *)aReference callback:(void (^)(id<CSGroupListPage>, NSError *))callback
 {
-    NSError *notImplemented = [NSError errorWithDomain:@"Not Implemented" code:0 userInfo:nil];
-    callback(nil, notImplemented);
+    YBHALLink *groupsByReferenceLink = [resource linkForRelation:@"/rels/groupsbyreference"];
+    NSURL *groupsURL = [groupsByReferenceLink URLWithVariables:@{@"reference": aReference}];
+    [self.requester getURL:groupsURL
+                credential:self.credential
+                  callback:^(id result, id etag, NSError *error)
+     {
+         if (error) {
+             callback(nil, error);
+             return;
+         }
+         
+         callback([[CSGroupListPage alloc] initWithHal:result
+                                             requester:self.requester
+                                            credential:self.credential],
+                  nil);
+     }];
 }
 
 - (void)getGroups:(void (^)(id<CSGroupListPage>, NSError *))callback
 {
-    NSError *notImplemented = [NSError errorWithDomain:@"Not Implemented" code:0 userInfo:nil];
-    callback(nil, notImplemented);
+    NSURL *groupsURL = [resource linkForRelation:@"/rels/groups"].URL;
+    [self.requester getURL:groupsURL
+                credential:self.credential
+                  callback:^(id result, id etag, NSError *error)
+     {
+         if (error) {
+             callback(nil, error);
+             return;
+         }
+         
+         callback([[CSGroupListPage alloc] initWithHal:result
+                                             requester:self.requester
+                                            credential:self.credential],
+                  nil);
+     }];
 }
 
-- (void)createGroupWithChange:(void (^)(id<CSMutableGroup>))change callback:(void (^)(id<CSGroup>, NSError *))callback
+- (void)createGroupWithChange:(void (^)(id<CSMutableGroup>))change
+                     callback:(void (^)(id<CSGroup>, NSError *))callback
 {
-    NSError *notImplemented = [NSError errorWithDomain:@"Not Implemented" code:0 userInfo:nil];
-    callback(nil, notImplemented);
+    CSMutableGroup *group = [[CSMutableGroup alloc] init];
+    change(group);
+    
+    id<CSRepresentation> representation = [CSHALRepresentation
+                                           representationWithBaseURL:self.URL];
+    
+    if ( ! representation) {
+        NSDictionary *userInfo = @{NSLocalizedDescriptionKey:
+                                       @"representation is nil"};
+        callback(NO, [NSError errorWithDomain:@"CSAPI"
+                                         code:3
+                                     userInfo:userInfo]);
+        return;
+    }
+    
+    NSURL *groupsURL = [resource linkForRelation:@"/rels/groups"].URL;
+    id body = [group representWithRepresentation:representation];
+    [self.requester postURL:groupsURL
+                 credential:self.credential
+                       body:body
+                   callback:^(id result, id newEtag, NSError *error)
+     {
+         if ( ! result) {
+             callback(nil, error);
+             return;
+         }
+         
+         CSGroup *group = [[CSGroup alloc] initWithResource:result
+                                                  requester:self.requester
+                                                 credential:self.credential];
+         callback(group, nil);
+     }];
 }
 
 - (NSString *)description

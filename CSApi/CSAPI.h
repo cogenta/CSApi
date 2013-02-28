@@ -247,6 +247,8 @@
 - (void)change:(void (^)(id<CSMutableUser> user))change
       callback:(void (^)(BOOL success, NSError *error))callback;
 
+/** @name Likes */
+
 /** Tries to get a list of likes for the user.
  
  This method uses the user's credentials to fetch the likes resource.
@@ -265,15 +267,72 @@
  successfully obtained, or when the operation has failed.
  
  */
-- (void)getLikes:(void (^)(id<CSLikeListPage> firstPage, NSError *error))callback;
+- (void)getLikes:(void (^)(id<CSLikeListPage> firstPage,
+                           NSError *error))callback;
 
+/** @name Groups */
+
+/** Tries to create a group with the state defined by the given change.
+ 
+ Control returns from createGroupWithChange:callback: immediately after the
+ block, change, finishes and an attempt is made to create the resource in the
+ background. If the operation is successful, callback is invoked with a non-nil
+ [id\<CSGroup\>](CSGroup) in group and a nil error. If the operation fails,
+ callback is invoked with a nil group and a non-nil error.
+ 
+ @param change A block accepting an object conforming to CSMutableGroup that
+ makes edits to that object.
+ @param callback The block to invoke when the group has been successfully
+ created, or when the operation has failed.
+ */
 - (void)createGroupWithChange:(void (^)(id<CSMutableGroup>))change
-                     callback:(void (^)(id<CSGroup> like, NSError *error))callback;
+                     callback:(void (^)(id<CSGroup> group,
+                                        NSError *error))callback;
 
-- (void)getGroups:(void (^)(id<CSGroupListPage> firstPage, NSError *error))callback;
+/** Tries to get a list of groups for the user.
+ 
+ This method uses the user's credentials to fetch the user's groups resource.
+ 
+ Control returns from getGroups: immediately. If the operation is successful,
+ the given callback is invoked with a non-nil
+ [id\<CSGroupListPage\>](CSGroupListPage) in firstPage and a nil error.
+ firstPage is the first page of the result set. It is recommended that client
+ code uses firstPage.groupList to get an [id\<CSGroupList\>](CSGroupList), which
+ provides convenient access to groups in the list.
+ 
+ If the operation fails, callback is invoked with a nil firstPage and a non-nil
+ error.
+ 
+ @param callback The block to invoke when the groups list has been
+ successfully obtained, or when the operation has failed.
+ 
+ */
+- (void)getGroups:(void (^)(id<CSGroupListPage> firstPage,
+                            NSError *error))callback;
 
+/** Searches for groups that match the given reference.
+ 
+ This method uses the user's credentials to search for groups belonging to the
+ user that match the given `reference`.
+ 
+ Control returns from getGroups: immediately. If the operation is successful,
+ the given callback is invoked with a non-nil
+ [id\<CSGroupListPage\>](CSGroupListPage) in firstPage and a nil error.
+ firstPage is the first page of the result set. It is recommended that client
+ code uses firstPage.groupList to get an [id\<CSGroupList\>](CSGroupList), which
+ provides convenient access to groups in the list.
+ 
+ If the operation fails, callback is invoked with a nil firstPage and a non-nil
+ error.
+ 
+ @param reference The reference used to search for groups.
+ @param callback The block to invoke when the groups list has been
+ successfully obtained, or when the operation has failed.
+ 
+ */
 - (void)getGroupsWithReference:(NSString *)reference
-                      callback:(void (^)(id<CSGroupListPage> firstPage, NSError *error))callback;
+                      callback:(void (^)(id<CSGroupListPage> firstPage,
+                                         NSError *error))callback;
 @end
 
 /** Protocol for making changes to a user.
@@ -523,8 +582,8 @@
  since the group was obtained, the change block will be invoked again with the
  new user data.
  
- If the edits are applied successfully, this group object is made up-to-date then
- `callback(YES, nil)` is invoked. If an error is detected, callback will be
+ If the edits are applied successfully, this group object is made up-to-date
+ then `callback(YES, nil)` is invoked. If an error is detected, callback will be
  invoked with `NO` in the first argument an the error in the second argument.
  
  @param change A block accepting an object conforming to CSMutableGroup that
@@ -544,9 +603,9 @@
  
  Control returns from getLikes: immediately. If the operation is successful,
  the given callback is invoked with a non-nil
- [id\<CSLikesListPage\>](CSLikesListPage) in firstPage and a nil error.
+ [id\<CSLikeListPage\>](CSLikeListPage) in firstPage and a nil error.
  firstPage is the first page of the result set. It is recommended that client
- code uses firstPage.likesList to get an [id\<CSLikesList\>](CSLikesList), which
+ code uses firstPage.likesList to get an [id\<CSLikeList\>](CSLikeList), which
  provides convenient access to likes in the list.
  
  If the operation fails, callback is invoked with a nil firstPage and a non-nil
@@ -556,7 +615,8 @@
  successfully obtained, or when the operation has failed.
  
  */
-- (void)getLikes:(void (^)(id<CSLikeListPage> firstPage, NSError *error))callback;
+- (void)getLikes:(void (^)(id<CSLikeListPage> firstPage,
+                           NSError *error))callback;
 
 /** Tries to create a like with the state defined by the given change.
  
@@ -572,7 +632,8 @@
  created, or when the operation has failed.
  */
 - (void)createLikeWithChange:(void (^)(id<CSMutableLike>))change
-                    callback:(void (^)(id<CSLike> like, NSError *error))callback;
+                    callback:(void (^)(id<CSLike> like,
+                                       NSError *error))callback;
 
 /** Tries to delete the group.
  

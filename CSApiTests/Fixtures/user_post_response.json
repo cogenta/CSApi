@@ -13,6 +13,16 @@
     }, 
     "app:developer": {
       "href": "/developers/5101280670467949bd575fce"
+    },
+    "api:likes": {
+      "href": "/users/12345/likes/"
+    },
+    "api:groups": {
+      "href": "/users/12345/groups/"
+    },
+    "api:groupsbyreference": {
+      "href": "/users/12345/groups/{?reference}",
+      "templated": true
     }
   }
 }

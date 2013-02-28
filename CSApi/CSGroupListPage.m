@@ -7,7 +7,21 @@
 //
 
 #import "CSGroupListPage.h"
+#import "CSGroupList.h"
 
 @implementation CSGroupListPage
+
+@synthesize groupList;
+
+- (id<CSGroupList>)groupList
+{
+    if (  ! groupList) {
+        groupList = [[CSGroupList alloc] initWithPage:self
+                                            requester:self.requester
+                                           credential:self.credential];
+    }
+    
+    return groupList;
+}
 
 @end
