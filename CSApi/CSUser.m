@@ -167,6 +167,8 @@
 {
     YBHALLink *groupsByReferenceLink = [resource linkForRelation:@"/rels/groupsbyreference"];
     NSURL *groupsURL = [groupsByReferenceLink URLWithVariables:@{@"reference": aReference}];
+    groupsURL = [NSURL URLWithString:[groupsURL absoluteString]
+                       relativeToURL:self.URL];
     [self.requester getURL:groupsURL
                 credential:self.credential
                   callback:^(id result, id etag, NSError *error)
