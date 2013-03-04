@@ -120,6 +120,8 @@
                                           etag:@"ORIGINAL ETAG"];
     NSURL *url = [[userResource linkForRelation:@"/rels/groupsbyreference"]
                   URLWithVariables:@{@"reference": @"foo"}];
+    url = [[NSURL URLWithString:[url absoluteString]
+                  relativeToURL:user.URL] absoluteURL];
     [requester addGetResponse:groupsResource
                        forURL:url];
     
