@@ -1,0 +1,16 @@
+{
+  "_links": {
+    "curie": {
+      "href": "/rels/{rel}", 
+      "name": "api", 
+      "templated": true
+    }, 
+    "self": {
+      "href": "/retailers/238"
+    },
+    "api:logo": {
+      "href": "/pictures/1"
+    }
+  }, 
+  "name": "99p Stores"
+}

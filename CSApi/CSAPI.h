@@ -31,6 +31,12 @@
 @protocol CSGroupList;
 @protocol CSGroupListPage;
 
+@protocol CSPicture;
+
+@protocol CSImage;
+@protocol CSImageList;
+@protocol CSImageListPage;
+
 /**
  Provides access to the Cogenta Shopping API.
  
@@ -431,6 +437,8 @@
 /** The name of the retailer. */
 @property (readonly) NSString *name;
 
+- (void)getLogo:(void (^)(id<CSPicture> picture, NSError *error))callback;
+
 @end
 
 /** Protocol for accessing a list of items. */
@@ -691,5 +699,27 @@
  list of groups.
  */
 @property (readonly) id<CSGroupList> groupList;
+
+@end
+
+@protocol CSPicture <CSListPage>
+
+@property (readonly) id<CSImageList> imageList;
+
+@end
+
+@protocol CSImageList <CSList>
+
+- (void)getImageAtIndex:(NSUInteger)index
+               callback:(void (^)(id<CSImage> image, NSError *error))callback;
+
+@end
+
+@protocol CSImage <NSObject>
+
+@property (readonly) NSNumber *width;
+@property (readonly) NSNumber *height;
+@property (readonly) NSURL *enclosureURL;
+@property (readonly) NSString *enclosureType;
 
 @end

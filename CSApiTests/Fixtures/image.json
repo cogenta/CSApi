@@ -1,0 +1,21 @@
+{
+  "width": 80, 
+  "_links": {
+    "api:picture": {
+      "href": "/pictures/1"
+    }, 
+    "self": {
+      "href": "/images/1"
+    }, 
+    "curie": {
+      "href": "/rels/{rel}", 
+      "name": "api", 
+      "templated": true
+    }, 
+    "enclosure": {
+      "href": "http://localhost/img/img80x24.png",
+      "type": "image/png"
+    }
+  }, 
+  "height": 24
+}

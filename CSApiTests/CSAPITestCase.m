@@ -60,6 +60,10 @@
 
 + (NSDictionary *)jsonForData:(NSData *)data
 {
+    if ( ! data) {
+        return nil;
+    }
+    
     __block NSError *error = nil;
     id json = [NSJSONSerialization JSONObjectWithData:data
                                               options:0

@@ -29,6 +29,10 @@ dataForFixture(NSString *fixture)
                                    options:0
                                      error:&error];
     
+    if ( ! result) {
+        return nil;
+    }
+    
     if ( ! results) {
         results = [[NSMutableDictionary alloc] init];
     }

@@ -1,0 +1,16 @@
+{
+  "_links": {
+    "self": {
+      "href": "/pictures/1"
+    }, 
+    "api:image": {
+      "href": "/images/1"
+    },
+    "curie": {
+      "href": "/rels/{rel}", 
+      "name": "api", 
+      "templated": true
+    }
+  },
+  "count": 1
+}
