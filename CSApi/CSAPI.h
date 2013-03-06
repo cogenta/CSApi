@@ -437,6 +437,16 @@
 /** The name of the retailer. */
 @property (readonly) NSString *name;
 
+/** Tries to fetch a description of the retailer's logo.
+ 
+ Control returns from getLogo: immediately. If the operation is
+ successful, the given callback is invoked with a non-nil
+ [id\<CSPicture\>](CSPicture) in picture and a nil error. If the operation
+ fails, callback is invoked with a nil picture and a non-nil error.
+ 
+ @param callback The block to invoke when the picture has been
+ successfully obtained, or when the operation has failed.
+ */
 - (void)getLogo:(void (^)(id<CSPicture> picture, NSError *error))callback;
 
 @end
@@ -702,24 +712,61 @@
 
 @end
 
+/** Protocol for accessing pictures.
+ 
+ Conceptually, a picture is a notional abstract element of visual information.
+ Since the API is intended to be used with devices that cannot render abstract
+ objects and by users who cannot perceive them, a picture also provides access
+ to a collection of concrete images that approximate the true picture and can be
+ rendered and perceived.
+ 
+ Client code is expected to use this protocol's imageList property to get an
+ object confirming to CSImageList.
+ */
 @protocol CSPicture <CSListPage>
 
+/** An object confirming to CSImageList that provides convenient access to the
+ list of images.
+ */
 @property (readonly) id<CSImageList> imageList;
 
 @end
 
+/** Protocol for accessing a list of images. */
 @protocol CSImageList <CSList>
 
+/** Tries to fetch the image at the given index.
+ 
+ Control returns from getImageAtIndex:callback: immediately. If the operation
+ is successful, the given callback is invoked with a non-nil
+ [id\<CSImage\>](CSImage) in image and a nil error. If the operation
+ fails, callback is invoked with a nil image and a non-nil error.
+ 
+ @param index The index in the sequence of the image to retrieve.
+ @param callback The block to invoke when the image has been successfully
+ obtained, or when the operation has failed.
+ */
 - (void)getImageAtIndex:(NSUInteger)index
                callback:(void (^)(id<CSImage> image, NSError *error))callback;
 
 @end
 
+/** Protocol for accessing an image.
+ 
+ An image is metadata about an raster image file.
+ */
 @protocol CSImage <NSObject>
 
+/** The width of the raster image in pixels. */
 @property (readonly) NSNumber *width;
+
+/** The height of the raster image in pixels. */
 @property (readonly) NSNumber *height;
+
+/** A URL where the raster image file can be obtained. */
 @property (readonly) NSURL *enclosureURL;
+
+/** The content type of the raster image file at the URL. */
 @property (readonly) NSString *enclosureType;
 
 @end
