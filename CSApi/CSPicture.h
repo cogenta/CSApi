@@ -9,8 +9,6 @@
 #import "CSCredentialEntity.h"
 #import "CSListPage.h"
 
-@class YBHALResource;
-
 @interface CSPicture : CSListPage <CSPicture>
 
 @end

@@ -1,0 +1,96 @@
+{
+  
+  "_embedded": {
+    "api:pictures": {
+      
+      "count": 1,
+      "_embedded": {
+        "/rels/picture": {
+          
+          "count": 4,
+          "_embedded": {
+            "/rels/image": [
+              {
+                
+                "width": 320,
+                "_links": {
+                  "self": {
+                    "href": "/productimages/39658569_320"
+                  },
+                  "enclosure": {
+                    "href": "http://320.images.sccope.com/39658569.jpg",
+                    "type": "image/pjpeg"
+                  }
+                },
+                "height": 320
+              },
+              {
+                
+                "width": 160,
+                "_links": {
+                  "self": {
+                    "href": "/productimages/39658569_160"
+                  },
+                  "enclosure": {
+                    "href": "http://160.images.sccope.com/39658569.jpg",
+                    "type": "image/pjpeg"
+                  }
+                },
+                "height": 160
+              },
+              {
+                
+                "width": 116,
+                "_links": {
+                  "self": {
+                    "href": "/productimages/39658569_116"
+                  },
+                  "enclosure": {
+                    "href": "http://116.images.sccope.com/39658569.jpg",
+                    "type": "image/pjpeg"
+                  }
+                },
+                "height": 116
+              },
+              {
+                
+                "width": 58,
+                "_links": {
+                  "self": {
+                    "href": "/productimages/39658569_58"
+                  },
+                  "enclosure": {
+                    "href": "http://58.images.sccope.com/39658569.jpg",
+                    "type": "image/pjpeg"
+                  }
+                },
+                "height": 58
+              }
+            ]
+          },
+          "_links": {
+            "self": {
+              "href": "/productpictures/39658569"
+            }
+          }
+        }
+      },
+      "_links": {
+        "self": {
+          "href": "/products/10lYwz/pictures/"
+        }
+      }
+    }
+  },
+  "_links": {
+    "self": {
+      "href": "/productsummaries/10lYwz"
+    },
+    "curie": {
+      "name": "api",
+      "href": "/rels/{rel}",
+      "templated": true
+    }
+  },
+  "name": "From These Ashes: The Complete Short SF (Science Fiction) of Fredric Brown"
+}

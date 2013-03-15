@@ -10,6 +10,9 @@
     },
     "api:logo": {
       "href": "/pictures/1"
+    },
+    "api:productsummaries": {
+      "href": "/retailers/238/productsummaries/"
     }
   }, 
   "name": "99p Stores"

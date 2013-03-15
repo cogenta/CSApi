@@ -32,10 +32,16 @@
 @protocol CSGroupListPage;
 
 @protocol CSPicture;
+@protocol CSPictureListPage;
+@protocol CSPictureList;
 
 @protocol CSImage;
 @protocol CSImageList;
 @protocol CSImageListPage;
+
+@protocol CSProductSummaryListPage;
+@protocol CSProductSummaryList;
+@protocol CSProductSummary;
 
 /**
  Provides access to the Cogenta Shopping API.
@@ -449,6 +455,9 @@
  */
 - (void)getLogo:(void (^)(id<CSPicture> picture, NSError *error))callback;
 
+- (void)getProductSummaries:(void (^)(id<CSProductSummaryListPage> productSummaries,
+                             NSError *error))callback;
+
 @end
 
 /** Protocol for accessing a list of items. */
@@ -768,5 +777,39 @@
 
 /** The content type of the raster image file at the URL. */
 @property (readonly) NSString *enclosureType;
+
+@end
+
+@protocol CSProductSummaryListPage <CSListPage>
+
+@property (readonly) id<CSProductSummaryList> productSummaryList;
+
+@end
+
+@protocol CSProductSummaryList <CSList>
+
+- (void)getProductSummaryAtIndex:(NSUInteger)index
+                        callback:(void (^)(id<CSProductSummary>, NSError *))callback;
+
+@end
+
+@protocol CSProductSummary <NSObject>
+
+@property (readonly) NSString *name;
+
+- (void)getPictures:(void (^)(id<CSPictureListPage> pictures, NSError *error))callback;
+
+@end
+
+@protocol CSPictureListPage <CSListPage>
+
+@property (readonly) id<CSPictureList> pictureList;
+
+@end
+
+@protocol CSPictureList <CSList>
+
+- (void)getPictureAtIndex:(NSUInteger)index
+                 callback:(void (^)(id<CSPicture>, NSError *))callback;
 
 @end
