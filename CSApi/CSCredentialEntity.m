@@ -7,6 +7,10 @@
 //
 
 #import "CSCredentialEntity.h"
+#import <HyperBek/HyperBek.h>
+#import "CSListItem.h"
+#import "CSLinkListItem.h"
+#import "CSResourceListItem.h"
 
 @implementation CSCredentialEntity
 
@@ -46,6 +50,26 @@
                  body:body
                  etag:etag
              callback:callback];
+}
+
+- (void)getRelation:(NSString *)relation
+        forResource:(YBHALResource *)resource
+           callback:(void (^)(YBHALResource *, NSError *))callback
+{
+    YBHALResource *itemResource = [resource resourceForRelation:relation];
+    CSListItem *item = nil;
+    if (itemResource) {
+        item = [[CSResourceListItem alloc] initWithResource:itemResource
+                                                  requester:self.requester
+                                                 credential:self.credential];
+    } else {
+        YBHALLink *itemLink = [resource linkForRelation:relation];
+        item = [[CSLinkListItem alloc] initWithLink:itemLink
+                                          requester:self.requester
+                                         credential:self.credential];
+    }
+    
+    [item getSelf:callback];
 }
 
 @end

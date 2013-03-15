@@ -40,20 +40,10 @@
 
 - (void)getPictures:(void (^)(id<CSPictureListPage>, NSError *))callback
 {
-    YBHALResource *itemResource = [resource resourceForRelation:@"/rels/pictures"];
-    CSListItem *item = nil;
-    if (itemResource) {
-        item = [[CSResourceListItem alloc] initWithResource:itemResource
-                                                  requester:self.requester
-                                                 credential:self.credential];
-    } else {
-        YBHALLink *logoLink = [resource linkForRelation:@"/rels/pictures"];
-        item = [[CSLinkListItem alloc] initWithLink:logoLink
-                                          requester:self.requester
-                                         credential:self.credential];
-    }
-
-    [item getSelf:^(YBHALResource *page, NSError *error) {
+    [self getRelation:@"/rels/pictures"
+          forResource:resource
+             callback:^(YBHALResource *page, NSError *error)
+    {
         if (error) {
             callback(nil, error);
             return;

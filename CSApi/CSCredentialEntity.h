@@ -9,6 +9,8 @@
 #import "CSAPI.h"
 #import "CSRequester.h"
 
+@class YBHALResource;
+
 @interface CSCredentialEntity : NSObject
 
 @property (strong, nonatomic) id<CSRequester> requester;
@@ -27,6 +29,10 @@
           body:(id)body
           etag:(id)etag
       callback:(requester_callback_t)callback;
+
+- (void)getRelation:(NSString *)relation
+        forResource:(YBHALResource *)resource
+           callback:(void (^)(YBHALResource *, NSError *))callback;
 
 @end
 

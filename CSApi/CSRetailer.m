@@ -53,20 +53,10 @@
 
 - (void)getLogo:(void (^)(id<CSPicture>, NSError *))callback
 {
-    YBHALResource *itemResource = [resource resourceForRelation:@"/rels/logo"];
-    CSListItem *item = nil;
-    if (itemResource) {
-        item = [[CSResourceListItem alloc] initWithResource:itemResource
-                                                      requester:self.requester
-                                                     credential:self.credential];
-    } else {
-        YBHALLink *logoLink = [resource linkForRelation:@"/rels/logo"];
-        item = [[CSLinkListItem alloc] initWithLink:logoLink
-                                              requester:self.requester
-                                             credential:self.credential];
-    }
-
-    [item getSelf:^(YBHALResource *logoResource, NSError *error) {
+    [self getRelation:@"/rels/logo"
+          forResource:resource
+             callback:^(YBHALResource *logoResource, NSError *error)
+     {
         if (error) {
             callback(nil, error);
         }
@@ -80,8 +70,9 @@
 
 - (void)getProductSummaries:(void (^)(id<CSProductSummaryListPage>, NSError *))callback
 {
-    NSURL *URL = [resource linkForRelation:@"/rels/productsummaries"].URL;
-    [self getURL:URL callback:^(YBHALResource *result, id etag, NSError *error)
+    [self getRelation:@"/rels/productsummaries"
+          forResource:resource
+             callback:^(YBHALResource *result, NSError *error)
      {
          if (error) {
              callback(nil, error);
@@ -89,8 +80,8 @@
          }
          
          callback([[CSProductSummaryListPage alloc] initWithHal:result
-                                                requester:self.requester
-                                               credential:self.credential],
+                                                      requester:self.requester
+                                                     credential:self.credential],
                   nil);
      }];
 }
