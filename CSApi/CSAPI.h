@@ -455,7 +455,24 @@
  */
 - (void)getLogo:(void (^)(id<CSPicture> picture, NSError *error))callback;
 
-- (void)getProductSummaries:(void (^)(id<CSProductSummaryListPage> productSummaries,
+/** Tries to get a list of products supplied by the retailer.
+ 
+ Control returns from getProductSummaries: immediately. If the operation is
+ successful, the given callback is invoked with a non-nil
+ [id\<CSProductSummaryListPage\>](CSProductSummaryListPage) in firstPage and a nil
+ error. firstPage is the first page of the result set. It is recommended that
+ client code use firstPage.productSummaryList to get an
+ [id\<CSProductSummaryList\>](CSProductSummaryList), which provides convenient
+ access to product summaries in the list.
+ 
+ If the operation fails, callback is invoked with a nil firstPage and a non-nil
+ error.
+ 
+ @param callback The block to invoke when the product summaries list has been
+ successfully obtained, or when the operation has failed.
+ 
+ */
+- (void)getProductSummaries:(void (^)(id<CSProductSummaryListPage> firstPage,
                              NSError *error))callback;
 
 @end
@@ -780,36 +797,99 @@
 
 @end
 
+/** Protocol for accessing pages of product summaries in a sequence of results.
+ 
+ Client code is expected to use this protocol's productSummaryList property to
+ get an object conforming to CSProductSummaryList.
+ 
+ */
 @protocol CSProductSummaryListPage <CSListPage>
 
+/** An object conforming to CSProductSummaryList that provides convenient access
+ to the list of product summaries.
+ */
 @property (readonly) id<CSProductSummaryList> productSummaryList;
 
 @end
 
+/** Protocol for accessing a list of product summaries. */
 @protocol CSProductSummaryList <CSList>
 
+/** Tries to fetch the product summary at the given index.
+ 
+ Control returns from getProductSummaryAtIndex:callback: immediately. If the
+ operation is successful, the given callback is invoked with a non-nil
+ [id\<CSProductSummary\>](CSProductSummary) in result and a nil error. If the
+ operation fails, callback is invoked with a nil result and a non-nil error.
+ 
+ @param index The index in the sequence of the product summary to retrieve.
+ @param callback The block to invoke when the product summary has been
+ successfully obtained, or when the operation has failed.
+ */
 - (void)getProductSummaryAtIndex:(NSUInteger)index
-                        callback:(void (^)(id<CSProductSummary>, NSError *))callback;
+                        callback:(void (^)(id<CSProductSummary> result,
+                                           NSError *error))callback;
 
 @end
 
+/** Protocol for access product summaries. */
 @protocol CSProductSummary <NSObject>
 
+/** The name of the product. */
 @property (readonly) NSString *name;
 
-- (void)getPictures:(void (^)(id<CSPictureListPage> pictures, NSError *error))callback;
+/** Tries to get a list of pictures of the product.
+ 
+ Control returns from getPictures: immediately. If the operation is successful,
+ the given callback is invoked with a non-nil
+ [id\<CSPictureListPage\>](CSPictureListPage) in firstPage and a nil error.
+ firstPage is the first page of the result set. It is recommended that client
+ code use pictureList to get an [id\<CSPictureList\>](CSPictureList), which
+ provides convenient access to pictures in the list.
+ 
+ If the operation fails, callback is invoked with a nil firstPage and a non-nil
+ error.
+ 
+ @param callback The block to invoke when the pictures list has been
+ successfully obtained, or when the operation has failed.
+ 
+ */
+- (void)getPictures:(void (^)(id<CSPictureListPage> firstPage,
+                              NSError *error))callback;
 
 @end
 
+/** Protocol for accessing pages of picturesin a sequence of results.
+ 
+ Client code is expected to use this protocol's pictureList property to
+ get an object conforming to CSPictureList.
+ 
+ */
 @protocol CSPictureListPage <CSListPage>
 
+/** An object conforming to CSPictureList that provides convenient access to the
+ list of pictures.
+ */
 @property (readonly) id<CSPictureList> pictureList;
 
 @end
 
+/** Protocol for accessing a list of pictures. */
 @protocol CSPictureList <CSList>
 
+/** Tries to fetch the picture at the given index.
+ 
+ Control returns from getPictureAtIndex:callback: immediately. If the
+ operation is successful, the given callback is invoked with a non-nil
+ [id\<CSPicture\>](CSPicture) in result and a nil error. If the
+ operation fails, callback is invoked with a nil result and a non-nil error.
+ 
+ @param index The index in the sequence of the picture to retrieve.
+ @param callback The block to invoke when the picture has been successfully
+ obtained, or when the operation has failed.
+ */
 - (void)getPictureAtIndex:(NSUInteger)index
-                 callback:(void (^)(id<CSPicture>, NSError *))callback;
+                 callback:(void (^)(id<CSPicture> result,
+                                    NSError *error))callback;
 
 @end
