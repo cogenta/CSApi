@@ -25,6 +25,15 @@
     return productSummaryList;
 }
 
+- (id<CSListPage>)pageWithHal:(YBHALResource *)resource
+                    requester:(id<CSRequester>)aRequester
+                   credential:(id<CSCredential>)aCredential
+{
+    return [[CSProductSummaryListPage alloc] initWithHal:resource
+                                               requester:self.requester
+                                              credential:self.credential];
+}
+
 - (NSString *)rel
 {
     return @"/rels/productsummary";
