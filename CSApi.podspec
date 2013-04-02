@@ -13,7 +13,7 @@ Pod::Spec.new do |s|
   s.frameworks = 'MobileCoreServices', 'SystemConfiguration', 'Foundation'
   s.requires_arc = true
   s.dependency 'AFNetworking'
-  s.dependency 'HyperBek', :hg => 'https://will_harris@bitbucket.org/will_harris/hyperbek', :tag => 'uritemplate'
+  s.dependency 'HyperBek', '~> 0.2.0'
   s.dependency 'Base64'
   s.dependency 'NSArray+Functional' 
 end
