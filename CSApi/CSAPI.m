@@ -14,6 +14,7 @@
 #import "CSAPIRequester.h"
 #import "CSUserDefaultsAPIStore.h"
 #import "CSUser.h"
+#import "CSRetailer.h"
 #import <objc/runtime.h>
 
 @interface CSAPI ()
@@ -96,6 +97,25 @@
                                          credential:aCredential
                                                etag:etag];
          callback(user, nil);
+     }];
+}
+
+- (void)getRetailer:(NSURL *)URL callback:(void (^)(id<CSRetailer>, NSError *))callback
+{
+    id requester = [self requester];
+    [requester getURL:URL
+           credential:self.credential
+             callback:^(YBHALResource *result, id etag, NSError *error)
+     {
+         if (error) {
+             callback(nil, error);
+             return;
+         }
+         
+         callback([[CSRetailer alloc] initWithResource:result
+                                             requester:self.requester
+                                            credential:self.credential],
+                  nil);
      }];
 }
 

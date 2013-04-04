@@ -13,6 +13,7 @@
 #import "CSHALRepresentation.h"
 #import <objc/runtime.h>
 #import "CSRetailerListPage.h"
+#import "CSRetailer.h"
 
 @implementation CSApplication
 

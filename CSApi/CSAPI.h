@@ -133,6 +133,20 @@
      credential:(id<CSCredential>)credential
        callback:(void (^)(id<CSUser> user, NSError *error))callback;
 
+/** Tries to get an arbitrary retailer object.
+ 
+ Control returns from getRetailer:callback: immediately. If the operation is
+ successful, callback is invoked with a non-nil [id\<CSRetailer\>](CSRetailer)
+ in retailer and a nil error. If the operation fails, callback is invoked with
+ a nil retailer and a non-nil error.
+ 
+ @param URL the URL of the user to fetch.
+ @param callback The block to invoke when the retailer has been successfully
+ obtained, or when the operation has failed.
+ */
+- (void)getRetailer:(NSURL *)URL
+           callback:(void (^)(id<CSRetailer> retailer, NSError *error))callback;
+
 /** Tries to obtain a the app's user.
  
  If the app has not had a user for this CSAPI's bookmark before, login: will

@@ -71,16 +71,6 @@
     STAssertNil(error, @"%@", error);
 }
 
-- (void)tearDown
-{
-    self.api = nil;
-    self.testApi = nil;
-    self.requester = nil;
-    self.app = nil;
-    
-    [super tearDown];
-}
-
 - (void)addRetailers
 {
     for (NSString *fixture in @[
@@ -112,6 +102,23 @@
         }
     }
     return names;
+}
+
+- (NSArray *)retailerResources
+{
+    NSMutableArray *results = [[NSMutableArray alloc] init];
+    for (NSString *fixture in @[
+         @"retailers_page_0_embedded.json",
+         @"retailers_page_1_embedded.json",
+         @"retailers_page_2_embedded.json"]) {
+        YBHALResource *retailersResource = [self resourceForFixture:fixture];
+        NSArray *retailers = [retailersResource
+                              resourcesForRelation:@"/rels/retailer"];
+        for (YBHALResource *retailer in retailers) {
+            [results addObject:retailer];
+        }
+    }
+    return results;
 }
 
 - (void)testName
@@ -790,6 +797,36 @@ request_handler_t postCallback =
     STAssertEqualObjects(@(list.count), @(count), nil);
     
     STAssertEqualObjects(loadedNames, names, nil);
+}
+
+- (void)testGetRetailersByURL
+{
+    [self addRetailers];
+    
+    NSArray *resources = [self retailerResources];
+    NSMutableArray *names = [NSMutableArray array];
+    NSMutableArray *errors = [NSMutableArray array];
+    
+    for (YBHALResource *resource in resources) {
+        NSURL *retailerURL = [resource linkForRelation:@"self"].URL;
+        CALL_AND_WAIT(^(void (^done)()) {
+            [self.api getRetailer:retailerURL callback:^(id<CSRetailer> retailer,
+                                                         NSError *error) {
+                if (error) {
+                    [errors addObject:error];
+                }
+                
+                if (retailer.name) {
+                    [names addObject:retailer.name];
+                }
+                
+                done();
+            }];
+        });
+    }
+    
+    STAssertEqualObjects(errors, @[], nil);
+    STAssertEqualObjects(names, [self retailerNames], nil);
 }
 
 @end
