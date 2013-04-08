@@ -693,6 +693,9 @@
                     callback:(void (^)(id<CSLike> like,
                                        NSError *error))callback;
 
+- (void)getProductSummaries:(void (^)(id<CSProductSummaryListPage> firstPage,
+                                      NSError *error))callback;
+
 /** Tries to delete the group.
  
  Control returns from remove: immediately. If the operation is successful, the

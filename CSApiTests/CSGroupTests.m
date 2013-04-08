@@ -22,6 +22,9 @@
 @property (strong) NSString *initialEtag;
 @property (strong) YBHALResource *groupResource;
 @property (strong) CSGroup *group;
+@property (strong) YBHALResource *productSummariesResource;
+@property (strong) YBHALResource *productSummaryResource;
+
 
 @end
 
@@ -34,6 +37,9 @@
 @synthesize initialEtag;
 @synthesize groupResource;
 @synthesize group;
+@synthesize productSummaryResource;
+@synthesize productSummariesResource;
+
 
 - (void)setUp
 {
@@ -49,6 +55,8 @@
     links[@"self"] = @{@"href": [groupURL path]};
     links[@"/rels/user"] = @{@"href": @"/users/12345"};
     links[@"/rels/likes"] = @{@"href": @"/users/12345/groups/1/likes/"};
+    links[@"/rels/productsummaries"] = @{@"href": @"/users/12345/groups/1/productsummaries/"};
+
     groupDict[@"_links"] = links;
     groupDict[@"meta"] = @{@"count": @(0)};
     groupDict[@"reference"] = @"reference";
@@ -59,6 +67,28 @@
                                requester:requester
                               credential:credential
                                     etag:initialEtag];
+    
+    productSummaryResource = [self resourceForFixture:@"productsummary.json"];
+    STAssertNotNil(productSummaryResource, nil);
+    
+    NSString *productSummariesHref = [groupResource linkForRelation:@"/rels/productsummaries"].href;
+    STAssertNotNil(productSummariesHref, nil);
+    NSString *productSummaryHref = [productSummaryResource linkForRelation:@"self"].href;
+    STAssertNotNil(productSummaryHref, nil);
+    NSMutableDictionary *productSummariesDict = [NSMutableDictionary dictionary];
+    productSummariesDict[@"_links"] = [NSMutableDictionary dictionary];
+    productSummariesDict[@"_links"][@"self"] = [NSMutableDictionary dictionary];
+    productSummariesDict[@"_links"][@"self"][@"href"] = productSummariesHref;
+    productSummariesDict[@"_links"][@"/rels/productsummary"] = [NSMutableDictionary dictionary];
+    productSummariesDict[@"_links"][@"/rels/productsummary"][@"href"] = productSummaryHref;
+    productSummariesDict[@"count"] = @1;
+    productSummariesResource = [self resourceForJson:productSummariesDict];
+    STAssertNotNil(productSummariesResource, nil);
+    
+    [requester addGetResponse:productSummaryResource
+                       forURL:[productSummaryResource linkForRelation:@"self"].URL];
+    [requester addGetResponse:productSummariesResource
+                       forURL:[productSummariesResource linkForRelation:@"self"].URL];
 }
 
 - (void)testProperties
@@ -234,6 +264,47 @@
     });
     
     STAssertEqualObjects(returnedURLs, likedURLs, nil);
+}
+
+- (void)testGetProductSummaries
+{
+    __block NSError *error = [NSError errorWithDomain:@"not called"
+                                                 code:0
+                                             userInfo:nil];
+    __block id<CSProductSummaryListPage> page = nil;
+    CALL_AND_WAIT(^(void (^done)()) {
+        [self.group getProductSummaries:^(id<CSProductSummaryListPage> aPage, NSError *anError)
+         {
+             page = aPage;
+             error = anError;
+             done();
+         }];
+    });
+    
+    STAssertNil(error, @"%@", error);
+    STAssertNotNil(page, nil);
+    
+    id<CSProductSummaryList> list = page.productSummaryList;
+    STAssertNotNil(list, nil);
+    
+    STAssertEqualObjects(@(list.count), @1, nil);
+    
+    __block id<CSProductSummary> summary = nil;
+    error = [NSError errorWithDomain:@"not called" code:0 userInfo:nil];
+    CALL_AND_WAIT(^(void (^done)()) {
+        [list getProductSummaryAtIndex:0
+                              callback:^(id<CSProductSummary> aSummary, NSError *anError)
+         {
+             summary = aSummary;
+             error = anError;
+             done();
+         }];
+    });
+    
+    STAssertNil(error, @"%@", error);
+    STAssertNotNil(summary, nil);
+    
+    STAssertEqualObjects(summary.name, productSummaryResource[@"name"], nil);
 }
 
 - (void)testCreateLike

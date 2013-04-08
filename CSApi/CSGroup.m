@@ -10,6 +10,7 @@
 #import "CSHALRepresentation.h"
 #import "CSMutableLike.h"
 #import "CSLike.h"
+#import "CSProductSummaryListPage.h"
 #import <HyperBek/HyperBek.h>
 #import "CSLikeListPage.h"
 #import "CSMutableGroup.h"
@@ -117,6 +118,25 @@
          callback([[CSLikeListPage alloc] initWithHal:result
                                             requester:self.requester
                                            credential:self.credential],
+                  nil);
+     }];
+}
+
+
+- (void)getProductSummaries:(void (^)(id<CSProductSummaryListPage>, NSError *))callback
+{
+    [self getRelation:@"/rels/productsummaries"
+          forResource:resource
+             callback:^(YBHALResource *result, NSError *error)
+     {
+         if (error) {
+             callback(nil, error);
+             return;
+         }
+         
+         callback([[CSProductSummaryListPage alloc] initWithHal:result
+                                                      requester:self.requester
+                                                     credential:self.credential],
                   nil);
      }];
 }
