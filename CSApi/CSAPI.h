@@ -855,6 +855,9 @@
 /** The name of the product. */
 @property (readonly) NSString *name;
 
+/** The description of the product. */
+@property (readonly) NSString *description;
+
 /** Tries to get a list of pictures of the product.
  
  Control returns from getPictures: immediately. If the operation is successful,
