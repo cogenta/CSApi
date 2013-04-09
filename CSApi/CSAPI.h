@@ -693,6 +693,23 @@
                     callback:(void (^)(id<CSLike> like,
                                        NSError *error))callback;
 
+/** Tries to get a list of products related to the likes in the group.
+ 
+ Control returns from getProductSummaries: immediately. If the operation is
+ successful, the given callback is invoked with a non-nil
+ [id\<CSProductSummaryListPage\>](CSProductSummaryListPage) in firstPage and a nil
+ error. firstPage is the first page of the result set. It is recommended that
+ client code use firstPage.productSummaryList to get an
+ [id\<CSProductSummaryList\>](CSProductSummaryList), which provides convenient
+ access to product summaries in the list.
+ 
+ If the operation fails, callback is invoked with a nil firstPage and a non-nil
+ error.
+ 
+ @param callback The block to invoke when the product summaries list has been
+ successfully obtained, or when the operation has failed.
+ 
+ */
 - (void)getProductSummaries:(void (^)(id<CSProductSummaryListPage> firstPage,
                                       NSError *error))callback;
 
