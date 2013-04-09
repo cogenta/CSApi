@@ -53,6 +53,7 @@
     
     isLoading = YES;
     [lastPage getNext:^(id<CSListPage> nextPage, NSError *error) {
+        isLoading = NO;
         if (error) {
             cb(NO, error);
             return;
@@ -103,7 +104,6 @@
 {
     [items addObjectsFromArray:page.items];
     lastPage = page;
-    isLoading = NO;
 }
 
 - (NSString *)description
