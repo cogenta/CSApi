@@ -132,6 +132,8 @@
     
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL];
     request.HTTPMethod = method;
+    request.timeoutInterval = 5.0;
+    request.HTTPShouldUsePipelining = YES;
     
     [self applyCredential:credential request:request];
     [self applyEtag:etag request:request];
@@ -168,6 +170,7 @@
          error = [NSError errorWithDomain:error.domain
                                      code:error.code
                                  userInfo:userInfo];
+         NSLog(@"HTTP Error: %@", error);
          callback(nil, nil, error);
      }];
     
