@@ -15,5 +15,10 @@
     return [self.userInfo[@"NSHTTPPropertyStatusCodeKey"] isEqual:@409];
 }
 
+- (BOOL) isHttpNotFound
+{
+    return [self.userInfo[@"NSHTTPPropertyStatusCodeKey"] isEqual:@404];
+}
+
 @end
 

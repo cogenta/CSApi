@@ -1,35 +1,36 @@
 //
-//  CSProductSummaryTests.m
+//  CSProductTests.m
 //  CSApi
 //
-//  Created by Will Harris on 15/03/2013.
+//  Created by Will Harris on 12/04/2013.
 //  Copyright (c) 2013 Cogenta Systems Ltd. All rights reserved.
 //
 
 #import "CSAPITestCase.h"
-#import "CSProductSummary.h"
+#import "CSProduct.h"
 #import "CSBasicCredential.h"
 #import "TestRequester.h"
 #import <HyperBek/HyperBek.h>
 #import "TestConstants.h"
+#import <ISO8601DateFormatter/ISO8601DateFormatter.h>
 
-@interface CSProductSummaryTests : CSAPITestCase
+@interface CSProductTests : CSAPITestCase
 
 @property (strong) TestRequester *requester;
 @property (strong) id<CSCredential> credential;
 @property (strong) NSURL *URL;
 @property (strong) YBHALResource *resource;
-@property (strong) CSProductSummary *productSummary;
+@property (strong) CSProduct *product;
 
 @end
 
-@implementation CSProductSummaryTests
+@implementation CSProductTests
 
 @synthesize requester;
 @synthesize credential;
 @synthesize URL;
 @synthesize resource;
-@synthesize productSummary;
+@synthesize product;
 
 - (void)setUp
 {
@@ -41,23 +42,30 @@
     credential = [CSBasicCredential credentialWithUsername:@"user"
                                                   password:@"pass"];
     
-    resource = [self resourceForFixture:@"productsummary.json"];
+    resource = [self resourceForFixture:@"product.json"];
     STAssertNotNil(resource, nil);
-    
     
     URL = [resource linkForRelation:@"self"].URL;
     
-    productSummary = [[CSProductSummary alloc] initWithHAL:resource
-                                                 requester:requester
-                                                credential:credential];
+    product = [[CSProduct alloc] initWithHAL:resource
+                                   requester:requester
+                                  credential:credential];
 }
 
 - (void)testProperties
 {
-    STAssertEquals(productSummary.credential, credential, nil);
-    STAssertEquals(productSummary.requester, requester, nil);
-    STAssertEqualObjects(productSummary.name, resource[@"name"], nil);
-    STAssertEqualObjects(productSummary.description, resource[@"description"], nil);
+    STAssertEquals(product.credential, credential, nil);
+    STAssertEquals(product.requester, requester, nil);
+    STAssertEqualObjects(product.name, resource[@"name"], nil);
+    STAssertEqualObjects(product.description, resource[@"description"], nil);
+    STAssertEqualObjects(product.views, resource[@"views"], nil);
+    STAssertEqualObjects(product.author, resource[@"author"], nil);
+    STAssertEqualObjects(product.softwarePlatform, resource[@"software_platform"], nil);
+    STAssertEqualObjects(product.manufacuturer, resource[@"manufacturer"], nil);
+    STAssertEqualObjects(product.lastUpdated,
+                         [[[ISO8601DateFormatter alloc] init]
+                          dateFromString:resource[@"last_updated"]],
+                         nil);
 }
 
 - (void)testGetPictures
@@ -67,7 +75,7 @@
                                              userInfo:nil];
     __block id<CSPictureListPage> page = nil;
     CALL_AND_WAIT(^(void (^done)()) {
-        [productSummary getPictures:^(id<CSPictureListPage> aPage, NSError *anError) {
+        [product getPictures:^(id<CSPictureListPage> aPage, NSError *anError) {
             error = anError;
             page = aPage;
             done();
@@ -100,31 +108,32 @@
     STAssertEqualObjects(@(picture.count), @(4), nil);
 }
 
-- (void)testGetProduct
+- (void)testGetProductSummary
 {
-    id productResource = [self resourceForFixture:@"product.json"];
-    STAssertNotNil(productResource, nil);
-    NSURL *productURL = [productResource linkForRelation:@"self"].URL;
+    id productSummaryResource = [self resourceForFixture:@"productsummary.json"];
+    STAssertNotNil(productSummaryResource, nil);
+    NSURL *productURL = [productSummaryResource linkForRelation:@"self"].URL;
     
-    [requester addGetResponse:productResource forURL:productURL];
+    [requester addGetResponse:productSummaryResource forURL:productURL];
     
     __block NSError *error = [NSError errorWithDomain:@"not called"
                                                  code:0
                                              userInfo:nil];
-    __block id<CSProduct> product = nil;
+    __block id<CSProductSummary> productSummary = nil;
     CALL_AND_WAIT(^(void (^done)()) {
-       [productSummary getProduct:^(id<CSProduct> aProduct, NSError *anError) {
-           error = anError;
-           product = aProduct;
-           done();
-       }];
+        [product getProductSummary:^(id<CSProductSummary> aProductSummary,
+                                     NSError *anError) {
+            error = anError;
+            productSummary = aProductSummary;
+            done();
+        }];
     });
     
     STAssertNil(error, @"%@", error);
-    STAssertNotNil(product, nil);
+    STAssertNotNil(productSummary, nil);
     
-    STAssertEqualObjects(product.name, productSummary.name, nil);
-    STAssertEqualObjects(product.description, productSummary.description, nil);
+    STAssertEqualObjects(productSummary.name, product.name, nil);
+    STAssertEqualObjects(productSummary.description, product.description, nil);
 }
 
 @end

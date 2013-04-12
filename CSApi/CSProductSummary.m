@@ -12,6 +12,7 @@
 #import "CSListItem.h"
 #import "CSResourceListItem.h"
 #import "CSLinkListItem.h"
+#import "CSProduct.h"
 
 @interface CSProductSummary ()
 
@@ -55,6 +56,24 @@
                                               requester:self.requester
                                              credential:self.credential],
                  nil);
+     }];
+}
+
+- (void)getProduct:(void (^)(id<CSProduct>, NSError *))callback
+{
+    [self getRelation:@"/rels/product"
+          forResource:resource
+             callback:^(YBHALResource *product, NSError *error)
+     {
+         if (error) {
+             callback(nil, error);
+             return;
+         }
+         
+         callback([[CSProduct alloc] initWithHAL:product
+                                       requester:self.requester
+                                      credential:self.credential],
+                  nil);
      }];
 }
 

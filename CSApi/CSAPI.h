@@ -42,6 +42,7 @@
 @protocol CSProductSummaryListPage;
 @protocol CSProductSummaryList;
 @protocol CSProductSummary;
+@protocol CSProduct;
 
 /**
  Provides access to the Cogenta Shopping API.
@@ -893,6 +894,26 @@
  */
 - (void)getPictures:(void (^)(id<CSPictureListPage> firstPage,
                               NSError *error))callback;
+
+- (void)getProduct:(void (^)(id<CSProduct> product, NSError *error))callback;
+
+@end
+
+@protocol CSProduct <NSObject>
+
+@property (readonly) NSString *name;
+@property (readonly) NSString *description;
+@property (readonly) NSNumber *views;
+@property (readonly) NSString *author;
+@property (readonly) NSString *softwarePlatform;
+@property (readonly) NSString *manufacuturer;
+@property (readonly) NSDate *lastUpdated;
+
+- (void)getPictures:(void (^)(id<CSPictureListPage> firstPage,
+                              NSError *error))callback;
+- (void)getPrices:(void (^)(NSArray *prices, NSError *error))callback;
+- (void)getProductSummary:(void (^)(id<CSProductSummary> productSummary,
+                                    NSError *error))callback;
 
 @end
 

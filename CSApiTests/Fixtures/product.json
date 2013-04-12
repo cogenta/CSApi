@@ -1,0 +1,439 @@
+{
+  "_embedded": {
+    "api:pictures": {
+      "count": 1,
+      "_embedded": {
+        "/rels/picture": {
+          "count": 4,
+          "_embedded": {
+            "/rels/image": [
+              {
+                "width": 320,
+                "_links": {
+                  "self": {
+                    "href": "/productimages/31400884_320"
+                  },
+                  "enclosure": {
+                    "href": "http://320.images.sccope.co.uk/31400884.jpg",
+                    "type": "image/pjpeg"
+                  }
+                },
+                "height": 320
+              },
+              {
+                "width": 160,
+                "_links": {
+                  "self": {
+                    "href": "/productimages/31400884_160"
+                  },
+                  "enclosure": {
+                    "href": "http://160.images.sccope.co.uk/31400884.jpg",
+                    "type": "image/pjpeg"
+                  }
+                },
+                "height": 160
+              },
+              {
+                "width": 116,
+                "_links": {
+                  "self": {
+                    "href": "/productimages/31400884_116"
+                  },
+                  "enclosure": {
+                    "href": "http://116.images.sccope.co.uk/31400884.jpg",
+                    "type": "image/pjpeg"
+                  }
+                },
+                "height": 116
+              },
+              {
+                "width": 58,
+                "_links": {
+                  "self": {
+                    "href": "/productimages/31400884_58"
+                  },
+                  "enclosure": {
+                    "href": "http://58.images.sccope.co.uk/31400884.jpg",
+                    "type": "image/pjpeg"
+                  }
+                },
+                "height": 58
+              }
+            ]
+          },
+          "_links": {
+            "self": {
+              "href": "/productpictures/31400884"
+            }
+          }
+        }
+      },
+      "_links": {
+        "self": {
+          "href": "/products/3ePUno/pictures/"
+        }
+      }
+    },
+    "api:price": [
+      {
+        "effective_price": 224,
+        "price": 224,
+        "delivery_price": null,
+        "_links": {
+          "curie": {
+            "href": "/rels/{rel}",
+            "name": "api",
+            "templated": true
+          },
+          "self": {
+            "href": "/prices/33099007"
+          },
+          "api:purchase": {
+            "href": "http://www.sainsburys.co.uk/sol/shop/technology/cd_playershi_fi_and_radio/ipodsmp3/124010673_ipod_touch_5th_gen_32gb_blackslate.html?hnav=4294903500"
+          },
+          "api:product": {
+            "href": "/products/3ePUno"
+          },
+          "api:retailer": {
+            "href": "/retailers/65"
+          }
+        },
+        "currency_symbol": "£",
+        "currency_code": "GBP"
+      },
+      {
+        "effective_price": 224,
+        "price": 224,
+        "delivery_price": 0,
+        "_links": {
+          "curie": {
+            "href": "/rels/{rel}",
+            "name": "api",
+            "templated": true
+          },
+          "self": {
+            "href": "/prices/32490609"
+          },
+          "api:purchase": {
+            "href": "http://www.amazon.co.uk/Apple-iPod-touch-32GB-Generation/dp/B009A5EDWM/"
+          },
+          "api:product": {
+            "href": "/products/3ePUno"
+          },
+          "api:retailer": {
+            "href": "/retailers/2"
+          }
+        },
+        "currency_symbol": "£",
+        "currency_code": "GBP"
+      },
+      {
+        "effective_price": 239,
+        "price": 239,
+        "delivery_price": null,
+        "_links": {
+          "curie": {
+            "href": "/rels/{rel}",
+            "name": "api",
+            "templated": true
+          },
+          "self": {
+            "href": "/prices/32092297"
+          },
+          "api:purchase": {
+            "href": "http://www.currys.co.uk/gbuk/audio/ipods/ipod-touch/apple-ipod-touch-32-gb-5th-generation-black-15557212-pdt.html"
+          },
+          "api:product": {
+            "href": "/products/3ePUno"
+          },
+          "api:retailer": {
+            "href": "/retailers/31"
+          }
+        },
+        "currency_symbol": "£",
+        "currency_code": "GBP"
+      },
+      {
+        "effective_price": 224,
+        "price": 224,
+        "delivery_price": 0,
+        "_links": {
+          "curie": {
+            "href": "/rels/{rel}",
+            "name": "api",
+            "templated": true
+          },
+          "self": {
+            "href": "/prices/35238994"
+          },
+          "api:purchase": {
+            "href": "http://www.argos.co.uk/static/Product/partNumber/5190434.htm"
+          },
+          "api:product": {
+            "href": "/products/3ePUno"
+          },
+          "api:retailer": {
+            "href": "/retailers/12"
+          }
+        },
+        "currency_symbol": "£",
+        "currency_code": "GBP"
+      },
+      {
+        "effective_price": 223,
+        "price": 220,
+        "delivery_price": 3,
+        "_links": {
+          "curie": {
+            "href": "/rels/{rel}",
+            "name": "api",
+            "templated": true
+          },
+          "self": {
+            "href": "/prices/31400884"
+          },
+          "api:purchase": {
+            "href": "http://www.tesco.com/direct/apple-ipod-touch-5th-generation-32gb-black/502-4737.prd?pageLevel=&skuId=502-4737"
+          },
+          "api:product": {
+            "href": "/products/3ePUno"
+          },
+          "api:retailer": {
+            "href": "/retailers/81"
+          }
+        },
+        "currency_symbol": "£",
+        "currency_code": "GBP"
+      },
+      {
+        "effective_price": 229,
+        "price": 229,
+        "delivery_price": null,
+        "_links": {
+          "curie": {
+            "href": "/rels/{rel}",
+            "name": "api",
+            "templated": true
+          },
+          "self": {
+            "href": "/prices/32655210"
+          },
+          "api:purchase": {
+            "href": "http://www.johnlewis.com/apple-ipod-touch-5th-generation-32gb-black/p231745350"
+          },
+          "api:product": {
+            "href": "/products/3ePUno"
+          },
+          "api:retailer": {
+            "href": "/retailers/52"
+          }
+        },
+        "currency_symbol": "£",
+        "currency_code": "GBP"
+      },
+      {
+        "effective_price": 249,
+        "price": 249,
+        "delivery_price": null,
+        "_links": {
+          "curie": {
+            "href": "/rels/{rel}",
+            "name": "api",
+            "templated": true
+          },
+          "self": {
+            "href": "/prices/33081560"
+          },
+          "api:purchase": {
+            "href": "http://www.selfridges.com/en/Home-Tech/Categories/Shop-Tech/iPod-touch-5th-generation-32GB-black-and-slate_702-10054-MD723BTA/"
+          },
+          "api:product": {
+            "href": "/products/3ePUno"
+          },
+          "api:retailer": {
+            "href": "/retailers/127"
+          }
+        },
+        "currency_symbol": "£",
+        "currency_code": "GBP"
+      },
+      {
+        "effective_price": 239,
+        "price": 239,
+        "delivery_price": null,
+        "_links": {
+          "curie": {
+            "href": "/rels/{rel}",
+            "name": "api",
+            "templated": true
+          },
+          "self": {
+            "href": "/prices/32156042"
+          },
+          "api:purchase": {
+            "href": "http://www.pcworld.co.uk/gbuk/tv-dvd-audio/audio/ipods/apple-ipod-touch-32-gb-5th-generation-black-15557212-pdt.html"
+          },
+          "api:product": {
+            "href": "/products/3ePUno"
+          },
+          "api:retailer": {
+            "href": "/retailers/69"
+          }
+        },
+        "currency_symbol": "£",
+        "currency_code": "GBP"
+      },
+      {
+        "effective_price": 249,
+        "price": 249,
+        "delivery_price": null,
+        "_links": {
+          "curie": {
+            "href": "/rels/{rel}",
+            "name": "api",
+            "templated": true
+          },
+          "self": {
+            "href": "/prices/32656337"
+          },
+          "api:purchase": {
+            "href": "http://direct.asda.com/New-Apple-iPod-Touch-Slate-5th-Generation---32GB/000552937,default,pd.html"
+          },
+          "api:product": {
+            "href": "/products/3ePUno"
+          },
+          "api:retailer": {
+            "href": "/retailers/13"
+          }
+        },
+        "currency_symbol": "£",
+        "currency_code": "GBP"
+      },
+      {
+        "effective_price": 252.95,
+        "price": 249,
+        "delivery_price": 3.95,
+        "_links": {
+          "curie": {
+            "href": "/rels/{rel}",
+            "name": "api",
+            "templated": true
+          },
+          "self": {
+            "href": "/prices/31423323"
+          },
+          "api:purchase": {
+            "href": "http://www.very.co.uk/apple-ipod-touch-32gb-5th-generation---slate-black/1162979342.prd;jsessionid=3C083CDEB7F740F365DD84072199A755.fts042:-3?browseToken=%2fb%2f4763"
+          },
+          "api:product": {
+            "href": "/products/3ePUno"
+          },
+          "api:retailer": {
+            "href": "/retailers/57"
+          }
+        },
+        "currency_symbol": "£",
+        "currency_code": "GBP"
+      },
+      {
+        "effective_price": 249,
+        "price": 249,
+        "delivery_price": null,
+        "_links": {
+          "curie": {
+            "href": "/rels/{rel}",
+            "name": "api",
+            "templated": true
+          },
+          "self": {
+            "href": "/prices/35101020"
+          },
+          "api:purchase": {
+            "href": "http://www.coopelectricalshop.co.uk/Apple-iPod-Touch-32GB-5th-Gen-In-Black/id-APL-IPO-MD723BT_A-BK"
+          },
+          "api:product": {
+            "href": "/products/3ePUno"
+          },
+          "api:retailer": {
+            "href": "/retailers/30"
+          }
+        },
+        "currency_symbol": "£",
+        "currency_code": "GBP"
+      },
+      {
+        "effective_price": 239.98,
+        "price": 239.98,
+        "delivery_price": null,
+        "_links": {
+          "curie": {
+            "href": "/rels/{rel}",
+            "name": "api",
+            "templated": true
+          },
+          "self": {
+            "href": "/prices/31650383"
+          },
+          "api:purchase": {
+            "href": "http://www.shop.bt.com/products/apple-ipod-touch---5th-generation---32gb---black-and-slate-89Y3.html"
+          },
+          "api:product": {
+            "href": "/products/3ePUno"
+          },
+          "api:retailer": {
+            "href": "/retailers/26"
+          }
+        },
+        "currency_symbol": "£",
+        "currency_code": "GBP"
+      },
+      {
+        "effective_price": 239.97,
+        "price": 239.97,
+        "delivery_price": null,
+        "_links": {
+          "curie": {
+            "href": "/rels/{rel}",
+            "name": "api",
+            "templated": true
+          },
+          "self": {
+            "href": "/prices/32629796"
+          },
+          "api:purchase": {
+            "href": "http://www.pcworldbusiness.co.uk/buy-rent/apple-ipod-touch-5th-generation-digital-player-apple-ios-6-flash-32-gb-display-4-black-slate/P149228P?from=category&heat=txt"
+          },
+          "api:product": {
+            "href": "/products/3ePUno"
+          },
+          "api:retailer": {
+            "href": "/retailers/68"
+          }
+        },
+        "currency_symbol": "£",
+        "currency_code": "GBP"
+      }
+    ]
+  },
+  "name": "Apple iPod touch 32GB 5th Generation - Black.",
+  "cover_type": null,
+  "views": 0,
+  "author": null,
+  "software_platform": null,
+  "_links": {
+    "curie": {
+      "href": "/rels/{rel}",
+      "name": "api",
+      "templated": true
+    },
+    "self": {
+      "href": "/products/3ePUno"
+    },
+    "api:productsummary": {
+      "href": "/productsummaries/3ePUno"
+    }
+  },
+  "manufacturer": "Apple",
+  "last_updated": "2013-04-12T11:11:55.2603595Z",
+  "description": "With an ultra-thin design, a larger, 4-inch Retina display, a 5-megapixel iSight camera, iTunes and the App Store, Siri, iMessage, FaceTime, Game Center and more — it’s the most fun iPod touch ever. iPod touch features a 6mm ultra-thin design and brilliant, 4-inch Retina display. The 5-megapixel iSight camera lets you take stunning photos, even in panorama, or record 1080p video. Discover music, films and more from the iTunes Store, or browse apps and games from the App Store. And with iOS 6 — the world’s most advanced mobile operating system — you get Siri, iMessage, Facebook integration, FaceTime, Game Center and more. Now that sounds fun."
+}

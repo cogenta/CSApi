@@ -11,5 +11,6 @@
 @interface NSError (CSExtension)
 
 - (BOOL) isHttpConflict;
+- (BOOL) isHttpNotFound;
 
 @end

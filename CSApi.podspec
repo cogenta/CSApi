@@ -15,5 +15,6 @@ Pod::Spec.new do |s|
   s.dependency 'AFNetworking'
   s.dependency 'HyperBek', '~> 0.2.0'
   s.dependency 'Base64'
-  s.dependency 'NSArray+Functional' 
+  s.dependency 'NSArray+Functional'
+  s.dependency 'ISO8601DateFormatter'
 end

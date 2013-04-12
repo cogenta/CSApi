@@ -3,6 +3,7 @@ pod 'AFNetworking'
 pod 'HyperBek', '~> 0.2.0'
 pod 'Base64'
 pod 'NSArray+Functional'
+pod 'ISO8601DateFormatter'
 
 target :test, :exclusive => true do
     link_with 'CSApiTests'
