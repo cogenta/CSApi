@@ -355,8 +355,8 @@
 				BE5D4C0516EE456F0096FFFF /* Groups */,
 				BE5D4C0616EE457C0096FFFF /* Retailers */,
 				BE5D4C0716EE45900096FFFF /* Pictures */,
-				BE5D4C0E16EE4A0C0096FFFF /* Product Summary */,
-				BE6BF3F217183C92004B6D85 /* Product */,
+				BE5D4C0E16EE4A0C0096FFFF /* Product Summaries */,
+				BE6BF3F217183C92004B6D85 /* Products */,
 			);
 			name = CSAPI;
 			path = CSApi;
@@ -501,7 +501,7 @@
 			name = Pictures;
 			sourceTree = "<group>";
 		};
-		BE5D4C0E16EE4A0C0096FFFF /* Product Summary */ = {
+		BE5D4C0E16EE4A0C0096FFFF /* Product Summaries */ = {
 			isa = PBXGroup;
 			children = (
 				BE5D4C1116EE55A90096FFFF /* CSProductSummary.h */,
@@ -511,7 +511,7 @@
 				BE5D4C1716F37C170096FFFF /* CSProductSummaryList.h */,
 				BE5D4C1816F37C170096FFFF /* CSProductSummaryList.m */,
 			);
-			name = "Product Summary";
+			name = "Product Summaries";
 			sourceTree = "<group>";
 		};
 		BE626CD916EE444C00F0302D /* Utils */ = {
@@ -539,13 +539,13 @@
 			name = Utils;
 			sourceTree = "<group>";
 		};
-		BE6BF3F217183C92004B6D85 /* Product */ = {
+		BE6BF3F217183C92004B6D85 /* Products */ = {
 			isa = PBXGroup;
 			children = (
 				BE6BF3F317183CCF004B6D85 /* CSProduct.h */,
 				BE6BF3F417183CCF004B6D85 /* CSProduct.m */,
 			);
-			name = Product;
+			name = Products;
 			sourceTree = "<group>";
 		};
 		BEA65A0A16B92F1200F10CB0 /* Utils */ = {
