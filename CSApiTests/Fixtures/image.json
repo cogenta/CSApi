@@ -7,11 +7,11 @@
     "self": {
       "href": "/images/1"
     }, 
-    "curie": {
+    "curies": [{
       "href": "/rels/{rel}", 
       "name": "api", 
       "templated": true
-    }, 
+    }],
     "enclosure": {
       "href": "http://localhost/img/img80x24.png",
       "type": "image/png"

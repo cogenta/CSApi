@@ -9,10 +9,10 @@
           "api:liked": {
             "href": "http://192.168.1.16:5000/retailers/102"
           },
-          "curie": {
+          "curies": [{
             "href": "/rels/{rel}",
             "name": "api"
-          },
+          }],
           "self": {
             "href": "/users/12345/likes/51262a527046799556b389bf"
           },
@@ -27,10 +27,10 @@
           "api:liked": {
             "href": "http://192.168.1.16:5000/retailers/108"
           },
-          "curie": {
+          "curies": [{
             "href": "/rels/{rel}",
             "name": "api"
-          },
+          }],
           "self": {
             "href": "/users/12345/likes/51262a527046799556b389c0"
           },
@@ -45,10 +45,10 @@
           "api:liked": {
             "href": "http://192.168.1.16:5000/retailers/34"
           },
-          "curie": {
+          "curies": [{
             "href": "/rels/{rel}",
             "name": "api"
-          },
+          }],
           "self": {
             "href": "/users/12345/likes/51262a537046799556b389c1"
           },
@@ -63,10 +63,10 @@
           "api:liked": {
             "href": "http://192.168.1.16:5000/retailers/29"
           },
-          "curie": {
+          "curies": [{
             "href": "/rels/{rel}",
             "name": "api"
-          },
+          }],
           "self": {
             "href": "/users/12345/likes/51262a537046799556b389c2"
           },
@@ -81,10 +81,10 @@
           "api:liked": {
             "href": "http://192.168.1.16:5000/retailers/171"
           },
-          "curie": {
+          "curies": [{
             "href": "/rels/{rel}",
             "name": "api"
-          },
+          }],
           "self": {
             "href": "/users/12345/likes/51262a557046799556b389c3"
           },
@@ -99,10 +99,10 @@
           "api:liked": {
             "href": "http://192.168.1.16:5000/retailers/43"
           },
-          "curie": {
+          "curies": [{
             "href": "/rels/{rel}",
             "name": "api"
-          },
+          }],
           "self": {
             "href": "/users/12345/likes/51262a567046799556b389c4"
           },
@@ -117,10 +117,10 @@
           "api:liked": {
             "href": "http://192.168.1.16:5000/retailers/205"
           },
-          "curie": {
+          "curies": [{
             "href": "/rels/{rel}",
             "name": "api"
-          },
+          }],
           "self": {
             "href": "/users/12345/likes/51262a577046799556b389c5"
           },
@@ -135,10 +135,10 @@
           "api:liked": {
             "href": "http://192.168.1.16:5000/retailers/48"
           },
-          "curie": {
+          "curies": [{
             "href": "/rels/{rel}",
             "name": "api"
-          },
+          }],
           "self": {
             "href": "/users/12345/likes/51262a597046799556b389c6"
           },
@@ -153,10 +153,10 @@
           "api:liked": {
             "href": "http://192.168.1.16:5000/retailers/157"
           },
-          "curie": {
+          "curies": [{
             "href": "/rels/{rel}",
             "name": "api"
-          },
+          }],
           "self": {
             "href": "/users/12345/likes/51262a5a7046799556b389c7"
           },
@@ -171,10 +171,10 @@
           "api:liked": {
             "href": "http://192.168.1.16:5000/retailers/62"
           },
-          "curie": {
+          "curies": [{
             "href": "/rels/{rel}",
             "name": "api"
-          },
+          }],
           "self": {
             "href": "/users/12345/likes/51262a5b7046799556b389c8"
           },
@@ -198,10 +198,10 @@
     "next": {
       "href": "/users/12345/likes/?start=20"
     },
-    "curie": {
+    "curies": [{
       "href": "/rels/{rel}",
       "name": "api"
-    },
+    }],
     "prev": {
       "href": "/users/12345/likes/"
     },

@@ -6,10 +6,10 @@
       {
         
         "_links": {
-          "curie": {
+          "curies": [{
             "href": "/rels/{rel}",
             "name": "api"
-          },
+          }],
           "self": {
             "href": "/retailers/150"
           }
@@ -19,10 +19,10 @@
       {
         
         "_links": {
-          "curie": {
+          "curies": [{
             "href": "/rels/{rel}",
             "name": "api"
-          },
+          }],
           "self": {
             "href": "/retailers/207"
           }
@@ -32,10 +32,10 @@
       {
         
         "_links": {
-          "curie": {
+          "curies": [{
             "href": "/rels/{rel}",
             "name": "api"
-          },
+          }],
           "self": {
             "href": "/retailers/12"
           },
@@ -49,10 +49,10 @@
       {
         
         "_links": {
-          "curie": {
+          "curies": [{
             "href": "/rels/{rel}",
             "name": "api"
-          },
+          }],
           "self": {
             "href": "/retailers/13"
           },
@@ -66,10 +66,10 @@
       {
         
         "_links": {
-          "curie": {
+          "curies": [{
             "href": "/rels/{rel}",
             "name": "api"
-          },
+          }],
           "self": {
             "href": "/retailers/158"
           }
@@ -79,10 +79,10 @@
       {
         
         "_links": {
-          "curie": {
+          "curies": [{
             "href": "/rels/{rel}",
             "name": "api"
-          },
+          }],
           "self": {
             "href": "/retailers/187"
           }
@@ -92,10 +92,10 @@
       {
         
         "_links": {
-          "curie": {
+          "curies": [{
             "href": "/rels/{rel}",
             "name": "api"
-          },
+          }],
           "self": {
             "href": "/retailers/148"
           }
@@ -105,10 +105,10 @@
       {
         
         "_links": {
-          "curie": {
+          "curies": [{
             "href": "/rels/{rel}",
             "name": "api"
-          },
+          }],
           "self": {
             "href": "/retailers/17"
           },
@@ -122,10 +122,10 @@
       {
         
         "_links": {
-          "curie": {
+          "curies": [{
             "href": "/rels/{rel}",
             "name": "api"
-          },
+          }],
           "self": {
             "href": "/retailers/217"
           }
@@ -135,10 +135,10 @@
       {
         
         "_links": {
-          "curie": {
+          "curies": [{
             "href": "/rels/{rel}",
             "name": "api"
-          },
+          }],
           "self": {
             "href": "/retailers/256"
           }
@@ -154,10 +154,10 @@
     "next": {
       "href": "/retailers/?start=20"
     },
-    "curie": {
+    "curies": [{
       "href": "/rels/{rel}",
       "name": "api"
-    },
+    }],
     "prev": {
       "href": "/retailers/"
     }

@@ -80,11 +80,11 @@
         "price": 224,
         "delivery_price": null,
         "_links": {
-          "curie": {
+          "curies": [{
             "href": "/rels/{rel}",
             "name": "api",
             "templated": true
-          },
+          }],
           "self": {
             "href": "/prices/33099007"
           },
@@ -106,11 +106,11 @@
         "price": 224,
         "delivery_price": 0,
         "_links": {
-          "curie": {
+          "curies": [{
             "href": "/rels/{rel}",
             "name": "api",
             "templated": true
-          },
+          }],
           "self": {
             "href": "/prices/32490609"
           },
@@ -132,11 +132,11 @@
         "price": 239,
         "delivery_price": null,
         "_links": {
-          "curie": {
+          "curies": [{
             "href": "/rels/{rel}",
             "name": "api",
             "templated": true
-          },
+          }],
           "self": {
             "href": "/prices/32092297"
           },
@@ -158,11 +158,11 @@
         "price": 224,
         "delivery_price": 0,
         "_links": {
-          "curie": {
+          "curies": [{
             "href": "/rels/{rel}",
             "name": "api",
             "templated": true
-          },
+          }],
           "self": {
             "href": "/prices/35238994"
           },
@@ -184,11 +184,11 @@
         "price": 220,
         "delivery_price": 3,
         "_links": {
-          "curie": {
+          "curies": [{
             "href": "/rels/{rel}",
             "name": "api",
             "templated": true
-          },
+          }],
           "self": {
             "href": "/prices/31400884"
           },
@@ -210,11 +210,11 @@
         "price": 229,
         "delivery_price": null,
         "_links": {
-          "curie": {
+          "curies": [{
             "href": "/rels/{rel}",
             "name": "api",
             "templated": true
-          },
+          }],
           "self": {
             "href": "/prices/32655210"
           },
@@ -236,11 +236,11 @@
         "price": 249,
         "delivery_price": null,
         "_links": {
-          "curie": {
+          "curies": [{
             "href": "/rels/{rel}",
             "name": "api",
             "templated": true
-          },
+          }],
           "self": {
             "href": "/prices/33081560"
           },
@@ -262,11 +262,11 @@
         "price": 239,
         "delivery_price": null,
         "_links": {
-          "curie": {
+          "curies": [{
             "href": "/rels/{rel}",
             "name": "api",
             "templated": true
-          },
+          }],
           "self": {
             "href": "/prices/32156042"
           },
@@ -288,11 +288,11 @@
         "price": 249,
         "delivery_price": null,
         "_links": {
-          "curie": {
+          "curies": [{
             "href": "/rels/{rel}",
             "name": "api",
             "templated": true
-          },
+          }],
           "self": {
             "href": "/prices/32656337"
           },
@@ -314,11 +314,11 @@
         "price": 249,
         "delivery_price": 3.95,
         "_links": {
-          "curie": {
+          "curies": [{
             "href": "/rels/{rel}",
             "name": "api",
             "templated": true
-          },
+          }],
           "self": {
             "href": "/prices/31423323"
           },
@@ -340,11 +340,11 @@
         "price": 249,
         "delivery_price": null,
         "_links": {
-          "curie": {
+          "curies": [{
             "href": "/rels/{rel}",
             "name": "api",
             "templated": true
-          },
+          }],
           "self": {
             "href": "/prices/35101020"
           },
@@ -366,11 +366,11 @@
         "price": 239.98,
         "delivery_price": null,
         "_links": {
-          "curie": {
+          "curies": [{
             "href": "/rels/{rel}",
             "name": "api",
             "templated": true
-          },
+          }],
           "self": {
             "href": "/prices/31650383"
           },
@@ -392,11 +392,11 @@
         "price": 239.97,
         "delivery_price": null,
         "_links": {
-          "curie": {
+          "curies": [{
             "href": "/rels/{rel}",
             "name": "api",
             "templated": true
-          },
+          }],
           "self": {
             "href": "/prices/32629796"
           },
@@ -421,11 +421,11 @@
   "author": null,
   "software_platform": null,
   "_links": {
-    "curie": {
+    "curies": [{
       "href": "/rels/{rel}",
       "name": "api",
       "templated": true
-    },
+    }],
     "self": {
       "href": "/products/3ePUno"
     },

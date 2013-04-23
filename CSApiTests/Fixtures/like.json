@@ -1,7 +1,7 @@
 {
     "_links": {
         "api:retailer": {"href": "/retailers/test"},
-        "curie": {"href": "/rels/{rel}", "name": "api"},
+        "curies": [{"href": "/rels/{rel}", "name": "api"}],
         "self": {"href": "/users/12345/likes/1"},
         "api:user": {"href": "/users/12345"}
     }

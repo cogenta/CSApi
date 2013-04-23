@@ -5,10 +5,10 @@
     "self": {
       "href": "/retailers/?start=20"
     },
-    "curie": {
+    "curies": [{
       "href": "/rels/{rel}",
       "name": "api"
-    },
+    }],
     "api:retailer": [
       {
         "href": "/retailers/192",

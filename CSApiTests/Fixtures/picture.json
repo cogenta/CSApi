@@ -6,11 +6,11 @@
     "api:image": {
       "href": "/images/1"
     },
-    "curie": {
+    "curies": [{
       "href": "/rels/{rel}", 
       "name": "api", 
       "templated": true
-    }
+    }]
   },
   "count": 1
 }

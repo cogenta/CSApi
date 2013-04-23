@@ -2,10 +2,10 @@
   
   "count": 30,
   "_links": {
-    "curie": {
+    "curies": [{
       "href": "/rels/{rel}",
       "name": "api"
-    },
+    }],
     "self": {
       "href": "/retailers/"
     },

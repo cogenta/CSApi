@@ -7,10 +7,10 @@
         "api:usersbyreference": {
             "href": "/developers/5106b341704679b792e221a4/users/{?reference}"
         },
-        "curie": {
+        "curies": [{
             "href": "/rels/{rel}",
             "name": "api"
-        },
+        }],
         "self": {
             "href": "/apps/5106b3de704679b792c918c8"
         },
