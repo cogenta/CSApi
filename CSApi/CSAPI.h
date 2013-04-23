@@ -872,7 +872,7 @@
 
 @end
 
-/** Protocol for access product summaries. */
+/** Protocol for accessing product summaries. */
 @protocol CSProductSummary <NSObject>
 
 /** The name of the product. */
@@ -900,29 +900,104 @@
 - (void)getPictures:(void (^)(id<CSPictureListPage> firstPage,
                               NSError *error))callback;
 
+/** Tries to get the full product for this summary.
+ 
+ Control returns from getProduct: immediately. If the operation is successful,
+ the given callback is invoked with a non-nil
+ [id\<CSProduct\>](CSProduct) in product and a nil error.
+ 
+ If the operation fails, callback is invoked with a nil product and a non-nil
+ error.
+ 
+ @param callback The block to invoke when the product has been successfully
+ obtained, or when the operation has failed.
+ 
+ */
 - (void)getProduct:(void (^)(id<CSProduct> product, NSError *error))callback;
 
 @end
 
+/** Protocol for accessing products. */
 @protocol CSProduct <NSObject>
 
+/** The name of the product. */
 @property (readonly) NSString *name;
+
+/** The description of the product. */
 @property (readonly) NSString *description;
+
+/** The number of times a user has viewed this product. */
 @property (readonly) NSNumber *views;
+
+/** If this is a book, the author. */
 @property (readonly) NSString *author;
+
+/** If this is software, the platform. */
 @property (readonly) NSString *softwarePlatform;
+
+/** The manufacturer of this product. */
 @property (readonly) NSString *manufacuturer;
+
+/* The last time this product resource was updated. */
 @property (readonly) NSDate *lastUpdated;
 
+/** Tries to get a list of pictures of the product.
+ 
+ Control returns from getPictures: immediately. If the operation is successful,
+ the given callback is invoked with a non-nil
+ [id\<CSPictureListPage\>](CSPictureListPage) in firstPage and a nil error.
+ firstPage is the first page of the result set. It is recommended that client
+ code use pictureList to get an [id\<CSPictureList\>](CSPictureList), which
+ provides convenient access to pictures in the list.
+ 
+ If the operation fails, callback is invoked with a nil firstPage and a non-nil
+ error.
+ 
+ @param callback The block to invoke when the pictures list has been
+ successfully obtained, or when the operation has failed.
+ 
+ */
 - (void)getPictures:(void (^)(id<CSPictureListPage> firstPage,
                               NSError *error))callback;
-- (void)getPrices:(void (^)(id<CSPriceListPage> prices, NSError *error))callback;
+
+/** Tries to get a list of prices for the product.
+ 
+ Control returns from getPrices: immediately. If the operation is successful,
+ the given callback is invoked with a non-nil
+ [id\<CSPriceListPage\>](CSPriceListPage) in firstPage and a nil error.
+ firstPage is the first page of the result set. It is recommended that client
+ code use priveList to get an [id\<CSPriceList\>](CSPriceList), which
+ provides convenient access to prices in the list.
+ 
+ If the operation fails, callback is invoked with a nil firstPage and a non-nil
+ error.
+ 
+ @param callback The block to invoke when the prices list has been
+ successfully obtained, or when the operation has failed.
+ 
+ */
+- (void)getPrices:(void (^)(id<CSPriceListPage> firstPage,
+                            NSError *error))callback;
+
+/** Tries to get a summary of this product.
+ 
+ Control returns from getProductSummary: immediately. If the operation is
+ successful, the given callback is invoked with a non-nil
+ [id\<CSProductSummary\>](CSProductSummary) in productSummary and a nil error.
+ 
+ If the operation fails, callback is invoked with a nil productSummary and a
+ non-nil error.
+ 
+ @param callback The block to invoke when the product summary has been
+ successfully obtained, or when the operation has failed.
+ 
+ */
 - (void)getProductSummary:(void (^)(id<CSProductSummary> productSummary,
                                     NSError *error))callback;
 
 @end
 
-/** Protocol for accessing pages of picturesin a sequence of results.
+/** Protocol for accessing pages of pictures in a sequence of results.
  
  Client code is expected to use this protocol's pictureList property to
  get an object conforming to CSPictureList.
@@ -957,29 +1032,88 @@
 
 @end
 
+/** Protocol for accessing pages of prices in a sequence of results.
+ 
+ Client code is expected to use this protocol's priceList property to
+ get an object conforming to CSPriceList.
+ 
+ */
 @protocol CSPriceListPage <CSListPage>
 
+/** An object conforming to CSPriceList that provides convenient access to the
+ list of prices.
+ */
 @property (readonly) id<CSPriceList> priceList;
 
 @end
 
+/** Protocol for accessing a list of prices. */
 @protocol CSPriceList <CSList>
 
+/** Tries to fetch the price at the given index.
+ 
+ Control returns from getPriceAtIndex:callback: immediately. If the operation is
+ successful, the given callback is invoked with a non-nil
+ [id\<CSPrice\>](CSPrice) in result and a nil error. If the operation fails,
+ callback is invoked with a nil result and a non-nil error.
+ 
+ @param index The index in the sequence of the price to retrieve.
+ @param callback The block to invoke when the price has been successfully
+ obtained, or when the operation has failed.
+ */
 - (void)getPriceAtIndex:(NSUInteger)index
-               callback:(void (^)(id<CSPrice> result,
-                                  NSError *error))callback;
+               callback:(void (^)(id<CSPrice> result, NSError *error))callback;
 
 @end
 
+/** Protocol for accessing a price. */
 @protocol CSPrice <NSObject>
 
+/** The "final price you pay", inclusive of delivery and offer discounts. */
 @property (readonly) NSDecimalNumber *effectivePrice;
+
+/** Price exclusive of delivery and offer discounts. */
 @property (readonly) NSDecimalNumber *price;
+
+/** Delivery price. */
 @property (readonly) NSDecimalNumber *deliveryPrice;
+
+/** Symbol for the currency that denominates this price.
+ For example "£" or "$". */
 @property (readonly) NSString *currencySymbol;
+
+/** ISO 4217 currency code for the currency that denominates this price.
+ For example "GBP" or "USD". */
 @property (readonly) NSString *currencyCode;
 
-- (void)getProduct:(void (^)(id<CSProduct> result, NSError *error))callback;
-- (void)getRetailer:(void (^)(id<CSRetailer> result, NSError *error))callback;
+/** Tries to get the product that can be purchased at this price.
+ 
+ Control returns from getProduct: immediately. If the operation is successful,
+ the given callback is invoked with a non-nil
+ [id\<CSProduct\>](CSProduct) in product and a nil error.
+ 
+ If the operation fails, callback is invoked with a nil product and a non-nil
+ error.
+ 
+ @param callback The block to invoke when the product has been successfully
+ obtained, or when the operation has failed.
+ 
+ */
+- (void)getProduct:(void (^)(id<CSProduct> product, NSError *error))callback;
+
+/** Tries to get the retailer that offers the product at this price.
+ 
+ Control returns from getRetailer: immediately. If the operation is successful,
+ the given callback is invoked with a non-nil
+ [id\<CSRetailer\>](CSRetailer) in retailer and a nil error.
+ 
+ If the operation fails, callback is invoked with a nil retailer and a non-nil
+ error.
+ 
+ @param callback The block to invoke when the retailer has been successfully
+ obtained, or when the operation has failed.
+ 
+ */
+- (void)getRetailer:(void (^)(id<CSRetailer> retailer, NSError *error))callback;
 
 @end
