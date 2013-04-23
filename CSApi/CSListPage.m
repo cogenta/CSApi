@@ -13,6 +13,12 @@
 #import <NSArray+Functional/NSArray+Functional.h>
 #import <objc/runtime.h>
 
+@interface CSListPage ()
+
+- (NSUInteger) getCountForResource:(YBHALResource *)resource;
+
+@end
+
 @implementation CSListPage
 
 @synthesize count;
@@ -27,7 +33,7 @@
 {
     self = [super initWithRequester:aRequester credential:aCredential];
     if (self) {
-        count = [resource[@"count"] unsignedIntegerValue];
+        count = [self getCountForResource:resource];
         URL = [resource linkForRelation:@"self"].URL;
         next = [resource linkForRelation:@"next"].URL;
         prev = [resource linkForRelation:@"prev"].URL;
@@ -48,6 +54,11 @@
         }
     }
     return self;
+}
+
+- (NSUInteger)getCountForResource:(YBHALResource *)resource
+{
+    return [resource[@"count"] unsignedIntegerValue];
 }
 
 - (NSString *)rel

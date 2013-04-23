@@ -136,5 +136,43 @@
     STAssertEqualObjects(productSummary.description, product.description, nil);
 }
 
+- (void)testGetPrices
+{
+    __block NSError *error = [NSError errorWithDomain:@"not called"
+                                                 code:0
+                                             userInfo:nil];
+    __block id<CSPriceListPage> page = nil;
+    CALL_AND_WAIT(^(void (^done)()) {
+        [product getPrices:^(id<CSPriceListPage> aPage, NSError *anError) {
+            error = anError;
+            page = aPage;
+            done();
+        }];
+    });
+    
+    STAssertNil(error, @"%@", error);
+    STAssertNotNil(page, nil);
+    
+    id<CSPriceList> prices = page.priceList;
+    STAssertNotNil(prices, nil);
+    
+    STAssertEqualObjects(@(prices.count), @(13), nil);
+    
+    error = [NSError errorWithDomain:@"not called"
+                                code:0
+                            userInfo:nil];
+    __block id<CSPrice> price = nil;
+    CALL_AND_WAIT(^(void (^done)()) {
+        [prices getPriceAtIndex:0 callback:^(id<CSPrice> aPrice, NSError *anError) {
+            price = aPrice;
+            error = anError;
+            done();
+        }];
+    });
+    
+    STAssertNil(error, @"%@", error);
+    STAssertNotNil(price, nil);
+}
+
 @end
 

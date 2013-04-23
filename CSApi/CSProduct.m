@@ -8,6 +8,7 @@
 
 #import "CSProduct.h"
 #import "CSPictureListPage.h"
+#import "CSPriceListPage.h"
 #import "CSProductSummary.h"
 #import <HyperBek/HyperBek.h>
 #import <ISO8601DateFormatter/ISO8601DateFormatter.h>
@@ -68,9 +69,12 @@
      }];
 }
 
-- (void)getPrices:(void (^)(NSArray *, NSError *))callback
+- (void)getPrices:(void (^)(id<CSPriceListPage>, NSError *))callback
 {
-    callback(nil, [NSError errorWithDomain:@"not implemented" code:0 userInfo:nil]);
+    callback([[CSPriceListPage alloc] initWithHal:self.resource
+                                        requester:self.requester
+                                       credential:self.credential],
+             nil);
 }
 
 - (void)getProductSummary:(void (^)(id<CSProductSummary>, NSError *))callback

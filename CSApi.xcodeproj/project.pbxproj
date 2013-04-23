@@ -22,6 +22,11 @@
 		BE06A4DE16B6E54A00F345F8 /* CSApiTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BE06A4DD16B6E54A00F345F8 /* CSApiTests.m */; };
 		BE0D502516C2C4B2005A1DC1 /* CSUserDefaultsAPIStore.m in Sources */ = {isa = PBXBuildFile; fileRef = BE0D502416C2C4B2005A1DC1 /* CSUserDefaultsAPIStore.m */; };
 		BE0D502816C2C527005A1DC1 /* CSUserDefaultsAPIStoreTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BE0D502716C2C527005A1DC1 /* CSUserDefaultsAPIStoreTests.m */; };
+		BE480BA817258B690022216B /* CSPrice.m in Sources */ = {isa = PBXBuildFile; fileRef = BE480BA717258B690022216B /* CSPrice.m */; };
+		BE480BAB17258D9A0022216B /* CSPriceListPage.m in Sources */ = {isa = PBXBuildFile; fileRef = BE480BAA17258D9A0022216B /* CSPriceListPage.m */; };
+		BE480BAE17258DB90022216B /* CSPriceList.m in Sources */ = {isa = PBXBuildFile; fileRef = BE480BAD17258DB90022216B /* CSPriceList.m */; };
+		BE480BB1172593830022216B /* CSPriceTest.m in Sources */ = {isa = PBXBuildFile; fileRef = BE480BB0172593830022216B /* CSPriceTest.m */; };
+		BE480BB3172685D00022216B /* retailer_81.json in Resources */ = {isa = PBXBuildFile; fileRef = BE480BB2172685D00022216B /* retailer_81.json */; };
 		BE4B14A716B9722A00BDDD08 /* user_post_response.json in Resources */ = {isa = PBXBuildFile; fileRef = BE4B14A616B9722A00BDDD08 /* user_post_response.json */; };
 		BE4B14AA16B9727300BDDD08 /* TestFixtures.m in Sources */ = {isa = PBXBuildFile; fileRef = BE4B14A916B9727300BDDD08 /* TestFixtures.m */; };
 		BE57713F16B98EFF002F42E4 /* user_post_response_with_reference_and_meta.json in Resources */ = {isa = PBXBuildFile; fileRef = BE57713E16B98EFF002F42E4 /* user_post_response_with_reference_and_meta.json */; };
@@ -143,6 +148,14 @@
 		BE0D502316C2C4B2005A1DC1 /* CSUserDefaultsAPIStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSUserDefaultsAPIStore.h; sourceTree = "<group>"; };
 		BE0D502416C2C4B2005A1DC1 /* CSUserDefaultsAPIStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSUserDefaultsAPIStore.m; sourceTree = "<group>"; };
 		BE0D502716C2C527005A1DC1 /* CSUserDefaultsAPIStoreTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSUserDefaultsAPIStoreTests.m; sourceTree = "<group>"; };
+		BE480BA617258B690022216B /* CSPrice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSPrice.h; sourceTree = "<group>"; };
+		BE480BA717258B690022216B /* CSPrice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSPrice.m; sourceTree = "<group>"; };
+		BE480BA917258D9A0022216B /* CSPriceListPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSPriceListPage.h; sourceTree = "<group>"; };
+		BE480BAA17258D9A0022216B /* CSPriceListPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSPriceListPage.m; sourceTree = "<group>"; };
+		BE480BAC17258DB90022216B /* CSPriceList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSPriceList.h; sourceTree = "<group>"; };
+		BE480BAD17258DB90022216B /* CSPriceList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSPriceList.m; sourceTree = "<group>"; };
+		BE480BB0172593830022216B /* CSPriceTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSPriceTest.m; sourceTree = "<group>"; };
+		BE480BB2172685D00022216B /* retailer_81.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = retailer_81.json; path = Fixtures/retailer_81.json; sourceTree = "<group>"; };
 		BE4B14A616B9722A00BDDD08 /* user_post_response.json */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = text.json; name = user_post_response.json; path = Fixtures/user_post_response.json; sourceTree = "<group>"; tabWidth = 2; };
 		BE4B14A816B9727300BDDD08 /* TestFixtures.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFixtures.h; sourceTree = "<group>"; };
 		BE4B14A916B9727300BDDD08 /* TestFixtures.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestFixtures.m; sourceTree = "<group>"; };
@@ -357,6 +370,7 @@
 				BE5D4C0716EE45900096FFFF /* Pictures */,
 				BE5D4C0E16EE4A0C0096FFFF /* Product Summaries */,
 				BE6BF3F217183C92004B6D85 /* Products */,
+				BE480BA517258B390022216B /* Prices */,
 			);
 			name = CSAPI;
 			path = CSApi;
@@ -391,6 +405,7 @@
 				BE78D17016E6102B00DAE148 /* CSRetailerTests.m */,
 				BE5D4C1B16F381940096FFFF /* CSProductSummaryTests.m */,
 				BE6BF3F617185103004B6D85 /* CSProductTests.m */,
+				BE480BB0172593830022216B /* CSPriceTest.m */,
 			);
 			path = CSApiTests;
 			sourceTree = "<group>";
@@ -402,6 +417,19 @@
 				BE06A4D916B6E54A00F345F8 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		BE480BA517258B390022216B /* Prices */ = {
+			isa = PBXGroup;
+			children = (
+				BE480BA617258B690022216B /* CSPrice.h */,
+				BE480BA717258B690022216B /* CSPrice.m */,
+				BE480BA917258D9A0022216B /* CSPriceListPage.h */,
+				BE480BAA17258D9A0022216B /* CSPriceListPage.m */,
+				BE480BAC17258DB90022216B /* CSPriceList.h */,
+				BE480BAD17258DB90022216B /* CSPriceList.m */,
+			);
+			name = Prices;
 			sourceTree = "<group>";
 		};
 		BE5D4C0116EE45120096FFFF /* Applications */ = {
@@ -570,7 +598,7 @@
 		BEA65A1416B9535300F10CB0 /* Fixtures */ = {
 			isa = PBXGroup;
 			children = (
-				BE6BF3F017183C11004B6D85 /* product.json */,
+				BE480BB2172685D00022216B /* retailer_81.json */,
 				BEA65A1516B9537300F10CB0 /* app.json */,
 				BE4B14A616B9722A00BDDD08 /* user_post_response.json */,
 				BE57713E16B98EFF002F42E4 /* user_post_response_with_reference_and_meta.json */,
@@ -595,6 +623,7 @@
 				BE78D16B16E6092300DAE148 /* picture.json */,
 				BE78D16D16E60F8F00DAE148 /* retailer.json */,
 				BE5D4C0F16EE553A0096FFFF /* productsummary.json */,
+				BE6BF3F017183C11004B6D85 /* product.json */,
 			);
 			name = Fixtures;
 			sourceTree = "<group>";
@@ -699,6 +728,7 @@
 				BE78D16E16E60F8F00DAE148 /* retailer.json in Resources */,
 				BE5D4C1016EE553A0096FFFF /* productsummary.json in Resources */,
 				BE6BF3F117183C11004B6D85 /* product.json in Resources */,
+				BE480BB3172685D00022216B /* retailer_81.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -801,6 +831,9 @@
 				BE5D4C1616F37BA70096FFFF /* CSProductSummaryListPage.m in Sources */,
 				BE5D4C1916F37C170096FFFF /* CSProductSummaryList.m in Sources */,
 				BE6BF3F517183CCF004B6D85 /* CSProduct.m in Sources */,
+				BE480BA817258B690022216B /* CSPrice.m in Sources */,
+				BE480BAB17258D9A0022216B /* CSPriceListPage.m in Sources */,
+				BE480BAE17258DB90022216B /* CSPriceList.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -829,6 +862,7 @@
 				BE78D17116E6102B00DAE148 /* CSRetailerTests.m in Sources */,
 				BE5D4C1C16F381950096FFFF /* CSProductSummaryTests.m in Sources */,
 				BE6BF3F717185103004B6D85 /* CSProductTests.m in Sources */,
+				BE480BB1172593830022216B /* CSPriceTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

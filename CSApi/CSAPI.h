@@ -42,7 +42,12 @@
 @protocol CSProductSummaryListPage;
 @protocol CSProductSummaryList;
 @protocol CSProductSummary;
+
 @protocol CSProduct;
+
+@protocol CSPriceListPage;
+@protocol CSPriceList;
+@protocol CSPrice;
 
 /**
  Provides access to the Cogenta Shopping API.
@@ -911,7 +916,7 @@
 
 - (void)getPictures:(void (^)(id<CSPictureListPage> firstPage,
                               NSError *error))callback;
-- (void)getPrices:(void (^)(NSArray *prices, NSError *error))callback;
+- (void)getPrices:(void (^)(id<CSPriceListPage> prices, NSError *error))callback;
 - (void)getProductSummary:(void (^)(id<CSProductSummary> productSummary,
                                     NSError *error))callback;
 
@@ -949,5 +954,32 @@
 - (void)getPictureAtIndex:(NSUInteger)index
                  callback:(void (^)(id<CSPicture> result,
                                     NSError *error))callback;
+
+@end
+
+@protocol CSPriceListPage <CSListPage>
+
+@property (readonly) id<CSPriceList> priceList;
+
+@end
+
+@protocol CSPriceList <CSList>
+
+- (void)getPriceAtIndex:(NSUInteger)index
+               callback:(void (^)(id<CSPrice> result,
+                                  NSError *error))callback;
+
+@end
+
+@protocol CSPrice <NSObject>
+
+@property (readonly) NSDecimalNumber *effectivePrice;
+@property (readonly) NSDecimalNumber *price;
+@property (readonly) NSDecimalNumber *deliveryPrice;
+@property (readonly) NSString *currencySymbol;
+@property (readonly) NSString *currencyCode;
+
+- (void)getProduct:(void (^)(id<CSProduct> result, NSError *error))callback;
+- (void)getRetailer:(void (^)(id<CSRetailer> result, NSError *error))callback;
 
 @end

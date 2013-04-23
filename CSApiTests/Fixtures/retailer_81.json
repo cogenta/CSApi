@@ -1,0 +1,110 @@
+{
+  "_embedded": {
+    "api:logo": {
+      "count": 4, 
+      "_embedded": {
+        "api:image": [
+          {
+            "width": 80, 
+            "_links": {
+              "curie": {
+                "href": "/rels/{rel}", 
+                "name": "api", 
+                "templated": true
+              }, 
+              "self": {
+                "href": "/images/retailerlogo_81_0"
+              }, 
+              "enclosure": {
+                "href": "http://www.sccope.co.uk/img/RetailerThumbnailsCentered/en-GB/Tesco.png", 
+                "type": "image/png"
+              }
+            }, 
+            "height": 24
+          }, 
+          {
+            "width": 160, 
+            "_links": {
+              "curie": {
+                "href": "/rels/{rel}", 
+                "name": "api", 
+                "templated": true
+              }, 
+              "self": {
+                "href": "/images/retailerlogo_81_1"
+              }, 
+              "enclosure": {
+                "href": "http://www.sccope.co.uk/img/RetailerThumbnailsCentered/en-GB/160x48/Tesco.png", 
+                "type": "image/png"
+              }
+            }, 
+            "height": 48
+          }, 
+          {
+            "width": 100, 
+            "_links": {
+              "curie": {
+                "href": "/rels/{rel}", 
+                "name": "api", 
+                "templated": true
+              }, 
+              "self": {
+                "href": "/images/retailerlogo_81_2"
+              }, 
+              "enclosure": {
+                "href": "http://www.sccope.co.uk/img/RetailerThumbnailsCentered/en-GB/100x30/Tesco.png", 
+                "type": "image/png"
+              }
+            }, 
+            "height": 30
+          }, 
+          {
+            "width": 188, 
+            "_links": {
+              "curie": {
+                "href": "/rels/{rel}", 
+                "name": "api", 
+                "templated": true
+              }, 
+              "self": {
+                "href": "/images/retailerlogo_81_3"
+              }, 
+              "enclosure": {
+                "href": "http://192.168.1.16/retailers/Tesco.png", 
+                "type": "image/png"
+              }
+            }, 
+            "height": 188
+          }
+        ]
+      }, 
+      "_links": {
+        "curie": {
+          "href": "/rels/{rel}", 
+          "name": "api", 
+          "templated": true
+        }, 
+        "self": {
+          "href": "/pictures/retailerlogo_81"
+        }
+      }
+    }
+  }, 
+  "_links": {
+    "curie": {
+      "href": "/rels/{rel}", 
+      "name": "api", 
+      "templated": true
+    }, 
+    "self": {
+      "href": "/retailers/81"
+    }, 
+    "homepage": {
+      "href": "http://www.mysupermarket.co.uk/"
+    }, 
+    "api:productsummaries": {
+      "href": "/retailers/81/productsummaries/"
+    }
+  }, 
+  "name": "Tesco"
+}
