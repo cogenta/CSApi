@@ -598,7 +598,6 @@
 		BEA65A1416B9535300F10CB0 /* Fixtures */ = {
 			isa = PBXGroup;
 			children = (
-				BE480BB2172685D00022216B /* retailer_81.json */,
 				BEA65A1516B9537300F10CB0 /* app.json */,
 				BE4B14A616B9722A00BDDD08 /* user_post_response.json */,
 				BE57713E16B98EFF002F42E4 /* user_post_response_with_reference_and_meta.json */,
@@ -622,6 +621,7 @@
 				BE78D15C16E6001900DAE148 /* image.json */,
 				BE78D16B16E6092300DAE148 /* picture.json */,
 				BE78D16D16E60F8F00DAE148 /* retailer.json */,
+				BE480BB2172685D00022216B /* retailer_81.json */,
 				BE5D4C0F16EE553A0096FFFF /* productsummary.json */,
 				BE6BF3F017183C11004B6D85 /* product.json */,
 			);
