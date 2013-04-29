@@ -13,7 +13,7 @@ Pod::Spec.new do |s|
   s.frameworks = 'MobileCoreServices', 'SystemConfiguration', 'Foundation'
   s.requires_arc = true
   s.dependency 'AFNetworking'
-  s.dependency 'HyperBek', :local => '../hyperbek'
+  s.dependency 'HyperBek'
   s.dependency 'Base64'
   s.dependency 'NSArray+Functional'
   s.dependency 'ISO8601DateFormatter'

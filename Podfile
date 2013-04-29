@@ -1,6 +1,6 @@
 platform :ios, '6.0'
 pod 'AFNetworking'
-pod 'HyperBek', :local => '../hyperbek'
+pod 'HyperBek'
 pod 'Base64'
 pod 'NSArray+Functional'
 pod 'ISO8601DateFormatter'
