@@ -28,6 +28,7 @@
 @synthesize author;
 @synthesize softwarePlatform;
 @synthesize manufacuturer;
+@synthesize coverType;
 @synthesize lastUpdated;
 
 - (id)initWithHAL:(YBHALResource *)aResource
@@ -45,6 +46,7 @@
         author = resource[@"author"];
         softwarePlatform = resource[@"software_platform"];
         manufacuturer = resource[@"manufacturer"];
+        coverType = resource[@"cover_type"];
         lastUpdated = [[[ISO8601DateFormatter alloc] init]
                        dateFromString:resource[@"last_updated"]];
     }

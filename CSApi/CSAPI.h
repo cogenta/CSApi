@@ -938,6 +938,9 @@
 /** The manufacturer of this product. */
 @property (readonly) NSString *manufacuturer;
 
+/** The cover type of this product. */
+@property (readonly) NSString *coverType;
+
 /* The last time this product resource was updated. */
 @property (readonly) NSDate *lastUpdated;
 
