@@ -61,7 +61,7 @@
     STAssertEqualObjects(product.views, resource[@"views"], nil);
     STAssertEqualObjects(product.author, resource[@"author"], nil);
     STAssertEqualObjects(product.softwarePlatform, resource[@"software_platform"], nil);
-    STAssertEqualObjects(product.manufacuturer, resource[@"manufacturer"], nil);
+    STAssertEqualObjects(product.manufacturer, resource[@"manufacturer"], nil);
     STAssertEqualObjects(product.coverType, resource[@"cover_type"], nil);
     STAssertEqualObjects(product.lastUpdated,
                          [[[ISO8601DateFormatter alloc] init]

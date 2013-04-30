@@ -936,7 +936,7 @@
 @property (readonly) NSString *softwarePlatform;
 
 /** The manufacturer of this product. */
-@property (readonly) NSString *manufacuturer;
+@property (readonly) NSString *manufacturer;
 
 /** The cover type of this product. */
 @property (readonly) NSString *coverType;

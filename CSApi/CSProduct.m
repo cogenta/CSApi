@@ -27,7 +27,7 @@
 @synthesize views;
 @synthesize author;
 @synthesize softwarePlatform;
-@synthesize manufacuturer;
+@synthesize manufacturer;
 @synthesize coverType;
 @synthesize lastUpdated;
 
@@ -45,7 +45,7 @@
         views = resource[@"views"];
         author = resource[@"author"];
         softwarePlatform = resource[@"software_platform"];
-        manufacuturer = resource[@"manufacturer"];
+        manufacturer = resource[@"manufacturer"];
         coverType = resource[@"cover_type"];
         lastUpdated = [[[ISO8601DateFormatter alloc] init]
                        dateFromString:resource[@"last_updated"]];
