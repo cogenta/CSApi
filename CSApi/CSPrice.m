@@ -99,4 +99,10 @@
      }];
 }
 
+- (NSURL *)retailerURL
+{
+    YBHALLink *link = [resource linkForRelation:@"/rels/retailer"];
+    return link.URL;
+}
+
 @end

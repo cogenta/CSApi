@@ -92,7 +92,7 @@ STAssertEqualObjects(actual, [NSDecimalNumber decimalNumberWithString:expectedSt
     STAssertEqualObjects(product.name, productResource[@"name"], nil);
 }
 
-- (void)testGetRetailer
+- (void)testGetRetailerAndRetailerURL
 {
     YBHALResource *retailerResource = [self resourceForFixture:@"retailer_81.json"];
     STAssertNotNil(retailerResource, nil);
@@ -116,6 +116,8 @@ STAssertEqualObjects(actual, [NSDecimalNumber decimalNumberWithString:expectedSt
     STAssertNotNil(retailer, nil);
     
     STAssertEqualObjects(retailer.name, retailerResource[@"name"], nil);
+    
+    STAssertEqualObjects(price.retailerURL, retailer.URL, nil);
 }
 
 @end

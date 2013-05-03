@@ -1089,6 +1089,9 @@
  For example "GBP" or "USD". */
 @property (readonly) NSString *currencyCode;
 
+/** URL of the retailer that offers the product at this price. */
+@property (readonly) NSURL *retailerURL;
+
 /** Tries to get the product that can be purchased at this price.
  
  Control returns from getProduct: immediately. If the operation is successful,
