@@ -12,16 +12,75 @@
 #import "AFNetworking.h"
 #import <HyperBek/HyperBek.h>
 #import <Base64/MF_Base64Additions.h>
+#import <SBJson/SBJson.h>
 
 @interface CSHALRequestOperation : AFJSONRequestOperation
+
+@property (readwrite, nonatomic, strong) NSError *JSONError;
 
 @end
 
 @implementation CSHALRequestOperation
 
++ (instancetype)JSONRequestOperationWithRequest:(NSURLRequest *)urlRequest
+       success:(void (^)(NSURLRequest *request,
+                         NSHTTPURLResponse *response,
+                         id JSON))success
+       failure:(void (^)(NSURLRequest *request,
+                         NSHTTPURLResponse *response,
+                         NSError *error,
+                         id JSON))failure
+{
+    CSHALRequestOperation *requestOperation = [[self alloc]
+                                               initWithRequest:urlRequest];
+    [requestOperation
+     setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation,
+                                     id responseObject)
+    {
+        if (success) {
+            success(operation.request, operation.response, responseObject);
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        if (failure) {
+            failure(operation.request, operation.response, error,
+                    [(AFJSONRequestOperation *)operation responseJSON]);
+        }
+    }];
+    
+    return requestOperation;
+}
+
 + (NSSet *)acceptableContentTypes
 {
     return [NSSet setWithObjects:@"application/hal+json", @"text/plain", nil];
+}
+
+- (NSError *)error {
+    if (_JSONError) {
+        return _JSONError;
+    } else {
+        return [super error];
+    }
+}
+
+- (id)responseJSON {
+    NSError *error = nil;
+    
+    if ([self.responseData length] == 0 ||
+        [self.responseString isEqualToString:@" "]) {
+        return nil;
+    }
+    
+    NSData *JSONData = [self.responseString
+                        dataUsingEncoding:NSUTF8StringEncoding];
+    SBJsonParser *parser = [[SBJsonParser alloc] init];
+    id responseObj = [parser objectWithData:JSONData];
+    if ( ! responseObj) {
+        NSDictionary *ui = [NSDictionary dictionaryWithObjectsAndKeys:error, NSLocalizedDescriptionKey, nil];
+        self.JSONError = [NSError errorWithDomain:@"CSAPI" code:0 userInfo:ui];
+        return nil;
+    }
+    return responseObj;
 }
 
 @end

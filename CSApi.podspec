@@ -17,4 +17,5 @@ Pod::Spec.new do |s|
   s.dependency 'Base64'
   s.dependency 'NSArray+Functional'
   s.dependency 'ISO8601DateFormatter'
+  s.dependency 'SBJson'
 end

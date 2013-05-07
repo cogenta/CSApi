@@ -9,6 +9,7 @@
 #import "CSAPITestCase.h"
 #import "TestConstants.h"
 #import "TestFixtures.h"
+#import <SBJson/SBJson.h>
 
 @implementation CSAPITestCase
 
@@ -64,11 +65,7 @@
         return nil;
     }
     
-    __block NSError *error = nil;
-    id json = [NSJSONSerialization JSONObjectWithData:data
-                                              options:0
-                                                error:&error];
-    
+    id json = [[[SBJsonParser alloc] init] objectWithData:data];
     return json;
 }
 

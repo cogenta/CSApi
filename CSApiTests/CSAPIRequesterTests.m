@@ -813,4 +813,41 @@
                          nil);
 }
 
+#pragma mark - Misc. tests
+
+- (void)testCorrectlyParsesDecimalNumbers
+{
+    NSData *decimalData = [@"{\"ninetyninepoint99\":99.99}"
+                           dataUsingEncoding:NSUTF8StringEncoding];
+    [OHHTTPStubs shouldStubRequestsPassingTest:^BOOL(NSURLRequest *request) {
+        return YES;
+    } withStubResponse:^OHHTTPStubsResponse *(NSURLRequest *request) {
+        NSDictionary *headers = @{@"Content-Type": @"application/hal+json"};
+        return [OHHTTPStubsResponse responseWithData:decimalData
+                                          statusCode:200
+                                        responseTime:0.0
+                                             headers:headers];
+    }];
+    
+    __block id actualResource = @"NOT SET";
+    __block id actualEtag = @"NOT SET";
+    __block NSError *actualError = [NSError errorWithDomain:@"NOT SET"
+                                                       code:0
+                                                   userInfo:nil];
+    [self callAndWait:^(void (^done)()) {
+        [requester getURL:userURL
+               credential:basicCredential
+                 callback:^(id result, id etag, NSError *error)
+         {
+             actualResource = result;
+             actualEtag = etag;
+             actualError = error;
+             done();
+         }];
+    }];
+    
+    STAssertEqualObjects([actualResource[@"ninetyninepoint99"] description],
+                         @"99.99", nil);
+}
+
 @end
