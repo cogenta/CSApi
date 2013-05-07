@@ -22,6 +22,7 @@
 @synthesize resource;
 @synthesize effectivePrice;
 @synthesize price;
+@synthesize stock;
 @synthesize deliveryPrice;
 @synthesize currencySymbol;
 @synthesize currencyCode;
@@ -38,6 +39,7 @@
         deliveryPrice = resource[@"delivery_price"];
         currencySymbol = resource[@"currency_symbol"];
         currencyCode = resource[@"currency_code"];
+        stock = resource[@"stock"];
     }
     
     return self;

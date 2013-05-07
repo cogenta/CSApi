@@ -79,6 +79,7 @@
         "effective_price": 224,
         "price": 224,
         "delivery_price": null,
+        "stock": "UNKNOWN_STOCK",
         "_links": {
           "curies": [{
             "href": "/rels/{rel}",
@@ -105,6 +106,7 @@
         "effective_price": 224,
         "price": 224,
         "delivery_price": 0,
+        "stock": "UNKNOWN_STOCK",
         "_links": {
           "curies": [{
             "href": "/rels/{rel}",
@@ -131,6 +133,7 @@
         "effective_price": 239,
         "price": 239,
         "delivery_price": null,
+        "stock": "UNKNOWN_STOCK",
         "_links": {
           "curies": [{
             "href": "/rels/{rel}",
@@ -157,6 +160,7 @@
         "effective_price": 224,
         "price": 224,
         "delivery_price": 0,
+        "stock": "UNKNOWN_STOCK",
         "_links": {
           "curies": [{
             "href": "/rels/{rel}",
@@ -183,6 +187,7 @@
         "effective_price": 223,
         "price": 220,
         "delivery_price": 3,
+        "stock": "IN_STOCK",
         "_links": {
           "curies": [{
             "href": "/rels/{rel}",
@@ -209,6 +214,7 @@
         "effective_price": 229,
         "price": 229,
         "delivery_price": null,
+        "stock": "UNKNOWN_STOCK",
         "_links": {
           "curies": [{
             "href": "/rels/{rel}",
@@ -235,6 +241,7 @@
         "effective_price": 249,
         "price": 249,
         "delivery_price": null,
+        "stock": "UNKNOWN_STOCK",
         "_links": {
           "curies": [{
             "href": "/rels/{rel}",
@@ -261,6 +268,7 @@
         "effective_price": 239,
         "price": 239,
         "delivery_price": null,
+        "stock": "UNKNOWN_STOCK",
         "_links": {
           "curies": [{
             "href": "/rels/{rel}",
@@ -287,6 +295,7 @@
         "effective_price": 249,
         "price": 249,
         "delivery_price": null,
+        "stock": "UNKNOWN_STOCK",
         "_links": {
           "curies": [{
             "href": "/rels/{rel}",
@@ -313,6 +322,7 @@
         "effective_price": 252.95,
         "price": 249,
         "delivery_price": 3.95,
+        "stock": "UNKNOWN_STOCK",
         "_links": {
           "curies": [{
             "href": "/rels/{rel}",
@@ -339,6 +349,7 @@
         "effective_price": 249,
         "price": 249,
         "delivery_price": null,
+        "stock": "UNKNOWN_STOCK",
         "_links": {
           "curies": [{
             "href": "/rels/{rel}",
@@ -365,6 +376,7 @@
         "effective_price": 239.98,
         "price": 239.98,
         "delivery_price": null,
+        "stock": "UNKNOWN_STOCK",
         "_links": {
           "curies": [{
             "href": "/rels/{rel}",
@@ -391,6 +403,7 @@
         "effective_price": 239.97,
         "price": 239.97,
         "delivery_price": null,
+        "stock": "UNKNOWN_STOCK",
         "_links": {
           "curies": [{
             "href": "/rels/{rel}",

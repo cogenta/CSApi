@@ -60,6 +60,7 @@
     STAssertEqualObjects(price.deliveryPrice, @(3.00), nil);
     STAssertEqualObjects(price.currencySymbol, @"£", nil);
     STAssertEqualObjects(price.currencyCode, @"GBP", nil);
+    STAssertEqualObjects(price.stock, @"IN_STOCK", nil);
 }
 
 - (void)testGetProduct

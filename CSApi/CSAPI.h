@@ -1092,6 +1092,9 @@
 /** URL of the retailer that offers the product at this price. */
 @property (readonly) NSURL *retailerURL;
 
+/** Availibility of the product at this retailer. */
+@property (readonly) NSString *stock;
+
 /** Tries to get the product that can be purchased at this price.
  
  Control returns from getProduct: immediately. If the operation is successful,
