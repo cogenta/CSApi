@@ -105,4 +105,11 @@
     return link.URL;
 }
 
+- (NSString *)description
+{
+    return [NSString stringWithFormat:@"<CSPrice: %@ [%@ %@ from %@]>",
+            [self.resource linkForRelation:@"self"].URL,
+            self.effectivePrice, self.currencyCode, self.retailerURL];
+}
+
 @end
