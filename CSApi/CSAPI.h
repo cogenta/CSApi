@@ -1073,13 +1073,13 @@
 @protocol CSPrice <NSObject>
 
 /** The "final price you pay", inclusive of delivery and offer discounts. */
-@property (readonly) NSDecimalNumber *effectivePrice;
+@property (readonly) NSNumber *effectivePrice;
 
 /** Price exclusive of delivery and offer discounts. */
-@property (readonly) NSDecimalNumber *price;
+@property (readonly) NSNumber *price;
 
 /** Delivery price. */
-@property (readonly) NSDecimalNumber *deliveryPrice;
+@property (readonly) NSNumber *deliveryPrice;
 
 /** Symbol for the currency that denominates this price.
  For example "£" or "$". */

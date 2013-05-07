@@ -11,25 +11,6 @@
 #import "CSRetailer.h"
 #import <HyperBek/HyperBek.h>
 
-@interface NSDecimalNumber (CSNumberAdditions)
-
-+ (NSDecimalNumber *)decimalNumberWithNumber:(NSNumber *)number;
-
-@end
-
-@implementation NSDecimalNumber (CSNumberAdditions)
-
-+ (NSDecimalNumber *)decimalNumberWithNumber:(NSNumber *)number
-{
-    if ( ! [number respondsToSelector:@selector(decimalValue)]) {
-        return (NSDecimalNumber *) [NSNull null];
-    }
-    
-    return [NSDecimalNumber decimalNumberWithDecimal:[number decimalValue]];
-}
-
-@end
-
 @interface CSPrice ()
 
 @property (strong, nonatomic) YBHALResource *resource;
@@ -52,9 +33,9 @@
     self = [super initWithRequester:requester credential:credential];
     if (self) {
         resource = aResource;
-        effectivePrice = [NSDecimalNumber decimalNumberWithNumber:resource[@"effective_price"]];
-        price = [NSDecimalNumber decimalNumberWithNumber:resource[@"price"]];
-        deliveryPrice = [NSDecimalNumber decimalNumberWithNumber:resource[@"delivery_price"]];
+        effectivePrice = resource[@"effective_price"];
+        price = resource[@"price"];
+        deliveryPrice = resource[@"delivery_price"];
         currencySymbol = resource[@"currency_symbol"];
         currencyCode = resource[@"currency_code"];
     }

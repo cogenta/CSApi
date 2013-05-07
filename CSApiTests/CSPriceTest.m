@@ -13,10 +13,6 @@
 #import <HyperBek/HyperBek.h>
 #import "TestConstants.h"
 
-#define CSAssertEqualDecimals(actual, expectedStr, description, ...) \
-STAssertTrue([actual isKindOfClass:[NSDecimalNumber class]], description, ##__VA_ARGS__); \
-STAssertEqualObjects(actual, [NSDecimalNumber decimalNumberWithString:expectedStr], description, ##__VA_ARGS__);
-
 @interface CSPriceTest : CSAPITestCase
 
 @property (strong) TestRequester *requester;
@@ -59,9 +55,9 @@ STAssertEqualObjects(actual, [NSDecimalNumber decimalNumberWithString:expectedSt
 
 - (void)testProperties
 {
-    CSAssertEqualDecimals(price.effectivePrice, @"223.00", nil);
-    CSAssertEqualDecimals(price.price, @"220.00", nil);
-    CSAssertEqualDecimals(price.deliveryPrice, @"3.00", nil);
+    STAssertEqualObjects(price.effectivePrice, @(223.00), nil);
+    STAssertEqualObjects(price.price, @(220.00), nil);
+    STAssertEqualObjects(price.deliveryPrice, @(3.00), nil);
     STAssertEqualObjects(price.currencySymbol, @"£", nil);
     STAssertEqualObjects(price.currencyCode, @"GBP", nil);
 }
