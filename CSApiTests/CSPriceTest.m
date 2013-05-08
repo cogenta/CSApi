@@ -117,5 +117,15 @@
     STAssertEqualObjects(price.retailerURL, retailer.URL, nil);
 }
 
+- (void)testGetPurchaseURL
+{
+    NSString *expectedURL = (@"http://www.tesco.com/direct/"
+                     "apple-ipod-touch-5th-generation-32gb-black/"
+                     "502-4737.prd?pageLevel=&skuId=502-4737");
+    STAssertEqualObjects(price.purchaseURL,
+                         [NSURL URLWithString:expectedURL],
+                         nil);
+}
+
 @end
 

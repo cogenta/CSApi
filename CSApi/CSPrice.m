@@ -88,6 +88,12 @@
     return link.URL;
 }
 
+- (NSURL *)purchaseURL
+{
+    YBHALLink *link = [resource linkForRelation:@"/rels/purchase"];
+    return link.URL;
+}
+
 - (NSString *)description
 {
     return [NSString stringWithFormat:@"<CSPrice: %@ [%@ %@ from %@]>",
