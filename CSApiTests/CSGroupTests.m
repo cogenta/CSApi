@@ -24,6 +24,8 @@
 @property (strong) CSGroup *group;
 @property (strong) YBHALResource *productSummariesResource;
 @property (strong) YBHALResource *productSummaryResource;
+@property (strong) YBHALResource *productsResource;
+@property (strong) YBHALResource *productResource;
 
 
 @end
@@ -39,7 +41,8 @@
 @synthesize group;
 @synthesize productSummaryResource;
 @synthesize productSummariesResource;
-
+@synthesize productResource;
+@synthesize productsResource;
 
 - (void)setUp
 {
@@ -56,6 +59,7 @@
     links[@"/rels/user"] = @{@"href": @"/users/12345"};
     links[@"/rels/likes"] = @{@"href": @"/users/12345/groups/1/likes/"};
     links[@"/rels/productsummaries"] = @{@"href": @"/users/12345/groups/1/productsummaries/"};
+    links[@"/rels/products"] = @{@"href": @"/users/12345/groups/1/products/"};
 
     groupDict[@"_links"] = links;
     groupDict[@"meta"] = @{@"count": @(0)};
@@ -67,6 +71,8 @@
                                requester:requester
                               credential:credential
                                     etag:initialEtag];
+    
+    //
     
     productSummaryResource = [self resourceForFixture:@"productsummary.json"];
     STAssertNotNil(productSummaryResource, nil);
@@ -89,6 +95,30 @@
                        forURL:[productSummaryResource linkForRelation:@"self"].URL];
     [requester addGetResponse:productSummariesResource
                        forURL:[productSummariesResource linkForRelation:@"self"].URL];
+    
+    //
+    
+    productResource = [self resourceForFixture:@"product.json"];
+    STAssertNotNil(productResource, nil);
+    
+    NSString *productsHref = [groupResource linkForRelation:@"/rels/products"].href;
+    STAssertNotNil(productsHref, nil);
+    NSString *productHref = [productResource linkForRelation:@"self"].href;
+    STAssertNotNil(productHref, nil);
+    NSMutableDictionary *productsDict = [NSMutableDictionary dictionary];
+    productsDict[@"_links"] = [NSMutableDictionary dictionary];
+    productsDict[@"_links"][@"self"] = [NSMutableDictionary dictionary];
+    productsDict[@"_links"][@"self"][@"href"] = productsHref;
+    productsDict[@"_links"][@"/rels/product"] = [NSMutableDictionary dictionary];
+    productsDict[@"_links"][@"/rels/product"][@"href"] = productHref;
+    productsDict[@"count"] = @1;
+    productsResource = [self resourceForJson:productsDict];
+    STAssertNotNil(productsResource, nil);
+    
+    [requester addGetResponse:productResource
+                       forURL:[productResource linkForRelation:@"self"].URL];
+    [requester addGetResponse:productsResource
+                       forURL:[productsResource linkForRelation:@"self"].URL];
 }
 
 - (void)testProperties
@@ -305,6 +335,47 @@
     STAssertNotNil(summary, nil);
     
     STAssertEqualObjects(summary.name, productSummaryResource[@"name"], nil);
+}
+
+- (void)testGetProducts
+{
+    __block NSError *error = [NSError errorWithDomain:@"not called"
+                                                 code:0
+                                             userInfo:nil];
+    __block id<CSProductListPage> page = nil;
+    CALL_AND_WAIT(^(void (^done)()) {
+        [self.group getProducts:^(id<CSProductListPage> aPage, NSError *anError)
+         {
+             page = aPage;
+             error = anError;
+             done();
+         }];
+    });
+    
+    STAssertNil(error, @"%@", error);
+    STAssertNotNil(page, nil);
+    
+    id<CSProductList> list = page.productList;
+    STAssertNotNil(list, nil);
+    
+    STAssertEqualObjects(@(list.count), @1, nil);
+    
+    __block id<CSProduct> product = nil;
+    error = [NSError errorWithDomain:@"not called" code:0 userInfo:nil];
+    CALL_AND_WAIT(^(void (^done)()) {
+        [list getProductAtIndex:0
+                       callback:^(id<CSProduct> aProduct, NSError *anError)
+         {
+             product = aProduct;
+             error = anError;
+             done();
+         }];
+    });
+    
+    STAssertNil(error, @"%@", error);
+    STAssertNotNil(product, nil);
+    
+    STAssertEqualObjects(product.name, productSummaryResource[@"name"], nil);
 }
 
 - (void)testCreateLike

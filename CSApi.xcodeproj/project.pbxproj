@@ -91,6 +91,8 @@
 		BEA65A1016B94DDF00F10CB0 /* CSApplicationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BEA65A0F16B94DDF00F10CB0 /* CSApplicationTests.m */; };
 		BEA65A1316B94E4900F10CB0 /* TestApi.m in Sources */ = {isa = PBXBuildFile; fileRef = BEA65A1216B94E4900F10CB0 /* TestApi.m */; };
 		BEA65A1616B9537300F10CB0 /* app.json in Resources */ = {isa = PBXBuildFile; fileRef = BEA65A1516B9537300F10CB0 /* app.json */; };
+		BEC1E2AE173BB30A00D12EF2 /* CSProductListPage.m in Sources */ = {isa = PBXBuildFile; fileRef = BEC1E2AD173BB30A00D12EF2 /* CSProductListPage.m */; };
+		BEC1E2B1173BB3E000D12EF2 /* CSProductList.m in Sources */ = {isa = PBXBuildFile; fileRef = BEC1E2B0173BB3E000D12EF2 /* CSProductList.m */; };
 		BECAC13216D63D2000F055EF /* like.json in Resources */ = {isa = PBXBuildFile; fileRef = BECAC13116D63D2000F055EF /* like.json */; };
 		BEE0A88816CE8D8B00EB3BB8 /* retailers_page_0_links.json in Resources */ = {isa = PBXBuildFile; fileRef = BEE0A88716CE8D8B00EB3BB8 /* retailers_page_0_links.json */; };
 		BEE0A88A16CE8DAD00EB3BB8 /* retailers_page_1_links.json in Resources */ = {isa = PBXBuildFile; fileRef = BEE0A88916CE8DAD00EB3BB8 /* retailers_page_1_links.json */; };
@@ -265,6 +267,10 @@
 		BEA65A1116B94E4900F10CB0 /* TestApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestApi.h; sourceTree = "<group>"; };
 		BEA65A1216B94E4900F10CB0 /* TestApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestApi.m; sourceTree = "<group>"; };
 		BEA65A1516B9537300F10CB0 /* app.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = app.json; path = Fixtures/app.json; sourceTree = "<group>"; };
+		BEC1E2AC173BB30A00D12EF2 /* CSProductListPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSProductListPage.h; sourceTree = "<group>"; };
+		BEC1E2AD173BB30A00D12EF2 /* CSProductListPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSProductListPage.m; sourceTree = "<group>"; };
+		BEC1E2AF173BB3E000D12EF2 /* CSProductList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSProductList.h; sourceTree = "<group>"; };
+		BEC1E2B0173BB3E000D12EF2 /* CSProductList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSProductList.m; sourceTree = "<group>"; };
 		BECAC13116D63D2000F055EF /* like.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = like.json; path = Fixtures/like.json; sourceTree = "<group>"; };
 		BEE0A88716CE8D8B00EB3BB8 /* retailers_page_0_links.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = retailers_page_0_links.json; path = Fixtures/retailers_page_0_links.json; sourceTree = "<group>"; };
 		BEE0A88916CE8DAD00EB3BB8 /* retailers_page_1_links.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = retailers_page_1_links.json; path = Fixtures/retailers_page_1_links.json; sourceTree = "<group>"; };
@@ -572,6 +578,10 @@
 			children = (
 				BE6BF3F317183CCF004B6D85 /* CSProduct.h */,
 				BE6BF3F417183CCF004B6D85 /* CSProduct.m */,
+				BEC1E2AC173BB30A00D12EF2 /* CSProductListPage.h */,
+				BEC1E2AD173BB30A00D12EF2 /* CSProductListPage.m */,
+				BEC1E2AF173BB3E000D12EF2 /* CSProductList.h */,
+				BEC1E2B0173BB3E000D12EF2 /* CSProductList.m */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -834,6 +844,8 @@
 				BE480BA817258B690022216B /* CSPrice.m in Sources */,
 				BE480BAB17258D9A0022216B /* CSPriceListPage.m in Sources */,
 				BE480BAE17258DB90022216B /* CSPriceList.m in Sources */,
+				BEC1E2AE173BB30A00D12EF2 /* CSProductListPage.m in Sources */,
+				BEC1E2B1173BB3E000D12EF2 /* CSProductList.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

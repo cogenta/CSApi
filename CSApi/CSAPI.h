@@ -43,6 +43,8 @@
 @protocol CSProductSummaryList;
 @protocol CSProductSummary;
 
+@protocol CSProductListPage;
+@protocol CSProductList;
 @protocol CSProduct;
 
 @protocol CSPriceListPage;
@@ -699,7 +701,7 @@
                     callback:(void (^)(id<CSLike> like,
                                        NSError *error))callback;
 
-/** Tries to get a list of products related to the likes in the group.
+/** Tries to get a list of product summaries related to the likes in the group.
  
  Control returns from getProductSummaries: immediately. If the operation is
  successful, the given callback is invoked with a non-nil
@@ -718,6 +720,26 @@
  */
 - (void)getProductSummaries:(void (^)(id<CSProductSummaryListPage> firstPage,
                                       NSError *error))callback;
+
+/** Tries to get a list of products related to the likes in the group.
+ 
+ Control returns from getProducts: immediately. If the operation is
+ successful, the given callback is invoked with a non-nil
+ [id\<CSProductListPage\>](CSProductListPage) in firstPage and a nil
+ error. firstPage is the first page of the result set. It is recommended that
+ client code use firstPage.productList to get an
+ [id\<CSProductList\>](CSProductList), which provides convenient
+ access to products in the list.
+ 
+ If the operation fails, callback is invoked with a nil firstPage and a non-nil
+ error.
+ 
+ @param callback The block to invoke when the product list has been
+ successfully obtained, or when the operation has failed.
+ 
+ */
+- (void)getProducts:(void (^)(id<CSProductListPage> firstPage,
+                              NSError *error))callback;
 
 /** Tries to delete the group.
  
@@ -914,6 +936,41 @@
  
  */
 - (void)getProduct:(void (^)(id<CSProduct> product, NSError *error))callback;
+
+@end
+
+/** Protocol for accessing pages of products in a sequence of results.
+ 
+ Client code is expected to use this protocol's productList property to
+ get an object conforming to CSProductList.
+ 
+ */
+@protocol CSProductListPage <CSListPage>
+
+/** An object conforming to CSProductList that provides convenient access
+ to the list of products.
+ */
+@property (readonly) id<CSProductList> productList;
+
+@end
+
+/** Protocol for accessing a list of product. */
+@protocol CSProductList <CSList>
+
+/** Tries to fetch the product at the given index.
+ 
+ Control returns from getProductAtIndex:callback: immediately. If the
+ operation is successful, the given callback is invoked with a non-nil
+ [id\<CSProduct\>](CSProduct) in result and a nil error. If the
+ operation fails, callback is invoked with a nil result and a non-nil error.
+ 
+ @param index The index in the sequence of the product to retrieve.
+ @param callback The block to invoke when the product has been
+ successfully obtained, or when the operation has failed.
+ */
+- (void)getProductAtIndex:(NSUInteger)index
+                 callback:(void (^)(id<CSProduct> result,
+                                    NSError *error))callback;
 
 @end
 
