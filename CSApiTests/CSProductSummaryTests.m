@@ -57,7 +57,7 @@
     STAssertEquals(productSummary.credential, credential, nil);
     STAssertEquals(productSummary.requester, requester, nil);
     STAssertEqualObjects(productSummary.name, resource[@"name"], nil);
-    STAssertEqualObjects(productSummary.description, resource[@"description"], nil);
+    STAssertEqualObjects(productSummary.description_, resource[@"description"], nil);
 }
 
 - (void)testGetPictures
@@ -124,7 +124,7 @@
     STAssertNotNil(product, nil);
     
     STAssertEqualObjects(product.name, productSummary.name, nil);
-    STAssertEqualObjects(product.description, productSummary.description, nil);
+    STAssertEqualObjects(product.description_, productSummary.description_, nil);
 }
 
 @end

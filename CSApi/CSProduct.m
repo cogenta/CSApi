@@ -23,7 +23,7 @@
 
 @synthesize resource;
 @synthesize name;
-@synthesize description;
+@synthesize description_;
 @synthesize views;
 @synthesize author;
 @synthesize softwarePlatform;
@@ -41,7 +41,7 @@
         resource = aResource;
         
         name = resource[@"name"];
-        description = resource[@"description"];
+        description_ = resource[@"description"];
         views = resource[@"views"];
         author = resource[@"author"];
         softwarePlatform = resource[@"software_platform"];

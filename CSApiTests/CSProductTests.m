@@ -57,7 +57,7 @@
     STAssertEquals(product.credential, credential, nil);
     STAssertEquals(product.requester, requester, nil);
     STAssertEqualObjects(product.name, resource[@"name"], nil);
-    STAssertEqualObjects(product.description, resource[@"description"], nil);
+    STAssertEqualObjects(product.description_, resource[@"description"], nil);
     STAssertEqualObjects(product.views, resource[@"views"], nil);
     STAssertEqualObjects(product.author, resource[@"author"], nil);
     STAssertEqualObjects(product.softwarePlatform, resource[@"software_platform"], nil);
@@ -134,7 +134,7 @@
     STAssertNotNil(productSummary, nil);
     
     STAssertEqualObjects(productSummary.name, product.name, nil);
-    STAssertEqualObjects(productSummary.description, product.description, nil);
+    STAssertEqualObjects(productSummary.description_, product.description_, nil);
 }
 
 - (void)testGetPrices

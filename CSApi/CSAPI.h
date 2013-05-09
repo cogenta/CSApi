@@ -901,7 +901,7 @@
 @property (readonly) NSString *name;
 
 /** The description of the product. */
-@property (readonly) NSString *description;
+@property (readonly) NSString *description_;
 
 /** Tries to get a list of pictures of the product.
  
@@ -981,7 +981,7 @@
 @property (readonly) NSString *name;
 
 /** The description of the product. */
-@property (readonly) NSString *description;
+@property (readonly) NSString *description_;
 
 /** The number of times a user has viewed this product. */
 @property (readonly) NSNumber *views;

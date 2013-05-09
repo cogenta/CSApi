@@ -24,7 +24,7 @@
 
 @synthesize resource;
 @synthesize name;
-@synthesize description;
+@synthesize description_;
 
 - (id)initWithHAL:(YBHALResource *)aResource
         requester:(id<CSRequester>)aRequester
@@ -36,7 +36,7 @@
         resource = aResource;
         
         name = resource[@"name"];
-        description = resource[@"description"];
+        description_ = resource[@"description"];
     }
     return self;
 }
