@@ -52,6 +52,11 @@
                                                  credential:aCredential];
             }];
         }
+        
+        if ( ! items) {
+            NSLog(@"WARNING: %@ list page found no items", self);
+            return nil;
+        }
     }
     return self;
 }
