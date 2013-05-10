@@ -24,4 +24,9 @@
     return groupList;
 }
 
+- (NSString *)rel
+{
+    return @"/rels/group";
+}
+
 @end
