@@ -124,7 +124,23 @@
 
 @end
 
+@interface CSAPIRequester ()
+
+@property (strong, nonatomic) NSOperationQueue *halDecoderQueue;
+
+@end
+
 @implementation CSAPIRequester
+
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        _halDecoderQueue = [[NSOperationQueue alloc] init];
+        _halDecoderQueue.maxConcurrentOperationCount = 4;
+    }
+    return self;
+}
 
 - (NSData *)dataForBodyObject:(id)body {
     if ( ! [body respondsToSelector:@selector(dictionary)]) {
@@ -212,11 +228,16 @@
      JSONRequestOperationWithRequest:request
      success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON)
      {
-         YBHALResource *resource = [[YBHALResource alloc]
-                                    initWithDictionary:JSON
-                                    baseURL:URL];
-         id etag = [[response allHeaderFields] objectForKey:@"Etag"];
-         callback(resource, etag, nil);
+         NSBlockOperation *op = [NSBlockOperation blockOperationWithBlock:^{
+             YBHALResource *resource = [[YBHALResource alloc]
+                                        initWithDictionary:JSON
+                                        baseURL:URL];
+             id etag = [[response allHeaderFields] objectForKey:@"Etag"];
+             dispatch_async(dispatch_get_main_queue(), ^{
+                 callback(resource, etag, nil);
+             });
+         }];
+         [self.halDecoderQueue addOperation:op];
      } failure:^(NSURLRequest *request,
                  NSHTTPURLResponse *response,
                  NSError *error,
