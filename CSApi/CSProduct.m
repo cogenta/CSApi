@@ -47,10 +47,19 @@
         softwarePlatform = resource[@"software_platform"];
         manufacturer = resource[@"manufacturer"];
         coverType = resource[@"cover_type"];
-        lastUpdated = [[[ISO8601DateFormatter alloc] init]
-                       dateFromString:resource[@"last_updated"]];
     }
     return self;
+}
+
+- (NSDate *)lastUpdated
+{
+    if (lastUpdated) {
+        return lastUpdated;
+    }
+    
+    lastUpdated = [[[ISO8601DateFormatter alloc] init]
+                   dateFromString:resource[@"last_updated"]];
+    return lastUpdated;
 }
 
 - (void)getPictures:(void (^)(id<CSPictureListPage>, NSError *))callback
