@@ -110,25 +110,24 @@
     STAssertEqualObjects(@(list.count), @(count), nil);
     
     NSMutableArray *returnedURLs = [NSMutableArray arrayWithCapacity:count];
-    for (int i = 0; i < count; ++i) {
-        [returnedURLs addObject:@"(not set)"];
-        [list getLikeAtIndex:i callback:^(id<CSLike> like, NSError *error) {
-            if (like) {
-                returnedURLs[i] = like.likedURL;
-                return;
-            }
-            
-            if (error) {
-                returnedURLs[i] = error;
-                return;
-            }
-            
-            returnedURLs[i] = @"(nil)";
-        }];
-    }
-    
+    __block NSUInteger todo = count;
     CALL_AND_WAIT(^(void (^done)()) {
-        dispatch_async(dispatch_get_main_queue(), done);
+        for (int i = 0; i < count; ++i) {
+            [returnedURLs addObject:@"(not set)"];
+            [list getLikeAtIndex:i callback:^(id<CSLike> like, NSError *error) {
+                if (like) {
+                    returnedURLs[i] = like.likedURL;
+                } else if (error) {
+                    returnedURLs[i] = error;
+                } else {
+                    returnedURLs[i] = @"(nil)";
+                }
+                --todo;
+                if (todo == 0) {
+                    done();
+                }
+            }];
+        }
     });
     
     STAssertEqualObjects(returnedURLs, likedURLs, nil);

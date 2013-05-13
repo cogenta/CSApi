@@ -10,6 +10,12 @@
 #import "CSListItem.h"
 #import <objc/runtime.h>
 
+@interface CSList ()
+
+@property (strong, nonatomic) NSOperationQueue *synchronizer;
+
+@end
+
 @implementation CSList
 
 @synthesize firstPage;
@@ -25,6 +31,8 @@
     if (self) {
         firstPage = page;
         items = [NSMutableArray array];
+        _synchronizer = [[NSOperationQueue alloc] init];
+        _synchronizer.maxConcurrentOperationCount = 1;
         [self loadPage:firstPage];
     }
     return self;
@@ -53,15 +61,18 @@
     
     isLoading = YES;
     [lastPage getNext:^(id<CSListPage> nextPage, NSError *error) {
-        isLoading = NO;
-        if (error) {
-            cb(NO, error);
-            return;
-        }
-        
-        [self loadPage:nextPage];
-        
-        [self maybeLoadMoreForIndex:index callback:cb];
+        NSBlockOperation *op = [NSBlockOperation blockOperationWithBlock:^{
+            isLoading = NO;
+            if (error) {
+                cb(NO, error);
+                return;
+            }
+            
+            [self loadPage:nextPage];
+            
+            [self maybeLoadMoreForIndex:index callback:cb];
+        }];
+        [self.synchronizer addOperation:op];
     }];
 }
 
@@ -69,9 +80,10 @@
                      callback:(void (^)(BOOL success, NSError *error))cb
 {
     if (isLoading) {
-        dispatch_async(dispatch_get_main_queue(), ^{
+        NSBlockOperation *op = [NSBlockOperation blockOperationWithBlock:^{
             [self maybeLoadMoreForIndex:index callback:cb];
-        });
+        }];
+        [self.synchronizer addOperation:op];
         return;
     }
     
@@ -86,17 +98,22 @@
 - (void)getItemAtIndex:(NSUInteger)index
               callback:(void (^)(id<CSListItem>, NSError *))callback
 {
-    dispatch_async(dispatch_get_main_queue(), ^{
+    NSBlockOperation *op = [NSBlockOperation blockOperationWithBlock:^{
         [self maybeLoadMoreForIndex:index callback:^(BOOL success, NSError *error) {
             if ( ! success) {
-                callback(nil, error);
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    callback(nil, error);
+                });
                 return;
             }
             
             CSListItem *item = [items objectAtIndex:index];
-            callback(item, nil);
+            dispatch_async(dispatch_get_main_queue(), ^{
+                callback(item, nil);
+            });
         }];
-    });
+    }];
+    [self.synchronizer addOperation:op];
 }
 
 

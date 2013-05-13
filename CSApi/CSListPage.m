@@ -15,53 +15,85 @@
 
 @interface CSListPage ()
 
+@property (readonly) YBHALResource *resource;
 - (NSUInteger) getCountForResource:(YBHALResource *)resource;
 
 @end
 
 @implementation CSListPage
 
+@synthesize resource;
 @synthesize count;
 @synthesize items;
 @synthesize URL;
 @synthesize next;
 @synthesize prev;
 
-- (id)initWithHal:(YBHALResource *)resource
+- (id)initWithHal:(YBHALResource *)aResource
         requester:(id<CSRequester>)aRequester
        credential:(id<CSCredential>)aCredential
 {
     self = [super initWithRequester:aRequester credential:aCredential];
     if (self) {
+        resource = aResource;
         count = [self getCountForResource:resource];
-        URL = [resource linkForRelation:@"self"].URL;
-        next = [resource linkForRelation:@"next"].URL;
-        prev = [resource linkForRelation:@"prev"].URL;
+    }
+    return self;
+}
+
+- (NSArray *)items
+{
+    if ( ! items) {
         NSArray *resources = [resource resourcesForRelation:self.rel];
         if (resources) {
             items = [resources mapUsingBlock:^id(id obj) {
                 return [[CSResourceListItem alloc] initWithResource:obj
-                                                          requester:aRequester
-                                                         credential:aCredential];
+                                                          requester:self.requester
+                                                         credential:self.credential];
             }];
         } else {
             NSArray *links = [resource linksForRelation:self.rel];
             items = [links mapUsingBlock:^id(id obj) {
                 return [[CSLinkListItem alloc] initWithLink:obj
-                                                  requester:aRequester
-                                                 credential:aCredential];
+                                                  requester:self.requester
+                                                 credential:self.credential];
             }];
         }
-        
-        if ( ! items) {
-            NSLog(@"WARNING: %@ list page found no items", self);
-            return nil;
-        }
     }
-    return self;
+    
+    if ( ! items) {
+        NSLog(@"WARNING: %@ list page found no items", self);
+    }
+
+    return items;
 }
 
-- (NSUInteger)getCountForResource:(YBHALResource *)resource
+- (NSURL *)URL
+{
+    if ( ! URL) {
+        URL = [resource linkForRelation:@"self"].URL;
+    }
+    
+    return URL;
+}
+
+- (NSURL *)next
+{
+    if ( ! next) {
+        next = [resource linkForRelation:@"next"].URL;
+    }
+    return next;
+}
+
+- (NSURL *)prev
+{
+    if ( ! prev) {
+        prev = [resource linkForRelation:@"prev"].URL;
+    }
+    return prev;
+}
+
+- (NSUInteger)getCountForResource:(YBHALResource *)aResource
 {
     return [resource[@"count"] unsignedIntegerValue];
 }
@@ -73,19 +105,19 @@
 
 - (BOOL)hasNext
 {
-    return next != nil;
+    return self.next != nil;
 }
 
 - (BOOL)hasPrev
 {
-    return prev != nil;
+    return self.prev != nil;
 }
 
-- (id<CSListPage>)pageWithHal:(YBHALResource *)resource
+- (id<CSListPage>)pageWithHal:(YBHALResource *)aResource
                     requester:(id<CSRequester>)aRequester
                    credential:(id<CSCredential>)aCredential
 {
-    return [[CSListPage alloc] initWithHal:resource
+    return [[CSListPage alloc] initWithHal:aResource
                                  requester:self.requester
                                 credential:self.credential];
 }
@@ -114,18 +146,18 @@
 
 - (void)getNext:(void (^)(id<CSListPage>, NSError *))callback
 {
-    [self getListURL:next callback:callback];
+    [self getListURL:self.next callback:callback];
 }
 
 - (void)getPrev:(void (^)(id<CSListPage>, NSError *))callback
 {
-    [self getListURL:prev callback:callback];
+    [self getListURL:self.prev callback:callback];
 }
 
 - (NSString *)description
 {
     return [NSString stringWithFormat:@"<%s URL=%@>",
-            class_getName([self class]), URL];
+            class_getName([self class]), self.URL];
 }
 
 @end

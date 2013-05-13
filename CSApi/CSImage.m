@@ -9,9 +9,15 @@
 #import "CSImage.h"
 #import <HyperBek/HyperBek.h>
 
+@interface CSImage ()
+
+@property (strong, nonatomic) YBHALResource *resource;
+
+@end
+
 @implementation CSImage
 
-@synthesize URL;
+@synthesize URL = _URL;
 @synthesize etag;
 @synthesize width;
 @synthesize height;
@@ -25,15 +31,46 @@
 {
     self = [super initWithRequester:aReqester credential:aCredential];
     if (self) {
-        URL = [aResource linkForRelation:@"self"].URL;
+        _resource = aResource;
         etag = anEtag;
         width = aResource[@"width"];
         height = aResource[@"height"];
-        YBHALLink *enclosure = [aResource linkForRelation:@"enclosure"];
-        enclosureURL = enclosure.URL;
-        enclosureType = enclosure.type;
     }
     return self;
+}
+
+- (NSURL *)URL
+{
+    if ( ! _URL) {
+        _URL = [_resource linkForRelation:@"self"].URL;
+    }
+    
+    return _URL;
+}
+
+- (void)loadEnclosure
+{
+    YBHALLink *enclosure = [_resource linkForRelation:@"enclosure"];
+    enclosureURL = enclosure.URL;
+    enclosureType = enclosure.type;
+}
+
+- (NSString *)enclosureType
+{
+    if ( ! enclosureType && ! enclosureURL) {
+        [self loadEnclosure];
+    }
+    
+    return enclosureType;
+}
+
+- (NSURL *)enclosureURL
+{
+    if ( ! enclosureType && ! enclosureURL) {
+        [self loadEnclosure];
+    }
+    
+    return enclosureURL;
 }
 
 @end
