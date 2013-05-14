@@ -61,7 +61,7 @@
         }
     }
     
-    if ( ! items) {
+    if ( ! items && self.count > 0) {
         NSLog(@"WARNING: %@ list page found no items", self);
     }
 
