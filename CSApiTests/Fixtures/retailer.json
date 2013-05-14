@@ -13,6 +13,9 @@
     },
     "api:productsummaries": {
       "href": "/retailers/238/productsummaries/"
+    },
+    "api:products": {
+      "href": "/retailers/238/products/"
     }
   }, 
   "name": "99p Stores"

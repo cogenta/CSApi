@@ -477,7 +477,7 @@
  */
 - (void)getLogo:(void (^)(id<CSPicture> picture, NSError *error))callback;
 
-/** Tries to get a list of products supplied by the retailer.
+/** Tries to get a list of product summaries supplied by the retailer.
  
  Control returns from getProductSummaries: immediately. If the operation is
  successful, the given callback is invoked with a non-nil
@@ -496,6 +496,25 @@
  */
 - (void)getProductSummaries:(void (^)(id<CSProductSummaryListPage> firstPage,
                              NSError *error))callback;
+
+/** Tries to get a list of products supplied by the retailer.
+ 
+ Control returns from getProducts: immediately. If the operation is successful,
+ the given callback is invoked with a non-nil
+ [id\<CSProductListPage\>](CSSummaryListPage) in firstPage and a nil error.
+ firstPage is the first page of the result set. It is recommended that client
+ code use firstPage.productList to get an [id\<CSProductList\>](CSProductList),
+ which provides convenient access to products in the list.
+ 
+ If the operation fails, callback is invoked with a nil firstPage and a non-nil
+ error.
+ 
+ @param callback The block to invoke when the products list has been
+ successfully obtained, or when the operation has failed.
+ 
+ */
+- (void)getProducts:(void (^)(id<CSProductListPage> firstPage,
+                              NSError *error))callback;
 
 @end
 
