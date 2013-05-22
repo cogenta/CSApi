@@ -29,6 +29,7 @@
 		BE480BB3172685D00022216B /* retailer_81.json in Resources */ = {isa = PBXBuildFile; fileRef = BE480BB2172685D00022216B /* retailer_81.json */; };
 		BE4B14A716B9722A00BDDD08 /* user_post_response.json in Resources */ = {isa = PBXBuildFile; fileRef = BE4B14A616B9722A00BDDD08 /* user_post_response.json */; };
 		BE4B14AA16B9727300BDDD08 /* TestFixtures.m in Sources */ = {isa = PBXBuildFile; fileRef = BE4B14A916B9727300BDDD08 /* TestFixtures.m */; };
+		BE558E9E174CD3A7009FA3DA /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE558E9D174CD3A7009FA3DA /* Security.framework */; };
 		BE57713F16B98EFF002F42E4 /* user_post_response_with_reference_and_meta.json in Resources */ = {isa = PBXBuildFile; fileRef = BE57713E16B98EFF002F42E4 /* user_post_response_with_reference_and_meta.json */; };
 		BE57714716BA7F89002F42E4 /* CSBasicCredential.m in Sources */ = {isa = PBXBuildFile; fileRef = BE57714616BA7F89002F42E4 /* CSBasicCredential.m */; };
 		BE57714A16BA8066002F42E4 /* CSHALRepresentation.m in Sources */ = {isa = PBXBuildFile; fileRef = BE57714916BA8066002F42E4 /* CSHALRepresentation.m */; };
@@ -161,6 +162,7 @@
 		BE4B14A616B9722A00BDDD08 /* user_post_response.json */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = text.json; name = user_post_response.json; path = Fixtures/user_post_response.json; sourceTree = "<group>"; tabWidth = 2; };
 		BE4B14A816B9727300BDDD08 /* TestFixtures.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFixtures.h; sourceTree = "<group>"; };
 		BE4B14A916B9727300BDDD08 /* TestFixtures.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestFixtures.m; sourceTree = "<group>"; };
+		BE558E9D174CD3A7009FA3DA /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		BE57713E16B98EFF002F42E4 /* user_post_response_with_reference_and_meta.json */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = text.json; name = user_post_response_with_reference_and_meta.json; path = Fixtures/user_post_response_with_reference_and_meta.json; sourceTree = "<group>"; tabWidth = 2; };
 		BE57714016BA7C19002F42E4 /* CSAuthenticator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSAuthenticator.h; sourceTree = "<group>"; };
 		BE57714116BA7C44002F42E4 /* CSCredential.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSCredential.h; sourceTree = "<group>"; };
@@ -310,6 +312,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BE558E9E174CD3A7009FA3DA /* Security.framework in Frameworks */,
 				BE01AA7516B7FF3500982D27 /* SystemConfiguration.framework in Frameworks */,
 				BE01AA7416B7FF3000982D27 /* MobileCoreServices.framework in Frameworks */,
 				BE06A4CF16B6E54A00F345F8 /* SenTestingKit.framework in Frameworks */,
@@ -351,6 +354,7 @@
 		BE06A4BE16B6E54900F345F8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BE558E9D174CD3A7009FA3DA /* Security.framework */,
 				BE01AA7216B7FF0800982D27 /* MobileCoreServices.framework */,
 				BE01AA7016B7FEE500982D27 /* SystemConfiguration.framework */,
 				BE06A4BF16B6E54900F345F8 /* Foundation.framework */,
