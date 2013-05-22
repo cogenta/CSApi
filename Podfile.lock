@@ -1,0 +1,34 @@
+PODS:
+  - AFNetworking (1.2.1)
+  - Base64 (1.0.1)
+  - CSURITemplate (0.1.1)
+  - HyperBek (0.3.0):
+    - CSURITemplate (~> 0.1.1)
+  - ISO8601DateFormatter (0.6)
+  - NSArray+Functional (1.0.0)
+  - OCMock (2.1.1)
+  - OHHTTPStubs (1.1.1)
+  - SBJson (3.2)
+
+DEPENDENCIES:
+  - AFNetworking
+  - Base64
+  - HyperBek
+  - ISO8601DateFormatter
+  - NSArray+Functional
+  - OCMock
+  - OHHTTPStubs
+  - SBJson
+
+SPEC CHECKSUMS:
+  AFNetworking: a44069e3c9c89867544f6639482f155c7e5f9b41
+  Base64: eaac9f2088ba659c5db1db960576eb0f2969ebaf
+  CSURITemplate: d3ec6da88799010195522e0c20e049a18da6a6aa
+  HyperBek: ff15839ea583f4eaf6479e852f4b5d3e1d156c9a
+  ISO8601DateFormatter: dc05a2481edf49668d85d3ff8c466c32eb544780
+  NSArray+Functional: 2fb24f1533c1380a595ed1da347bd4ec705f5495
+  OCMock: 79212e5e328378af5cfd6edb5feacfd6c49cd8a3
+  OHHTTPStubs: cb1cef742f2fba18b192fb92ede52a69cf3a04d5
+  SBJson: e60b4dc22448c2ae1e754b523a4ab53408e85c8d
+
+COCOAPODS: 0.19.1

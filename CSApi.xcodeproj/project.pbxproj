@@ -196,13 +196,14 @@
 		BE62341116D6628D0062A4D8 /* likes_page_1_embedded.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = likes_page_1_embedded.json; path = Fixtures/likes_page_1_embedded.json; sourceTree = "<group>"; };
 		BE62341316D662B60062A4D8 /* likes_page_2_embedded.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = likes_page_2_embedded.json; path = Fixtures/likes_page_2_embedded.json; sourceTree = "<group>"; };
 		BE6439C516DFB1790015E822 /* CSApi.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; fileEncoding = 4; path = CSApi.podspec; sourceTree = "<group>"; };
-		BE6439C616DFB1790015E822 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; fileEncoding = 4; path = Podfile; sourceTree = "<group>"; };
+		BE6439C616DFB1790015E822 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; fileEncoding = 4; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		BE6439C716DFB1790015E822 /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
 		BE68DA8C16D62B64008ED350 /* CSApiUserLikeTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSApiUserLikeTests.m; sourceTree = "<group>"; };
 		BE6BF3F017183C11004B6D85 /* product.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = product.json; path = Fixtures/product.json; sourceTree = "<group>"; };
 		BE6BF3F317183CCF004B6D85 /* CSProduct.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSProduct.h; sourceTree = "<group>"; };
 		BE6BF3F417183CCF004B6D85 /* CSProduct.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSProduct.m; sourceTree = "<group>"; };
 		BE6BF3F617185103004B6D85 /* CSProductTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSProductTests.m; sourceTree = "<group>"; };
+		BE730787174CC41B005E5E29 /* Podfile.lock */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile.lock; sourceTree = "<group>"; };
 		BE78D15716E5FA4500DAE148 /* CSImageTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSImageTests.m; sourceTree = "<group>"; };
 		BE78D15916E5FAC400DAE148 /* CSImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSImage.h; sourceTree = "<group>"; };
 		BE78D15A16E5FAC400DAE148 /* CSImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSImage.m; sourceTree = "<group>"; };
@@ -325,6 +326,7 @@
 		BE06A4B116B6E54900F345F8 = {
 			isa = PBXGroup;
 			children = (
+				BE730787174CC41B005E5E29 /* Podfile.lock */,
 				BE6439C516DFB1790015E822 /* CSApi.podspec */,
 				BE6439C616DFB1790015E822 /* Podfile */,
 				BE6439C716DFB1790015E822 /* LICENSE.txt */,
