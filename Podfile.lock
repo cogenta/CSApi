@@ -6,7 +6,7 @@ PODS:
     - CSURITemplate (~> 0.1.1)
   - ISO8601DateFormatter (0.6)
   - NSArray+Functional (1.0.0)
-  - OCMock (2.1.1)
+  - OCMock (HEAD based on 2.1.1)
   - OHHTTPStubs (1.1.1)
   - SBJson (3.2)
 
@@ -16,7 +16,7 @@ DEPENDENCIES:
   - HyperBek
   - ISO8601DateFormatter
   - NSArray+Functional
-  - OCMock
+  - OCMock (HEAD)
   - OHHTTPStubs
   - SBJson
 
