@@ -1,0 +1,41 @@
+{
+  "_links": {
+    "api:parentcategory": {
+      "href": "/categories/3-all-products",
+      "title": "All Products"
+    },
+    "curies": [
+      {
+        "href": "/rels/{rel}",
+        "name": "api",
+        "templated": true
+      }
+    ],
+    "self": {
+      "href": "/categories/4-dvds-and-blu-ray"
+    },
+    "api:immediateparentcategory": {
+      "href": "/categories/3-all-products",
+      "title": "All Products"
+    },
+    "api:immediatesubcategory": [
+      {
+        "href": "/categories/1167-digital-video",
+        "title": "Digital Video"
+      },
+      {
+        "href": "/categories/244-blu-ray",
+        "title": "Blu-Ray"
+      },
+      {
+        "href": "/categories/1059-dvds-and-blu-ray-other",
+        "title": "Other"
+      },
+      {
+        "href": "/categories/912-dvds",
+        "title": "DVDs"
+      }
+    ]
+  },
+  "name": "DVDs & Blu-Ray"
+}

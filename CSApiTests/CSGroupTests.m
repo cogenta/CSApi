@@ -26,7 +26,8 @@
 @property (strong) YBHALResource *productSummaryResource;
 @property (strong) YBHALResource *productsResource;
 @property (strong) YBHALResource *productResource;
-
+@property (strong) YBHALResource *categoriesResource;
+@property (strong) YBHALResource *categoryResource;
 
 @end
 
@@ -60,6 +61,7 @@
     links[@"/rels/likes"] = @{@"href": @"/users/12345/groups/1/likes/"};
     links[@"/rels/productsummaries"] = @{@"href": @"/users/12345/groups/1/productsummaries/"};
     links[@"/rels/products"] = @{@"href": @"/users/12345/groups/1/products/"};
+    links[@"/rels/categories"] = @{@"href": @"/users/12345/groups/1/categories/"};
 
     groupDict[@"_links"] = links;
     groupDict[@"meta"] = @{@"count": @(0)};
@@ -119,6 +121,16 @@
                        forURL:[productResource linkForRelation:@"self"].URL];
     [requester addGetResponse:productsResource
                        forURL:[productsResource linkForRelation:@"self"].URL];
+    
+    //
+    
+    self.categoryResource = [self resourceForFixture:@"category.json"];
+    [requester addGetResponse:self.categoryResource
+                       forURL:[self.categoryResource linkForRelation:@"self"].URL];
+        
+    self.categoriesResource = [self resourceForFixture:@"categories.json"];
+    [requester addGetResponse:self.categoriesResource
+                       forURL:[self.categoriesResource linkForRelation:@"self"].URL];
 }
 
 - (void)testProperties
@@ -376,6 +388,47 @@
     STAssertNotNil(product, nil);
     
     STAssertEqualObjects(product.name, productSummaryResource[@"name"], nil);
+}
+
+- (void)testGetCategories
+{
+    __block NSError *error = [NSError errorWithDomain:@"not called"
+                                                 code:0
+                                             userInfo:nil];
+    __block id<CSCategoryListPage> page = nil;
+    CALL_AND_WAIT(^(void (^done)()) {
+        [self.group getCategories:^(id<CSCategoryListPage> aPage,
+                                    NSError *anError) {
+            page = aPage;
+            error = anError;
+            done();
+        }];
+    });
+    
+    STAssertNil(error, @"%@", error);
+    STAssertNotNil(page, nil);
+    
+    id<CSCategoryList> list = page.categoryList;
+    STAssertNotNil(list, nil);
+    
+    STAssertEqualObjects(@(list.count), @4, nil);
+    
+    __block id<CSCategory> category = nil;
+    error = [NSError errorWithDomain:@"not called" code:0 userInfo:nil];
+    CALL_AND_WAIT(^(void (^done)()) {
+        [list getCategoryAtIndex:0
+                        callback:^(id<CSCategory> aCategory, NSError *anError)
+        {
+            category = aCategory;
+            error = anError;
+            done();
+        }];
+    });
+    
+    STAssertNil(error, @"%@", error);
+    STAssertNotNil(category, nil);
+    
+    STAssertEqualObjects(category.name, @"DVDs & Blu-Ray", nil);
 }
 
 - (void)testCreateLike

@@ -51,6 +51,10 @@
 @protocol CSPriceList;
 @protocol CSPrice;
 
+@protocol CSCategoryListPage;
+@protocol CSCategoryList;
+@protocol CSCategory;
+
 /**
  Provides access to the Cogenta Shopping API.
  
@@ -760,6 +764,9 @@
 - (void)getProducts:(void (^)(id<CSProductListPage> firstPage,
                               NSError *error))callback;
 
+- (void)getCategories:(void (^)(id<CSCategoryListPage> firstPage,
+                                NSError *error))callback;
+
 /** Tries to delete the group.
  
  Control returns from remove: immediately. If the operation is successful, the
@@ -1203,5 +1210,48 @@
  
  */
 - (void)getRetailer:(void (^)(id<CSRetailer> retailer, NSError *error))callback;
+
+@end
+
+/** Protocol for accessing pages of categories in a sequence of results.
+ 
+ Client code is expected to use this protocol's categoryList property to get
+ an object conforming to CSCategoryList.
+ 
+ */
+@protocol CSCategoryListPage <CSListPage>
+
+/** An object conforming to CSCategoryList that provides convenient access to
+ the list of categories.
+ */
+@property (readonly) id<CSCategoryList> categoryList;
+
+@end
+
+/** Protocol for accessing a list of categories. */
+@protocol CSCategoryList <CSList>
+
+/** Tries to fetch the category at the given index.
+ 
+ Control returns from getCategoryAtIndex:callback: immediately. If the operation
+ is successful, the given callback is invoked with a non-nil
+ [id\<CSCategory\>](CSCategory) in result and a nil error. If the operation
+ fails, callback is invoked with a nil result and a non-nil error.
+ 
+ @param index The index in the sequence of the category to retrieve.
+ @param callback The block to invoke when the category has been successfully
+ obtained, or when the operation has failed.
+ */
+- (void)getCategoryAtIndex:(NSUInteger)index
+                  callback:(void (^)(id<CSCategory> result,
+                                     NSError *error))callback;
+
+@end
+
+/** Protocol for accessing a category. */
+@protocol CSCategory <NSObject>
+
+/** The category's name. */
+@property (readonly) NSString *name;
 
 @end

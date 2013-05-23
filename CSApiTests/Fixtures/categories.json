@@ -1,0 +1,39 @@
+{
+  "count": 4,
+  "_links": {
+    "curies": [
+      {
+        "href": "/rels/{rel}",
+        "name": "api",
+        "templated": true
+      }
+    ],
+    "self": {
+      "href": "/users/12345/groups/1/categories/"
+    },
+    "api:user": {
+      "href": "/users/12345"
+    },
+    "api:group": {
+      "href": "/users/12345/groups/1"
+    },
+    "api:category": [
+      {
+        "href": "/categories/4-dvds-and-blu-ray",
+        "title": "DVDs & Blu-Ray"
+      },
+      {
+        "href": "/categories/7-games",
+        "title": "Gaming"
+      },
+      {
+        "href": "/categories/120-peripherals",
+        "title": "Peripherals"
+      },
+      {
+        "href": "/categories/177-music",
+        "title": "Music"
+      }
+    ]
+  }
+}
