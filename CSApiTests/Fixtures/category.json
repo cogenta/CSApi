@@ -35,7 +35,10 @@
         "href": "/categories/912-dvds",
         "title": "DVDs"
       }
-    ]
+    ],
+    "api:products": {
+      "href": "/categories/4-dvds-and-blu-ray/products/"
+    }
   },
   "name": "DVDs & Blu-Ray"
 }

@@ -8,6 +8,7 @@
 
 #import "CSCategory.h"
 #import <HyperBek/HyperBek.h>
+#import "CSProductListPage.h"
 
 @interface CSCategory ()
 @property (strong, nonatomic) YBHALResource *resource;
@@ -28,6 +29,24 @@
         name = self.resource[@"name"];
     }
     return self;
+}
+
+- (void)getProducts:(void (^)(id<CSProductListPage>, NSError *))callback
+{
+    [self getRelation:@"/rels/products"
+          forResource:self.resource
+             callback:^(YBHALResource *result, NSError *error)
+     {
+         if (error) {
+             callback(nil, error);
+             return;
+         }
+         
+         callback([[CSProductListPage alloc] initWithHal:result
+                                               requester:self.requester
+                                              credential:self.credential],
+                  nil);
+     }];
 }
 
 @end
