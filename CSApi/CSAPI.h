@@ -1291,4 +1291,7 @@
 - (void)getProducts:(void (^)(id<CSProductListPage> firstPage,
                               NSError *error))callback;
 
+- (void)getImmediateSubcategories:(void (^)(id<CSCategoryListPage> result,
+                                            NSError *error))callback;
+
 @end
