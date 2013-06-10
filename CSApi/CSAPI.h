@@ -1291,6 +1291,26 @@
 - (void)getProducts:(void (^)(id<CSProductListPage> firstPage,
                               NSError *error))callback;
 
+/** Tries to get a list of immediate subcategories of this category.
+ 
+ The immediate subcategories of this category are the categories that have this
+ category as their immediate parent.
+ 
+ Control returns from getImmediateSubcategories: immediately. If the operation
+ is successful,  the given callback is invoked with a non-nil
+ [id\<CSCategoryListPage\>](CSCategoryListPage) in result and a nil error.
+ result is the first page of the result set. It is recommended that client
+ code use result.categoryList to get an [id\<CSCategoryList\>](CSCategoryList),
+ which provides convenient access to categories in the list.
+ 
+ If the operation fails, callback is invoked with a nil result and a non-nil
+ error.
+ 
+ @param callback The block to invoke when the categories list has been
+ successfully obtained, or when the operation has failed.
+ 
+ */
+ 
 - (void)getImmediateSubcategories:(void (^)(id<CSCategoryListPage> result,
                                             NSError *error))callback;
 
