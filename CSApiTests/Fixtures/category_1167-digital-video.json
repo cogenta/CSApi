@@ -1,0 +1,114 @@
+{
+  "_links": {
+    "curies": [
+      {
+        "href": "/rels/{rel}", 
+        "name": "api", 
+        "templated": true
+      }
+    ], 
+    "self": {
+      "href": "/categories/1167-digital-video"
+    }, 
+    "api:immediatesubcategory": [
+      {
+        "href": "/categories/1174-drama-video-download", 
+        "title": "Drama"
+      }, 
+      {
+        "href": "/categories/1181-special-interest-video-download", 
+        "title": "Special Interest"
+      }, 
+      {
+        "href": "/categories/1187-world-cinema-video-download", 
+        "title": "World Cinema"
+      }, 
+      {
+        "href": "/categories/1168-action-and-adventure-video-download", 
+        "title": "Action & Adventure"
+      }, 
+      {
+        "href": "/categories/1175-family-video-download", 
+        "title": "Family"
+      }, 
+      {
+        "href": "/categories/1182-sport-and-fitness-video-download", 
+        "title": "Sport & Fitness"
+      }, 
+      {
+        "href": "/categories/1169-adult-video-download", 
+        "title": "Adult"
+      }, 
+      {
+        "href": "/categories/1170-animation-video-download", 
+        "title": "Animation"
+      }, 
+      {
+        "href": "/categories/1176-horror-video-download", 
+        "title": "Horror"
+      }, 
+      {
+        "href": "/categories/1183-thriller-video-download", 
+        "title": "Thriller"
+      }, 
+      {
+        "href": "/categories/1171-childrens-video-download", 
+        "title": "Childrens"
+      }, 
+      {
+        "href": "/categories/1177-music-video-download", 
+        "title": "Music"
+      }, 
+      {
+        "href": "/categories/1184-tv-video-download", 
+        "title": "TV"
+      }, 
+      {
+        "href": "/categories/1172-comedy-video-download", 
+        "title": "Comedy"
+      }, 
+      {
+        "href": "/categories/1178-musicals-video-download", 
+        "title": "Musicals"
+      }, 
+      {
+        "href": "/categories/1185-war-video-download", 
+        "title": "War"
+      }, 
+      {
+        "href": "/categories/1173-documentary-video-download", 
+        "title": "Documentary"
+      }, 
+      {
+        "href": "/categories/1179-video-download-other", 
+        "title": "Other"
+      }, 
+      {
+        "href": "/categories/1180-science-fiction-video-download", 
+        "title": "Science Fiction"
+      }, 
+      {
+        "href": "/categories/1186-westerns-video-download", 
+        "title": "Westerns"
+      }
+    ], 
+    "api:parentcategory": [
+      {
+        "href": "/categories/3-all-products", 
+        "title": "All Products"
+      }, 
+      {
+        "href": "/categories/4-dvds-and-blu-ray", 
+        "title": "DVDs & Blu-Ray"
+      }
+    ], 
+    "api:immediateparentcategory": {
+      "href": "/categories/4-dvds-and-blu-ray", 
+      "title": "DVDs & Blu-Ray"
+    }, 
+    "api:products": {
+      "href": "/categories/1167-digital-video/products/"
+    }
+  }, 
+  "name": "Digital Video"
+}

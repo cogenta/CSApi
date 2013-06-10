@@ -124,7 +124,8 @@
     
     //
     
-    self.categoryResource = [self resourceForFixture:@"category.json"];
+    self.categoryResource = [self resourceForFixture:
+                             @"category_3-all-products.json"];
     [requester addGetResponse:self.categoryResource
                        forURL:[self.categoryResource linkForRelation:@"self"].URL];
         

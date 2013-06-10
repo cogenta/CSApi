@@ -22,6 +22,7 @@
 @property (strong) CSCategory *category;
 @property (strong) YBHALResource *productsResource;
 @property (strong) YBHALResource *productResource;
+@property (strong) YBHALResource *subcategoryResource;
 
 
 @end
@@ -35,6 +36,7 @@
 @synthesize category;
 @synthesize productsResource;
 @synthesize productResource;
+@synthesize subcategoryResource;
 
 - (void)setUp
 {
@@ -46,7 +48,7 @@
     credential = [CSBasicCredential credentialWithUsername:@"user"
                                                   password:@"pass"];
     
-    resource = [self resourceForFixture:@"category.json"];
+    resource = [self resourceForFixture:@"category_3-all-products.json"];
     STAssertNotNil(resource, nil);
     
     URL = [resource linkForRelation:@"self"].URL;
@@ -78,6 +80,14 @@
                        forURL:[productResource linkForRelation:@"self"].URL];
     [requester addGetResponse:productsResource
                        forURL:[productsResource linkForRelation:@"self"].URL];
+    
+    //
+    
+    subcategoryResource = [self resourceForFixture:@"category_1167-digital-video.json"];
+    STAssertNotNil(subcategoryResource, nil);
+    
+    [requester addGetResponse:subcategoryResource
+                       forURL:[subcategoryResource linkForRelation:@"self"].URL];
 }
 
 - (void)testName
@@ -124,6 +134,48 @@
     STAssertNotNil(product, nil);
     
     STAssertEqualObjects(product.name, productResource[@"name"], nil);
+}
+
+- (void)testGetImmediateSubcategories
+{
+    __block NSError *error = [NSError errorWithDomain:@"not called"
+                                                 code:0
+                                             userInfo:nil];
+    __block id<CSCategoryListPage> page = nil;
+    CALL_AND_WAIT(^(void (^done)()) {
+        [category getImmediateSubcategories:^(id<CSCategoryListPage> aPage,
+                                              NSError *anError)
+        {
+             page = aPage;
+             error = anError;
+             done();
+         }];
+    });
+    
+    STAssertNil(error, @"%@", error);
+    STAssertNotNil(page, nil);
+    
+    id<CSCategoryList> list = page.categoryList;
+    STAssertNotNil(list, nil);
+    
+    STAssertEqualObjects(@(list.count), @4, nil);
+    
+    __block id<CSCategory> subcategory = nil;
+    error = [NSError errorWithDomain:@"not called" code:0 userInfo:nil];
+    CALL_AND_WAIT(^(void (^done)()) {
+        [list getCategoryAtIndex:0
+                        callback:^(id<CSCategory> aCategory, NSError *anError)
+        {
+             subcategory = aCategory;
+             error = anError;
+             done();
+         }];
+    });
+    
+    STAssertNil(error, @"%@", error);
+    STAssertNotNil(subcategory, nil);
+    
+    STAssertEqualObjects(subcategory.name, subcategoryResource[@"name"], nil);
 }
 
 @end

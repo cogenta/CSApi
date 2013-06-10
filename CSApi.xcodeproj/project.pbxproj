@@ -32,7 +32,7 @@
 		BE558E9E174CD3A7009FA3DA /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE558E9D174CD3A7009FA3DA /* Security.framework */; };
 		BE558EA1174D0B4A009FA3DA /* CSCategoryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BE558EA0174D0B4A009FA3DA /* CSCategoryTests.m */; };
 		BE558EA5174D0BDE009FA3DA /* CSCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = BE558EA4174D0BDE009FA3DA /* CSCategory.m */; };
-		BE558EA9174D0E80009FA3DA /* category.json in Resources */ = {isa = PBXBuildFile; fileRef = BE558EA8174D0E80009FA3DA /* category.json */; };
+		BE558EA9174D0E80009FA3DA /* category_3-all-products.json in Resources */ = {isa = PBXBuildFile; fileRef = BE558EA8174D0E80009FA3DA /* category_3-all-products.json */; };
 		BE558EAB174D1083009FA3DA /* categories.json in Resources */ = {isa = PBXBuildFile; fileRef = BE558EAA174D1083009FA3DA /* categories.json */; };
 		BE558EAE174D1591009FA3DA /* CSCategoryListPage.m in Sources */ = {isa = PBXBuildFile; fileRef = BE558EAD174D1591009FA3DA /* CSCategoryListPage.m */; };
 		BE558EB1174D1612009FA3DA /* CSCategoryList.m in Sources */ = {isa = PBXBuildFile; fileRef = BE558EB0174D1612009FA3DA /* CSCategoryList.m */; };
@@ -94,6 +94,7 @@
 		BE7E6EC916DBB25A000AA883 /* group.json in Resources */ = {isa = PBXBuildFile; fileRef = BE7E6EC816DBB25A000AA883 /* group.json */; };
 		BE7E6ECD16DBB753000AA883 /* groups.json in Resources */ = {isa = PBXBuildFile; fileRef = BE7E6ECC16DBB753000AA883 /* groups.json */; };
 		BE7E6ED016DBBAF2000AA883 /* CSGroupList.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7E6ECF16DBBAF1000AA883 /* CSGroupList.m */; };
+		BE7F95DF1765D25D008432E1 /* category_1167-digital-video.json in Resources */ = {isa = PBXBuildFile; fileRef = BE7F95DE1765D25D008432E1 /* category_1167-digital-video.json */; };
 		BEA65A0D16B92F3100F10CB0 /* TestRequester.m in Sources */ = {isa = PBXBuildFile; fileRef = BEA65A0C16B92F3100F10CB0 /* TestRequester.m */; };
 		BEA65A1016B94DDF00F10CB0 /* CSApplicationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BEA65A0F16B94DDF00F10CB0 /* CSApplicationTests.m */; };
 		BEA65A1316B94E4900F10CB0 /* TestApi.m in Sources */ = {isa = PBXBuildFile; fileRef = BEA65A1216B94E4900F10CB0 /* TestApi.m */; };
@@ -172,7 +173,7 @@
 		BE558EA0174D0B4A009FA3DA /* CSCategoryTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSCategoryTests.m; sourceTree = "<group>"; };
 		BE558EA3174D0BDE009FA3DA /* CSCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSCategory.h; sourceTree = "<group>"; };
 		BE558EA4174D0BDE009FA3DA /* CSCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSCategory.m; sourceTree = "<group>"; };
-		BE558EA8174D0E80009FA3DA /* category.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = category.json; sourceTree = "<group>"; };
+		BE558EA8174D0E80009FA3DA /* category_3-all-products.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "category_3-all-products.json"; sourceTree = "<group>"; };
 		BE558EAA174D1083009FA3DA /* categories.json */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = text.json; path = categories.json; sourceTree = "<group>"; tabWidth = 2; };
 		BE558EAC174D1591009FA3DA /* CSCategoryListPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSCategoryListPage.h; sourceTree = "<group>"; };
 		BE558EAD174D1591009FA3DA /* CSCategoryListPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSCategoryListPage.m; sourceTree = "<group>"; };
@@ -279,6 +280,7 @@
 		BE7E6ECC16DBB753000AA883 /* groups.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = groups.json; sourceTree = "<group>"; };
 		BE7E6ECE16DBBAF1000AA883 /* CSGroupList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSGroupList.h; sourceTree = "<group>"; };
 		BE7E6ECF16DBBAF1000AA883 /* CSGroupList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSGroupList.m; sourceTree = "<group>"; };
+		BE7F95DE1765D25D008432E1 /* category_1167-digital-video.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "category_1167-digital-video.json"; sourceTree = "<group>"; };
 		BEA65A0B16B92F3100F10CB0 /* TestRequester.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestRequester.h; sourceTree = "<group>"; };
 		BEA65A0C16B92F3100F10CB0 /* TestRequester.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestRequester.m; sourceTree = "<group>"; };
 		BEA65A0F16B94DDF00F10CB0 /* CSApplicationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSApplicationTests.m; sourceTree = "<group>"; };
@@ -644,6 +646,7 @@
 		BEA65A1416B9535300F10CB0 /* Fixtures */ = {
 			isa = PBXGroup;
 			children = (
+				BE7F95DE1765D25D008432E1 /* category_1167-digital-video.json */,
 				BEA65A1516B9537300F10CB0 /* app.json */,
 				BE4B14A616B9722A00BDDD08 /* user_post_response.json */,
 				BE57713E16B98EFF002F42E4 /* user_post_response_with_reference_and_meta.json */,
@@ -670,7 +673,7 @@
 				BE480BB2172685D00022216B /* retailer_81.json */,
 				BE5D4C0F16EE553A0096FFFF /* productsummary.json */,
 				BE6BF3F017183C11004B6D85 /* product.json */,
-				BE558EA8174D0E80009FA3DA /* category.json */,
+				BE558EA8174D0E80009FA3DA /* category_3-all-products.json */,
 				BE558EAA174D1083009FA3DA /* categories.json */,
 			);
 			path = Fixtures;
@@ -777,8 +780,9 @@
 				BE5D4C1016EE553A0096FFFF /* productsummary.json in Resources */,
 				BE6BF3F117183C11004B6D85 /* product.json in Resources */,
 				BE480BB3172685D00022216B /* retailer_81.json in Resources */,
-				BE558EA9174D0E80009FA3DA /* category.json in Resources */,
+				BE558EA9174D0E80009FA3DA /* category_3-all-products.json in Resources */,
 				BE558EAB174D1083009FA3DA /* categories.json in Resources */,
+				BE7F95DF1765D25D008432E1 /* category_1167-digital-video.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
