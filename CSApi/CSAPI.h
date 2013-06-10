@@ -1276,7 +1276,7 @@
  
  Control returns from getProducts: immediately. If the operation is successful,
  the given callback is invoked with a non-nil
- [id\<CSProductListPage\>](CSSummaryListPage) in firstPage and a nil error.
+ [id\<CSProductListPage\>](CSProductListPage) in firstPage and a nil error.
  firstPage is the first page of the result set. It is recommended that client
  code use firstPage.productList to get an [id\<CSProductList\>](CSProductList),
  which provides convenient access to products in the list.
