@@ -173,7 +173,7 @@
 		BE558EA0174D0B4A009FA3DA /* CSCategoryTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSCategoryTests.m; sourceTree = "<group>"; };
 		BE558EA3174D0BDE009FA3DA /* CSCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSCategory.h; sourceTree = "<group>"; };
 		BE558EA4174D0BDE009FA3DA /* CSCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSCategory.m; sourceTree = "<group>"; };
-		BE558EA8174D0E80009FA3DA /* category_3-all-products.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "category_3-all-products.json"; sourceTree = "<group>"; };
+		BE558EA8174D0E80009FA3DA /* category_3-all-products.json */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = text.json; path = "category_3-all-products.json"; sourceTree = "<group>"; tabWidth = 2; };
 		BE558EAA174D1083009FA3DA /* categories.json */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = text.json; path = categories.json; sourceTree = "<group>"; tabWidth = 2; };
 		BE558EAC174D1591009FA3DA /* CSCategoryListPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSCategoryListPage.h; sourceTree = "<group>"; };
 		BE558EAD174D1591009FA3DA /* CSCategoryListPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSCategoryListPage.m; sourceTree = "<group>"; };
@@ -646,7 +646,6 @@
 		BEA65A1416B9535300F10CB0 /* Fixtures */ = {
 			isa = PBXGroup;
 			children = (
-				BE7F95DE1765D25D008432E1 /* category_1167-digital-video.json */,
 				BEA65A1516B9537300F10CB0 /* app.json */,
 				BE4B14A616B9722A00BDDD08 /* user_post_response.json */,
 				BE57713E16B98EFF002F42E4 /* user_post_response_with_reference_and_meta.json */,
@@ -674,6 +673,7 @@
 				BE5D4C0F16EE553A0096FFFF /* productsummary.json */,
 				BE6BF3F017183C11004B6D85 /* product.json */,
 				BE558EA8174D0E80009FA3DA /* category_3-all-products.json */,
+				BE7F95DE1765D25D008432E1 /* category_1167-digital-video.json */,
 				BE558EAA174D1083009FA3DA /* categories.json */,
 			);
 			path = Fixtures;

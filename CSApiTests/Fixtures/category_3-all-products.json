@@ -38,6 +38,9 @@
     ],
     "api:products": {
       "href": "/categories/4-dvds-and-blu-ray/products/"
+    },
+    "api:retailers": {
+      "href": "/retailers/"
     }
   },
   "name": "DVDs & Blu-Ray"

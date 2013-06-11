@@ -14,6 +14,7 @@
 #import "CSResourceListItem.h"
 #import "CSListPage.h"
 #import "CSCategoryList.h"
+#import "CSRetailerListPage.h"
 
 @interface CSCategoryArrayListPage : CSListPage <CSCategoryListPage>
 
@@ -126,6 +127,29 @@
                                                   requester:self.requester
                                                  credential:self.credential],
              nil);
+}
+
+- (void)getRetailers:(void (^)(id<CSRetailerListPage>, NSError *))callback
+{
+    [self getRelation:@"/rels/retailers"
+          forResource:self.resource
+             callback:^(YBHALResource *result, NSError *error)
+    {
+        if (error) {
+            callback(nil, error);
+            return;
+        }
+        
+        if ( ! result) {
+            callback(nil, nil);
+            return;
+        }
+        
+        callback([[CSRetailerListPage alloc] initWithHal:result
+                                               requester:self.requester
+                                              credential:self.credential],
+                 nil);
+    }];
 }
 
 @end

@@ -64,6 +64,12 @@
                                                  credential:self.credential];
     } else {
         YBHALLink *itemLink = [resource linkForRelation:relation];
+        
+        if ( ! itemLink) {
+            callback(nil, nil);
+            return;
+        }
+        
         item = [[CSLinkListItem alloc] initWithLink:itemLink
                                           requester:self.requester
                                          credential:self.credential];

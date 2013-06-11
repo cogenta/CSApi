@@ -23,6 +23,7 @@
 @property (strong) YBHALResource *productsResource;
 @property (strong) YBHALResource *productResource;
 @property (strong) YBHALResource *subcategoryResource;
+@property (strong) YBHALResource *retailersResource;
 
 
 @end
@@ -37,6 +38,7 @@
 @synthesize productsResource;
 @synthesize productResource;
 @synthesize subcategoryResource;
+@synthesize retailersResource;
 
 - (void)setUp
 {
@@ -88,6 +90,14 @@
     
     [requester addGetResponse:subcategoryResource
                        forURL:[subcategoryResource linkForRelation:@"self"].URL];
+    
+    //
+    
+    retailersResource = [self resourceForFixture:@"retailers_page_0_embedded.json"];
+    STAssertNotNil(retailersResource, nil);
+    
+    [requester addGetResponse:retailersResource
+                       forURL:[retailersResource linkForRelation:@"self"].URL];
 }
 
 - (void)testName
@@ -176,6 +186,74 @@
     STAssertNotNil(subcategory, nil);
     
     STAssertEqualObjects(subcategory.name, subcategoryResource[@"name"], nil);
+}
+
+- (void)testGetRetailers
+{
+    __block NSError *error = [NSError errorWithDomain:@"not called"
+                                                 code:0
+                                             userInfo:nil];
+    __block id<CSRetailerListPage> page = nil;
+    CALL_AND_WAIT(^(void (^done)()) {
+        [category getRetailers:^(id<CSRetailerListPage> aPage,
+                                 NSError *anError)
+         {
+             page = aPage;
+             error = anError;
+             done();
+         }];
+    });
+    
+    STAssertNil(error, @"%@", error);
+    STAssertNotNil(page, nil);
+    
+    id<CSRetailerList> list = page.retailerList;
+    STAssertNotNil(list, nil);
+    
+    STAssertEqualObjects(@(list.count), @30, nil);
+    
+    __block id<CSRetailer> retailer = nil;
+    error = [NSError errorWithDomain:@"not called" code:0 userInfo:nil];
+    CALL_AND_WAIT(^(void (^done)()) {
+        [list getRetailerAtIndex:0
+                        callback:^(id<CSRetailer> aRetailer, NSError *anError)
+         {
+             retailer = aRetailer;
+             error = anError;
+             done();
+         }];
+    });
+    
+    STAssertNil(error, @"%@", error);
+    STAssertNotNil(retailer, nil);
+    
+    NSString *expectedName = [retailersResource resourcesForRelation:@"/rels/retailer"][0][@"name"];
+    STAssertEqualObjects(retailer.name, expectedName, nil);
+}
+
+- (void)testGetNoRetailers
+{
+    resource = [self resourceForFixture:@"category_1167-digital-video.json"];
+    category = [[CSCategory alloc] initWithHAL:resource
+                                     requester:self.requester
+                                    credential:self.credential];
+    
+    __block NSError *error = [NSError errorWithDomain:@"not called"
+                                                 code:0
+                                             userInfo:nil];
+    __block id<CSRetailerListPage> page = nil;
+    CALL_AND_WAIT(^(void (^done)()) {
+        [category getRetailers:^(id<CSRetailerListPage> aPage,
+                                 NSError *anError)
+         {
+             page = aPage;
+             error = anError;
+             done();
+         }];
+    });
+    
+    STAssertNil(error, @"%@", error);
+    STAssertNil(page, @"%@", page);
 }
 
 @end
