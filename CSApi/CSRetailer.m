@@ -38,6 +38,11 @@
 
 - (NSURL *)URL
 {
+    NSURL *retailerURL = [resource linkForRelation:@"/rels/retailer"].URL;
+    if (retailerURL) {
+        return retailerURL;
+    }
+    
     return [resource linkForRelation:@"self"].URL;
 }
 
