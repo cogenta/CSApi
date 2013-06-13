@@ -16,6 +16,9 @@
     },
     "api:products": {
       "href": "/retailers/238/products/"
+    },
+    "api:categories": {
+      "href": "/users/12345/groups/1/categories/"
     }
   }, 
   "name": "99p Stores"

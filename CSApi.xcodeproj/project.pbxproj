@@ -32,7 +32,7 @@
 		BE558E9E174CD3A7009FA3DA /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE558E9D174CD3A7009FA3DA /* Security.framework */; };
 		BE558EA1174D0B4A009FA3DA /* CSCategoryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BE558EA0174D0B4A009FA3DA /* CSCategoryTests.m */; };
 		BE558EA5174D0BDE009FA3DA /* CSCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = BE558EA4174D0BDE009FA3DA /* CSCategory.m */; };
-		BE558EA9174D0E80009FA3DA /* category_3-all-products.json in Resources */ = {isa = PBXBuildFile; fileRef = BE558EA8174D0E80009FA3DA /* category_3-all-products.json */; };
+		BE558EA9174D0E80009FA3DA /* category_4-dvds-and-blu-ray.json in Resources */ = {isa = PBXBuildFile; fileRef = BE558EA8174D0E80009FA3DA /* category_4-dvds-and-blu-ray.json */; };
 		BE558EAB174D1083009FA3DA /* categories.json in Resources */ = {isa = PBXBuildFile; fileRef = BE558EAA174D1083009FA3DA /* categories.json */; };
 		BE558EAE174D1591009FA3DA /* CSCategoryListPage.m in Sources */ = {isa = PBXBuildFile; fileRef = BE558EAD174D1591009FA3DA /* CSCategoryListPage.m */; };
 		BE558EB1174D1612009FA3DA /* CSCategoryList.m in Sources */ = {isa = PBXBuildFile; fileRef = BE558EB0174D1612009FA3DA /* CSCategoryList.m */; };
@@ -173,7 +173,7 @@
 		BE558EA0174D0B4A009FA3DA /* CSCategoryTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSCategoryTests.m; sourceTree = "<group>"; };
 		BE558EA3174D0BDE009FA3DA /* CSCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSCategory.h; sourceTree = "<group>"; };
 		BE558EA4174D0BDE009FA3DA /* CSCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSCategory.m; sourceTree = "<group>"; };
-		BE558EA8174D0E80009FA3DA /* category_3-all-products.json */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = text.json; path = "category_3-all-products.json"; sourceTree = "<group>"; tabWidth = 2; };
+		BE558EA8174D0E80009FA3DA /* category_4-dvds-and-blu-ray.json */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = text.json; path = "category_4-dvds-and-blu-ray.json"; sourceTree = "<group>"; tabWidth = 2; };
 		BE558EAA174D1083009FA3DA /* categories.json */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = text.json; path = categories.json; sourceTree = "<group>"; tabWidth = 2; };
 		BE558EAC174D1591009FA3DA /* CSCategoryListPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSCategoryListPage.h; sourceTree = "<group>"; };
 		BE558EAD174D1591009FA3DA /* CSCategoryListPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSCategoryListPage.m; sourceTree = "<group>"; };
@@ -672,7 +672,7 @@
 				BE480BB2172685D00022216B /* retailer_81.json */,
 				BE5D4C0F16EE553A0096FFFF /* productsummary.json */,
 				BE6BF3F017183C11004B6D85 /* product.json */,
-				BE558EA8174D0E80009FA3DA /* category_3-all-products.json */,
+				BE558EA8174D0E80009FA3DA /* category_4-dvds-and-blu-ray.json */,
 				BE7F95DE1765D25D008432E1 /* category_1167-digital-video.json */,
 				BE558EAA174D1083009FA3DA /* categories.json */,
 			);
@@ -780,7 +780,7 @@
 				BE5D4C1016EE553A0096FFFF /* productsummary.json in Resources */,
 				BE6BF3F117183C11004B6D85 /* product.json in Resources */,
 				BE480BB3172685D00022216B /* retailer_81.json in Resources */,
-				BE558EA9174D0E80009FA3DA /* category_3-all-products.json in Resources */,
+				BE558EA9174D0E80009FA3DA /* category_4-dvds-and-blu-ray.json in Resources */,
 				BE558EAB174D1083009FA3DA /* categories.json in Resources */,
 				BE7F95DF1765D25D008432E1 /* category_1167-digital-video.json in Resources */,
 			);

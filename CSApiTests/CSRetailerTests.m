@@ -26,6 +26,8 @@
 @property (strong) YBHALResource *productSummaryResource;
 @property (strong) YBHALResource *productsResource;
 @property (strong) YBHALResource *productResource;
+@property (strong) YBHALResource *categoriesResource;
+@property (strong) YBHALResource *categoryResource;
 @property (strong) CSRetailer *retailer;
 
 @end
@@ -44,6 +46,8 @@
 @synthesize productsResource;
 @synthesize productResource;
 @synthesize retailer;
+@synthesize categoriesResource;
+@synthesize categoryResource;
 
 - (void)setUp
 {
@@ -125,6 +129,17 @@
                        forURL:[productResource linkForRelation:@"self"].URL];
     [requester addGetResponse:productsResource
                        forURL:[productsResource linkForRelation:@"self"].URL];
+    
+    //
+    
+    categoriesResource = [self resourceForFixture:@"categories.json"];
+    [requester addGetResponse:categoriesResource
+                       forURL:[categoriesResource linkForRelation:@"self"].URL];
+    
+    self.categoryResource = [self resourceForFixture:
+                             @"category_4-dvds-and-blu-ray.json"];
+    [requester addGetResponse:self.categoryResource
+                       forURL:[self.categoryResource linkForRelation:@"self"].URL];
 
 }
 
@@ -286,6 +301,47 @@
     STAssertNotNil(product, nil);
     
     STAssertEqualObjects(product.name, productSummaryResource[@"name"], nil);
+}
+
+- (void)testGetCategories
+{
+    __block NSError *error = [NSError errorWithDomain:@"not called"
+                                                 code:0
+                                             userInfo:nil];
+    __block id<CSCategoryListPage> page = nil;
+    CALL_AND_WAIT(^(void (^done)()) {
+        [retailer getCategories:^(id<CSCategoryListPage> aPage,
+                                    NSError *anError) {
+            page = aPage;
+            error = anError;
+            done();
+        }];
+    });
+    
+    STAssertNil(error, @"%@", error);
+    STAssertNotNil(page, nil);
+    
+    id<CSCategoryList> list = page.categoryList;
+    STAssertNotNil(list, nil);
+    
+    STAssertEqualObjects(@(list.count), @4, nil);
+    
+    __block id<CSCategory> category = nil;
+    error = [NSError errorWithDomain:@"not called" code:0 userInfo:nil];
+    CALL_AND_WAIT(^(void (^done)()) {
+        [list getCategoryAtIndex:0
+                        callback:^(id<CSCategory> aCategory, NSError *anError)
+         {
+             category = aCategory;
+             error = anError;
+             done();
+         }];
+    });
+    
+    STAssertNil(error, @"%@", error);
+    STAssertNotNil(category, nil);
+    
+    STAssertEqualObjects(category.name, @"DVDs & Blu-Ray", nil);
 }
 
 @end

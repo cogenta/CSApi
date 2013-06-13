@@ -50,7 +50,7 @@
     credential = [CSBasicCredential credentialWithUsername:@"user"
                                                   password:@"pass"];
     
-    resource = [self resourceForFixture:@"category_3-all-products.json"];
+    resource = [self resourceForFixture:@"category_4-dvds-and-blu-ray.json"];
     STAssertNotNil(resource, nil);
     
     URL = [resource linkForRelation:@"self"].URL;

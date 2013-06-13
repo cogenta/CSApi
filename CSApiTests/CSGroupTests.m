@@ -125,7 +125,7 @@
     //
     
     self.categoryResource = [self resourceForFixture:
-                             @"category_3-all-products.json"];
+                             @"category_4-dvds-and-blu-ray.json"];
     [requester addGetResponse:self.categoryResource
                        forURL:[self.categoryResource linkForRelation:@"self"].URL];
         
