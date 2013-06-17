@@ -33,6 +33,9 @@
         requester:(id<CSRequester>)aRequester
        credential:(id<CSCredential>)aCredential
 {
+    if ( ! aResource) {
+        return nil;
+    }
     self = [super initWithRequester:aRequester credential:aCredential];
     if (self) {
         resource = aResource;
