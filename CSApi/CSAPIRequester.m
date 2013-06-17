@@ -175,6 +175,13 @@
     }
 }
 
+- (void)applyAccept:(NSString *)accept request:(NSMutableURLRequest *)request
+{
+    if (accept) {
+        [request addValue:accept forHTTPHeaderField:@"Accept"];
+    }
+}
+
 - (BOOL)applyBody:(id)body request:(NSMutableURLRequest *)request
 {
     if ( ! body) {
@@ -213,6 +220,7 @@
     
     [self applyCredential:credential request:request];
     [self applyEtag:etag request:request];
+    [self applyAccept:@"application/hal+json;version=0.1" request:request];
     
     if ( ! [self applyBody:body request:request]) {
         NSDictionary *userInfo = @{NSLocalizedDescriptionKey:
