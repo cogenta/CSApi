@@ -1299,7 +1299,7 @@
 /** The category's name. */
 @property (readonly) NSString *name;
 
-/** Tries to get a list of products beloging to the category or one of its
+/** Tries to get a list of products belonging to the category or one of its
  subcategories.
  
  Control returns from getProducts: immediately. If the operation is successful,
