@@ -104,6 +104,27 @@
      }];
 }
 
+- (void)getProductsWithQuery:(NSString *)query
+                    callback:(void (^)(id<CSProductListPage>,
+                                       NSError *))callback
+{
+    [self getRelation:@"/rels/searchproducts"
+        withArguments:@{@"q": query}
+          forResource:self.resource
+             callback:^(YBHALResource *result, NSError *error)
+     {
+         if (error) {
+             callback(nil, error);
+             return;
+         }
+         
+         callback([[CSProductListPage alloc] initWithHal:result
+                                               requester:self.requester
+                                              credential:self.credential],
+                  nil);
+     }];
+}
+
 - (void)getImmediateSubcategories:(void (^)(id<CSCategoryListPage>, NSError *))callback
 {
     NSArray *items;

@@ -788,6 +788,10 @@
 - (void)getProducts:(void (^)(id<CSProductListPage> firstPage,
                               NSError *error))callback;
 
+- (void)getProductsWithQuery:(NSString *)query
+                    callback:(void (^)(id<CSProductListPage> firstPage,
+                                       NSError *error))callback;
+
 /** Tries to get a list of categories related to the likes in the group.
  
  Control returns from getCategories: immediately. If the operation is
@@ -1314,6 +1318,10 @@
  */
 - (void)getProducts:(void (^)(id<CSProductListPage> firstPage,
                               NSError *error))callback;
+
+- (void)getProductsWithQuery:(NSString *)query
+                    callback:(void (^)(id<CSProductListPage> firstPage,
+                                       NSError *error))callback;
 
 /** Tries to get a list of immediate subcategories of this category.
  
