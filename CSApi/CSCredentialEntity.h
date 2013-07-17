@@ -34,5 +34,10 @@
         forResource:(YBHALResource *)resource
            callback:(void (^)(YBHALResource *, NSError *))callback;
 
+- (void)getRelation:(NSString *)relation
+      withArguments:(NSDictionary *)args
+        forResource:(YBHALResource *)resource
+           callback:(void (^)(YBHALResource *, NSError *))callback;
+
 @end
 

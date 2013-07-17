@@ -28,6 +28,7 @@
 @property (strong) YBHALResource *productResource;
 @property (strong) YBHALResource *categoriesResource;
 @property (strong) YBHALResource *categoryResource;
+@property (strong) YBHALResource *productSearchResource;
 @property (strong) CSRetailer *retailer;
 
 @end
@@ -141,6 +142,13 @@
     [requester addGetResponse:self.categoryResource
                        forURL:[self.categoryResource linkForRelation:@"self"].URL];
 
+    //
+    
+    self.productSearchResource = [self resourceForFixture:@"retailer_products_search.json"];
+    NSURL *searchURL = [self.productSearchResource linkForRelation:@"self"].URL;
+    [requester addGetResponse:self.productSearchResource
+                       forURL:searchURL];
+    
 }
 
 - (void)testProperties
@@ -342,6 +350,50 @@
     STAssertNotNil(category, nil);
     
     STAssertEqualObjects(category.name, @"DVDs & Blu-Ray", nil);
+}
+
+- (void)testProductSearch
+{
+    __block NSError *error = [NSError errorWithDomain:@"not called"
+                                                 code:0
+                                             userInfo:nil];
+    __block id<CSProductListPage> page = nil;
+    CALL_AND_WAIT(^(void (^done)()) {
+        [retailer getProductsWithQuery:@"iPod"
+                              callback:^(id<CSProductListPage> aPage,
+                                         NSError *anError)
+        {
+            page = aPage;
+            error = anError;
+            done();
+        }];
+    });
+    
+    STAssertNil(error, @"%@", error);
+    STAssertNotNil(page, nil);
+    
+    id<CSProductList> list = page.productList;
+    STAssertNotNil(list, nil);
+    
+    STAssertEqualObjects(@(list.count), @1310, nil);
+    
+    __block id<CSProduct> product = nil;
+    error = [NSError errorWithDomain:@"not called" code:0 userInfo:nil];
+    CALL_AND_WAIT(^(void (^done)()) {
+        [list getProductAtIndex:0 callback:^(id<CSProduct> aProduct,
+                                             NSError *anError) {
+            product = aProduct;
+            error = anError;
+            done();
+        }];
+    });
+    
+    STAssertNil(error, @"%@", error);
+    STAssertNotNil(product, nil);
+    
+    STAssertEqualObjects(product.name,
+                         @"Apple iPod classic 160GB - Silver",
+                         nil);
 }
 
 @end

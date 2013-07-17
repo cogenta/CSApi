@@ -520,6 +520,10 @@
 - (void)getProducts:(void (^)(id<CSProductListPage> firstPage,
                               NSError *error))callback;
 
+- (void)getProductsWithQuery:(NSString *)query
+                    callback:(void (^)(id<CSProductListPage> firstPage,
+                                       NSError *error))callback;
+
 /** Tries to get a list of categories supplied by this retailer.
  
  Control returns from getCategories: immediately. If the operation is

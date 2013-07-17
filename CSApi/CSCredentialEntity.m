@@ -78,5 +78,39 @@
     [item getSelf:callback];
 }
 
+- (void)getRelation:(NSString *)relation
+      withArguments:(NSDictionary *)args
+        forResource:(YBHALResource *)resource
+           callback:(void (^)(YBHALResource *, NSError *))callback
+{
+    YBHALLink *link = [resource linkForRelation:relation];
+    if ( ! link) {
+        link = [[resource resourceForRelation:relation]
+                linkForRelation:@"self"];
+    }
+    
+    if ( ! link) {
+        callback(nil, nil);
+        return;
+    }
+    
+    NSURL *baseURL = [[resource linkForRelation:@"self"] URL];
+    NSURL *relativeURL = [link URLWithVariables:args];
+    NSURL *URL = [[NSURL URLWithString:[relativeURL absoluteString]
+                         relativeToURL:baseURL]
+                  absoluteURL];
+    [self.requester getURL:URL
+                credential:self.credential
+                  callback:^(id result, id etag, NSError *error)
+    {
+        if (error) {
+            callback(nil, error);
+            return;
+        }
+        
+        callback(result, nil);
+    }];
+}
+
 @end
 

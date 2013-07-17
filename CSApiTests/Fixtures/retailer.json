@@ -17,6 +17,10 @@
     "api:products": {
       "href": "/retailers/238/products/"
     },
+    "api:searchproducts": {
+      "href": "/retailers/238/products/{?q}",
+      "templated": true
+    },
     "api:categories": {
       "href": "/users/12345/groups/1/categories/"
     }
