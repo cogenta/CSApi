@@ -520,6 +520,24 @@
 - (void)getProducts:(void (^)(id<CSProductListPage> firstPage,
                               NSError *error))callback;
 
+/** Tries to get a list of products that match a query and that are supplied by
+ the retailer.
+ 
+ Control returns from getProductsWithQuery:callback: immediately. If the
+ operation is successful, the given callback is invoked with a non-nil
+ [id\<CSProductListPage\>](CSProductListPage) in firstPage and a nil error.
+ firstPage is the first page of the result set. It is recommended that client
+ code use firstPage.productList to get an [id\<CSProductList\>](CSProductList),
+ which provides convenient access to products in the list.
+ 
+ If the operation fails, callback is invoked with a nil firstPage and a non-nil
+ error.
+ 
+ @prarm query A search query. For example, "apple ipod touch 16gb".
+ @param callback The block to invoke when the products list has been
+ successfully obtained, or when the operation has failed.
+ 
+ */
 - (void)getProductsWithQuery:(NSString *)query
                     callback:(void (^)(id<CSProductListPage> firstPage,
                                        NSError *error))callback;
@@ -788,6 +806,24 @@
 - (void)getProducts:(void (^)(id<CSProductListPage> firstPage,
                               NSError *error))callback;
 
+/** Tries to get a list of products that match a query and relate th the likes
+ in the group.
+ 
+ Control returns from getProductsWithQuery:callback: immediately. If the
+ operation is successful, the given callback is invoked with a non-nil
+ [id\<CSProductListPage\>](CSProductListPage) in firstPage and a nil error.
+ firstPage is the first page of the result set. It is recommended that client
+ code use firstPage.productList to get an [id\<CSProductList\>](CSProductList),
+ which provides convenient access to products in the list.
+ 
+ If the operation fails, callback is invoked with a nil firstPage and a non-nil
+ error.
+ 
+ @prarm query A search query. For example, "apple ipod touch 16gb".
+ @param callback The block to invoke when the products list has been
+ successfully obtained, or when the operation has failed.
+ 
+ */
 - (void)getProductsWithQuery:(NSString *)query
                     callback:(void (^)(id<CSProductListPage> firstPage,
                                        NSError *error))callback;
@@ -1319,6 +1355,24 @@
 - (void)getProducts:(void (^)(id<CSProductListPage> firstPage,
                               NSError *error))callback;
 
+/** Tries to get a list of products that match a query and belong to the
+ category or one of its subcategories.
+ 
+ Control returns from getProductsWithQuery:callback: immediately. If the
+ operation is successful, the given callback is invoked with a non-nil
+ [id\<CSProductListPage\>](CSProductListPage) in firstPage and a nil error.
+ firstPage is the first page of the result set. It is recommended that client
+ code use firstPage.productList to get an [id\<CSProductList\>](CSProductList),
+ which provides convenient access to products in the list.
+ 
+ If the operation fails, callback is invoked with a nil firstPage and a non-nil
+ error.
+ 
+ @prarm query A search query. For example, "apple ipod touch 16gb".
+ @param callback The block to invoke when the products list has been
+ successfully obtained, or when the operation has failed.
+ 
+ */
 - (void)getProductsWithQuery:(NSString *)query
                     callback:(void (^)(id<CSProductListPage> firstPage,
                                        NSError *error))callback;
