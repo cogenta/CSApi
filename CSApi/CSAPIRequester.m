@@ -297,10 +297,8 @@
         });
         return nil;
     }
-    
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [operation start];
-    });
+
+    [operation start];
     return [[CSAPIRequest alloc] initWithOperation:operation];
 }
 
