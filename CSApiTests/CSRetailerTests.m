@@ -396,4 +396,25 @@
                          nil);
 }
 
+- (void)testCancelProductSearch
+{
+    __block NSError *error = [NSError errorWithDomain:@"not called"
+                                                 code:0
+                                             userInfo:nil];
+    __block id<CSProductListPage> page = nil;
+    CALL_AND_WAIT(^(void (^done)()) {
+        [[retailer getProductsWithQuery:@"iPod"
+                               callback:^(id<CSProductListPage> aPage,
+                                          NSError *anError)
+         {
+             page = aPage;
+             error = anError;
+             done();
+         }] cancel];
+    });
+    
+    STAssertNotNil(error, nil);
+    STAssertNil(page, @"%@", page);
+}
+
 @end

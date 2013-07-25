@@ -29,9 +29,10 @@
     return [resource linkForRelation:@"self"].URL;
 }
 
-- (void)getSelf:(void (^)(YBHALResource *, NSError *))callback
+- (id<CSAPIRequest>)getSelf:(void (^)(YBHALResource *, NSError *))callback
 {
     callback(resource, nil);
+    return nil;
 }
 
 @end

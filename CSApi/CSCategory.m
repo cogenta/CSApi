@@ -91,11 +91,11 @@
     return [self.resource linkForRelation:@"self"].URL;
 }
 
-- (void)getProducts:(void (^)(id<CSProductListPage>, NSError *))callback
+- (id<CSAPIRequest>)getProducts:(void (^)(id<CSProductListPage>, NSError *))callback
 {
-    [self getRelation:@"/rels/products"
-          forResource:self.resource
-             callback:^(YBHALResource *result, NSError *error)
+    return [self getRelation:@"/rels/products"
+                 forResource:self.resource
+                    callback:^(YBHALResource *result, NSError *error)
      {
          if (error) {
              callback(nil, error);
@@ -109,14 +109,14 @@
      }];
 }
 
-- (void)getProductsWithQuery:(NSString *)query
+- (id<CSAPIRequest>)getProductsWithQuery:(NSString *)query
                     callback:(void (^)(id<CSProductListPage>,
                                        NSError *))callback
 {
-    [self getRelation:@"/rels/searchproducts"
-        withArguments:@{@"q": query}
-          forResource:self.resource
-             callback:^(YBHALResource *result, NSError *error)
+    return [self getRelation:@"/rels/searchproducts"
+               withArguments:@{@"q": query}
+                 forResource:self.resource
+                    callback:^(YBHALResource *result, NSError *error)
      {
          if (error) {
              callback(nil, error);

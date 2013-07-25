@@ -15,6 +15,7 @@
 - (id)initWithRequester:(id<CSRequester>)requester
              credential:(id<CSCredential>)credential;
 
-- (void)getSelf:(void (^)(YBHALResource *resource, NSError *error))callback;
+- (id<CSAPIRequest>)getSelf:(void (^)(YBHALResource *resource,
+                                      NSError *error))callback;
 
 @end

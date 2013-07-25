@@ -56,6 +56,25 @@
 @protocol CSCategory;
 
 /**
+ Provides a handle to the network request for an API invocation.
+ 
+ Some API methods return an [id<CSAPIRequest>](CSAPIRequest) in addition to
+ accepting a callback argument. This object may be used to cancel the API
+ invocation's underlying network request.
+ */
+@protocol CSAPIRequest <NSObject>
+
+/**
+ Cancels the API invocation's underlying network request. If the request is in
+ progress, the callback given to the API method will be invoked with an error.
+ This method has no effect of the callback has already been invoked, or if the
+ request has already been canceled.
+ */
+- (void)cancel;
+
+@end
+
+/**
  Provides access to the Cogenta Shopping API.
  
  Once you have obtains a bookmark, username, and password for your application
@@ -515,10 +534,11 @@
  
  @param callback The block to invoke when the products list has been
  successfully obtained, or when the operation has failed.
- 
+ @return an [id\<CSAPIRequest\>](CSAPIRequest) controlling the network request.
+
  */
-- (void)getProducts:(void (^)(id<CSProductListPage> firstPage,
-                              NSError *error))callback;
+- (id<CSAPIRequest>)getProducts:(void (^)(id<CSProductListPage> firstPage,
+                                          NSError *error))callback;
 
 /** Tries to get a list of products that match a query and that are supplied by
  the retailer.
@@ -536,9 +556,10 @@
  @param query A search query. For example, "apple ipod touch 16gb".
  @param callback The block to invoke when the products list has been
  successfully obtained, or when the operation has failed.
+ @return an [id\<CSAPIRequest\>](CSAPIRequest) controlling the network request.
  
  */
-- (void)getProductsWithQuery:(NSString *)query
+- (id<CSAPIRequest>)getProductsWithQuery:(NSString *)query
                     callback:(void (^)(id<CSProductListPage> firstPage,
                                        NSError *error))callback;
 
@@ -801,10 +822,11 @@
  
  @param callback The block to invoke when the product list has been
  successfully obtained, or when the operation has failed.
- 
+ @return an [id\<CSAPIRequest\>](CSAPIRequest) controlling the network request.
+
  */
-- (void)getProducts:(void (^)(id<CSProductListPage> firstPage,
-                              NSError *error))callback;
+- (id<CSAPIRequest>)getProducts:(void (^)(id<CSProductListPage> firstPage,
+                                          NSError *error))callback;
 
 /** Tries to get a list of products that match a query and relate th the likes
  in the group.
@@ -822,9 +844,10 @@
  @param query A search query. For example, "apple ipod touch 16gb".
  @param callback The block to invoke when the products list has been
  successfully obtained, or when the operation has failed.
- 
+ @return an [id\<CSAPIRequest\>](CSAPIRequest) controlling the network request.
+
  */
-- (void)getProductsWithQuery:(NSString *)query
+- (id<CSAPIRequest>)getProductsWithQuery:(NSString *)query
                     callback:(void (^)(id<CSProductListPage> firstPage,
                                        NSError *error))callback;
 
@@ -1353,10 +1376,11 @@
  
  @param callback The block to invoke when the products list has been
  successfully obtained, or when the operation has failed.
- 
+ @return an [id\<CSAPIRequest\>](CSAPIRequest) controlling the network request.
+
  */
-- (void)getProducts:(void (^)(id<CSProductListPage> firstPage,
-                              NSError *error))callback;
+- (id<CSAPIRequest>)getProducts:(void (^)(id<CSProductListPage> firstPage,
+                                          NSError *error))callback;
 
 /** Tries to get a list of products that match a query and belong to the
  category or one of its subcategories.
@@ -1374,9 +1398,10 @@
  @param query A search query. For example, "apple ipod touch 16gb".
  @param callback The block to invoke when the products list has been
  successfully obtained, or when the operation has failed.
- 
+ @return an [id\<CSAPIRequest\>](CSAPIRequest) controlling the network request.
+
  */
-- (void)getProductsWithQuery:(NSString *)query
+- (id<CSAPIRequest>)getProductsWithQuery:(NSString *)query
                     callback:(void (^)(id<CSProductListPage> firstPage,
                                        NSError *error))callback;
 

@@ -32,6 +32,35 @@
 
 @end
 
+@interface TestRequest : NSObject <CSRequest>
+
+@property (nonatomic, strong) requester_callback_t cb;
+@property (nonatomic, strong) NSOperation *op;
+
+- (id)initWithCallback:(requester_callback_t)cb operation:(NSOperation *)op;
+
+@end
+
+@implementation TestRequest
+
+- (id)initWithCallback:(requester_callback_t)cb operation:(NSOperation *)op
+{
+    self = [super init];
+    if (self) {
+        self.cb = cb;
+        self.op = op;
+    }
+    return self;
+}
+
+- (void)cancel
+{
+    self.cb(nil, nil, [NSError errorWithDomain:@"CANCEL" code:-999 userInfo:nil]);
+    [self.op cancel];
+}
+
+@end
+
 @interface TestRequester () <CSAuthenticator>
 
 @property (strong) NSMutableDictionary *responses;
@@ -229,8 +258,12 @@
         return nil;
     }
     
-    response(body, etag, callback);
-    return nil; // TODO: return test request
+    NSBlockOperation *op = [NSBlockOperation blockOperationWithBlock:^{
+        response(body, etag, callback);
+    }];
+    NSOperationQueue *q = [[NSOperationQueue alloc] init];
+    [q addOperation:op];
+    return [[TestRequest alloc] initWithCallback:callback operation:op];
 }
 
 - (id<CSRequest>)getURL:(NSURL *)URL

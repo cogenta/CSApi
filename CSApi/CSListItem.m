@@ -18,9 +18,10 @@
     return self;
 }
 
-- (void)getSelf:(void (^)(YBHALResource *, NSError *))callback
+- (id<CSAPIRequest>)getSelf:(void (^)(YBHALResource *, NSError *))callback
 {
     callback(nil, nil);
+    return nil;
 }
 
 - (NSURL *)URL
