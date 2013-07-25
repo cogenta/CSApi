@@ -157,13 +157,16 @@
         [newBody addEntriesFromDictionary:[aBody dictionary]];
         cb([CSAPITestCase resourceForJson:newBody], @"New ETag", nil);
     } forURL:groupURL];
-    [group change:^(id<CSMutableGroup> aGroup) {
-        aGroup.reference = @"NEW REFERENCE";
-        aGroup.meta = [@{@"new": @"meta"} mutableCopy];
-    } callback:^(BOOL success, NSError *error) {
-        putSuccess = @(success);
-        putError = error;
-    }];
+    CALL_AND_WAIT(^(void (^done)()) {
+        [group change:^(id<CSMutableGroup> aGroup) {
+            aGroup.reference = @"NEW REFERENCE";
+            aGroup.meta = [@{@"new": @"meta"} mutableCopy];
+        } callback:^(BOOL success, NSError *error) {
+            putSuccess = @(success);
+            putError = error;
+            done();
+        }];
+    });
     
     STAssertNil(putError, @"%@", putError);
     STAssertEqualObjects(putSuccess, @(YES), nil);
