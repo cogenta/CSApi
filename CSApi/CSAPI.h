@@ -533,7 +533,7 @@
  If the operation fails, callback is invoked with a nil firstPage and a non-nil
  error.
  
- @prarm query A search query. For example, "apple ipod touch 16gb".
+ @param query A search query. For example, "apple ipod touch 16gb".
  @param callback The block to invoke when the products list has been
  successfully obtained, or when the operation has failed.
  
@@ -819,7 +819,7 @@
  If the operation fails, callback is invoked with a nil firstPage and a non-nil
  error.
  
- @prarm query A search query. For example, "apple ipod touch 16gb".
+ @param query A search query. For example, "apple ipod touch 16gb".
  @param callback The block to invoke when the products list has been
  successfully obtained, or when the operation has failed.
  
@@ -1368,7 +1368,7 @@
  If the operation fails, callback is invoked with a nil firstPage and a non-nil
  error.
  
- @prarm query A search query. For example, "apple ipod touch 16gb".
+ @param query A search query. For example, "apple ipod touch 16gb".
  @param callback The block to invoke when the products list has been
  successfully obtained, or when the operation has failed.
  
