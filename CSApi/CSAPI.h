@@ -1332,6 +1332,9 @@
 /** Protocol for accessing a category. */
 @protocol CSCategory <NSObject>
 
+/** The URL of the category. */
+@property (readonly) NSURL *URL;
+
 /** The category's name. */
 @property (readonly) NSString *name;
 

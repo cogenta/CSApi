@@ -105,6 +105,11 @@
     STAssertEqualObjects(category.name, @"DVDs & Blu-Ray", nil);
 }
 
+- (void)testURL
+{
+    STAssertEqualObjects(category.URL, URL, nil);
+}
+
 - (void)testGetProducts
 {
     __block NSError *error = [NSError errorWithDomain:@"not called"

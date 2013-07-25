@@ -86,6 +86,11 @@
     return self;
 }
 
+- (NSURL *)URL
+{
+    return [self.resource linkForRelation:@"self"].URL;
+}
+
 - (void)getProducts:(void (^)(id<CSProductListPage>, NSError *))callback
 {
     [self getRelation:@"/rels/products"
