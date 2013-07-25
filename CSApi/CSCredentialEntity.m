@@ -28,31 +28,36 @@
     return self;
 }
 
-- (void)postURL:(NSURL *)URL
+- (id<CSAPIRequest>)postURL:(NSURL *)URL
            body:(id)body
        callback:(requester_callback_t)callback
 {
-    [requester postURL:URL credential:credential body:body callback:callback];
+    return (id<CSAPIRequest>) [requester postURL:URL
+                                      credential:credential
+                                            body:body
+                                        callback:callback];
 }
 
-- (void)getURL:(NSURL *)URL callback:(requester_callback_t)callback
+- (id<CSAPIRequest>)getURL:(NSURL *)URL callback:(requester_callback_t)callback
 {
-    [requester getURL:URL credential:credential callback:callback];
+    return (id<CSAPIRequest>) [requester getURL:URL
+                                     credential:credential
+                                       callback:callback];
 }
 
-- (void)putURL:(NSURL *)URL
+- (id<CSAPIRequest>)putURL:(NSURL *)URL
           body:(id)body
           etag:(id)etag
       callback:(requester_callback_t)callback
 {
-    [requester putURL:URL
+    return (id<CSAPIRequest>) [requester putURL:URL
            credential:credential
                  body:body
                  etag:etag
              callback:callback];
 }
 
-- (void)getRelation:(NSString *)relation
+- (id<CSAPIRequest>)getRelation:(NSString *)relation
         forResource:(YBHALResource *)resource
            callback:(void (^)(YBHALResource *, NSError *))callback
 {
@@ -67,7 +72,7 @@
         
         if ( ! itemLink) {
             callback(nil, nil);
-            return;
+            return nil;
         }
         
         item = [[CSLinkListItem alloc] initWithLink:itemLink
@@ -75,10 +80,10 @@
                                          credential:self.credential];
     }
     
-    [item getSelf:callback];
+    return [item getSelf:callback];
 }
 
-- (void)getRelation:(NSString *)relation
+- (id<CSAPIRequest>)getRelation:(NSString *)relation
       withArguments:(NSDictionary *)args
         forResource:(YBHALResource *)resource
            callback:(void (^)(YBHALResource *, NSError *))callback
@@ -91,7 +96,7 @@
     
     if ( ! link) {
         callback(nil, nil);
-        return;
+        return nil;
     }
     
     NSURL *baseURL = [[resource linkForRelation:@"self"] URL];
@@ -99,9 +104,11 @@
     NSURL *URL = [[NSURL URLWithString:[relativeURL absoluteString]
                          relativeToURL:baseURL]
                   absoluteURL];
-    [self.requester getURL:URL
-                credential:self.credential
-                  callback:^(id result, id etag, NSError *error)
+    return (id<CSAPIRequest>) [self.requester getURL:URL
+                                          credential:self.credential
+                                            callback:^(id result,
+                                                       id etag,
+                                                       NSError *error)
     {
         if (error) {
             callback(nil, error);

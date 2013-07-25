@@ -74,7 +74,8 @@
     expectedAuth = [NSString stringWithFormat:@"Basic %@",
                               [@"user:pass" base64String]];
     
-    badData = [@"this is not valid JSON" dataUsingEncoding:NSUTF8StringEncoding];
+    badData = [@"this is not valid JSON"
+               dataUsingEncoding:NSUTF8StringEncoding];
     
     putEtag = @"\"SENTETAG\"";
 }
@@ -219,12 +220,62 @@
                          nil);
 }
 
+- (void)testGetReturnsErrorWhenCancelled
+{
+    __block id actualMethod = @"NOT SET";
+    [OHHTTPStubs shouldStubRequestsPassingTest:^BOOL(NSURLRequest *request) {
+        return [request.URL isEqual:userURL];
+    } withStubResponse:^OHHTTPStubsResponse *(NSURLRequest *request) {
+        actualMethod = request.HTTPMethod;
+        NSString *auth = [request valueForHTTPHeaderField:@"Authorization"];
+        if ( ! [auth isEqualToString:expectedAuth]) {
+            NSDictionary *headers = @{@"WWW-Authenticate":
+                                          @"Basic realm=\"hyperapi\""};
+            return [OHHTTPStubsResponse responseWithData:[NSData data]
+                                              statusCode:401
+                                            responseTime:0.0
+                                                 headers:headers];
+        }
+        NSDictionary *headers = @{@"Etag": userEtag,
+                                  @"Content-Type": @"application/hal+json"};
+        return [OHHTTPStubsResponse responseWithData:userData
+                                          statusCode:200
+                                        responseTime:0.0
+                                             headers:headers];
+    }];
+    
+    
+    __block id actualResource = @"NOT SET";
+    __block id actualEtag = @"NOT SET";
+    __block NSError *actualError = [NSError errorWithDomain:@"NOT SET"
+                                                       code:0
+                                                   userInfo:nil];
+    [self callAndWait:^(void (^done)()) {
+        id<CSRequest> request = [requester getURL:userURL
+               credential:basicCredential
+                 callback:^(id result, id etag, NSError *error)
+         {
+             actualResource = result;
+             actualEtag = etag;
+             actualError = error;
+             done();
+         }];
+        [request cancel];
+    }];
+    
+    STAssertNil(actualResource, nil);
+    STAssertNil(actualEtag, nil);
+    STAssertNotNil(actualError, nil);
+    STAssertNil(actualError.userInfo[@"NSHTTPPropertyStatusCodeKey"], nil);
+}
+
 #pragma mark - POST requests
 
 - (void)testPostReturnsHAL
 {
     __block id actualMethod = @"NOT SET";
-    __block id actualPostBody = [@"{\"not\": \"set\"}" dataUsingEncoding:NSUTF8StringEncoding];
+    __block id actualPostBody = [@"{\"not\": \"set\"}"
+                                 dataUsingEncoding:NSUTF8StringEncoding];
     [OHHTTPStubs shouldStubRequestsPassingTest:^BOOL(NSURLRequest *request) {
         return [request.URL isEqual:userURL];
     } withStubResponse:^OHHTTPStubsResponse *(NSURLRequest *request) {
@@ -292,7 +343,8 @@
 
 - (void)testPostReturnsErrorForInvalidResponseJSON
 {
-    __block id actualPostBody = [@"{\"not\": \"set\"}" dataUsingEncoding:NSUTF8StringEncoding];
+    __block id actualPostBody = [@"{\"not\": \"set\"}"
+                                 dataUsingEncoding:NSUTF8StringEncoding];
     [OHHTTPStubs shouldStubRequestsPassingTest:^BOOL(NSURLRequest *request) {
         return [request.URL isEqual:userURL];
     } withStubResponse:^OHHTTPStubsResponse *(NSURLRequest *request) {
@@ -468,12 +520,66 @@
                          nil);
 }
 
+- (void)testPostReturnsErrorWhenCancelled
+{
+    __block id actualMethod = @"NOT SET";
+    __block id actualPostBody = [@"{\"not\": \"set\"}"
+                                 dataUsingEncoding:NSUTF8StringEncoding];
+    [OHHTTPStubs shouldStubRequestsPassingTest:^BOOL(NSURLRequest *request) {
+        return [request.URL isEqual:userURL];
+    } withStubResponse:^OHHTTPStubsResponse *(NSURLRequest *request) {
+        actualMethod = request.HTTPMethod;
+        NSString *auth = [request valueForHTTPHeaderField:@"Authorization"];
+        if ( ! [auth isEqualToString:expectedAuth]) {
+            NSDictionary *headers = @{@"WWW-Authenticate":
+                                          @"Basic realm=\"hyperapi\""};
+            return [OHHTTPStubsResponse responseWithData:[NSData data]
+                                              statusCode:401
+                                            responseTime:0.0
+                                                 headers:headers];
+        }
+        NSDictionary *headers = @{@"Etag": userEtag,
+                                  @"Content-Type": @"application/hal+json",
+                                  @"Location": [userURL absoluteString]};
+        actualPostBody = request.HTTPBody;
+        return [OHHTTPStubsResponse responseWithData:userData
+                                          statusCode:201
+                                        responseTime:0.0
+                                             headers:headers];
+    }];
+    
+    __block id actualResource = @"NOT SET";
+    __block id actualEtag = @"NOT SET";
+    __block NSError *actualError = [NSError errorWithDomain:@"NOT SET"
+                                                       code:0
+                                                   userInfo:nil];
+    [self callAndWait:^(void (^done)()) {
+        id<CSRequest> request = [requester postURL:userURL
+                                        credential:basicCredential
+                                              body:userResource
+                                          callback:^(id result, id etag, NSError *error)
+                                 {
+                                     actualResource = result;
+                                     actualEtag = etag;
+                                     actualError = error;
+                                     done();
+                                 }];
+        [request cancel];
+    }];
+    
+    STAssertNil(actualResource, nil);
+    STAssertNil(actualEtag, nil);
+    STAssertNotNil(actualError, nil);
+    STAssertNil(actualError.userInfo[@"NSHTTPPropertyStatusCodeKey"], nil);
+}
+
 #pragma mark - PUT requests
 
 - (void)testPutReturnsHAL
 {
     __block id actualMethod = @"NOT SET";
-    __block id actualPutBody = [@"{\"not\": \"set\"}" dataUsingEncoding:NSUTF8StringEncoding];
+    __block id actualPutBody = [@"{\"not\": \"set\"}"
+                                dataUsingEncoding:NSUTF8StringEncoding];
     __block id actualIfMatch = @"NOT SET";
     [OHHTTPStubs shouldStubRequestsPassingTest:^BOOL(NSURLRequest *request) {
         return [request.URL isEqual:userURL];
@@ -547,7 +653,8 @@
 
 - (void)testPutReturnsErrorForInvalidResponseJSON
 {
-    __block id actualPostBody = [@"{\"not\": \"set\"}" dataUsingEncoding:NSUTF8StringEncoding];
+    __block id actualPostBody = [@"{\"not\": \"set\"}"
+                                 dataUsingEncoding:NSUTF8StringEncoding];
     [OHHTTPStubs shouldStubRequestsPassingTest:^BOOL(NSURLRequest *request) {
         return [request.URL isEqual:userURL];
     } withStubResponse:^OHHTTPStubsResponse *(NSURLRequest *request) {
@@ -727,6 +834,66 @@
                          nil);
 }
 
+- (void)testPutReturnsErrorWhenCancelled
+{
+    __block id actualMethod = @"NOT SET";
+    __block id actualPutBody = [@"{\"not\": \"set\"}"
+                                dataUsingEncoding:NSUTF8StringEncoding];
+    __block id actualIfMatch = @"NOT SET";
+    [OHHTTPStubs shouldStubRequestsPassingTest:^BOOL(NSURLRequest *request) {
+        return [request.URL isEqual:userURL];
+    } withStubResponse:^OHHTTPStubsResponse *(NSURLRequest *request) {
+        actualMethod = request.HTTPMethod;
+        NSString *auth = [request valueForHTTPHeaderField:@"Authorization"];
+        if ( ! [auth isEqualToString:expectedAuth]) {
+            NSDictionary *headers = @{@"WWW-Authenticate":
+                                          @"Basic realm=\"hyperapi\""};
+            return [OHHTTPStubsResponse responseWithData:[NSData data]
+                                              statusCode:401
+                                            responseTime:0.0
+                                                 headers:headers];
+        }
+        
+        actualIfMatch = [request valueForHTTPHeaderField:@"If-Match"];
+        
+        NSDictionary *headers = @{@"Etag": userEtag,
+                                  @"Content-Type": @"application/hal+json",
+                                  @"Location": [userURL absoluteString]};
+        actualPutBody = request.HTTPBody;
+        return [OHHTTPStubsResponse responseWithData:userData
+                                          statusCode:201
+                                        responseTime:0.0
+                                             headers:headers];
+    }];
+    
+    __block id actualResource = @"NOT SET";
+    __block id actualEtag = @"NOT SET";
+    __block NSError *actualError = [NSError errorWithDomain:@"NOT SET"
+                                                       code:0
+                                                   userInfo:nil];
+    [self callAndWait:^(void (^done)()) {
+        id<CSRequest> request = [requester putURL:userURL
+                                       credential:basicCredential
+                                             body:userResource
+                                             etag:putEtag
+                                         callback:^(id result,
+                                                    id etag,
+                                                    NSError *error)
+         {
+             actualResource = result;
+             actualEtag = etag;
+             actualError = error;
+             done();
+         }];
+        [request cancel];
+    }];
+    
+    STAssertNil(actualResource, nil);
+    STAssertNil(actualEtag, nil);
+    STAssertNotNil(actualError, nil);
+    STAssertNil(actualError.userInfo[@"NSHTTPPropertyStatusCodeKey"], nil);
+}
+
 #pragma mark - DELETE requests
 
 - (void)testDeleteReturnsHAL
@@ -811,6 +978,56 @@
     STAssertEqualObjects(actualError.userInfo[@"NSHTTPPropertyStatusCodeKey"],
                          @404,
                          nil);
+}
+
+- (void)testDeleteReturnsErrorWhenCancelled
+{
+    __block id actualMethod = @"NOT SET";
+    [OHHTTPStubs shouldStubRequestsPassingTest:^BOOL(NSURLRequest *request) {
+        return [request.URL isEqual:userURL];
+    } withStubResponse:^OHHTTPStubsResponse *(NSURLRequest *request) {
+        actualMethod = request.HTTPMethod;
+        NSString *auth = [request valueForHTTPHeaderField:@"Authorization"];
+        if ( ! [auth isEqualToString:expectedAuth]) {
+            NSDictionary *headers = @{@"WWW-Authenticate":
+                                          @"Basic realm=\"hyperapi\""};
+            return [OHHTTPStubsResponse responseWithData:[NSData data]
+                                              statusCode:401
+                                            responseTime:0.0
+                                                 headers:headers];
+        }
+        NSDictionary *headers = @{@"Content-Type": @"application/hal+json"};
+        return [OHHTTPStubsResponse responseWithData:[NSData data]
+                                          statusCode:200
+                                        responseTime:0.0
+                                             headers:headers];
+    }];
+    
+    
+    __block id actualResource = @"NOT SET";
+    __block id actualEtag = @"NOT SET";
+    __block NSError *actualError = [NSError errorWithDomain:@"NOT SET"
+                                                       code:0
+                                                   userInfo:nil];
+    [self callAndWait:^(void (^done)()) {
+        id<CSRequest> request = [requester deleteURL:userURL
+                                          credential:basicCredential
+                                            callback:^(id result,
+                                                       id etag,
+                                                       NSError *error)
+         {
+             actualResource = result;
+             actualEtag = etag;
+             actualError = error;
+             done();
+         }];
+        [request cancel];
+    }];
+    
+    STAssertNil(actualResource, nil);
+    STAssertNil(actualEtag, nil);
+    STAssertNotNil(actualError, nil);
+    STAssertNil(actualError.userInfo[@"NSHTTPPropertyStatusCodeKey"], nil);
 }
 
 #pragma mark - Misc. tests

@@ -9,28 +9,36 @@
 #import <Foundation/Foundation.h>
 
 @protocol CSCredential;
+@protocol CSRequest;
 
 typedef void (^requester_callback_t)(id result, id etag, NSError *error);
 
 @protocol CSRequester <NSObject>
 
-- (void)getURL:(NSURL *)URL
-    credential:(id<CSCredential>)credential
-      callback:(requester_callback_t)callback;
+- (id<CSRequest>)getURL:(NSURL *)URL
+             credential:(id<CSCredential>)credential
+               callback:(requester_callback_t)callback;
 
-- (void)postURL:(NSURL *)URL
-     credential:(id<CSCredential>)credential
-           body:(id)body
-       callback:(requester_callback_t)callback;
+- (id<CSRequest>)postURL:(NSURL *)URL
+              credential:(id<CSCredential>)credential
+                    body:(id)body
+                callback:(requester_callback_t)callback;
 
-- (void)putURL:(NSURL *)URL
-    credential:(id<CSCredential>)credential
-          body:(id)body
-          etag:(id)etag
-      callback:(requester_callback_t)callback;
+- (id<CSRequest>)putURL:(NSURL *)URL
+             credential:(id<CSCredential>)credential
+                   body:(id)body
+                   etag:(id)etag
+               callback:(requester_callback_t)callback;
 
-- (void)deleteURL:(NSURL *)URL
-       credential:(id<CSCredential>)credential
-         callback:(requester_callback_t)callback;
+- (id<CSRequest>)deleteURL:(NSURL *)URL
+                credential:(id<CSCredential>)credential
+                  callback:(requester_callback_t)callback;
+
+@end
+
+
+@protocol CSRequest <NSObject>
+
+- (void)cancel;
 
 @end

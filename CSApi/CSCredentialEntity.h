@@ -19,22 +19,22 @@
 - (id)initWithRequester:(id<CSRequester>)requester
              credential:(id<CSCredential>)credential;
 
-- (void)postURL:(NSURL *)URL
+- (id<CSAPIRequest>)postURL:(NSURL *)URL
            body:(id)body
        callback:(requester_callback_t)callback;
 
-- (void)getURL:(NSURL *)URL callback:(requester_callback_t)callback;
+- (id<CSAPIRequest>)getURL:(NSURL *)URL callback:(requester_callback_t)callback;
 
-- (void)putURL:(NSURL *)URL
+- (id<CSAPIRequest>)putURL:(NSURL *)URL
           body:(id)body
           etag:(id)etag
       callback:(requester_callback_t)callback;
 
-- (void)getRelation:(NSString *)relation
+- (id<CSAPIRequest>)getRelation:(NSString *)relation
         forResource:(YBHALResource *)resource
            callback:(void (^)(YBHALResource *, NSError *))callback;
 
-- (void)getRelation:(NSString *)relation
+- (id<CSAPIRequest>)getRelation:(NSString *)relation
       withArguments:(NSDictionary *)args
         forResource:(YBHALResource *)resource
            callback:(void (^)(YBHALResource *, NSError *))callback;

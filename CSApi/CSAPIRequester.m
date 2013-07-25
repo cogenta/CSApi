@@ -125,6 +125,31 @@
 
 @end
 
+@interface CSAPIRequest : NSObject <CSRequest>
+
+@property (strong, nonatomic) AFHTTPRequestOperation *operation;
+- (id)initWithOperation:(AFHTTPRequestOperation *)operation;
+
+@end
+
+@implementation CSAPIRequest
+
+- (id)initWithOperation:(AFHTTPRequestOperation *)operation
+{
+    self = [super init];
+    if (self) {
+        self.operation = operation;
+    }
+    return self;
+}
+
+- (void)cancel
+{
+    [self.operation cancel];
+}
+
+@end
+
 @interface CSAPIRequester ()
 
 @property (strong, nonatomic) NSOperationQueue *halDecoderQueue;
@@ -197,12 +222,12 @@
     return YES;
 }
 
-- (void)requestURL:(NSURL *)URL
-            method:(NSString *)method
-        credential:(id<CSCredential>)credential
-              body:(id)body
-              etag:(id)etag
-          callback:(requester_callback_t)callback
+- (id<CSRequest>)requestURL:(NSURL *)URL
+                     method:(NSString *)method
+                 credential:(id<CSCredential>)credential
+                       body:(id)body
+                       etag:(id)etag
+                   callback:(requester_callback_t)callback
 {
     if ( ! URL) {
         NSDictionary *userInfo = @{NSLocalizedDescriptionKey:@"URL is nil"};
@@ -210,7 +235,7 @@
                                              code:0
                                          userInfo:userInfo];
         callback(nil, nil, error);
-        return;
+        return nil;
     }
     
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL];
@@ -229,7 +254,7 @@
                                              code:0
                                          userInfo:userInfo];
         callback(nil, nil, error);
-        return;
+        return nil;
     }
 
     AFHTTPRequestOperation *operation =
@@ -270,61 +295,64 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             callback(nil, nil, error);
         });
-        return;
+        return nil;
     }
     
-    [operation start];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [operation start];
+    });
+    return [[CSAPIRequest alloc] initWithOperation:operation];
 }
 
-- (void)getURL:(NSURL *)URL
-    credential:(id<CSCredential>)credential
-      callback:(requester_callback_t)callback
+- (id<CSRequest>)getURL:(NSURL *)URL
+             credential:(id<CSCredential>)credential
+               callback:(requester_callback_t)callback
 {
-    [self requestURL:URL
-              method:@"GET"
-          credential:credential
-                body:nil
-                etag:nil
-            callback:callback];
+    return [self requestURL:URL
+                     method:@"GET"
+                 credential:credential
+                       body:nil
+                       etag:nil
+                   callback:callback];
 }
 
-- (void)postURL:(NSURL *)URL
-     credential:(id<CSCredential>)credential
-           body:(id)body
-       callback:(requester_callback_t)callback
+- (id<CSRequest>)postURL:(NSURL *)URL
+              credential:(id<CSCredential>)credential
+                    body:(id)body
+                callback:(requester_callback_t)callback
 {
-    [self requestURL:URL
-              method:@"POST"
-          credential:credential
-                body:body
-                etag:nil
-            callback:callback];
+    return [self requestURL:URL
+                     method:@"POST"
+                 credential:credential
+                       body:body
+                       etag:nil
+                   callback:callback];
 }
 
-- (void)putURL:(NSURL *)URL
-    credential:(id<CSCredential>)credential
-          body:(id)body
-          etag:(id)etag
-      callback:(requester_callback_t)callback
+- (id<CSRequest>)putURL:(NSURL *)URL
+             credential:(id<CSCredential>)credential
+                   body:(id)body
+                   etag:(id)etag
+               callback:(requester_callback_t)callback
 {
-    [self requestURL:URL
-              method:@"PUT"
-          credential:credential
-                body:body
-                etag:etag
-            callback:callback];
+    return [self requestURL:URL
+                     method:@"PUT"
+                 credential:credential
+                       body:body
+                       etag:etag
+                   callback:callback];
 }
 
-- (void)deleteURL:(NSURL *)URL
-       credential:(id<CSCredential>)credential
-         callback:(requester_callback_t)callback
+- (id<CSRequest>)deleteURL:(NSURL *)URL
+                credential:(id<CSCredential>)credential
+                  callback:(requester_callback_t)callback
 {
-    [self requestURL:URL
-              method:@"DELETE"
-          credential:credential
-                body:nil
-                etag:nil
-            callback:callback];
+    return [self requestURL:URL
+                     method:@"DELETE"
+                 credential:credential
+                       body:nil
+                       etag:nil
+                   callback:callback];
 }
 
 @end

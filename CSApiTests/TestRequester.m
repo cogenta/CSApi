@@ -194,12 +194,12 @@
     lastPassword = nil;
 }
 
-- (void)invokeURL:(NSURL *)URL
-           method:(NSString *)method
-             body:(id)body
-             etag:(id)etag
-       credential:(id<CSCredential>)credential
-         callback:(void (^)(id, id, NSError *))callback
+- (id<CSRequest>)invokeURL:(NSURL *)URL
+                    method:(NSString *)method
+                      body:(id)body
+                      etag:(id)etag
+                credential:(id<CSCredential>)credential
+                  callback:(void (^)(id, id, NSError *))callback
 {
     [self resetLastCredentails];
     [credential applyWith:self];
@@ -214,7 +214,7 @@
         callback(nil, nil, [NSError errorWithDomain:NSURLErrorDomain
                                                code:404
                                            userInfo:@{NSLocalizedDescriptionKey: message}]);
-        return;
+        return nil;
     }
     
     void (^response)(id, id, void (^)(id, id, NSError *)) = [methods objectForKey:method];
@@ -226,65 +226,66 @@
         callback(nil, nil, [NSError errorWithDomain:NSURLErrorDomain
                                                code:405
                                            userInfo:@{NSLocalizedDescriptionKey: message}]);
-        return;
+        return nil;
     }
     
     response(body, etag, callback);
+    return nil; // TODO: return test request
 }
 
-- (void)getURL:(NSURL *)URL
-    credential:(id<CSCredential>)credential
-      callback:(void (^)(id, id, NSError *))callback
+- (id<CSRequest>)getURL:(NSURL *)URL
+             credential:(id<CSCredential>)credential
+               callback:(void (^)(id, id, NSError *))callback
 {
-    [self invokeURL:URL
-             method:@"GET"
-               body:nil
-               etag:nil
-         credential:credential
-           callback:callback];
+    return [self invokeURL:URL
+                    method:@"GET"
+                      body:nil
+                      etag:nil
+                credential:credential
+                  callback:callback];
 }
 
-- (void)postURL:(NSURL *)URL
-     credential:(id<CSCredential>)credential
-           body:(id)body
-       callback:(requester_callback_t)callback
+- (id<CSRequest>)postURL:(NSURL *)URL
+              credential:(id<CSCredential>)credential
+                    body:(id)body
+                callback:(requester_callback_t)callback
 {
-    [self invokeURL:URL
-             method:@"POST"
-               body:body
-               etag:nil
-         credential:credential
-           callback:callback];
+    return [self invokeURL:URL
+                    method:@"POST"
+                      body:body
+                      etag:nil
+                credential:credential
+                  callback:callback];
 }
 
-- (void)putURL:(NSURL *)URL
-    credential:(id<CSCredential>)credential
-          body:(id)body
-          etag:(id)etag
-      callback:(requester_callback_t)callback
+- (id<CSRequest>)putURL:(NSURL *)URL
+             credential:(id<CSCredential>)credential
+                   body:(id)body
+                   etag:(id)etag
+               callback:(requester_callback_t)callback
 {
     if ( ! body) {
         callback(nil, nil, [NSError errorWithDomain:@"NO PUT BODY" code:0 userInfo:nil]);
-        return;
+        return nil;
     }
-    [self invokeURL:URL
-             method:@"PUT"
-               body:body
-               etag:etag
-         credential:credential
-           callback:callback];
+    return [self invokeURL:URL
+                    method:@"PUT"
+                      body:body
+                      etag:etag
+                credential:credential
+                  callback:callback];
 }
 
-- (void)deleteURL:(NSURL *)URL
-       credential:(id<CSCredential>)credential
-         callback:(requester_callback_t)callback
+- (id<CSRequest>)deleteURL:(NSURL *)URL
+                credential:(id<CSCredential>)credential
+                  callback:(requester_callback_t)callback
 {
-    [self invokeURL:URL
-             method:@"DELETE"
-               body:nil
-               etag:nil
-         credential:credential
-           callback:callback];
+    return [self invokeURL:URL
+                    method:@"DELETE"
+                      body:nil
+                      etag:nil
+                credential:credential
+                  callback:callback];
 }
 
 
