@@ -30,7 +30,7 @@
 
 - (NSUserDefaults *)userDefaults
 {
-    return [NSUserDefaults alloc];
+    return [NSUserDefaults standardUserDefaults];
 }
 
 - (NSString *)userUrlKey
