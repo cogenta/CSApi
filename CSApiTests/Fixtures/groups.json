@@ -2,7 +2,7 @@
   
   "count": 2,
   "_embedded": {
-    "api:group": {
+    "item": {
       "_links": {
         "curies": [{
           "href": "/rels/{rel}",

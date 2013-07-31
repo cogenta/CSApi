@@ -2,7 +2,7 @@
   
   "count": 216,
   "_embedded": {
-    "api:retailer": [
+    "item": [
       {
         
         "_links": {

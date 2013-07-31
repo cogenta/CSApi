@@ -24,9 +24,4 @@
     return pictureList;
 }
 
-- (NSString *)rel
-{
-    return @"/rels/picture";
-}
-
 @end

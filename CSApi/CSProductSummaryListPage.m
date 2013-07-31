@@ -34,9 +34,4 @@
                                               credential:self.credential];
 }
 
-- (NSString *)rel
-{
-    return @"/rels/productsummary";
-}
-
 @end

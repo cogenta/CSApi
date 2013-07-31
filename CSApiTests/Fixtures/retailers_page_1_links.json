@@ -12,7 +12,7 @@
       "href": "/rels/{rel}",
       "name": "api"
     }],
-    "api:retailer": [
+    "item": [
       {
         "href": "/retailers/150",
         "label": "Appliances Online"

@@ -17,7 +17,7 @@
     "api:group": {
       "href": "/users/12345/groups/1"
     },
-    "api:category": [
+    "item": [
       {
         "href": "/categories/4-dvds-and-blu-ray",
         "title": "DVDs & Blu-Ray"

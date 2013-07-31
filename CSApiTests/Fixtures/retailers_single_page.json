@@ -8,7 +8,7 @@
     "self": {
       "href": "/retailers/"
     },
-    "api:retailer": [
+    "item": [
       {
         "href": "/retailers/159",
         "label": "1stAudioVisual"

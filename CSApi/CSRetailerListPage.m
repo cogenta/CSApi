@@ -33,9 +33,4 @@
                                         credential:self.credential];
 }
 
-- (NSString *)rel
-{
-    return @"/rels/retailer";
-}
-
 @end

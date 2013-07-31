@@ -44,9 +44,4 @@
     return [[resource linksForRelation:[self rel]] count];
 }
 
-- (NSString *)rel
-{
-    return @"/rels/category";
-}
-
 @end

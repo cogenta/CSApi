@@ -3,7 +3,7 @@
     "api:logo": {
       "count": 4, 
       "_embedded": {
-        "api:image": [
+        "item": [
           {
             "width": 80, 
             "_links": {

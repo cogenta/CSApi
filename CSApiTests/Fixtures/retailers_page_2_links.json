@@ -9,7 +9,7 @@
       "href": "/rels/{rel}",
       "name": "api"
     }],
-    "api:retailer": [
+    "item": [
       {
         "href": "/retailers/192",
         "label": "BARRATTS"

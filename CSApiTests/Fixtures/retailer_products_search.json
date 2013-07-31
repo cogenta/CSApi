@@ -1,13 +1,13 @@
 {
   "count": 1310, 
   "_embedded": {
-    "api:product": [
+    "item": [
       {
         "_embedded": {
           "api:pictures": {
             "count": 1, 
             "_embedded": {
-              "/rels/picture": {
+              "item": {
                 "count": 4, 
                 "_embedded": {
                   "api:image": [
@@ -94,7 +94,7 @@
               }
             }, 
             "_links": {
-              "/rels/picture": {
+              "item": {
                 "href": "/products/5RD1ZY/pictures/1"
               }, 
               "self": {
@@ -782,7 +782,7 @@
           "api:pictures": {
             "count": 1, 
             "_embedded": {
-              "/rels/picture": {
+              "item": {
                 "count": 4, 
                 "_embedded": {
                   "api:image": [
@@ -869,7 +869,7 @@
               }
             }, 
             "_links": {
-              "/rels/picture": {
+              "item": {
                 "href": "/products/5U1q32/pictures/1"
               }, 
               "self": {
@@ -1557,7 +1557,7 @@
           "api:pictures": {
             "count": 1, 
             "_embedded": {
-              "/rels/picture": {
+              "item": {
                 "count": 4, 
                 "_embedded": {
                   "api:image": [
@@ -1644,7 +1644,7 @@
               }
             }, 
             "_links": {
-              "/rels/picture": {
+              "item": {
                 "href": "/products/5Y6wn2/pictures/1"
               }, 
               "self": {
@@ -2332,7 +2332,7 @@
           "api:pictures": {
             "count": 1, 
             "_embedded": {
-              "/rels/picture": {
+              "item": {
                 "count": 4, 
                 "_embedded": {
                   "api:image": [
@@ -2419,7 +2419,7 @@
               }
             }, 
             "_links": {
-              "/rels/picture": {
+              "item": {
                 "href": "/products/3dUK8S/pictures/1"
               }, 
               "self": {
@@ -3075,7 +3075,7 @@
           "api:pictures": {
             "count": 1, 
             "_embedded": {
-              "/rels/picture": {
+              "item": {
                 "count": 4, 
                 "_embedded": {
                   "api:image": [
@@ -3162,7 +3162,7 @@
               }
             }, 
             "_links": {
-              "/rels/picture": {
+              "item": {
                 "href": "/products/5Fh9lU/pictures/1"
               }, 
               "self": {
@@ -3786,7 +3786,7 @@
           "api:pictures": {
             "count": 1, 
             "_embedded": {
-              "/rels/picture": {
+              "item": {
                 "count": 4, 
                 "_embedded": {
                   "api:image": [
@@ -3873,7 +3873,7 @@
               }
             }, 
             "_links": {
-              "/rels/picture": {
+              "item": {
                 "href": "/products/5RlUhA/pictures/1"
               }, 
               "self": {
@@ -4497,7 +4497,7 @@
           "api:pictures": {
             "count": 1, 
             "_embedded": {
-              "/rels/picture": {
+              "item": {
                 "count": 4, 
                 "_embedded": {
                   "api:image": [
@@ -4584,7 +4584,7 @@
               }
             }, 
             "_links": {
-              "/rels/picture": {
+              "item": {
                 "href": "/products/5Y5aeu/pictures/1"
               }, 
               "self": {
@@ -5208,7 +5208,7 @@
           "api:pictures": {
             "count": 1, 
             "_embedded": {
-              "/rels/picture": {
+              "item": {
                 "count": 4, 
                 "_embedded": {
                   "api:image": [
@@ -5295,7 +5295,7 @@
               }
             }, 
             "_links": {
-              "/rels/picture": {
+              "item": {
                 "href": "/products/5Fhy00/pictures/1"
               }, 
               "self": {
@@ -5887,7 +5887,7 @@
           "api:pictures": {
             "count": 1, 
             "_embedded": {
-              "/rels/picture": {
+              "item": {
                 "count": 4, 
                 "_embedded": {
                   "api:image": [
@@ -5974,7 +5974,7 @@
               }
             }, 
             "_links": {
-              "/rels/picture": {
+              "item": {
                 "href": "/products/5FrKJ2/pictures/1"
               }, 
               "self": {
@@ -6566,7 +6566,7 @@
           "api:pictures": {
             "count": 1, 
             "_embedded": {
-              "/rels/picture": {
+              "item": {
                 "count": 4, 
                 "_embedded": {
                   "api:image": [
@@ -6653,7 +6653,7 @@
               }
             }, 
             "_links": {
-              "/rels/picture": {
+              "item": {
                 "href": "/products/5Q9xRQ/pictures/1"
               }, 
               "self": {

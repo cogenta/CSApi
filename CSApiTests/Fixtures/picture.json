@@ -3,7 +3,7 @@
     "self": {
       "href": "/pictures/1"
     }, 
-    "api:image": {
+    "item": {
       "href": "/images/1"
     },
     "curies": [{

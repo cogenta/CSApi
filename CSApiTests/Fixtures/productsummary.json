@@ -3,10 +3,10 @@
     "api:pictures": {
       "count": 1,
       "_embedded": {
-        "/rels/picture": {
+        "item": {
           "count": 4,
           "_embedded": {
-            "/rels/image": [
+            "item": [
               {
                 "width": 320,
                 "_links": {

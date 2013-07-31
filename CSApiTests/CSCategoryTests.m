@@ -72,8 +72,8 @@
     productsDict[@"_links"] = [NSMutableDictionary dictionary];
     productsDict[@"_links"][@"self"] = [NSMutableDictionary dictionary];
     productsDict[@"_links"][@"self"][@"href"] = productsHref;
-    productsDict[@"_links"][@"/rels/product"] = [NSMutableDictionary dictionary];
-    productsDict[@"_links"][@"/rels/product"][@"href"] = productHref;
+    productsDict[@"_links"][@"item"] = [NSMutableDictionary dictionary];
+    productsDict[@"_links"][@"item"][@"href"] = productHref;
     productsDict[@"count"] = @1;
     productsResource = [self resourceForJson:productsDict];
     STAssertNotNil(productsResource, nil);
@@ -232,7 +232,7 @@
     STAssertNil(error, @"%@", error);
     STAssertNotNil(retailer, nil);
     
-    NSString *expectedName = [retailersResource resourcesForRelation:@"/rels/retailer"][0][@"name"];
+    NSString *expectedName = [retailersResource resourcesForRelation:@"item"][0][@"name"];
     STAssertEqualObjects(retailer.name, expectedName, nil);
 }
 

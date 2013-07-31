@@ -33,10 +33,5 @@
                                     credential:self.credential];
 }
 
-- (NSString *)rel
-{
-    return @"/rels/like";
-}
-
 @end
 

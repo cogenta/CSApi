@@ -2,7 +2,7 @@
   
   "count": 25,
   "_embedded": {
-    "api:like": [
+    "item": [
       {
         
         "_links": {

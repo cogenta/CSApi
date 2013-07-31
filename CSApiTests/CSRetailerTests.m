@@ -85,8 +85,8 @@
     productSummariesDict[@"_links"] = [NSMutableDictionary dictionary];
     productSummariesDict[@"_links"][@"self"] = [NSMutableDictionary dictionary];
     productSummariesDict[@"_links"][@"self"][@"href"] = productSummariesHref;
-    productSummariesDict[@"_links"][@"/rels/productsummary"] = [NSMutableDictionary dictionary];
-    productSummariesDict[@"_links"][@"/rels/productsummary"][@"href"] = productSummaryHref;
+    productSummariesDict[@"_links"][@"item"] = [NSMutableDictionary dictionary];
+    productSummariesDict[@"_links"][@"item"][@"href"] = productSummaryHref;
     productSummariesDict[@"count"] = @1;
     
     productSummariesResource = [self resourceForJson:productSummariesDict];
@@ -120,8 +120,8 @@
     productsDict[@"_links"] = [NSMutableDictionary dictionary];
     productsDict[@"_links"][@"self"] = [NSMutableDictionary dictionary];
     productsDict[@"_links"][@"self"][@"href"] = productsHref;
-    productsDict[@"_links"][@"/rels/product"] = [NSMutableDictionary dictionary];
-    productsDict[@"_links"][@"/rels/product"][@"href"] = productHref;
+    productsDict[@"_links"][@"item"] = [NSMutableDictionary dictionary];
+    productsDict[@"_links"][@"item"][@"href"] = productHref;
     productsDict[@"count"] = @1;
     productsResource = [self resourceForJson:productsDict];
     STAssertNotNil(productsResource, nil);

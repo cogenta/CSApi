@@ -87,7 +87,7 @@
         NSURL *url = [likesResource linkForRelation:@"self"].URL;
         [requester addGetResponse:likesResource forURL:url];
         
-        NSArray *likes = [likesResource resourcesForRelation:@"/rels/like"];
+        NSArray *likes = [likesResource resourcesForRelation:@"item"];
         count += [likes count];
         for (YBHALResource *like in likes) {
             [likedURLs addObject:[like linkForRelation:@"/rels/liked"].URL];

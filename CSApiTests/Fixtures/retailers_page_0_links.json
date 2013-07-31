@@ -12,7 +12,7 @@
     "last": {
       "href": "/retailers/?start=210"
     },
-    "api:retailer": [
+    "item": [
       {
         "href": "/retailers/159",
         "label": "1stAudioVisual"

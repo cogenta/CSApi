@@ -79,7 +79,7 @@
          @"retailers_page_2_embedded.json"]) {
         YBHALResource *retailersResource = [self resourceForFixture:fixture];
         NSArray *retailers = [retailersResource
-                              resourcesForRelation:@"/rels/retailer"];
+                              resourcesForRelation:@"item"];
         for (YBHALResource *retailer in retailers) {
             NSURL *url = [retailer linkForRelation:@"self"].URL;
             [requester addGetResponse:retailer forURL:url];
@@ -96,7 +96,7 @@
          @"retailers_page_2_embedded.json"]) {
         YBHALResource *retailersResource = [self resourceForFixture:fixture];
         NSArray *retailers = [retailersResource
-                              resourcesForRelation:@"/rels/retailer"];
+                              resourcesForRelation:@"item"];
         for (YBHALResource *retailer in retailers) {
             [names addObject:retailer[@"name"]];
         }
@@ -113,7 +113,7 @@
          @"retailers_page_2_embedded.json"]) {
         YBHALResource *retailersResource = [self resourceForFixture:fixture];
         NSArray *retailers = [retailersResource
-                              resourcesForRelation:@"/rels/retailer"];
+                              resourcesForRelation:@"item"];
         for (YBHALResource *retailer in retailers) {
             [results addObject:retailer];
         }
@@ -279,7 +279,7 @@ request_handler_t postCallback =
     STAssertNotNil(page, nil);
     STAssertNotNil(page.items, nil);
     
-    NSArray *links = [retailersResource linksForRelation:@"/rels/retailer"];
+    NSArray *links = [retailersResource linksForRelation:@"item"];
     NSArray *expectedURLs = [links valueForKey:@"URL"];
     NSArray *actualURLs = [page.items valueForKey:@"URL"];
     STAssertEqualObjects(actualURLs, expectedURLs, nil);
@@ -313,7 +313,7 @@ request_handler_t postCallback =
     STAssertNotNil(page, nil);
     STAssertNotNil(page.items, nil);
     
-    NSArray *resources = [retailersResource resourcesForRelation:@"/rels/retailer"];
+    NSArray *resources = [retailersResource resourcesForRelation:@"item"];
     NSArray *expectedURLs = [resources mapUsingBlock:^id(id obj) {
         return [obj linkForRelation:@"self"].URL;
     }];
@@ -387,13 +387,13 @@ request_handler_t postCallback =
     NSURL *page2URL = [page1resource linkForRelation:@"next"].URL;
     [requester addGetResponse:page2resource forURL:page2URL];
     
-    NSArray *links0 = [page0resource linksForRelation:@"/rels/retailer"];
+    NSArray *links0 = [page0resource linksForRelation:@"item"];
     NSArray *expectedURLs0 = [links0 valueForKey:@"URL"];
     
-    NSArray *links1 = [page1resource linksForRelation:@"/rels/retailer"];
+    NSArray *links1 = [page1resource linksForRelation:@"item"];
     NSArray *expectedURLs1 = [links1 valueForKey:@"URL"];
     
-    NSArray *links2 = [page2resource linksForRelation:@"/rels/retailer"];
+    NSArray *links2 = [page2resource linksForRelation:@"item"];
     NSArray *expectedURLs2 = [links2 valueForKey:@"URL"];
     
     //
@@ -647,7 +647,7 @@ request_handler_t postCallback =
     STAssertNil(error, @"%@", error);
     
     NSString *expectedName = [[retailersResource
-                               resourcesForRelation:@"/rels/retailer"]
+                               resourcesForRelation:@"item"]
                               objectAtIndex:0][@"name"];
     STAssertEqualObjects(retailer.name, expectedName, nil);
 }
@@ -698,7 +698,7 @@ request_handler_t postCallback =
     YBHALResource *embeddedRetailers = [self resourceForFixture:
                                         @"retailers_single_page_embedded.json"];
     NSString *expectedName = [[embeddedRetailers
-                               resourcesForRelation:@"/rels/retailer"]
+                               resourcesForRelation:@"item"]
                               objectAtIndex:0][@"name"];
     STAssertEqualObjects(retailer.name, expectedName, nil);
 }
