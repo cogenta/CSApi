@@ -39,10 +39,6 @@
 @protocol CSImageList;
 @protocol CSImageListPage;
 
-@protocol CSProductSummaryListPage;
-@protocol CSProductSummaryList;
-@protocol CSProductSummary;
-
 @protocol CSProductListPage;
 @protocol CSProductList;
 @protocol CSProduct;
@@ -500,26 +496,6 @@
  */
 - (void)getLogo:(void (^)(id<CSPicture> picture, NSError *error))callback;
 
-/** Tries to get a list of product summaries supplied by the retailer.
- 
- Control returns from getProductSummaries: immediately. If the operation is
- successful, the given callback is invoked with a non-nil
- [id\<CSProductSummaryListPage\>](CSProductSummaryListPage) in firstPage and a nil
- error. firstPage is the first page of the result set. It is recommended that
- client code use firstPage.productSummaryList to get an
- [id\<CSProductSummaryList\>](CSProductSummaryList), which provides convenient
- access to product summaries in the list.
- 
- If the operation fails, callback is invoked with a nil firstPage and a non-nil
- error.
- 
- @param callback The block to invoke when the product summaries list has been
- successfully obtained, or when the operation has failed.
- 
- */
-- (void)getProductSummaries:(void (^)(id<CSProductSummaryListPage> firstPage,
-                             NSError *error))callback;
-
 /** Tries to get a list of products supplied by the retailer.
  
  Control returns from getProducts: immediately. If the operation is successful,
@@ -787,26 +763,6 @@
                     callback:(void (^)(id<CSLike> like,
                                        NSError *error))callback;
 
-/** Tries to get a list of product summaries related to the likes in the group.
- 
- Control returns from getProductSummaries: immediately. If the operation is
- successful, the given callback is invoked with a non-nil
- [id\<CSProductSummaryListPage\>](CSProductSummaryListPage) in firstPage and a nil
- error. firstPage is the first page of the result set. It is recommended that
- client code use firstPage.productSummaryList to get an
- [id\<CSProductSummaryList\>](CSProductSummaryList), which provides convenient
- access to product summaries in the list.
- 
- If the operation fails, callback is invoked with a nil firstPage and a non-nil
- error.
- 
- @param callback The block to invoke when the product summaries list has been
- successfully obtained, or when the operation has failed.
- 
- */
-- (void)getProductSummaries:(void (^)(id<CSProductSummaryListPage> firstPage,
-                                      NSError *error))callback;
-
 /** Tries to get a list of products related to the likes in the group.
  
  Control returns from getProducts: immediately. If the operation is
@@ -989,86 +945,6 @@
 
 @end
 
-/** Protocol for accessing pages of product summaries in a sequence of results.
- 
- Client code is expected to use this protocol's productSummaryList property to
- get an object conforming to CSProductSummaryList.
- 
- */
-@protocol CSProductSummaryListPage <CSListPage>
-
-/** An object conforming to CSProductSummaryList that provides convenient access
- to the list of product summaries.
- */
-@property (readonly) id<CSProductSummaryList> productSummaryList;
-
-@end
-
-/** Protocol for accessing a list of product summaries. */
-@protocol CSProductSummaryList <CSList>
-
-/** Tries to fetch the product summary at the given index.
- 
- Control returns from getProductSummaryAtIndex:callback: immediately. If the
- operation is successful, the given callback is invoked with a non-nil
- [id\<CSProductSummary\>](CSProductSummary) in result and a nil error. If the
- operation fails, callback is invoked with a nil result and a non-nil error.
- 
- @param index The index in the sequence of the product summary to retrieve.
- @param callback The block to invoke when the product summary has been
- successfully obtained, or when the operation has failed.
- */
-- (void)getProductSummaryAtIndex:(NSUInteger)index
-                        callback:(void (^)(id<CSProductSummary> result,
-                                           NSError *error))callback;
-
-@end
-
-/** Protocol for accessing product summaries. */
-@protocol CSProductSummary <NSObject>
-
-/** The name of the product. */
-@property (readonly) NSString *name;
-
-/** The description of the product. */
-@property (readonly) NSString *description_;
-
-/** Tries to get a list of pictures of the product.
- 
- Control returns from getPictures: immediately. If the operation is successful,
- the given callback is invoked with a non-nil
- [id\<CSPictureListPage\>](CSPictureListPage) in firstPage and a nil error.
- firstPage is the first page of the result set. It is recommended that client
- code use pictureList to get an [id\<CSPictureList\>](CSPictureList), which
- provides convenient access to pictures in the list.
- 
- If the operation fails, callback is invoked with a nil firstPage and a non-nil
- error.
- 
- @param callback The block to invoke when the pictures list has been
- successfully obtained, or when the operation has failed.
- 
- */
-- (void)getPictures:(void (^)(id<CSPictureListPage> firstPage,
-                              NSError *error))callback;
-
-/** Tries to get the full product for this summary.
- 
- Control returns from getProduct: immediately. If the operation is successful,
- the given callback is invoked with a non-nil
- [id\<CSProduct\>](CSProduct) in product and a nil error.
- 
- If the operation fails, callback is invoked with a nil product and a non-nil
- error.
- 
- @param callback The block to invoke when the product has been successfully
- obtained, or when the operation has failed.
- 
- */
-- (void)getProduct:(void (^)(id<CSProduct> product, NSError *error))callback;
-
-@end
-
 /** Protocol for accessing pages of products in a sequence of results.
  
  Client code is expected to use this protocol's productList property to
@@ -1168,22 +1044,6 @@
  */
 - (void)getPrices:(void (^)(id<CSPriceListPage> firstPage,
                             NSError *error))callback;
-
-/** Tries to get a summary of this product.
- 
- Control returns from getProductSummary: immediately. If the operation is
- successful, the given callback is invoked with a non-nil
- [id\<CSProductSummary\>](CSProductSummary) in productSummary and a nil error.
- 
- If the operation fails, callback is invoked with a nil productSummary and a
- non-nil error.
- 
- @param callback The block to invoke when the product summary has been
- successfully obtained, or when the operation has failed.
- 
- */
-- (void)getProductSummary:(void (^)(id<CSProductSummary> productSummary,
-                                    NSError *error))callback;
 
 @end
 

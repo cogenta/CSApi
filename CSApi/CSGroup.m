@@ -10,7 +10,6 @@
 #import "CSHALRepresentation.h"
 #import "CSMutableLike.h"
 #import "CSLike.h"
-#import "CSProductSummaryListPage.h"
 #import "CSProductListPage.h"
 #import "CSCategoryListPage.h"
 #import <HyperBek/HyperBek.h>
@@ -124,24 +123,6 @@
      }];
 }
 
-
-- (void)getProductSummaries:(void (^)(id<CSProductSummaryListPage>, NSError *))callback
-{
-    [self getRelation:@"/rels/productsummaries"
-          forResource:resource
-             callback:^(YBHALResource *result, NSError *error)
-     {
-         if (error) {
-             callback(nil, error);
-             return;
-         }
-         
-         callback([[CSProductSummaryListPage alloc] initWithHal:result
-                                                      requester:self.requester
-                                                     credential:self.credential],
-                  nil);
-     }];
-}
 
 - (id<CSAPIRequest>)getProducts:(void (^)(id<CSProductListPage>, NSError *))callback
 {

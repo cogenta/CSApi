@@ -9,7 +9,6 @@
 #import "CSProduct.h"
 #import "CSPictureListPage.h"
 #import "CSPriceListPage.h"
-#import "CSProductSummary.h"
 #import <HyperBek/HyperBek.h>
 #import <ISO8601DateFormatter/ISO8601DateFormatter.h>
 
@@ -86,24 +85,6 @@
                                         requester:self.requester
                                        credential:self.credential],
              nil);
-}
-
-- (void)getProductSummary:(void (^)(id<CSProductSummary>, NSError *))callback
-{
-    [self getRelation:@"/rels/productsummary"
-          forResource:resource
-             callback:^(YBHALResource *product, NSError *error)
-     {
-         if (error) {
-             callback(nil, error);
-             return;
-         }
-         
-         callback([[CSProductSummary alloc] initWithHAL:product
-                                              requester:self.requester
-                                             credential:self.credential],
-                  nil);
-     }];
 }
 
 @end

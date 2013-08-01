@@ -109,34 +109,6 @@
     STAssertEqualObjects(@(picture.count), @(4), nil);
 }
 
-- (void)testGetProductSummary
-{
-    id productSummaryResource = [self resourceForFixture:@"productsummary.json"];
-    STAssertNotNil(productSummaryResource, nil);
-    NSURL *productURL = [productSummaryResource linkForRelation:@"self"].URL;
-    
-    [requester addGetResponse:productSummaryResource forURL:productURL];
-    
-    __block NSError *error = [NSError errorWithDomain:@"not called"
-                                                 code:0
-                                             userInfo:nil];
-    __block id<CSProductSummary> productSummary = nil;
-    CALL_AND_WAIT(^(void (^done)()) {
-        [product getProductSummary:^(id<CSProductSummary> aProductSummary,
-                                     NSError *anError) {
-            error = anError;
-            productSummary = aProductSummary;
-            done();
-        }];
-    });
-    
-    STAssertNil(error, @"%@", error);
-    STAssertNotNil(productSummary, nil);
-    
-    STAssertEqualObjects(productSummary.name, product.name, nil);
-    STAssertEqualObjects(productSummary.description_, product.description_, nil);
-}
-
 - (void)testGetPrices
 {
     __block NSError *error = [NSError errorWithDomain:@"not called"

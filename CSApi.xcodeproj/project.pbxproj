@@ -46,11 +46,6 @@
 		BE57715A16BAD163002F42E4 /* CSAPITestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = BE57715816BAD162002F42E4 /* CSAPITestCase.m */; };
 		BE5D4C0A16EE48F20096FFFF /* CSPictureListPage.m in Sources */ = {isa = PBXBuildFile; fileRef = BE5D4C0916EE48F20096FFFF /* CSPictureListPage.m */; };
 		BE5D4C0D16EE49740096FFFF /* CSPictureList.m in Sources */ = {isa = PBXBuildFile; fileRef = BE5D4C0C16EE49740096FFFF /* CSPictureList.m */; };
-		BE5D4C1016EE553A0096FFFF /* productsummary.json in Resources */ = {isa = PBXBuildFile; fileRef = BE5D4C0F16EE553A0096FFFF /* productsummary.json */; };
-		BE5D4C1316EE55A90096FFFF /* CSProductSummary.m in Sources */ = {isa = PBXBuildFile; fileRef = BE5D4C1216EE55A90096FFFF /* CSProductSummary.m */; };
-		BE5D4C1616F37BA70096FFFF /* CSProductSummaryListPage.m in Sources */ = {isa = PBXBuildFile; fileRef = BE5D4C1516F37BA70096FFFF /* CSProductSummaryListPage.m */; };
-		BE5D4C1916F37C170096FFFF /* CSProductSummaryList.m in Sources */ = {isa = PBXBuildFile; fileRef = BE5D4C1816F37C170096FFFF /* CSProductSummaryList.m */; };
-		BE5D4C1C16F381950096FFFF /* CSProductSummaryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BE5D4C1B16F381940096FFFF /* CSProductSummaryTests.m */; };
 		BE62341016D662530062A4D8 /* likes_page_0_embedded.json in Resources */ = {isa = PBXBuildFile; fileRef = BE62340F16D662530062A4D8 /* likes_page_0_embedded.json */; };
 		BE62341216D6628D0062A4D8 /* likes_page_1_embedded.json in Resources */ = {isa = PBXBuildFile; fileRef = BE62341116D6628D0062A4D8 /* likes_page_1_embedded.json */; };
 		BE62341416D662B60062A4D8 /* likes_page_2_embedded.json in Resources */ = {isa = PBXBuildFile; fileRef = BE62341316D662B60062A4D8 /* likes_page_2_embedded.json */; };
@@ -203,14 +198,6 @@
 		BE5D4C0916EE48F20096FFFF /* CSPictureListPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSPictureListPage.m; sourceTree = "<group>"; };
 		BE5D4C0B16EE49740096FFFF /* CSPictureList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSPictureList.h; sourceTree = "<group>"; };
 		BE5D4C0C16EE49740096FFFF /* CSPictureList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSPictureList.m; sourceTree = "<group>"; };
-		BE5D4C0F16EE553A0096FFFF /* productsummary.json */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = text.json; path = productsummary.json; sourceTree = "<group>"; tabWidth = 2; };
-		BE5D4C1116EE55A90096FFFF /* CSProductSummary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSProductSummary.h; sourceTree = "<group>"; };
-		BE5D4C1216EE55A90096FFFF /* CSProductSummary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSProductSummary.m; sourceTree = "<group>"; };
-		BE5D4C1416F37BA70096FFFF /* CSProductSummaryListPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSProductSummaryListPage.h; sourceTree = "<group>"; };
-		BE5D4C1516F37BA70096FFFF /* CSProductSummaryListPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSProductSummaryListPage.m; sourceTree = "<group>"; };
-		BE5D4C1716F37C170096FFFF /* CSProductSummaryList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSProductSummaryList.h; sourceTree = "<group>"; };
-		BE5D4C1816F37C170096FFFF /* CSProductSummaryList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSProductSummaryList.m; sourceTree = "<group>"; };
-		BE5D4C1B16F381940096FFFF /* CSProductSummaryTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSProductSummaryTests.m; sourceTree = "<group>"; };
 		BE62340F16D662530062A4D8 /* likes_page_0_embedded.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = likes_page_0_embedded.json; sourceTree = "<group>"; };
 		BE62341116D6628D0062A4D8 /* likes_page_1_embedded.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = likes_page_1_embedded.json; sourceTree = "<group>"; };
 		BE62341316D662B60062A4D8 /* likes_page_2_embedded.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = likes_page_2_embedded.json; sourceTree = "<group>"; };
@@ -399,7 +386,6 @@
 				BE5D4C0516EE456F0096FFFF /* Groups */,
 				BE5D4C0616EE457C0096FFFF /* Retailers */,
 				BE5D4C0716EE45900096FFFF /* Pictures */,
-				BE5D4C0E16EE4A0C0096FFFF /* Product Summaries */,
 				BE6BF3F217183C92004B6D85 /* Products */,
 				BE480BA517258B390022216B /* Prices */,
 				BE558EA2174D0BA2009FA3DA /* Categories */,
@@ -435,7 +421,6 @@
 				BE7E6EC416DBAE5C000AA883 /* CSUserGroupTests.m */,
 				BE78D15716E5FA4500DAE148 /* CSImageTests.m */,
 				BE78D17016E6102B00DAE148 /* CSRetailerTests.m */,
-				BE5D4C1B16F381940096FFFF /* CSProductSummaryTests.m */,
 				BE6BF3F617185103004B6D85 /* CSProductTests.m */,
 				BE480BB0172593830022216B /* CSPriceTest.m */,
 				BE558EA0174D0B4A009FA3DA /* CSCategoryTests.m */,
@@ -575,19 +560,6 @@
 			name = Pictures;
 			sourceTree = "<group>";
 		};
-		BE5D4C0E16EE4A0C0096FFFF /* Product Summaries */ = {
-			isa = PBXGroup;
-			children = (
-				BE5D4C1116EE55A90096FFFF /* CSProductSummary.h */,
-				BE5D4C1216EE55A90096FFFF /* CSProductSummary.m */,
-				BE5D4C1416F37BA70096FFFF /* CSProductSummaryListPage.h */,
-				BE5D4C1516F37BA70096FFFF /* CSProductSummaryListPage.m */,
-				BE5D4C1716F37C170096FFFF /* CSProductSummaryList.h */,
-				BE5D4C1816F37C170096FFFF /* CSProductSummaryList.m */,
-			);
-			name = "Product Summaries";
-			sourceTree = "<group>";
-		};
 		BE626CD916EE444C00F0302D /* Utils */ = {
 			isa = PBXGroup;
 			children = (
@@ -673,7 +645,6 @@
 				BE78D16D16E60F8F00DAE148 /* retailer.json */,
 				BE7E39B317969C1700E2A139 /* retailer_products_search.json */,
 				BE480BB2172685D00022216B /* retailer_81.json */,
-				BE5D4C0F16EE553A0096FFFF /* productsummary.json */,
 				BE6BF3F017183C11004B6D85 /* product.json */,
 				BE558EA8174D0E80009FA3DA /* category_4-dvds-and-blu-ray.json */,
 				BE7F95DE1765D25D008432E1 /* category_1167-digital-video.json */,
@@ -780,7 +751,6 @@
 				BE78D15D16E6001900DAE148 /* image.json in Resources */,
 				BE78D16C16E6092300DAE148 /* picture.json in Resources */,
 				BE78D16E16E60F8F00DAE148 /* retailer.json in Resources */,
-				BE5D4C1016EE553A0096FFFF /* productsummary.json in Resources */,
 				BE6BF3F117183C11004B6D85 /* product.json in Resources */,
 				BE480BB3172685D00022216B /* retailer_81.json in Resources */,
 				BE558EA9174D0E80009FA3DA /* category_4-dvds-and-blu-ray.json in Resources */,
@@ -885,9 +855,6 @@
 				BE78D16A16E604A700DAE148 /* CSPicture.m in Sources */,
 				BE5D4C0A16EE48F20096FFFF /* CSPictureListPage.m in Sources */,
 				BE5D4C0D16EE49740096FFFF /* CSPictureList.m in Sources */,
-				BE5D4C1316EE55A90096FFFF /* CSProductSummary.m in Sources */,
-				BE5D4C1616F37BA70096FFFF /* CSProductSummaryListPage.m in Sources */,
-				BE5D4C1916F37C170096FFFF /* CSProductSummaryList.m in Sources */,
 				BE6BF3F517183CCF004B6D85 /* CSProduct.m in Sources */,
 				BE480BA817258B690022216B /* CSPrice.m in Sources */,
 				BE480BAB17258D9A0022216B /* CSPriceListPage.m in Sources */,
@@ -923,7 +890,6 @@
 				BE7E6EC516DBAE5C000AA883 /* CSUserGroupTests.m in Sources */,
 				BE78D15816E5FA4500DAE148 /* CSImageTests.m in Sources */,
 				BE78D17116E6102B00DAE148 /* CSRetailerTests.m in Sources */,
-				BE5D4C1C16F381950096FFFF /* CSProductSummaryTests.m in Sources */,
 				BE6BF3F717185103004B6D85 /* CSProductTests.m in Sources */,
 				BE480BB1172593830022216B /* CSPriceTest.m in Sources */,
 				BE558EA1174D0B4A009FA3DA /* CSCategoryTests.m in Sources */,

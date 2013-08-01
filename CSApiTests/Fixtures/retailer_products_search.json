@@ -691,9 +691,6 @@
         "author": null, 
         "software_platform": "Electronics", 
         "_links": {
-          "api:productsummary": {
-            "href": "/productsummaries/5RD1ZY"
-          }, 
           "curies": [
             {
               "href": "/rels/{rel}", 
@@ -1466,9 +1463,6 @@
         "author": null, 
         "software_platform": "Electronics", 
         "_links": {
-          "api:productsummary": {
-            "href": "/productsummaries/5U1q32"
-          }, 
           "curies": [
             {
               "href": "/rels/{rel}", 
@@ -2241,9 +2235,6 @@
         "author": null, 
         "software_platform": null, 
         "_links": {
-          "api:productsummary": {
-            "href": "/productsummaries/5Y6wn2"
-          }, 
           "curies": [
             {
               "href": "/rels/{rel}", 
@@ -2987,9 +2978,6 @@
         "author": null, 
         "software_platform": null, 
         "_links": {
-          "api:productsummary": {
-            "href": "/productsummaries/3dUK8S"
-          }, 
           "curies": [
             {
               "href": "/rels/{rel}", 
@@ -3701,9 +3689,6 @@
         "author": null, 
         "software_platform": null, 
         "_links": {
-          "api:productsummary": {
-            "href": "/productsummaries/5Fh9lU"
-          }, 
           "curies": [
             {
               "href": "/rels/{rel}", 
@@ -4412,9 +4397,6 @@
         "author": null, 
         "software_platform": null, 
         "_links": {
-          "api:productsummary": {
-            "href": "/productsummaries/5RlUhA"
-          }, 
           "curies": [
             {
               "href": "/rels/{rel}", 
@@ -5123,9 +5105,6 @@
         "author": null, 
         "software_platform": null, 
         "_links": {
-          "api:productsummary": {
-            "href": "/productsummaries/5Y5aeu"
-          }, 
           "curies": [
             {
               "href": "/rels/{rel}", 
@@ -5805,9 +5784,6 @@
         "author": null, 
         "software_platform": null, 
         "_links": {
-          "api:productsummary": {
-            "href": "/productsummaries/5Fhy00"
-          }, 
           "curies": [
             {
               "href": "/rels/{rel}", 
@@ -6484,9 +6460,6 @@
         "author": null, 
         "software_platform": null, 
         "_links": {
-          "api:productsummary": {
-            "href": "/productsummaries/5FrKJ2"
-          }, 
           "curies": [
             {
               "href": "/rels/{rel}", 
@@ -7163,9 +7136,6 @@
         "author": null, 
         "software_platform": null, 
         "_links": {
-          "api:productsummary": {
-            "href": "/productsummaries/5Q9xRQ"
-          }, 
           "curies": [
             {
               "href": "/rels/{rel}", 
