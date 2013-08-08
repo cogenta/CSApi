@@ -18,6 +18,7 @@
 #import "CSMutableGroup.h"
 #import "CSGroup.h"
 #import "CSGroupListPage.h"
+#import "CSSlice.h"
 #import <objc/runtime.h>
 
 @implementation CSUser
@@ -238,6 +239,29 @@
                                                   requester:self.requester
                                                  credential:self.credential];
          callback(group, nil);
+     }];
+}
+
+- (void)getSlice:(void (^)(id<CSSlice>, NSError *))callback
+{
+    [self getRelation:@"/rels/slice"
+          forResource:self.resource
+             callback:^(YBHALResource *result, NSError *error)
+     {
+         if (error) {
+             callback(nil, error);
+             return;
+         }
+         
+         if ( ! result) {
+             callback(nil, nil);
+             return;
+         }
+         
+         callback([[CSSlice alloc] initWithHAL:self.resource
+                                     requester:self.requester
+                                    credential:self.credential],
+                  nil);
      }];
 }
 

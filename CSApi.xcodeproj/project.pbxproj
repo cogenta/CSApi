@@ -49,6 +49,10 @@
 		BE62341016D662530062A4D8 /* likes_page_0_embedded.json in Resources */ = {isa = PBXBuildFile; fileRef = BE62340F16D662530062A4D8 /* likes_page_0_embedded.json */; };
 		BE62341216D6628D0062A4D8 /* likes_page_1_embedded.json in Resources */ = {isa = PBXBuildFile; fileRef = BE62341116D6628D0062A4D8 /* likes_page_1_embedded.json */; };
 		BE62341416D662B60062A4D8 /* likes_page_2_embedded.json in Resources */ = {isa = PBXBuildFile; fileRef = BE62341316D662B60062A4D8 /* likes_page_2_embedded.json */; };
+		BE63B35A17B3AB9900E95B7E /* CSSlice.m in Sources */ = {isa = PBXBuildFile; fileRef = BE63B35917B3AB9900E95B7E /* CSSlice.m */; };
+		BE63B35E17B3B2AB00E95B7E /* CSNarrow.m in Sources */ = {isa = PBXBuildFile; fileRef = BE63B35D17B3B2AB00E95B7E /* CSNarrow.m */; };
+		BE63B36117B3D20200E95B7E /* CSNarrowListPage.m in Sources */ = {isa = PBXBuildFile; fileRef = BE63B36017B3D20200E95B7E /* CSNarrowListPage.m */; };
+		BE63B36417B3D26C00E95B7E /* CSNarrowList.m in Sources */ = {isa = PBXBuildFile; fileRef = BE63B36317B3D26C00E95B7E /* CSNarrowList.m */; };
 		BE68DA8D16D62B64008ED350 /* CSApiUserLikeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BE68DA8C16D62B64008ED350 /* CSApiUserLikeTests.m */; };
 		BE6BF3F117183C11004B6D85 /* product.json in Resources */ = {isa = PBXBuildFile; fileRef = BE6BF3F017183C11004B6D85 /* product.json */; };
 		BE6BF3F517183CCF004B6D85 /* CSProduct.m in Sources */ = {isa = PBXBuildFile; fileRef = BE6BF3F417183CCF004B6D85 /* CSProduct.m */; };
@@ -201,6 +205,14 @@
 		BE62340F16D662530062A4D8 /* likes_page_0_embedded.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = likes_page_0_embedded.json; sourceTree = "<group>"; };
 		BE62341116D6628D0062A4D8 /* likes_page_1_embedded.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = likes_page_1_embedded.json; sourceTree = "<group>"; };
 		BE62341316D662B60062A4D8 /* likes_page_2_embedded.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = likes_page_2_embedded.json; sourceTree = "<group>"; };
+		BE63B35817B3AB9900E95B7E /* CSSlice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSSlice.h; sourceTree = "<group>"; };
+		BE63B35917B3AB9900E95B7E /* CSSlice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSSlice.m; sourceTree = "<group>"; };
+		BE63B35C17B3B2AB00E95B7E /* CSNarrow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSNarrow.h; sourceTree = "<group>"; };
+		BE63B35D17B3B2AB00E95B7E /* CSNarrow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSNarrow.m; sourceTree = "<group>"; };
+		BE63B35F17B3D20200E95B7E /* CSNarrowListPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSNarrowListPage.h; sourceTree = "<group>"; };
+		BE63B36017B3D20200E95B7E /* CSNarrowListPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSNarrowListPage.m; sourceTree = "<group>"; };
+		BE63B36217B3D26C00E95B7E /* CSNarrowList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSNarrowList.h; sourceTree = "<group>"; };
+		BE63B36317B3D26C00E95B7E /* CSNarrowList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSNarrowList.m; sourceTree = "<group>"; };
 		BE6439C516DFB1790015E822 /* CSApi.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; fileEncoding = 4; path = CSApi.podspec; sourceTree = "<group>"; };
 		BE6439C616DFB1790015E822 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; fileEncoding = 4; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		BE6439C716DFB1790015E822 /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
@@ -389,6 +401,8 @@
 				BE6BF3F217183C92004B6D85 /* Products */,
 				BE480BA517258B390022216B /* Prices */,
 				BE558EA2174D0BA2009FA3DA /* Categories */,
+				BE63B35717B3AB4500E95B7E /* Slices */,
+				BE63B35B17B3B27A00E95B7E /* Narrows */,
 			);
 			name = CSAPI;
 			path = CSApi;
@@ -583,6 +597,28 @@
 				BE7E6E7E16D7D0D6000AA883 /* NSError+CSExtension.m */,
 			);
 			name = Utils;
+			sourceTree = "<group>";
+		};
+		BE63B35717B3AB4500E95B7E /* Slices */ = {
+			isa = PBXGroup;
+			children = (
+				BE63B35817B3AB9900E95B7E /* CSSlice.h */,
+				BE63B35917B3AB9900E95B7E /* CSSlice.m */,
+			);
+			name = Slices;
+			sourceTree = "<group>";
+		};
+		BE63B35B17B3B27A00E95B7E /* Narrows */ = {
+			isa = PBXGroup;
+			children = (
+				BE63B35C17B3B2AB00E95B7E /* CSNarrow.h */,
+				BE63B35D17B3B2AB00E95B7E /* CSNarrow.m */,
+				BE63B35F17B3D20200E95B7E /* CSNarrowListPage.h */,
+				BE63B36017B3D20200E95B7E /* CSNarrowListPage.m */,
+				BE63B36217B3D26C00E95B7E /* CSNarrowList.h */,
+				BE63B36317B3D26C00E95B7E /* CSNarrowList.m */,
+			);
+			name = Narrows;
 			sourceTree = "<group>";
 		};
 		BE6BF3F217183C92004B6D85 /* Products */ = {
@@ -864,6 +900,10 @@
 				BE558EA5174D0BDE009FA3DA /* CSCategory.m in Sources */,
 				BE558EAE174D1591009FA3DA /* CSCategoryListPage.m in Sources */,
 				BE558EB1174D1612009FA3DA /* CSCategoryList.m in Sources */,
+				BE63B35A17B3AB9900E95B7E /* CSSlice.m in Sources */,
+				BE63B35E17B3B2AB00E95B7E /* CSNarrow.m in Sources */,
+				BE63B36117B3D20200E95B7E /* CSNarrowListPage.m in Sources */,
+				BE63B36417B3D26C00E95B7E /* CSNarrowList.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -51,6 +51,11 @@
 @protocol CSCategoryList;
 @protocol CSCategory;
 
+@protocol CSSlice;
+@protocol CSNarrow;
+@protocol CSNarrowListPage;
+@protocol CSNarrowList;
+
 /**
  Provides a handle to the network request for an API invocation.
  
@@ -362,6 +367,9 @@
  */
 - (void)getGroups:(void (^)(id<CSGroupListPage> firstPage,
                             NSError *error))callback;
+
+- (void)getSlice:(void (^)(id<CSSlice> slice,
+                           NSError *error))callback;
 
 /** Searches for groups that match the given reference.
  
@@ -838,6 +846,9 @@
  deleted, or when the operation has failed.
  */
 - (void)remove:(void (^)(BOOL success, NSError *error))callback;
+
+- (void)getSlice:(void (^)(id<CSSlice> slice,
+                           NSError *error))callback;
 
 @end
 
@@ -1316,3 +1327,61 @@
                                NSError *error))callback;
 
 @end
+
+
+@protocol CSSlice <NSObject>
+
+- (id<CSAPIRequest>)getProducts:(void (^)(id<CSProductListPage> result,
+                                                   NSError *error))callback;
+
+- (id<CSAPIRequest>)getProductsWithQuery:(NSString *)query
+                                callback:(void (^)(id<CSProductListPage>,
+                                                   NSError *))callback;
+
+- (void)getRetailerNarrows:(void (^)(id<CSNarrowListPage> result,
+                                     NSError *error))callback;
+
+- (void)getCategoryNarrows:(void (^)(id<CSNarrowListPage> result,
+                                     NSError *error))callback;
+
+- (void)getFiltersByRetailer:(void (^)(id<CSRetailer> result,
+                                       NSError *error))callback;
+
+- (void)getFiltersByRetailerList:(void (^)(id<CSRetailerListPage> result,
+                                           NSError *error))callback;
+
+- (void)getFiltersByCategory:(void (^)(id<CSCategory> result,
+                                       NSError *error))callback;
+
+@end
+
+
+@protocol CSNarrow <NSObject>
+
+- (void)getSlice:(void (^)(id<CSSlice> result, NSError *error))callback;
+
+- (void)getNarrowsByRetailer:(void (^)(id<CSRetailer> result,
+                                       NSError *error))callback;
+
+- (void)getNarrowsByCategory:(void (^)(id<CSCategory> result,
+                                       NSError *error))callback;
+
+@end
+
+
+@protocol CSNarrowListPage <CSListPage>
+
+@property (readonly) id<CSNarrowList> narrowList;
+
+@end
+
+
+@protocol CSNarrowList <CSList>
+
+- (void)getNarrowAtIndex:(NSUInteger)index
+                callback:(void (^)(id<CSNarrow> narrow,
+                                   NSError *error))callback;
+
+@end
+
+
