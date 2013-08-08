@@ -522,7 +522,8 @@
 
  */
 - (id<CSAPIRequest>)getProducts:(void (^)(id<CSProductListPage> firstPage,
-                                          NSError *error))callback;
+                                          NSError *error))callback
+__attribute__((deprecated ("Use `getProducts:` on a `CSSlice` instead")));
 
 /** Tries to get a list of products that match a query and that are supplied by
  the retailer.
@@ -545,7 +546,9 @@
  */
 - (id<CSAPIRequest>)getProductsWithQuery:(NSString *)query
                     callback:(void (^)(id<CSProductListPage> firstPage,
-                                       NSError *error))callback;
+                                       NSError *error))callback
+__attribute__((deprecated ("Use `getProductsWithQuery:callback:` on a "
+                           "`CSSlice` instead")));
 
 /** Tries to get a list of categories supplied by this retailer.
  
@@ -565,7 +568,8 @@
  
  */
 - (void)getCategories:(void (^)(id<CSCategoryListPage> firstPage,
-                                NSError *error))callback;
+                                NSError *error))callback
+__attribute__((deprecated ("Use `getCategoryNarrows:` on a `CSSlice` instead")));
 
 @end
 
@@ -790,7 +794,8 @@
 
  */
 - (id<CSAPIRequest>)getProducts:(void (^)(id<CSProductListPage> firstPage,
-                                          NSError *error))callback;
+                                          NSError *error))callback
+__attribute__((deprecated ("Use `getProducts:` on a `CSSlice` instead")));
 
 /** Tries to get a list of products that match a query and relate th the likes
  in the group.
@@ -813,7 +818,9 @@
  */
 - (id<CSAPIRequest>)getProductsWithQuery:(NSString *)query
                     callback:(void (^)(id<CSProductListPage> firstPage,
-                                       NSError *error))callback;
+                                       NSError *error))callback
+__attribute__((deprecated ("Use `getProductsWithQuery:callback:` on a "
+                           "`CSSlice` instead")));
 
 /** Tries to get a list of categories related to the likes in the group.
  
@@ -833,7 +840,8 @@
  
  */
 - (void)getCategories:(void (^)(id<CSCategoryListPage> firstPage,
-                                NSError *error))callback;
+                                NSError *error))callback
+__attribute__((deprecated ("Use `getCategoryNarrows:` on a `CSSlice` instead")));
 
 /** Tries to delete the group.
  
@@ -1251,7 +1259,8 @@
 
  */
 - (id<CSAPIRequest>)getProducts:(void (^)(id<CSProductListPage> firstPage,
-                                          NSError *error))callback;
+                                          NSError *error))callback
+__attribute__((deprecated ("Use `getProducts:` on a `CSSlice` instead")));
 
 /** Tries to get a list of products that match a query and belong to the
  category or one of its subcategories.
@@ -1274,7 +1283,9 @@
  */
 - (id<CSAPIRequest>)getProductsWithQuery:(NSString *)query
                     callback:(void (^)(id<CSProductListPage> firstPage,
-                                       NSError *error))callback;
+                                       NSError *error))callback
+__attribute__((deprecated ("Use `getProductsWithQuery:callback:` on a "
+                           "`CSSlice` instead")));
 
 /** Tries to get a list of immediate subcategories of this category.
  
@@ -1324,7 +1335,8 @@
  
  */
 - (void)getRetailers:(void (^)(id<CSRetailerListPage> result,
-                               NSError *error))callback;
+                               NSError *error))callback
+__attribute__((deprecated ("Use `getRetailerNarrows:` on a `CSSlice` instead")));
 
 @end
 

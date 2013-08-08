@@ -110,6 +110,9 @@
     STAssertEqualObjects(category.URL, URL, nil);
 }
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+
 - (void)testGetProducts
 {
     __block NSError *error = [NSError errorWithDomain:@"not called"
@@ -150,6 +153,8 @@
     
     STAssertEqualObjects(product.name, productResource[@"name"], nil);
 }
+
+#pragma clang diagnostic pop
 
 - (void)testGetImmediateSubcategories
 {
@@ -192,6 +197,9 @@
     
     STAssertEqualObjects(subcategory.name, subcategoryResource[@"name"], nil);
 }
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
 
 - (void)testGetRetailers
 {
@@ -236,6 +244,11 @@
     STAssertEqualObjects(retailer.name, expectedName, nil);
 }
 
+#pragma clang diagnostic pop
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+
 - (void)testGetNoRetailers
 {
     resource = [self resourceForFixture:@"category_1167-digital-video.json"];
@@ -260,5 +273,7 @@
     STAssertNil(error, @"%@", error);
     STAssertNil(page, @"%@", page);
 }
+
+#pragma clang diagnostic pop
 
 @end

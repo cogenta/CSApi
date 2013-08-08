@@ -200,6 +200,9 @@
     STAssertEqualObjects(image.height, imageResource[@"height"], nil);
 }
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+
 - (void)testGetProducts
 {
     __block NSError *error = [NSError errorWithDomain:@"not called"
@@ -241,6 +244,11 @@
     STAssertEqualObjects(product.name, productResource[@"name"], nil);
 }
 
+#pragma clang diagnostic pop
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+
 - (void)testGetCategories
 {
     __block NSError *error = [NSError errorWithDomain:@"not called"
@@ -281,6 +289,11 @@
     
     STAssertEqualObjects(category.name, @"DVDs & Blu-Ray", nil);
 }
+
+#pragma clang diagnostic pop
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
 
 - (void)testProductSearch
 {
@@ -326,6 +339,12 @@
                          nil);
 }
 
+#pragma clang diagnostic pop
+
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+
 - (void)testCancelProductSearch
 {
     __block NSError *error = [NSError errorWithDomain:@"not called"
@@ -346,5 +365,7 @@
     STAssertNotNil(error, nil);
     STAssertNil(page, @"%@", page);
 }
+
+#pragma clang diagnostic pop
 
 @end
