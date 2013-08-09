@@ -288,6 +288,20 @@
          callback(nil, nil, error);
      }];
     
+    // The Authorization header is forgotten when redirecting, so we reapply it.
+    [operation setRedirectResponseBlock:^NSURLRequest *(NSURLConnection *conn,
+                                                        NSURLRequest *request,
+                                                        NSURLResponse *redirect)
+    {
+        if ( ! redirect) {
+            return request;
+        }
+        
+        NSMutableURLRequest *result = [request mutableCopy];
+        [self applyCredential:credential request:result];
+        return result;
+    }];
+    
     if ( ! operation) {
         NSError *error = [NSError errorWithDomain:@"Operation is nil"
                                              code:0
