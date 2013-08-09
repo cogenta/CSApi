@@ -258,7 +258,7 @@
              return;
          }
          
-         callback([[CSSlice alloc] initWithHAL:self.resource
+         callback([[CSSlice alloc] initWithHAL:result
                                      requester:self.requester
                                     credential:self.credential],
                   nil);

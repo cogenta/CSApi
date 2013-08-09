@@ -33,7 +33,7 @@
 - (id<CSAPIRequest>)getProducts:(void (^)(id<CSProductListPage>,
                                           NSError *))callback
 {
-    return [self getRelation:@"/rels/product"
+    return [self getRelation:@"/rels/products"
                  forResource:self.resource
                     callback:^(YBHALResource *result, NSError *error)
     {
@@ -122,7 +122,7 @@
              return;
          }
          
-         callback([[CSRetailer alloc] initWithResource:self.resource
+         callback([[CSRetailer alloc] initWithResource:result
                                              requester:self.requester
                                             credential:self.credential],
                   nil);
@@ -168,7 +168,7 @@
              return;
          }
          
-         callback([[CSCategory alloc] initWithHAL:self.resource
+         callback([[CSCategory alloc] initWithHAL:result
                                         requester:self.requester
                                        credential:self.credential],
                   nil);
