@@ -12,7 +12,7 @@ Pod::Spec.new do |s|
   s.public_header_files = 'CSApi/CSApi.h'
   s.frameworks = 'MobileCoreServices', 'SystemConfiguration', 'Foundation'
   s.requires_arc = true
-  s.dependency 'AFNetworking'
+  s.dependency 'AFNetworking', '1.3.2'
   s.dependency 'HyperBek'
   s.dependency 'Base64'
   s.dependency 'NSArray+Functional'
