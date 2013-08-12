@@ -57,27 +57,37 @@
              callback:callback];
 }
 
-- (id<CSAPIRequest>)getRelation:(NSString *)relation
-        forResource:(YBHALResource *)resource
-           callback:(void (^)(YBHALResource *, NSError *))callback
+- (CSListItem *)itemForRelation:(NSString *)relation
+                        resouce:(YBHALResource *)resource
 {
     YBHALResource *itemResource = [resource resourceForRelation:relation];
     CSListItem *item = nil;
     if (itemResource) {
-        item = [[CSResourceListItem alloc] initWithResource:itemResource
+        return [[CSResourceListItem alloc] initWithResource:itemResource
                                                   requester:self.requester
                                                  credential:self.credential];
     } else {
         YBHALLink *itemLink = [resource linkForRelation:relation];
         
         if ( ! itemLink) {
-            callback(nil, nil);
             return nil;
         }
         
-        item = [[CSLinkListItem alloc] initWithLink:itemLink
+        return [[CSLinkListItem alloc] initWithLink:itemLink
                                           requester:self.requester
                                          credential:self.credential];
+    }
+}
+
+- (id<CSAPIRequest>)getRelation:(NSString *)relation
+        forResource:(YBHALResource *)resource
+           callback:(void (^)(YBHALResource *, NSError *))callback
+{
+    CSListItem *item = [self itemForRelation:relation resouce:resource];
+    
+    if ( ! item) {
+        callback(nil, nil);
+        return nil;
     }
     
     return [item getSelf:callback];
@@ -88,22 +98,14 @@
         forResource:(YBHALResource *)resource
            callback:(void (^)(YBHALResource *, NSError *))callback
 {
-    YBHALLink *link = [resource linkForRelation:relation];
-    if ( ! link) {
-        link = [[resource resourceForRelation:relation]
-                linkForRelation:@"self"];
-    }
-    
-    if ( ! link) {
+    NSURL *URL = [self URLForRelation:relation
+                            arguments:args
+                             resource:resource];
+    if ( ! URL) {
         callback(nil, nil);
         return nil;
     }
     
-    NSURL *baseURL = [[resource linkForRelation:@"self"] URL];
-    NSURL *relativeURL = [link URLWithVariables:args];
-    NSURL *URL = [[NSURL URLWithString:[relativeURL absoluteString]
-                         relativeToURL:baseURL]
-                  absoluteURL];
     return (id<CSAPIRequest>) [self.requester getURL:URL
                                           credential:self.credential
                                             callback:^(id result,
@@ -117,6 +119,28 @@
         
         callback(result, nil);
     }];
+}
+
+- (NSURL *)URLForRelation:(NSString *)relation
+                arguments:(NSDictionary *)args
+                 resource:(YBHALResource *)resource
+{
+    YBHALLink *link = [resource linkForRelation:relation];
+    if ( ! link) {
+        link = [[resource resourceForRelation:relation]
+                linkForRelation:@"self"];
+    }
+    
+    if ( ! link) {
+        return nil;
+    }
+    
+    NSURL *baseURL = [[resource linkForRelation:@"self"] URL];
+    NSURL *relativeURL = [link URLWithVariables:args];
+    NSURL *URL = [[NSURL URLWithString:[relativeURL absoluteString]
+                         relativeToURL:baseURL]
+                  absoluteURL];
+    return URL;
 }
 
 @end

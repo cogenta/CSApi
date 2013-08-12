@@ -39,5 +39,9 @@
         forResource:(YBHALResource *)resource
            callback:(void (^)(YBHALResource *, NSError *))callback;
 
+- (NSURL *)URLForRelation:(NSString *)relation
+                arguments:(NSDictionary *)args
+                 resource:(YBHALResource *)resource;
+
 @end
 

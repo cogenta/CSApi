@@ -28,6 +28,13 @@
     return self;
 }
 
+- (NSURL *)sliceURL
+{
+    return [self URLForRelation:@"/rels/slice"
+                      arguments:nil
+                       resource:self.resource];
+}
+
 - (void)getSlice:(void (^)(id<CSSlice> result, NSError *error))callback
 {
     [self getRelation:@"/rels/slice"
@@ -49,6 +56,13 @@
                                     credential:self.credential],
                   nil);
      }];
+}
+
+- (NSURL *)narrowsByRetailerURL
+{
+    return [self URLForRelation:@"/rels/narrowsbyretailer"
+                      arguments:nil
+                       resource:self.resource];
 }
 
 - (void)getNarrowsByRetailer:(void (^)(id<CSRetailer> result,
@@ -73,6 +87,13 @@
                                             credential:self.credential],
                   nil);
      }];
+}
+
+- (NSURL *)narrowsByCategoryURL
+{
+    return [self URLForRelation:@"/rels/narrowsbycategory"
+                      arguments:nil
+                       resource:self.resource];
 }
 
 - (void)getNarrowsByCategory:(void (^)(id<CSCategory> result,
