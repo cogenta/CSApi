@@ -43,6 +43,7 @@
 		BE5765EA17BA9ACE0082B4C3 /* slice_products.json in Resources */ = {isa = PBXBuildFile; fileRef = BE5765E917BA9ACE0082B4C3 /* slice_products.json */; };
 		BE5765EC17BA9B310082B4C3 /* slice_product_59t1CW.json in Resources */ = {isa = PBXBuildFile; fileRef = BE5765EB17BA9B310082B4C3 /* slice_product_59t1CW.json */; };
 		BE5765EE17BA9E2C0082B4C3 /* slice_product_5WY4WK.json in Resources */ = {isa = PBXBuildFile; fileRef = BE5765ED17BA9E2C0082B4C3 /* slice_product_5WY4WK.json */; };
+		BE5765F017BAAC890082B4C3 /* slice_retailernarrows.json in Resources */ = {isa = PBXBuildFile; fileRef = BE5765EF17BAAC890082B4C3 /* slice_retailernarrows.json */; };
 		BE57713F16B98EFF002F42E4 /* user_post_response_with_reference_and_meta.json in Resources */ = {isa = PBXBuildFile; fileRef = BE57713E16B98EFF002F42E4 /* user_post_response_with_reference_and_meta.json */; };
 		BE57714716BA7F89002F42E4 /* CSBasicCredential.m in Sources */ = {isa = PBXBuildFile; fileRef = BE57714616BA7F89002F42E4 /* CSBasicCredential.m */; };
 		BE57714A16BA8066002F42E4 /* CSHALRepresentation.m in Sources */ = {isa = PBXBuildFile; fileRef = BE57714916BA8066002F42E4 /* CSHALRepresentation.m */; };
@@ -194,6 +195,7 @@
 		BE5765E917BA9ACE0082B4C3 /* slice_products.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = slice_products.json; sourceTree = "<group>"; };
 		BE5765EB17BA9B310082B4C3 /* slice_product_59t1CW.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = slice_product_59t1CW.json; sourceTree = "<group>"; };
 		BE5765ED17BA9E2C0082B4C3 /* slice_product_5WY4WK.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = slice_product_5WY4WK.json; sourceTree = "<group>"; };
+		BE5765EF17BAAC890082B4C3 /* slice_retailernarrows.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = slice_retailernarrows.json; sourceTree = "<group>"; };
 		BE57713E16B98EFF002F42E4 /* user_post_response_with_reference_and_meta.json */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = text.json; path = user_post_response_with_reference_and_meta.json; sourceTree = "<group>"; tabWidth = 2; };
 		BE57714016BA7C19002F42E4 /* CSAuthenticator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSAuthenticator.h; sourceTree = "<group>"; };
 		BE57714116BA7C44002F42E4 /* CSCredential.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSCredential.h; sourceTree = "<group>"; };
@@ -504,6 +506,7 @@
 				BE5765EB17BA9B310082B4C3 /* slice_product_59t1CW.json */,
 				BE5765E417BA99040082B4C3 /* slice_product_search.json */,
 				BE5765ED17BA9E2C0082B4C3 /* slice_product_5WY4WK.json */,
+				BE5765EF17BAAC890082B4C3 /* slice_retailernarrows.json */,
 			);
 			name = Slice;
 			sourceTree = "<group>";
@@ -830,6 +833,7 @@
 				BE5765EA17BA9ACE0082B4C3 /* slice_products.json in Resources */,
 				BE5765EC17BA9B310082B4C3 /* slice_product_59t1CW.json in Resources */,
 				BE5765EE17BA9E2C0082B4C3 /* slice_product_5WY4WK.json in Resources */,
+				BE5765F017BAAC890082B4C3 /* slice_retailernarrows.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

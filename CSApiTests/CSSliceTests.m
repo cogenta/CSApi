@@ -76,6 +76,13 @@
     YBHALResource *searchProductResource = [self resourceForFixture:@"slice_product_5WY4WK.json"];
     [requester addGetResponse:searchProductResource
                        forURL:[searchProductResource linkForRelation:@"self"].URL];
+    
+    //
+    
+    YBHALResource *retailerNarrowsResource = [self resourceForFixture:@"slice_retailernarrows.json"];
+    [requester addGetResponse:retailerNarrowsResource
+                       forURL:[retailerNarrowsResource linkForRelation:@"self"].URL];
+    
 }
 
 - (void)testGetProducts
@@ -182,6 +189,31 @@
     
     STAssertNotNil(error, nil);
     STAssertNil(page, @"%@", page);
+}
+
+- (void)testGetRetailerNarrows
+{
+    __block NSError *error = [NSError errorWithDomain:@"not called"
+                                                 code:0
+                                             userInfo:nil];
+    __block id<CSNarrowListPage> page = nil;
+    CALL_AND_WAIT(^(void (^done)()) {
+        [self.slice getRetailerNarrows:^(id<CSNarrowListPage> aPage,
+                                         NSError *anError)
+        {
+             page = aPage;
+             error = anError;
+             done();
+         }];
+    });
+    
+    STAssertNil(error, @"%@", error);
+    STAssertNotNil(page, nil);
+    
+    id<CSNarrowList> list = page.narrowList;
+    STAssertNotNil(list, nil);
+    
+    STAssertEqualObjects(@(list.count), @10, nil);
 }
 
 @end

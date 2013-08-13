@@ -1,0 +1,57 @@
+{
+  "count": 10, 
+  "_links": {
+    "curies": [
+      {
+        "href": "/rels/{rel}", 
+        "name": "api", 
+        "templated": true
+      }
+    ], 
+    "self": {
+      "href": "/retailers/9,237,20,228,110,223,94,57,52,136/narrows/"
+    }, 
+    "item": [
+      {
+        "href": "/retailers/9/narrow", 
+        "title": "Apple Store"
+      }, 
+      {
+        "href": "/retailers/237/narrow", 
+        "title": "Maplin"
+      }, 
+      {
+        "href": "/retailers/20/narrow", 
+        "title": "Boots"
+      }, 
+      {
+        "href": "/retailers/228/narrow", 
+        "title": "Superdry"
+      }, 
+      {
+        "href": "/retailers/110/narrow", 
+        "title": "SuperDrug"
+      }, 
+      {
+        "href": "/retailers/223/narrow", 
+        "title": "Menkind"
+      }, 
+      {
+        "href": "/retailers/94/narrow", 
+        "title": "Wickes"
+      }, 
+      {
+        "href": "/retailers/57/narrow", 
+        "title": "Very"
+      }, 
+      {
+        "href": "/retailers/52/narrow", 
+        "title": "John Lewis"
+      }, 
+      {
+        "href": "/retailers/136/narrow", 
+        "title": "Blacks"
+      }
+    ]
+  }
+}
