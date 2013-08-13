@@ -289,52 +289,6 @@
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
 
-- (void)testGetProducts
-{
-    __block NSError *error = [NSError errorWithDomain:@"not called"
-                                                 code:0
-                                             userInfo:nil];
-    __block id<CSProductListPage> page = nil;
-    CALL_AND_WAIT(^(void (^done)()) {
-        [self.group getProducts:^(id<CSProductListPage> aPage, NSError *anError)
-         {
-             page = aPage;
-             error = anError;
-             done();
-         }];
-    });
-    
-    STAssertNil(error, @"%@", error);
-    STAssertNotNil(page, nil);
-    
-    id<CSProductList> list = page.productList;
-    STAssertNotNil(list, nil);
-    
-    STAssertEqualObjects(@(list.count), @1, nil);
-    
-    __block id<CSProduct> product = nil;
-    error = [NSError errorWithDomain:@"not called" code:0 userInfo:nil];
-    CALL_AND_WAIT(^(void (^done)()) {
-        [list getProductAtIndex:0
-                       callback:^(id<CSProduct> aProduct, NSError *anError)
-         {
-             product = aProduct;
-             error = anError;
-             done();
-         }];
-    });
-    
-    STAssertNil(error, @"%@", error);
-    STAssertNotNil(product, nil);
-    
-    STAssertEqualObjects(product.name, productResource[@"name"], nil);
-}
-
-#pragma clang diagnostic pop
-
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-
 - (void)testGetCategories
 {
     __block NSError *error = [NSError errorWithDomain:@"not called"
