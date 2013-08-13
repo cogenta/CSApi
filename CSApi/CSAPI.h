@@ -1169,35 +1169,6 @@ __attribute__((deprecated ("Use `getCategoryNarrows:` on a `CSSlice` instead")))
 - (void)getImmediateSubcategories:(void (^)(id<CSCategoryListPage> result,
                                             NSError *error))callback;
 
-/** Tries to get a list of retailers for this category.
- 
- The retailers for this category are the retailers that supply one or more
- products from this category or from one of its subcategories.
- 
- Control returns from getRetailers: immediately. If the operation is successful,
- and the category provides a list of retailers, the given callback is invoked
- with a non-nil [id\<CSRetailerListPage\>](CSRetailerListPage) in result and a
- nil error. result is the first page of the result set.
- 
- It is recommended that client code use result.retailerList to get an
- [id\<CSRetailerList\>](CSRetailerList), which provides convenient access to
- retailers in the list.
- 
- If the category does not provoide a list of retailers, the callback is invoked
- with a nil result and a nil error.
- 
- If the operation fails, callback is invoked with a nil result and a non-nil
- error.
- 
- @param callback The block to invoke when the retailer list has been
- successfully obtained, or when the category provides no list of retailers, or
- when the operation has failed.
- 
- */
-- (void)getRetailers:(void (^)(id<CSRetailerListPage> result,
-                               NSError *error))callback
-__attribute__((deprecated ("Use `getRetailerNarrows:` on a `CSSlice` instead")));
-
 @end
 
 
