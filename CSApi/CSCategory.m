@@ -91,45 +91,6 @@
     return [self.resource linkForRelation:@"self"].URL;
 }
 
-- (id<CSAPIRequest>)getProducts:(void (^)(id<CSProductListPage>, NSError *))callback
-{
-    return [self getRelation:@"/rels/products"
-                 forResource:self.resource
-                    callback:^(YBHALResource *result, NSError *error)
-     {
-         if (error) {
-             callback(nil, error);
-             return;
-         }
-         
-         callback([[CSProductListPage alloc] initWithHal:result
-                                               requester:self.requester
-                                              credential:self.credential],
-                  nil);
-     }];
-}
-
-- (id<CSAPIRequest>)getProductsWithQuery:(NSString *)query
-                    callback:(void (^)(id<CSProductListPage>,
-                                       NSError *))callback
-{
-    return [self getRelation:@"/rels/searchproducts"
-               withArguments:@{@"q": query}
-                 forResource:self.resource
-                    callback:^(YBHALResource *result, NSError *error)
-     {
-         if (error) {
-             callback(nil, error);
-             return;
-         }
-         
-         callback([[CSProductListPage alloc] initWithHal:result
-                                               requester:self.requester
-                                              credential:self.credential],
-                  nil);
-     }];
-}
-
 - (void)getImmediateSubcategories:(void (^)(id<CSCategoryListPage>, NSError *))callback
 {
     NSArray *items;
@@ -153,29 +114,6 @@
                                                   requester:self.requester
                                                  credential:self.credential],
              nil);
-}
-
-- (void)getRetailers:(void (^)(id<CSRetailerListPage>, NSError *))callback
-{
-    [self getRelation:@"/rels/retailers"
-          forResource:self.resource
-             callback:^(YBHALResource *result, NSError *error)
-    {
-        if (error) {
-            callback(nil, error);
-            return;
-        }
-        
-        if ( ! result) {
-            callback(nil, nil);
-            return;
-        }
-        
-        callback([[CSRetailerListPage alloc] initWithHal:result
-                                               requester:self.requester
-                                              credential:self.credential],
-                 nil);
-    }];
 }
 
 @end

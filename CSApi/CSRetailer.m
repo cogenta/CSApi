@@ -74,44 +74,5 @@
     }];
 }
 
-- (id<CSAPIRequest>)getProducts:(void (^)(id<CSProductListPage>, NSError *))callback
-{
-    return [self getRelation:@"/rels/products"
-                 forResource:resource
-                    callback:^(YBHALResource *result, NSError *error)
-     {
-         if (error) {
-             callback(nil, error);
-             return;
-         }
-         
-         callback([[CSProductListPage alloc] initWithHal:result
-                                               requester:self.requester
-                                              credential:self.credential],
-                  nil);
-     }];
-}
-
-- (id<CSAPIRequest>)getProductsWithQuery:(NSString *)query
-                    callback:(void (^)(id<CSProductListPage>,
-                                       NSError *))callback
-{
-    return [self getRelation:@"/rels/searchproducts"
-               withArguments:@{@"q": query}
-                 forResource:resource
-                    callback:^(YBHALResource *result, NSError *error)
-    {
-        if (error) {
-            callback(nil, error);
-            return;
-        }
-        
-        callback([[CSProductListPage alloc] initWithHal:result
-                                              requester:self.requester
-                                             credential:self.credential],
-                 nil);
-    }];
-}
-
 @end
 
