@@ -37,6 +37,8 @@
 		BE558EAE174D1591009FA3DA /* CSCategoryListPage.m in Sources */ = {isa = PBXBuildFile; fileRef = BE558EAD174D1591009FA3DA /* CSCategoryListPage.m */; };
 		BE558EB1174D1612009FA3DA /* CSCategoryList.m in Sources */ = {isa = PBXBuildFile; fileRef = BE558EB0174D1612009FA3DA /* CSCategoryList.m */; };
 		BE5765DE17BA92C70082B4C3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE5765DD17BA92C70082B4C3 /* CoreGraphics.framework */; };
+		BE5765E117BA93A70082B4C3 /* CSSliceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BE5765E017BA93A60082B4C3 /* CSSliceTests.m */; };
+		BE5765E317BA957A0082B4C3 /* slice.json in Resources */ = {isa = PBXBuildFile; fileRef = BE5765E217BA957A0082B4C3 /* slice.json */; };
 		BE57713F16B98EFF002F42E4 /* user_post_response_with_reference_and_meta.json in Resources */ = {isa = PBXBuildFile; fileRef = BE57713E16B98EFF002F42E4 /* user_post_response_with_reference_and_meta.json */; };
 		BE57714716BA7F89002F42E4 /* CSBasicCredential.m in Sources */ = {isa = PBXBuildFile; fileRef = BE57714616BA7F89002F42E4 /* CSBasicCredential.m */; };
 		BE57714A16BA8066002F42E4 /* CSHALRepresentation.m in Sources */ = {isa = PBXBuildFile; fileRef = BE57714916BA8066002F42E4 /* CSHALRepresentation.m */; };
@@ -181,6 +183,9 @@
 		BE558EAF174D1612009FA3DA /* CSCategoryList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSCategoryList.h; sourceTree = "<group>"; };
 		BE558EB0174D1612009FA3DA /* CSCategoryList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSCategoryList.m; sourceTree = "<group>"; };
 		BE5765DD17BA92C70082B4C3 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		BE5765DF17BA93A60082B4C3 /* CSSliceTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSSliceTests.h; sourceTree = "<group>"; };
+		BE5765E017BA93A60082B4C3 /* CSSliceTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSSliceTests.m; sourceTree = "<group>"; };
+		BE5765E217BA957A0082B4C3 /* slice.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = slice.json; sourceTree = "<group>"; };
 		BE57713E16B98EFF002F42E4 /* user_post_response_with_reference_and_meta.json */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = text.json; path = user_post_response_with_reference_and_meta.json; sourceTree = "<group>"; tabWidth = 2; };
 		BE57714016BA7C19002F42E4 /* CSAuthenticator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSAuthenticator.h; sourceTree = "<group>"; };
 		BE57714116BA7C44002F42E4 /* CSCredential.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSCredential.h; sourceTree = "<group>"; };
@@ -442,6 +447,8 @@
 				BE6BF3F617185103004B6D85 /* CSProductTests.m */,
 				BE480BB0172593830022216B /* CSPriceTest.m */,
 				BE558EA0174D0B4A009FA3DA /* CSCategoryTests.m */,
+				BE5765DF17BA93A60082B4C3 /* CSSliceTests.h */,
+				BE5765E017BA93A60082B4C3 /* CSSliceTests.m */,
 			);
 			path = CSApiTests;
 			sourceTree = "<group>";
@@ -689,6 +696,7 @@
 				BE558EA8174D0E80009FA3DA /* category_4-dvds-and-blu-ray.json */,
 				BE7F95DE1765D25D008432E1 /* category_1167-digital-video.json */,
 				BE558EAA174D1083009FA3DA /* categories.json */,
+				BE5765E217BA957A0082B4C3 /* slice.json */,
 			);
 			path = Fixtures;
 			sourceTree = "<group>";
@@ -797,6 +805,7 @@
 				BE558EAB174D1083009FA3DA /* categories.json in Resources */,
 				BE7F95DF1765D25D008432E1 /* category_1167-digital-video.json in Resources */,
 				BE7E39B417969C1700E2A139 /* retailer_products_search.json in Resources */,
+				BE5765E317BA957A0082B4C3 /* slice.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -937,6 +946,7 @@
 				BE6BF3F717185103004B6D85 /* CSProductTests.m in Sources */,
 				BE480BB1172593830022216B /* CSPriceTest.m in Sources */,
 				BE558EA1174D0B4A009FA3DA /* CSCategoryTests.m in Sources */,
+				BE5765E117BA93A70082B4C3 /* CSSliceTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
