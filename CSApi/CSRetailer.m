@@ -113,23 +113,5 @@
     }];
 }
 
-- (void)getCategories:(void (^)(id<CSCategoryListPage>, NSError *))callback
-{
-    [self getRelation:@"/rels/categories"
-          forResource:resource
-             callback:^(YBHALResource *result, NSError *error)
-     {
-         if (error) {
-             callback(nil, error);
-             return;
-         }
-         
-         callback([[CSCategoryListPage alloc] initWithHal:result
-                                                requester:self.requester
-                                               credential:self.credential],
-                  nil);
-     }];
-}
-
 @end
 

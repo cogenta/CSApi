@@ -504,27 +504,6 @@
  */
 - (void)getLogo:(void (^)(id<CSPicture> picture, NSError *error))callback;
 
-/** Tries to get a list of categories supplied by this retailer.
- 
- Control returns from getCategories: immediately. If the operation is
- successful, the given callback is invoked with a non-nil
- [id\<CSCategoryListPage\>](CSCategoryListPage) in firstPage and a nil
- error. firstPage is the first page of the result set. It is recommended that
- client code use firstPage.categoryList to get an
- [id\<CSCategoryList\>](CSCategoryList), which provides convenient
- access to categories in the list.
- 
- If the operation fails, callback is invoked with a nil firstPage and a non-nil
- error.
- 
- @param callback The block to invoke when the category list has been
- successfully obtained, or when the operation has failed.
- 
- */
-- (void)getCategories:(void (^)(id<CSCategoryListPage> firstPage,
-                                NSError *error))callback
-__attribute__((deprecated ("Use `getCategoryNarrows:` on a `CSSlice` instead")));
-
 @end
 
 /** Protocol for accessing a list of items. */
@@ -728,27 +707,6 @@ __attribute__((deprecated ("Use `getCategoryNarrows:` on a `CSSlice` instead")))
 - (void)createLikeWithChange:(void (^)(id<CSMutableLike>))change
                     callback:(void (^)(id<CSLike> like,
                                        NSError *error))callback;
-
-/** Tries to get a list of categories related to the likes in the group.
- 
- Control returns from getCategories: immediately. If the operation is
- successful, the given callback is invoked with a non-nil
- [id\<CSCategoryListPage\>](CSCategoryListPage) in firstPage and a nil
- error. firstPage is the first page of the result set. It is recommended that
- client code use firstPage.categoryList to get an
- [id\<CSCategoryList\>](CSCategoryList), which provides convenient
- access to categories in the list.
- 
- If the operation fails, callback is invoked with a nil firstPage and a non-nil
- error.
- 
- @param callback The block to invoke when the category list has been
- successfully obtained, or when the operation has failed.
- 
- */
-- (void)getCategories:(void (^)(id<CSCategoryListPage> firstPage,
-                                NSError *error))callback
-__attribute__((deprecated ("Use `getCategoryNarrows:` on a `CSSlice` instead")));
 
 /** Tries to delete the group.
  
