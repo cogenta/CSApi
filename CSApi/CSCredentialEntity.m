@@ -61,7 +61,6 @@
                         resouce:(YBHALResource *)resource
 {
     YBHALResource *itemResource = [resource resourceForRelation:relation];
-    CSListItem *item = nil;
     if (itemResource) {
         return [[CSResourceListItem alloc] initWithResource:itemResource
                                                   requester:self.requester
