@@ -1,0 +1,65 @@
+{
+  "count": 12, 
+  "_links": {
+    "curies": [
+      {
+        "href": "/rels/{rel}", 
+        "name": "api", 
+        "templated": true
+      }
+    ], 
+    "self": {
+      "href": "/retailers/9,237,20,228,110,223,94,57,52,136/categorynarrows/"
+    }, 
+    "item": [
+      {
+        "href": "/retailers/9,237,20,228,110,223,94,57,52,136/categorynarrows/4", 
+        "title": "DVDs & Blu-Ray"
+      }, 
+      {
+        "href": "/retailers/9,237,20,228,110,223,94,57,52,136/categorynarrows/5", 
+        "title": "Electricals"
+      }, 
+      {
+        "href": "/retailers/9,237,20,228,110,223,94,57,52,136/categorynarrows/6", 
+        "title": "Books"
+      }, 
+      {
+        "href": "/retailers/9,237,20,228,110,223,94,57,52,136/categorynarrows/7", 
+        "title": "Gaming"
+      }, 
+      {
+        "href": "/retailers/9,237,20,228,110,223,94,57,52,136/categorynarrows/8", 
+        "title": "Toys"
+      }, 
+      {
+        "href": "/retailers/9,237,20,228,110,223,94,57,52,136/categorynarrows/222", 
+        "title": "Home & Garden"
+      }, 
+      {
+        "href": "/retailers/9,237,20,228,110,223,94,57,52,136/categorynarrows/245", 
+        "title": "Sports"
+      }, 
+      {
+        "href": "/retailers/9,237,20,228,110,223,94,57,52,136/categorynarrows/254", 
+        "title": "Fashion"
+      }, 
+      {
+        "href": "/retailers/9,237,20,228,110,223,94,57,52,136/categorynarrows/654", 
+        "title": "Parenting"
+      }, 
+      {
+        "href": "/retailers/9,237,20,228,110,223,94,57,52,136/categorynarrows/781", 
+        "title": "Gifts"
+      }, 
+      {
+        "href": "/retailers/9,237,20,228,110,223,94,57,52,136/categorynarrows/916", 
+        "title": "Health & Beauty"
+      }, 
+      {
+        "href": "/retailers/9,237,20,228,110,223,94,57,52,136/categorynarrows/1047", 
+        "title": "Groceries"
+      }
+    ]
+  }
+}

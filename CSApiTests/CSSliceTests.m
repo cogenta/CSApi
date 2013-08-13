@@ -83,6 +83,11 @@
     [requester addGetResponse:retailerNarrowsResource
                        forURL:[retailerNarrowsResource linkForRelation:@"self"].URL];
     
+    //
+    
+    YBHALResource *categoryNarrowsResource = [self resourceForFixture:@"slice_categorynarrows.json"];
+    [requester addGetResponse:categoryNarrowsResource
+                       forURL:[categoryNarrowsResource linkForRelation:@"self"].URL];
 }
 
 - (void)testGetProducts
@@ -214,6 +219,31 @@
     STAssertNotNil(list, nil);
     
     STAssertEqualObjects(@(list.count), @10, nil);
+}
+
+- (void)testGetCategoryNarrows
+{
+    __block NSError *error = [NSError errorWithDomain:@"not called"
+                                                 code:0
+                                             userInfo:nil];
+    __block id<CSNarrowListPage> page = nil;
+    CALL_AND_WAIT(^(void (^done)()) {
+        [self.slice getCategoryNarrows:^(id<CSNarrowListPage> aPage,
+                                         NSError *anError)
+         {
+             page = aPage;
+             error = anError;
+             done();
+         }];
+    });
+    
+    STAssertNil(error, @"%@", error);
+    STAssertNotNil(page, nil);
+    
+    id<CSNarrowList> list = page.narrowList;
+    STAssertNotNil(list, nil);
+    
+    STAssertEqualObjects(@(list.count), @12, nil);
 }
 
 @end
