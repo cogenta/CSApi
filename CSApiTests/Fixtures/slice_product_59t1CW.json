@@ -1,0 +1,900 @@
+{
+  "_embedded": {
+    "api:pictures": {
+      "count": 1, 
+      "_embedded": {
+        "item": {
+          "count": 4, 
+          "_embedded": {
+            "item": [
+              {
+                "width": 320, 
+                "_links": {
+                  "self": {
+                    "href": "/products/59t1CW/pictures/1/images/320"
+                  }, 
+                  "enclosure": {
+                    "href": "http://320.images.sccope.co.uk/48349112.jpg", 
+                    "type": "image/pjpeg"
+                  }
+                }, 
+                "height": 320
+              }, 
+              {
+                "width": 160, 
+                "_links": {
+                  "self": {
+                    "href": "/products/59t1CW/pictures/1/images/160"
+                  }, 
+                  "enclosure": {
+                    "href": "http://160.images.sccope.co.uk/48349112.jpg", 
+                    "type": "image/pjpeg"
+                  }
+                }, 
+                "height": 160
+              }, 
+              {
+                "width": 116, 
+                "_links": {
+                  "self": {
+                    "href": "/products/59t1CW/pictures/1/images/116"
+                  }, 
+                  "enclosure": {
+                    "href": "http://116.images.sccope.co.uk/48349112.jpg", 
+                    "type": "image/pjpeg"
+                  }
+                }, 
+                "height": 116
+              }, 
+              {
+                "width": 58, 
+                "_links": {
+                  "self": {
+                    "href": "/products/59t1CW/pictures/1/images/58"
+                  }, 
+                  "enclosure": {
+                    "href": "http://58.images.sccope.co.uk/48349112.jpg", 
+                    "type": "image/pjpeg"
+                  }
+                }, 
+                "height": 58
+              }
+            ]
+          }, 
+          "_links": {
+            "curies": [
+              {
+                "href": "/rels/{rel}", 
+                "name": "api", 
+                "templated": true
+              }
+            ], 
+            "self": {
+              "href": "/products/59t1CW/pictures/1"
+            }, 
+            "item": [
+              {
+                "href": "/products/59t1CW/pictures/1/images/320"
+              }, 
+              {
+                "href": "/products/59t1CW/pictures/1/images/160"
+              }, 
+              {
+                "href": "/products/59t1CW/pictures/1/images/116"
+              }, 
+              {
+                "href": "/products/59t1CW/pictures/1/images/58"
+              }
+            ]
+          }
+        }
+      }, 
+      "_links": {
+        "item": {
+          "href": "/products/59t1CW/pictures/1"
+        }, 
+        "self": {
+          "href": "/products/59t1CW/pictures/"
+        }
+      }
+    }, 
+    "api:price": [
+      {
+        "effective_price": 76.98, 
+        "price": 76.98, 
+        "delivery_price": null, 
+        "_links": {
+          "curies": [
+            {
+              "href": "/rels/{rel}", 
+              "name": "api", 
+              "templated": true
+            }
+          ], 
+          "self": {
+            "href": "/prices/46890560"
+          }, 
+          "api:purchase": {
+            "href": "http://www.pixmania.co.uk/uk/uk/13447702/art/samsung/bd-f5500-3d-blu-ray-playe.html"
+          }, 
+          "api:product": {
+            "href": "/products/59t1CW"
+          }, 
+          "api:retailer": {
+            "href": "/retailers/70"
+          }
+        }, 
+        "currency_symbol": "\u00a3", 
+        "currency_code": "GBP", 
+        "stock": "IN_STOCK"
+      }, 
+      {
+        "effective_price": 83.0, 
+        "price": 80.0, 
+        "delivery_price": 3.0, 
+        "_links": {
+          "curies": [
+            {
+              "href": "/rels/{rel}", 
+              "name": "api", 
+              "templated": true
+            }
+          ], 
+          "self": {
+            "href": "/prices/49210140"
+          }, 
+          "api:purchase": {
+            "href": "http://www.tesco.com/direct/samsung-bd-f5500-smart-blu-raydvd-player/492-2928.prd?pageLevel=&skuId=492-2928"
+          }, 
+          "api:product": {
+            "href": "/products/59t1CW"
+          }, 
+          "api:retailer": {
+            "href": "/retailers/81"
+          }
+        }, 
+        "currency_symbol": "\u00a3", 
+        "currency_code": "GBP", 
+        "stock": "IN_STOCK"
+      }, 
+      {
+        "effective_price": 79.95, 
+        "price": 79.95, 
+        "delivery_price": null, 
+        "_links": {
+          "curies": [
+            {
+              "href": "/rels/{rel}", 
+              "name": "api", 
+              "templated": true
+            }
+          ], 
+          "self": {
+            "href": "/prices/50502063"
+          }, 
+          "api:purchase": {
+            "href": "http://www.johnlewis.com/samsung-bd-f5500-smart-3d-blu-ray-disc-dvd-player/p450254?colour=Black"
+          }, 
+          "api:product": {
+            "href": "/products/59t1CW"
+          }, 
+          "api:retailer": {
+            "href": "/retailers/52"
+          }
+        }, 
+        "currency_symbol": "\u00a3", 
+        "currency_code": "GBP", 
+        "stock": "IN_STOCK"
+      }, 
+      {
+        "effective_price": 72.98, 
+        "price": 72.98, 
+        "delivery_price": null, 
+        "_links": {
+          "curies": [
+            {
+              "href": "/rels/{rel}", 
+              "name": "api", 
+              "templated": true
+            }
+          ], 
+          "self": {
+            "href": "/prices/46677928"
+          }, 
+          "api:purchase": {
+            "href": "http://www.pcworldbusiness.co.uk/buy-rent/samsung-3d-networking-blu-ray-amp-dvd-player-hdmi-x-1-usb-x-1-ethernet-anynet/P156219P?from=category&heat=txt"
+          }, 
+          "api:product": {
+            "href": "/products/59t1CW"
+          }, 
+          "api:retailer": {
+            "href": "/retailers/68"
+          }
+        }, 
+        "currency_symbol": "\u00a3", 
+        "currency_code": "GBP", 
+        "stock": "IN_STOCK"
+      }, 
+      {
+        "effective_price": 80.99, 
+        "price": 80.99, 
+        "delivery_price": null, 
+        "_links": {
+          "curies": [
+            {
+              "href": "/rels/{rel}", 
+              "name": "api", 
+              "templated": true
+            }
+          ], 
+          "self": {
+            "href": "/prices/50267426"
+          }, 
+          "api:purchase": {
+            "href": "http://www.misco.co.uk/product/208113/Samsung-BD-F5500-Blu-Ray-Player"
+          }, 
+          "api:product": {
+            "href": "/products/59t1CW"
+          }, 
+          "api:retailer": {
+            "href": "/retailers/62"
+          }
+        }, 
+        "currency_symbol": "\u00a3", 
+        "currency_code": "GBP", 
+        "stock": "IN_STOCK"
+      }, 
+      {
+        "effective_price": 67.99, 
+        "price": 67.99, 
+        "delivery_price": null, 
+        "_links": {
+          "curies": [
+            {
+              "href": "/rels/{rel}", 
+              "name": "api", 
+              "templated": true
+            }
+          ], 
+          "self": {
+            "href": "/prices/42660758"
+          }, 
+          "api:purchase": {
+            "href": "http://www.beyondtelevision.co.uk/DVD--Blu-Ray/Blu-Ray/Blu-Ray-Players/Samsung-BDF5500-Black---3D-Blu-Ray-Player-with-USB-and-DivX-HD-Playback_BDF5500.htm"
+          }, 
+          "api:product": {
+            "href": "/products/59t1CW"
+          }, 
+          "api:retailer": {
+            "href": "/retailers/154"
+          }
+        }, 
+        "currency_symbol": "\u00a3", 
+        "currency_code": "GBP", 
+        "stock": "OUT_OF_STOCK"
+      }, 
+      {
+        "effective_price": 79.0, 
+        "price": 79.0, 
+        "delivery_price": null, 
+        "_links": {
+          "curies": [
+            {
+              "href": "/rels/{rel}", 
+              "name": "api", 
+              "templated": true
+            }
+          ], 
+          "self": {
+            "href": "/prices/46681498"
+          }, 
+          "api:purchase": {
+            "href": "http://www.prcdirect.co.uk/products/bply/blu-ray-player-/-hdd/blu-ray-players/item/BDF5500"
+          }, 
+          "api:product": {
+            "href": "/products/59t1CW"
+          }, 
+          "api:retailer": {
+            "href": "/retailers/128"
+          }
+        }, 
+        "currency_symbol": "\u00a3", 
+        "currency_code": "GBP", 
+        "stock": "IN_STOCK"
+      }, 
+      {
+        "effective_price": 89.99, 
+        "price": 89.99, 
+        "delivery_price": null, 
+        "_links": {
+          "curies": [
+            {
+              "href": "/rels/{rel}", 
+              "name": "api", 
+              "templated": true
+            }
+          ], 
+          "self": {
+            "href": "/prices/50849408"
+          }, 
+          "api:purchase": {
+            "href": "http://www.homebase.co.uk/webapp/wcs/stores/servlet/ProductDisplay?langId=110&storeId=10151&partNumber=223499"
+          }, 
+          "api:product": {
+            "href": "/products/59t1CW"
+          }, 
+          "api:retailer": {
+            "href": "/retailers/46"
+          }
+        }, 
+        "currency_symbol": "\u00a3", 
+        "currency_code": "GBP", 
+        "stock": "UNKNOWN_STOCK"
+      }, 
+      {
+        "effective_price": 74.49, 
+        "price": 74.49, 
+        "delivery_price": 0.0, 
+        "_links": {
+          "curies": [
+            {
+              "href": "/rels/{rel}", 
+              "name": "api", 
+              "templated": true
+            }
+          ], 
+          "self": {
+            "href": "/prices/43254591"
+          }, 
+          "api:purchase": {
+            "href": "http://www.ebuyer.com/486853-samsung-3d-networking-blu-ray-dvd-player-hdmi-x-1-usb-x-bd-f5500"
+          }, 
+          "api:product": {
+            "href": "/products/59t1CW"
+          }, 
+          "api:retailer": {
+            "href": "/retailers/37"
+          }
+        }, 
+        "currency_symbol": "\u00a3", 
+        "currency_code": "GBP", 
+        "stock": "IN_STOCK"
+      }, 
+      {
+        "effective_price": 89.99, 
+        "price": 89.99, 
+        "delivery_price": null, 
+        "_links": {
+          "curies": [
+            {
+              "href": "/rels/{rel}", 
+              "name": "api", 
+              "templated": true
+            }
+          ], 
+          "self": {
+            "href": "/prices/50841222"
+          }, 
+          "api:purchase": {
+            "href": "http://www.argos.co.uk/static/Product/partNumber/1288759.htm"
+          }, 
+          "api:product": {
+            "href": "/products/59t1CW"
+          }, 
+          "api:retailer": {
+            "href": "/retailers/12"
+          }
+        }, 
+        "currency_symbol": "\u00a3", 
+        "currency_code": "GBP", 
+        "stock": "IN_STOCK"
+      }, 
+      {
+        "effective_price": 59.99, 
+        "price": 59.99, 
+        "delivery_price": null, 
+        "_links": {
+          "curies": [
+            {
+              "href": "/rels/{rel}", 
+              "name": "api", 
+              "templated": true
+            }
+          ], 
+          "self": {
+            "href": "/prices/49871341"
+          }, 
+          "api:purchase": {
+            "href": "http://www.sainsburys.co.uk/sol/shop/technology/home_cinemadvd_and_blu_ray/dvd_players/124883132_samsung-bd-f5100-blu-ray-player.html?hnav=4294941953"
+          }, 
+          "api:product": {
+            "href": "/products/59t1CW"
+          }, 
+          "api:retailer": {
+            "href": "/retailers/65"
+          }
+        }, 
+        "currency_symbol": "\u00a3", 
+        "currency_code": "GBP", 
+        "stock": "IN_STOCK"
+      }, 
+      {
+        "effective_price": 85.0, 
+        "price": 85.0, 
+        "delivery_price": null, 
+        "_links": {
+          "curies": [
+            {
+              "href": "/rels/{rel}", 
+              "name": "api", 
+              "templated": true
+            }
+          ], 
+          "self": {
+            "href": "/prices/50382824"
+          }, 
+          "api:purchase": {
+            "href": "http://direct.asda.com/Samsung-BD-F5500-3D-Blu-ray-Player/000506176,default,pd.html"
+          }, 
+          "api:product": {
+            "href": "/products/59t1CW"
+          }, 
+          "api:retailer": {
+            "href": "/retailers/13"
+          }
+        }, 
+        "currency_symbol": "\u00a3", 
+        "currency_code": "GBP", 
+        "stock": "IN_STOCK"
+      }, 
+      {
+        "effective_price": 63.97, 
+        "price": 63.97, 
+        "delivery_price": null, 
+        "_links": {
+          "curies": [
+            {
+              "href": "/rels/{rel}", 
+              "name": "api", 
+              "templated": true
+            }
+          ], 
+          "self": {
+            "href": "/prices/46314389"
+          }, 
+          "api:purchase": {
+            "href": "http://www.laptopsdirect.co.uk/Samsung_BD-F5500_Smart_3D_Blu-ray_Player_BD-F5500/version.asp"
+          }, 
+          "api:product": {
+            "href": "/products/59t1CW"
+          }, 
+          "api:retailer": {
+            "href": "/retailers/54"
+          }
+        }, 
+        "currency_symbol": "\u00a3", 
+        "currency_code": "GBP", 
+        "stock": "IN_STOCK"
+      }, 
+      {
+        "effective_price": 74.99, 
+        "price": 74.99, 
+        "delivery_price": 0.0, 
+        "_links": {
+          "curies": [
+            {
+              "href": "/rels/{rel}", 
+              "name": "api", 
+              "templated": true
+            }
+          ], 
+          "self": {
+            "href": "/prices/42111524"
+          }, 
+          "api:purchase": {
+            "href": "http://www.amazon.co.uk/Samsung-BD-F5500-Network-Blu-ray-Player/dp/B00BKWBL8C/"
+          }, 
+          "api:product": {
+            "href": "/products/59t1CW"
+          }, 
+          "api:retailer": {
+            "href": "/retailers/2"
+          }
+        }, 
+        "currency_symbol": "\u00a3", 
+        "currency_code": "GBP", 
+        "stock": "IN_STOCK"
+      }, 
+      {
+        "effective_price": 89.95, 
+        "price": 89.95, 
+        "delivery_price": 0.0, 
+        "_links": {
+          "curies": [
+            {
+              "href": "/rels/{rel}", 
+              "name": "api", 
+              "templated": true
+            }
+          ], 
+          "self": {
+            "href": "/prices/45123697"
+          }, 
+          "api:purchase": {
+            "href": "http://www.superfi.co.uk/p-12284-samsung-bdf5500-3d-ready-blu-raydvd-player.aspx"
+          }, 
+          "api:product": {
+            "href": "/products/59t1CW"
+          }, 
+          "api:retailer": {
+            "href": "/retailers/129"
+          }
+        }, 
+        "currency_symbol": "\u00a3", 
+        "currency_code": "GBP", 
+        "stock": "OUT_OF_STOCK"
+      }, 
+      {
+        "effective_price": 63.97, 
+        "price": 63.97, 
+        "delivery_price": null, 
+        "_links": {
+          "curies": [
+            {
+              "href": "/rels/{rel}", 
+              "name": "api", 
+              "templated": true
+            }
+          ], 
+          "self": {
+            "href": "/prices/46102691"
+          }, 
+          "api:purchase": {
+            "href": "http://www.appliancesdirect.co.uk/p/bd-f5500/samsung-bdf5500-blu-ray-player"
+          }, 
+          "api:product": {
+            "href": "/products/59t1CW"
+          }, 
+          "api:retailer": {
+            "href": "/retailers/11"
+          }
+        }, 
+        "currency_symbol": "\u00a3", 
+        "currency_code": "GBP", 
+        "stock": "IN_STOCK"
+      }, 
+      {
+        "effective_price": 69.95, 
+        "price": 69.95, 
+        "delivery_price": null, 
+        "_links": {
+          "curies": [
+            {
+              "href": "/rels/{rel}", 
+              "name": "api", 
+              "templated": true
+            }
+          ], 
+          "self": {
+            "href": "/prices/42660496"
+          }, 
+          "api:purchase": {
+            "href": "http://www.richersounds.com/product/blu-ray/samsung/bdf5500/sams-bdf5500-blk"
+          }, 
+          "api:product": {
+            "href": "/products/59t1CW"
+          }, 
+          "api:retailer": {
+            "href": "/retailers/74"
+          }
+        }, 
+        "currency_symbol": "\u00a3", 
+        "currency_code": "GBP", 
+        "stock": "OUT_OF_STOCK"
+      }, 
+      {
+        "effective_price": 74.99, 
+        "price": 74.99, 
+        "delivery_price": null, 
+        "_links": {
+          "curies": [
+            {
+              "href": "/rels/{rel}", 
+              "name": "api", 
+              "templated": true
+            }
+          ], 
+          "self": {
+            "href": "/prices/43021621"
+          }, 
+          "api:purchase": {
+            "href": "http://www.pcworld.co.uk/gbuk/tv-dvd-audio/dvd-blu-ray-home-cinema/blu-ray-players/samsung-bd-f5500-smart-3d-blu-ray-player-21252819-pdt.html"
+          }, 
+          "api:product": {
+            "href": "/products/59t1CW"
+          }, 
+          "api:retailer": {
+            "href": "/retailers/69"
+          }
+        }, 
+        "currency_symbol": "\u00a3", 
+        "currency_code": "GBP", 
+        "stock": "IN_STOCK"
+      }, 
+      {
+        "effective_price": 86.9, 
+        "price": 86.9, 
+        "delivery_price": null, 
+        "_links": {
+          "curies": [
+            {
+              "href": "/rels/{rel}", 
+              "name": "api", 
+              "templated": true
+            }
+          ], 
+          "self": {
+            "href": "/prices/45919190"
+          }, 
+          "api:purchase": {
+            "href": "http://www.tesco.com/direct/samsung-bd-f5500-3d-networking-blu-raydvd-player/409-0841.prd?pageLevel=&skuId=409-0841"
+          }, 
+          "api:product": {
+            "href": "/products/59t1CW"
+          }, 
+          "api:retailer": {
+            "href": "/retailers/81"
+          }
+        }, 
+        "currency_symbol": "\u00a3", 
+        "currency_code": "GBP", 
+        "stock": "IN_STOCK"
+      }, 
+      {
+        "effective_price": 74.99, 
+        "price": 74.99, 
+        "delivery_price": 0.0, 
+        "_links": {
+          "curies": [
+            {
+              "href": "/rels/{rel}", 
+              "name": "api", 
+              "templated": true
+            }
+          ], 
+          "self": {
+            "href": "/prices/43022614"
+          }, 
+          "api:purchase": {
+            "href": "http://www.currys.co.uk/gbuk/tv-dvd-blu-ray/dvd-blu-ray-home-cinema/blu-ray-dvd-players/blu-ray-players/samsung-bd-f5500-smart-3d-blu-ray-player-21252819-pdt.html"
+          }, 
+          "api:product": {
+            "href": "/products/59t1CW"
+          }, 
+          "api:retailer": {
+            "href": "/retailers/31"
+          }
+        }, 
+        "currency_symbol": "\u00a3", 
+        "currency_code": "GBP", 
+        "stock": "IN_STOCK"
+      }, 
+      {
+        "effective_price": 82.95, 
+        "price": 79.0, 
+        "delivery_price": 3.95, 
+        "_links": {
+          "curies": [
+            {
+              "href": "/rels/{rel}", 
+              "name": "api", 
+              "templated": true
+            }
+          ], 
+          "self": {
+            "href": "/prices/47361711"
+          }, 
+          "api:purchase": {
+            "href": "http://www.very.co.uk/samsung-bd-f5500-3d-blu-ray-player/1262529712.prd"
+          }, 
+          "api:product": {
+            "href": "/products/59t1CW"
+          }, 
+          "api:retailer": {
+            "href": "/retailers/57"
+          }
+        }, 
+        "currency_symbol": "\u00a3", 
+        "currency_code": "GBP", 
+        "stock": "IN_STOCK"
+      }, 
+      {
+        "effective_price": 63.97, 
+        "price": 63.97, 
+        "delivery_price": null, 
+        "_links": {
+          "curies": [
+            {
+              "href": "/rels/{rel}", 
+              "name": "api", 
+              "templated": true
+            }
+          ], 
+          "self": {
+            "href": "/prices/46096743"
+          }, 
+          "api:purchase": {
+            "href": "http://www.directtvs.co.uk/Samsung_BD-F5500_Smart_3D_Blu-ray_Player_BD-F5500/version.asp"
+          }, 
+          "api:product": {
+            "href": "/products/59t1CW"
+          }, 
+          "api:retailer": {
+            "href": "/retailers/122"
+          }
+        }, 
+        "currency_symbol": "\u00a3", 
+        "currency_code": "GBP", 
+        "stock": "IN_STOCK"
+      }, 
+      {
+        "effective_price": 83.81, 
+        "price": 83.81, 
+        "delivery_price": 0.0, 
+        "_links": {
+          "curies": [
+            {
+              "href": "/rels/{rel}", 
+              "name": "api", 
+              "templated": true
+            }
+          ], 
+          "self": {
+            "href": "/prices/44631519"
+          }, 
+          "api:purchase": {
+            "href": "http://www.1staudiovisual.co.uk/catalog/samsung-bdf5500-full-bluray-player-p-107194.html"
+          }, 
+          "api:product": {
+            "href": "/products/59t1CW"
+          }, 
+          "api:retailer": {
+            "href": "/retailers/159"
+          }
+        }, 
+        "currency_symbol": "\u00a3", 
+        "currency_code": "GBP", 
+        "stock": "IN_STOCK"
+      }, 
+      {
+        "effective_price": 72.98, 
+        "price": 72.98, 
+        "delivery_price": null, 
+        "_links": {
+          "curies": [
+            {
+              "href": "/rels/{rel}", 
+              "name": "api", 
+              "templated": true
+            }
+          ], 
+          "self": {
+            "href": "/prices/44066206"
+          }, 
+          "api:purchase": {
+            "href": "http://www.shop.bt.com/products/samsung-3d-networking-blu-ray--dvd-player-hdmi-x-1-usb-8LMX.html"
+          }, 
+          "api:product": {
+            "href": "/products/59t1CW"
+          }, 
+          "api:retailer": {
+            "href": "/retailers/26"
+          }
+        }, 
+        "currency_symbol": "\u00a3", 
+        "currency_code": "GBP", 
+        "stock": "OUT_OF_STOCK"
+      }
+    ]
+  }, 
+  "name": "Samsung BD-F5500 Smart 3D Blu-ray Player - BD-F5500", 
+  "cover_type": null, 
+  "views": 0, 
+  "author": null, 
+  "software_platform": null, 
+  "_links": {
+    "curies": [
+      {
+        "href": "/rels/{rel}", 
+        "name": "api", 
+        "templated": true
+      }
+    ], 
+    "self": {
+      "href": "/products/59t1CW"
+    }, 
+    "api:pictures": {
+      "href": "/products/59t1CW/pictures/"
+    }, 
+    "api:price": [
+      {
+        "href": "/prices/46890560"
+      }, 
+      {
+        "href": "/prices/49210140"
+      }, 
+      {
+        "href": "/prices/50502063"
+      }, 
+      {
+        "href": "/prices/46677928"
+      }, 
+      {
+        "href": "/prices/50267426"
+      }, 
+      {
+        "href": "/prices/42660758"
+      }, 
+      {
+        "href": "/prices/46681498"
+      }, 
+      {
+        "href": "/prices/50849408"
+      }, 
+      {
+        "href": "/prices/43254591"
+      }, 
+      {
+        "href": "/prices/50841222"
+      }, 
+      {
+        "href": "/prices/49871341"
+      }, 
+      {
+        "href": "/prices/50382824"
+      }, 
+      {
+        "href": "/prices/46314389"
+      }, 
+      {
+        "href": "/prices/42111524"
+      }, 
+      {
+        "href": "/prices/45123697"
+      }, 
+      {
+        "href": "/prices/46102691"
+      }, 
+      {
+        "href": "/prices/42660496"
+      }, 
+      {
+        "href": "/prices/43021621"
+      }, 
+      {
+        "href": "/prices/45919190"
+      }, 
+      {
+        "href": "/prices/43022614"
+      }, 
+      {
+        "href": "/prices/47361711"
+      }, 
+      {
+        "href": "/prices/46096743"
+      }, 
+      {
+        "href": "/prices/44631519"
+      }, 
+      {
+        "href": "/prices/44066206"
+      }
+    ], 
+    "api:category": {
+      "href": "/categories/2"
+    }
+  }, 
+  "last_updated": "2013-08-13T07:09:51.0589208Z", 
+  "manufacturer": "Samsung", 
+  "description": "The Samsung BDF5500 combines excellent online connectivity with brilliant picture quality. Bring your viewing to life with 3D Blu-ray playback.Its fast loading and booting function will get you watching your favourite film in no time while its Full HD Blu-ray playback will make it look amazing. USB connectivity allows you to play back your own music and photos on your TV through the use of a USB stick or external HDD connected to the 3D Blu-ray Player. 3D Networking Blu-ray & DVD Player - the full HD 3D experience \u2013 and more choice The Samsung BD-F5500 gives you the stunning clarity of Blu-ray, the full HD 3D experience and huge choice of entertainment too. A range of installed apps give you easy access to online content including BBC iPlayer, Facebook, Netflix and YouTube , Enjoy your own entertainment collection too - you can connect your PC and mobile, USB memory sticks and external hard drives to stream movies, music and photos. You'll always have something new and exciting to watch! The next level of Full HD 3D entertainment With Full HD 3D, your 3D home entertainment becomes more exciting, vivid and dramatic than ever before. Thanks to 3D Auto Contrast, you'll have crisper images with sharper contrast. Samsung's superior 3D technology minimises image layers and maximises response speed, for more fluid and clear viewing. The result is 3D HD that looks \u2013 and feels \u2013 the closest thing to reality. True HDTV Connect to your TV for an image with nearly twice the resolution of conventional HDTVs. The Full HDTV 1080p picture engulfs you with spectacular detail \u2013 rich, eye-popping colours and super-sharp, ultra-realistic images. Blu-ray Player can play DVD as well as Blu ray discs, providing versatility, and ensuring you can enjoy your existing movie collection. Built-in Apps Discover more entertainment and enjoy streaming services with native apps already installed. With popular apps like YouTube and BBC iPlayer, your Blu ray player gives you instant access to a hu..."
+}

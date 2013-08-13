@@ -39,6 +39,10 @@
 		BE5765DE17BA92C70082B4C3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE5765DD17BA92C70082B4C3 /* CoreGraphics.framework */; };
 		BE5765E117BA93A70082B4C3 /* CSSliceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BE5765E017BA93A60082B4C3 /* CSSliceTests.m */; };
 		BE5765E317BA957A0082B4C3 /* slice.json in Resources */ = {isa = PBXBuildFile; fileRef = BE5765E217BA957A0082B4C3 /* slice.json */; };
+		BE5765E517BA99040082B4C3 /* slice_product_search.json in Resources */ = {isa = PBXBuildFile; fileRef = BE5765E417BA99040082B4C3 /* slice_product_search.json */; };
+		BE5765EA17BA9ACE0082B4C3 /* slice_products.json in Resources */ = {isa = PBXBuildFile; fileRef = BE5765E917BA9ACE0082B4C3 /* slice_products.json */; };
+		BE5765EC17BA9B310082B4C3 /* slice_product_59t1CW.json in Resources */ = {isa = PBXBuildFile; fileRef = BE5765EB17BA9B310082B4C3 /* slice_product_59t1CW.json */; };
+		BE5765EE17BA9E2C0082B4C3 /* slice_product_5WY4WK.json in Resources */ = {isa = PBXBuildFile; fileRef = BE5765ED17BA9E2C0082B4C3 /* slice_product_5WY4WK.json */; };
 		BE57713F16B98EFF002F42E4 /* user_post_response_with_reference_and_meta.json in Resources */ = {isa = PBXBuildFile; fileRef = BE57713E16B98EFF002F42E4 /* user_post_response_with_reference_and_meta.json */; };
 		BE57714716BA7F89002F42E4 /* CSBasicCredential.m in Sources */ = {isa = PBXBuildFile; fileRef = BE57714616BA7F89002F42E4 /* CSBasicCredential.m */; };
 		BE57714A16BA8066002F42E4 /* CSHALRepresentation.m in Sources */ = {isa = PBXBuildFile; fileRef = BE57714916BA8066002F42E4 /* CSHALRepresentation.m */; };
@@ -186,6 +190,10 @@
 		BE5765DF17BA93A60082B4C3 /* CSSliceTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSSliceTests.h; sourceTree = "<group>"; };
 		BE5765E017BA93A60082B4C3 /* CSSliceTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSSliceTests.m; sourceTree = "<group>"; };
 		BE5765E217BA957A0082B4C3 /* slice.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = slice.json; sourceTree = "<group>"; };
+		BE5765E417BA99040082B4C3 /* slice_product_search.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = slice_product_search.json; sourceTree = "<group>"; };
+		BE5765E917BA9ACE0082B4C3 /* slice_products.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = slice_products.json; sourceTree = "<group>"; };
+		BE5765EB17BA9B310082B4C3 /* slice_product_59t1CW.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = slice_product_59t1CW.json; sourceTree = "<group>"; };
+		BE5765ED17BA9E2C0082B4C3 /* slice_product_5WY4WK.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = slice_product_5WY4WK.json; sourceTree = "<group>"; };
 		BE57713E16B98EFF002F42E4 /* user_post_response_with_reference_and_meta.json */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = text.json; path = user_post_response_with_reference_and_meta.json; sourceTree = "<group>"; tabWidth = 2; };
 		BE57714016BA7C19002F42E4 /* CSAuthenticator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSAuthenticator.h; sourceTree = "<group>"; };
 		BE57714116BA7C44002F42E4 /* CSCredential.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSCredential.h; sourceTree = "<group>"; };
@@ -488,6 +496,18 @@
 			name = Categories;
 			sourceTree = "<group>";
 		};
+		BE5765E617BA990F0082B4C3 /* Slice */ = {
+			isa = PBXGroup;
+			children = (
+				BE5765E217BA957A0082B4C3 /* slice.json */,
+				BE5765E917BA9ACE0082B4C3 /* slice_products.json */,
+				BE5765EB17BA9B310082B4C3 /* slice_product_59t1CW.json */,
+				BE5765E417BA99040082B4C3 /* slice_product_search.json */,
+				BE5765ED17BA9E2C0082B4C3 /* slice_product_5WY4WK.json */,
+			);
+			name = Slice;
+			sourceTree = "<group>";
+		};
 		BE5D4C0116EE45120096FFFF /* Applications */ = {
 			isa = PBXGroup;
 			children = (
@@ -667,6 +687,7 @@
 		BEA65A1416B9535300F10CB0 /* Fixtures */ = {
 			isa = PBXGroup;
 			children = (
+				BE5765E617BA990F0082B4C3 /* Slice */,
 				BEA65A1516B9537300F10CB0 /* app.json */,
 				BE4B14A616B9722A00BDDD08 /* user_post_response.json */,
 				BE57713E16B98EFF002F42E4 /* user_post_response_with_reference_and_meta.json */,
@@ -696,7 +717,6 @@
 				BE558EA8174D0E80009FA3DA /* category_4-dvds-and-blu-ray.json */,
 				BE7F95DE1765D25D008432E1 /* category_1167-digital-video.json */,
 				BE558EAA174D1083009FA3DA /* categories.json */,
-				BE5765E217BA957A0082B4C3 /* slice.json */,
 			);
 			path = Fixtures;
 			sourceTree = "<group>";
@@ -806,6 +826,10 @@
 				BE7F95DF1765D25D008432E1 /* category_1167-digital-video.json in Resources */,
 				BE7E39B417969C1700E2A139 /* retailer_products_search.json in Resources */,
 				BE5765E317BA957A0082B4C3 /* slice.json in Resources */,
+				BE5765E517BA99040082B4C3 /* slice_product_search.json in Resources */,
+				BE5765EA17BA9ACE0082B4C3 /* slice_products.json in Resources */,
+				BE5765EC17BA9B310082B4C3 /* slice_product_59t1CW.json in Resources */,
+				BE5765EE17BA9E2C0082B4C3 /* slice_product_5WY4WK.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

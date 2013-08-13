@@ -1,0 +1,30 @@
+{
+  "_links": {
+    "api:categorynarrows": {
+      "href": "/retailers/9,237,20,228,110,223,94,57,52,136/categorynarrows/"
+    }, 
+    "api:retailernarrows": {
+      "href": "/retailers/9,237,20,228,110,223,94,57,52,136/narrows/"
+    }, 
+    "curies": [
+      {
+        "href": "/rels/{rel}", 
+        "name": "api", 
+        "templated": true
+      }
+    ], 
+    "api:products": {
+      "href": "/retailers/9,237,20,228,110,223,94,57,52,136/products/"
+    }, 
+    "api:searchproducts": {
+      "href": "/retailers/9,237,20,228,110,223,94,57,52,136/products/{?q}", 
+      "templated": true
+    }, 
+    "api:filtersbyretailerlist": {
+      "href": "/retailers/9,237,20,228,110,223,94,57,52,136"
+    }, 
+    "self": {
+      "href": "/retailers/9,237,20,228,110,223,94,57,52,136/listslice"
+    }
+  }
+}

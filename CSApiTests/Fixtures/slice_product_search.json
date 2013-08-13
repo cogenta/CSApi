@@ -1,0 +1,37 @@
+{
+  "count": 5, 
+  "_links": {
+    "curies": [
+      {
+        "href": "/rels/{rel}", 
+        "name": "api", 
+        "templated": true
+      }
+    ], 
+    "self": {
+      "href": "/retailers/9,237,20,228,110,223,94,57,52,136/products/?q=Apple%20iPod%20classic%20160GB"
+    }, 
+    "item": [
+      {
+        "href": "/products/5WY4WK", 
+        "title": "Apple iPod classic Silver - 160GB"
+      }, 
+      {
+        "href": "/products/5UzWZI", 
+        "title": "Apple iPod Classic Black - 160GB"
+      }, 
+      {
+        "href": "/products/3jRgd6", 
+        "title": "Apple iPod Classic 160GB (Black) ( Classic 160GB Black )"
+      }, 
+      {
+        "href": "/products/3jRgTQ", 
+        "title": "Apple iPod Classic 160GB (Silver) ( Classic 160GB Silver )"
+      }, 
+      {
+        "href": "/products/3jQ6Om", 
+        "title": "Sennheiser MM70i Earphone w/in-line remote and mic ( Senn MM70i IN HS Blk )"
+      }
+    ]
+  }
+}

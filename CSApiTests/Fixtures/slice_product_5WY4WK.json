@@ -1,0 +1,772 @@
+{
+  "_embedded": {
+    "api:pictures": {
+      "count": 1, 
+      "_embedded": {
+        "item": {
+          "count": 4, 
+          "_embedded": {
+            "item": [
+              {
+                "width": 320, 
+                "_links": {
+                  "self": {
+                    "href": "/products/5WY4WK/pictures/1/images/320"
+                  }, 
+                  "enclosure": {
+                    "href": "http://320.images.sccope.co.uk/33234754.jpg", 
+                    "type": "image/pjpeg"
+                  }
+                }, 
+                "height": 320
+              }, 
+              {
+                "width": 160, 
+                "_links": {
+                  "self": {
+                    "href": "/products/5WY4WK/pictures/1/images/160"
+                  }, 
+                  "enclosure": {
+                    "href": "http://160.images.sccope.co.uk/33234754.jpg", 
+                    "type": "image/pjpeg"
+                  }
+                }, 
+                "height": 160
+              }, 
+              {
+                "width": 116, 
+                "_links": {
+                  "self": {
+                    "href": "/products/5WY4WK/pictures/1/images/116"
+                  }, 
+                  "enclosure": {
+                    "href": "http://116.images.sccope.co.uk/33234754.jpg", 
+                    "type": "image/pjpeg"
+                  }
+                }, 
+                "height": 116
+              }, 
+              {
+                "width": 58, 
+                "_links": {
+                  "self": {
+                    "href": "/products/5WY4WK/pictures/1/images/58"
+                  }, 
+                  "enclosure": {
+                    "href": "http://58.images.sccope.co.uk/33234754.jpg", 
+                    "type": "image/pjpeg"
+                  }
+                }, 
+                "height": 58
+              }
+            ]
+          }, 
+          "_links": {
+            "curies": [
+              {
+                "href": "/rels/{rel}", 
+                "name": "api", 
+                "templated": true
+              }
+            ], 
+            "self": {
+              "href": "/products/5WY4WK/pictures/1"
+            }, 
+            "item": [
+              {
+                "href": "/products/5WY4WK/pictures/1/images/320"
+              }, 
+              {
+                "href": "/products/5WY4WK/pictures/1/images/160"
+              }, 
+              {
+                "href": "/products/5WY4WK/pictures/1/images/116"
+              }, 
+              {
+                "href": "/products/5WY4WK/pictures/1/images/58"
+              }
+            ]
+          }
+        }
+      }, 
+      "_links": {
+        "item": {
+          "href": "/products/5WY4WK/pictures/1"
+        }, 
+        "self": {
+          "href": "/products/5WY4WK/pictures/"
+        }
+      }
+    }, 
+    "api:price": [
+      {
+        "effective_price": 182.0, 
+        "price": 182.0, 
+        "delivery_price": null, 
+        "_links": {
+          "curies": [
+            {
+              "href": "/rels/{rel}", 
+              "name": "api", 
+              "templated": true
+            }
+          ], 
+          "self": {
+            "href": "/prices/50238387"
+          }, 
+          "api:purchase": {
+            "href": "http://direct.asda.com/Apple-iPod-Classic-Silver---160GB/000511845,default,pd.html"
+          }, 
+          "api:product": {
+            "href": "/products/5WY4WK"
+          }, 
+          "api:retailer": {
+            "href": "/retailers/13"
+          }
+        }, 
+        "currency_symbol": "\u00a3", 
+        "currency_code": "GBP", 
+        "stock": "IN_STOCK"
+      }, 
+      {
+        "effective_price": 184.97, 
+        "price": 184.97, 
+        "delivery_price": null, 
+        "_links": {
+          "curies": [
+            {
+              "href": "/rels/{rel}", 
+              "name": "api", 
+              "templated": true
+            }
+          ], 
+          "self": {
+            "href": "/prices/7122817"
+          }, 
+          "api:purchase": {
+            "href": "http://www.laptopsdirect.co.uk/iPod_Classic_160GB_-_Silver_MC293QB-A/version.asp"
+          }, 
+          "api:product": {
+            "href": "/products/5WY4WK"
+          }, 
+          "api:retailer": {
+            "href": "/retailers/54"
+          }
+        }, 
+        "currency_symbol": "\u00a3", 
+        "currency_code": "GBP", 
+        "stock": "IN_STOCK"
+      }, 
+      {
+        "effective_price": 194.4, 
+        "price": 194.4, 
+        "delivery_price": null, 
+        "_links": {
+          "curies": [
+            {
+              "href": "/rels/{rel}", 
+              "name": "api", 
+              "templated": true
+            }
+          ], 
+          "self": {
+            "href": "/prices/34158375"
+          }, 
+          "api:purchase": {
+            "href": "http://www.jigsaw24.com/apple-ipod-classic-160gb-silver/ipod/-/fcp-product/11824"
+          }, 
+          "api:product": {
+            "href": "/products/5WY4WK"
+          }, 
+          "api:retailer": {
+            "href": "/retailers/51"
+          }
+        }, 
+        "currency_symbol": "\u00a3", 
+        "currency_code": "GBP", 
+        "stock": "UNKNOWN_STOCK"
+      }, 
+      {
+        "effective_price": 184.97, 
+        "price": 184.97, 
+        "delivery_price": null, 
+        "_links": {
+          "curies": [
+            {
+              "href": "/rels/{rel}", 
+              "name": "api", 
+              "templated": true
+            }
+          ], 
+          "self": {
+            "href": "/prices/25067867"
+          }, 
+          "api:purchase": {
+            "href": "http://www.directtvs.co.uk/iPod_Classic_160GB_-_Silver_MC293QB-A/version.asp"
+          }, 
+          "api:product": {
+            "href": "/products/5WY4WK"
+          }, 
+          "api:retailer": {
+            "href": "/retailers/122"
+          }
+        }, 
+        "currency_symbol": "\u00a3", 
+        "currency_code": "GBP", 
+        "stock": "IN_STOCK"
+      }, 
+      {
+        "effective_price": 198.0, 
+        "price": 198.0, 
+        "delivery_price": null, 
+        "_links": {
+          "curies": [
+            {
+              "href": "/rels/{rel}", 
+              "name": "api", 
+              "templated": true
+            }
+          ], 
+          "self": {
+            "href": "/prices/6731527"
+          }, 
+          "api:purchase": {
+            "href": "http://www.misco.co.uk/product/161224/Apple-iPod-classic-160GB-Silver"
+          }, 
+          "api:product": {
+            "href": "/products/5WY4WK"
+          }, 
+          "api:retailer": {
+            "href": "/retailers/62"
+          }
+        }, 
+        "currency_symbol": "\u00a3", 
+        "currency_code": "GBP", 
+        "stock": "IN_STOCK"
+      }, 
+      {
+        "effective_price": 172.0, 
+        "price": 172.0, 
+        "delivery_price": null, 
+        "_links": {
+          "curies": [
+            {
+              "href": "/rels/{rel}", 
+              "name": "api", 
+              "templated": true
+            }
+          ], 
+          "self": {
+            "href": "/prices/6699593"
+          }, 
+          "api:purchase": {
+            "href": "http://www.johnlewis.com/apple-ipod-classic-160gb-silver/p230690656"
+          }, 
+          "api:product": {
+            "href": "/products/5WY4WK"
+          }, 
+          "api:retailer": {
+            "href": "/retailers/52"
+          }
+        }, 
+        "currency_symbol": "\u00a3", 
+        "currency_code": "GBP", 
+        "stock": "IN_STOCK"
+      }, 
+      {
+        "effective_price": 162.0, 
+        "price": 162.0, 
+        "delivery_price": 0.0, 
+        "_links": {
+          "curies": [
+            {
+              "href": "/rels/{rel}", 
+              "name": "api", 
+              "templated": true
+            }
+          ], 
+          "self": {
+            "href": "/prices/6647971"
+          }, 
+          "api:purchase": {
+            "href": "http://www.amazon.co.uk/Apple-iPod-classic-160GB-Generation/dp/B002MRRROG/"
+          }, 
+          "api:product": {
+            "href": "/products/5WY4WK"
+          }, 
+          "api:retailer": {
+            "href": "/retailers/2"
+          }
+        }, 
+        "currency_symbol": "\u00a3", 
+        "currency_code": "GBP", 
+        "stock": "IN_STOCK"
+      }, 
+      {
+        "effective_price": 172.0, 
+        "price": 172.0, 
+        "delivery_price": null, 
+        "_links": {
+          "curies": [
+            {
+              "href": "/rels/{rel}", 
+              "name": "api", 
+              "templated": true
+            }
+          ], 
+          "self": {
+            "href": "/prices/6932155"
+          }, 
+          "api:purchase": {
+            "href": "http://www.sainsburys.co.uk/sol/shop/technology/ipods_and_mp3_players/ipods/118011928_ipod-classic-6th-generation-160gb-silver.html?hnav=4294960239"
+          }, 
+          "api:product": {
+            "href": "/products/5WY4WK"
+          }, 
+          "api:retailer": {
+            "href": "/retailers/65"
+          }
+        }, 
+        "currency_symbol": "\u00a3", 
+        "currency_code": "GBP", 
+        "stock": "IN_STOCK"
+      }, 
+      {
+        "effective_price": 200.0, 
+        "price": 200.0, 
+        "delivery_price": 0.0, 
+        "_links": {
+          "curies": [
+            {
+              "href": "/rels/{rel}", 
+              "name": "api", 
+              "templated": true
+            }
+          ], 
+          "self": {
+            "href": "/prices/10670061"
+          }, 
+          "api:purchase": {
+            "href": "http://www.ebuyer.com/175479-apple-ipod-classic-160gb-silver-apple-mp3-players-at-ebuyer-mc293qb-a"
+          }, 
+          "api:product": {
+            "href": "/products/5WY4WK"
+          }, 
+          "api:retailer": {
+            "href": "/retailers/37"
+          }
+        }, 
+        "currency_symbol": "\u00a3", 
+        "currency_code": "GBP", 
+        "stock": "IN_STOCK"
+      }, 
+      {
+        "effective_price": 172.0, 
+        "price": 172.0, 
+        "delivery_price": 0.0, 
+        "_links": {
+          "curies": [
+            {
+              "href": "/rels/{rel}", 
+              "name": "api", 
+              "templated": true
+            }
+          ], 
+          "self": {
+            "href": "/prices/33950479"
+          }, 
+          "api:purchase": {
+            "href": "http://www.argos.co.uk/static/Product/partNumber/5190197.htm"
+          }, 
+          "api:product": {
+            "href": "/products/5WY4WK"
+          }, 
+          "api:retailer": {
+            "href": "/retailers/12"
+          }
+        }, 
+        "currency_symbol": "\u00a3", 
+        "currency_code": "GBP", 
+        "stock": "IN_STOCK"
+      }, 
+      {
+        "effective_price": 175.0, 
+        "price": 172.0, 
+        "delivery_price": 3.0, 
+        "_links": {
+          "curies": [
+            {
+              "href": "/rels/{rel}", 
+              "name": "api", 
+              "templated": true
+            }
+          ], 
+          "self": {
+            "href": "/prices/6691688"
+          }, 
+          "api:purchase": {
+            "href": "http://www.tesco.com/direct/apple-ipod-classic-160gb-silver/206-0339.prd?pageLevel=&skuId=206-0339"
+          }, 
+          "api:product": {
+            "href": "/products/5WY4WK"
+          }, 
+          "api:retailer": {
+            "href": "/retailers/81"
+          }
+        }, 
+        "currency_symbol": "\u00a3", 
+        "currency_code": "GBP", 
+        "stock": "IN_STOCK"
+      }, 
+      {
+        "effective_price": 199.0, 
+        "price": 199.0, 
+        "delivery_price": null, 
+        "_links": {
+          "curies": [
+            {
+              "href": "/rels/{rel}", 
+              "name": "api", 
+              "templated": true
+            }
+          ], 
+          "self": {
+            "href": "/prices/19930569"
+          }, 
+          "api:purchase": {
+            "href": "http://www.selfridges.com/en/Home-Tech/Categories/Shop-Tech/iPods/iPod-classic-160GB-silver_702-10054-MC293QBA/"
+          }, 
+          "api:product": {
+            "href": "/products/5WY4WK"
+          }, 
+          "api:retailer": {
+            "href": "/retailers/127"
+          }
+        }, 
+        "currency_symbol": "\u00a3", 
+        "currency_code": "GBP", 
+        "stock": "IN_STOCK"
+      }, 
+      {
+        "effective_price": 179.0, 
+        "price": 179.0, 
+        "delivery_price": null, 
+        "_links": {
+          "curies": [
+            {
+              "href": "/rels/{rel}", 
+              "name": "api", 
+              "templated": true
+            }
+          ], 
+          "self": {
+            "href": "/prices/10833105"
+          }, 
+          "api:purchase": {
+            "href": "http://www.pcworld.co.uk/gbuk/tv-dvd-audio/audio/ipods/apple-ipod-classic-160-gb-silver-03033277-pdt.html"
+          }, 
+          "api:product": {
+            "href": "/products/5WY4WK"
+          }, 
+          "api:retailer": {
+            "href": "/retailers/69"
+          }
+        }, 
+        "currency_symbol": "\u00a3", 
+        "currency_code": "GBP", 
+        "stock": "IN_STOCK"
+      }, 
+      {
+        "effective_price": 189.99, 
+        "price": 189.99, 
+        "delivery_price": null, 
+        "_links": {
+          "curies": [
+            {
+              "href": "/rels/{rel}", 
+              "name": "api", 
+              "templated": true
+            }
+          ], 
+          "self": {
+            "href": "/prices/19980208"
+          }, 
+          "api:purchase": {
+            "href": "http://www.game.co.uk/en/ipod-classic-160gb-silver-46013?attributeName1=Catalog_GameSalesCatalog_EN_GB&pageSize=20&categoryIdentifier=94601&pageNumber=3&attributeValue1=4294966023&sortBy=MOST_POPULAR_DESC"
+          }, 
+          "api:product": {
+            "href": "/products/5WY4WK"
+          }, 
+          "api:retailer": {
+            "href": "/retailers/41"
+          }
+        }, 
+        "currency_symbol": "\u00a3", 
+        "currency_code": "GBP", 
+        "stock": "OUT_OF_STOCK"
+      }, 
+      {
+        "effective_price": 179.0, 
+        "price": 179.0, 
+        "delivery_price": 0.0, 
+        "_links": {
+          "curies": [
+            {
+              "href": "/rels/{rel}", 
+              "name": "api", 
+              "templated": true
+            }
+          ], 
+          "self": {
+            "href": "/prices/10469234"
+          }, 
+          "api:purchase": {
+            "href": "http://www.currys.co.uk/gbuk/audio/ipods/ipod-classic/apple-ipod-classic-160-gb-silver-03033277-pdt.html"
+          }, 
+          "api:product": {
+            "href": "/products/5WY4WK"
+          }, 
+          "api:retailer": {
+            "href": "/retailers/31"
+          }
+        }, 
+        "currency_symbol": "\u00a3", 
+        "currency_code": "GBP", 
+        "stock": "IN_STOCK"
+      }, 
+      {
+        "effective_price": 202.95, 
+        "price": 199.0, 
+        "delivery_price": 3.95, 
+        "_links": {
+          "curies": [
+            {
+              "href": "/rels/{rel}", 
+              "name": "api", 
+              "templated": true
+            }
+          ], 
+          "self": {
+            "href": "/prices/6734347"
+          }, 
+          "api:purchase": {
+            "href": "http://www.very.co.uk/apple-ipod-classicreg-160gb-silver/643062846.prd"
+          }, 
+          "api:product": {
+            "href": "/products/5WY4WK"
+          }, 
+          "api:retailer": {
+            "href": "/retailers/57"
+          }
+        }, 
+        "currency_symbol": "\u00a3", 
+        "currency_code": "GBP", 
+        "stock": "IN_STOCK"
+      }, 
+      {
+        "effective_price": 199.99, 
+        "price": 199.99, 
+        "delivery_price": 0.0, 
+        "_links": {
+          "curies": [
+            {
+              "href": "/rels/{rel}", 
+              "name": "api", 
+              "templated": true
+            }
+          ], 
+          "self": {
+            "href": "/prices/21138062"
+          }, 
+          "api:purchase": {
+            "href": "http://www.coopelectricalshop.co.uk/Apple-iPod-Classic-160GB-In-Silver/id-APL-SAU-IPOD_CLASSIC_160GB-SL"
+          }, 
+          "api:product": {
+            "href": "/products/5WY4WK"
+          }, 
+          "api:retailer": {
+            "href": "/retailers/30"
+          }
+        }, 
+        "currency_symbol": "\u00a3", 
+        "currency_code": "GBP", 
+        "stock": "IN_STOCK"
+      }, 
+      {
+        "effective_price": 185.62, 
+        "price": 185.62, 
+        "delivery_price": null, 
+        "_links": {
+          "curies": [
+            {
+              "href": "/rels/{rel}", 
+              "name": "api", 
+              "templated": true
+            }
+          ], 
+          "self": {
+            "href": "/prices/6782526"
+          }, 
+          "api:purchase": {
+            "href": "http://www.shop.bt.com/products/apple-ipod-classic-160gb---silver-65DL.html"
+          }, 
+          "api:product": {
+            "href": "/products/5WY4WK"
+          }, 
+          "api:retailer": {
+            "href": "/retailers/26"
+          }
+        }, 
+        "currency_symbol": "\u00a3", 
+        "currency_code": "GBP", 
+        "stock": "IN_STOCK"
+      }, 
+      {
+        "effective_price": 209.9, 
+        "price": 209.9, 
+        "delivery_price": null, 
+        "_links": {
+          "curies": [
+            {
+              "href": "/rels/{rel}", 
+              "name": "api", 
+              "templated": true
+            }
+          ], 
+          "self": {
+            "href": "/prices/6661016"
+          }, 
+          "api:purchase": {
+            "href": "http://www.pixmania.co.uk/uk/uk/3673005/art/apple/ipod-classic-160-gb-in-si.html"
+          }, 
+          "api:product": {
+            "href": "/products/5WY4WK"
+          }, 
+          "api:retailer": {
+            "href": "/retailers/70"
+          }
+        }, 
+        "currency_symbol": "\u00a3", 
+        "currency_code": "GBP", 
+        "stock": "IN_STOCK"
+      }, 
+      {
+        "effective_price": 217.5, 
+        "price": 209.9, 
+        "delivery_price": 7.6, 
+        "_links": {
+          "curies": [
+            {
+              "href": "/rels/{rel}", 
+              "name": "api", 
+              "templated": true
+            }
+          ], 
+          "self": {
+            "href": "/prices/25168748"
+          }, 
+          "api:purchase": {
+            "href": "http://www.pixmania.co.uk/uk/uk/9301404/art/apple/ipod-classic-160-gb-silve.html"
+          }, 
+          "api:product": {
+            "href": "/products/5WY4WK"
+          }, 
+          "api:retailer": {
+            "href": "/retailers/70"
+          }
+        }, 
+        "currency_symbol": "\u00a3", 
+        "currency_code": "GBP", 
+        "stock": "IN_STOCK"
+      }
+    ]
+  }, 
+  "name": "Apple iPod classic Silver - 160GB", 
+  "cover_type": null, 
+  "views": 0, 
+  "author": null, 
+  "software_platform": null, 
+  "_links": {
+    "curies": [
+      {
+        "href": "/rels/{rel}", 
+        "name": "api", 
+        "templated": true
+      }
+    ], 
+    "self": {
+      "href": "/products/5WY4WK"
+    }, 
+    "api:pictures": {
+      "href": "/products/5WY4WK/pictures/"
+    }, 
+    "api:price": [
+      {
+        "href": "/prices/50238387"
+      }, 
+      {
+        "href": "/prices/7122817"
+      }, 
+      {
+        "href": "/prices/34158375"
+      }, 
+      {
+        "href": "/prices/25067867"
+      }, 
+      {
+        "href": "/prices/6731527"
+      }, 
+      {
+        "href": "/prices/6699593"
+      }, 
+      {
+        "href": "/prices/6647971"
+      }, 
+      {
+        "href": "/prices/6932155"
+      }, 
+      {
+        "href": "/prices/10670061"
+      }, 
+      {
+        "href": "/prices/33950479"
+      }, 
+      {
+        "href": "/prices/6691688"
+      }, 
+      {
+        "href": "/prices/19930569"
+      }, 
+      {
+        "href": "/prices/10833105"
+      }, 
+      {
+        "href": "/prices/19980208"
+      }, 
+      {
+        "href": "/prices/10469234"
+      }, 
+      {
+        "href": "/prices/6734347"
+      }, 
+      {
+        "href": "/prices/21138062"
+      }, 
+      {
+        "href": "/prices/6782526"
+      }, 
+      {
+        "href": "/prices/6661016"
+      }, 
+      {
+        "href": "/prices/25168748"
+      }
+    ], 
+    "api:category": {
+      "href": "/categories/2"
+    }
+  }, 
+  "last_updated": "2013-08-13T07:51:17.4281466Z", 
+  "manufacturer": "Apple", 
+  "description": "With 160GB, you can carry your entire media library with you everywhere. iPod classic gives you 160GB of storage capacity, good for up to 40,000 songs, 200 hours of video, 25,000 photos or any combination. And you get up to 36 hours of battery life, so you can keep on rocking for a long, long time.Features:-* Personal 160 GB multimedia player stores up to 40,000 songs or 25,000 photos* Store and watch up to 200 hours of films and TV shows on bright 2.5-inch screen* New Genius feature creates a playlist of tracks in your library that go great together* Browse your music with Cover Flow or kick back and play 3 included iPod games* Beautiful, durable anodised aluminium and polished stainless steel construction"
+}
