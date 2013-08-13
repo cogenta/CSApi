@@ -1347,12 +1347,47 @@ __attribute__((deprecated ("Use `getRetailerNarrows:` on a `CSSlice` instead")))
 @property (nonatomic, readonly) NSURL *retailerNarrowsURL;
 @property (nonatomic, readonly) NSURL *categoryNarrowsURL;
 
+/** Tries to get a list of products in this slice.
+ 
+ Control returns from getProducts: immediately. If the operation is successful,
+ the given callback is invoked with a non-nil
+ [id\<CSProductListPage\>](CSProductListPage) in result and a nil error.
+ result is the first page of the result set. It is recommended that client
+ code use result.productList to get an [id\<CSProductList\>](CSProductList),
+ which provides convenient access to products in the list.
+ 
+ If the operation fails, callback is invoked with a nil result and a non-nil
+ error.
+ 
+ @param callback The block to invoke when the products list has been
+ successfully obtained, or when the operation has failed.
+ @return an [id\<CSAPIRequest\>](CSAPIRequest) controlling the network request.
+ 
+ */
 - (id<CSAPIRequest>)getProducts:(void (^)(id<CSProductListPage> result,
-                                                   NSError *error))callback;
+                                          NSError *error))callback;
 
+/** Tries to get a list of products in this slice that match a query.
+ 
+ Control returns from getProductsWithQuery:callback: immediately. If the
+ operation is successful, the given callback is invoked with a non-nil
+ [id\<CSProductListPage\>](CSProductListPage) in result and a nil error.
+ result is the first page of the result set. It is recommended that client
+ code use result.productList to get an [id\<CSProductList\>](CSProductList),
+ which provides convenient access to products in the list.
+ 
+ If the operation fails, callback is invoked with a nil firstPage and a non-nil
+ error.
+ 
+ @param query A search query. For example, "apple ipod touch 16gb".
+ @param callback The block to invoke when the products list has been
+ successfully obtained, or when the operation has failed.
+ @return an [id\<CSAPIRequest\>](CSAPIRequest) controlling the network request.
+ 
+ */
 - (id<CSAPIRequest>)getProductsWithQuery:(NSString *)query
-                                callback:(void (^)(id<CSProductListPage>,
-                                                   NSError *))callback;
+                                callback:(void (^)(id<CSProductListPage> result,
+                                                   NSError *error))callback;
 
 - (void)getRetailerNarrows:(void (^)(id<CSNarrowListPage> result,
                                      NSError *error))callback;
