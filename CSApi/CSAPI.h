@@ -1249,6 +1249,33 @@ __attribute__((deprecated ("Use `getRetailerNarrows:` on a `CSSlice` instead")))
                                 callback:(void (^)(id<CSProductListPage> result,
                                                    NSError *error))callback;
 
+/** Tries to get a list of retailer narrows.
+ 
+ The retailer narrows each narrow this slice by a different retailer that
+ supplies one or more products in this slice.
+ 
+ Control returns from getRetailerNarrows: immediately. If the operation is
+ successful, and the slice provides a list of retailer narrows, the given
+ callback is invoked with a non-nil [id\<CSNarrowListPage\>](CSNarrowListPage)
+ in result and a nil error. result is the first page of the result set.
+ 
+ It is recommended that client code use result.narrowList to get an
+ [id\<CSNarrowList\>](CSNarrowList), which provides convenient access to
+ narrows in the list.
+ 
+ If the slice does not provoide a list of retailer narrows, the callback is
+ invoked with a nil result and a nil error. Note that this is distinct from
+ the slice providing an empty list of retailer narrows, in which case result
+ will be a non-nil [id\<CSNarrowListPage\>](CSNarrowListPage) with a count of 0.
+ 
+ If the operation fails, callback is invoked with a nil result and a non-nil
+ error.
+ 
+ @param callback The block to invoke when the narrow list has been successfully
+ obtained, or when the slice provides no list of retailer narrows, or when the
+ operation has failed.
+ 
+ */
 - (void)getRetailerNarrows:(void (^)(id<CSNarrowListPage> result,
                                      NSError *error))callback;
 
