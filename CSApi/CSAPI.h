@@ -1343,6 +1343,10 @@ __attribute__((deprecated ("Use `getRetailerNarrows:` on a `CSSlice` instead")))
 
 @protocol CSSlice <NSObject>
 
+@property (nonatomic, readonly) NSURL *productsURL;
+@property (nonatomic, readonly) NSURL *retailerNarrowsURL;
+@property (nonatomic, readonly) NSURL *categoryNarrowsURL;
+
 - (id<CSAPIRequest>)getProducts:(void (^)(id<CSProductListPage> result,
                                                    NSError *error))callback;
 

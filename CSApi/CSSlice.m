@@ -30,6 +30,27 @@
     return self;
 }
 
+- (NSURL *)productsURL
+{
+    return [self URLForRelation:@"/rels/products"
+                      arguments:nil
+                       resource:self.resource];
+}
+
+- (NSURL *)retailerNarrowsURL
+{
+    return [self URLForRelation:@"/rels/retailernarrows"
+                      arguments:nil
+                       resource:self.resource];
+}
+
+- (NSURL *)categoryNarrowsURL
+{
+    return [self URLForRelation:@"/rels/categorynarrows"
+                      arguments:nil
+                       resource:self.resource];
+}
+
 - (id<CSAPIRequest>)getProducts:(void (^)(id<CSProductListPage>,
                                           NSError *))callback
 {
