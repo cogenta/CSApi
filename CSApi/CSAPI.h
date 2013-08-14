@@ -1129,11 +1129,34 @@
 
 @end
 
-
+/** Protocol for accessing a Slice.
+ 
+ A Slice represents a subset of the content available from the Cogenta Shopping
+ API and can be used to list and search products. Slices may also provide lists
+ of Narrows, which are used to obtain further-reduced Slices.
+ */
 @protocol CSSlice <NSObject>
 
+/** The URL of the list of products in this Slice.
+ 
+ Clients are expected to use the Slice'ss getProducts: method instead of
+ dereferencing this URL.
+ */
 @property (nonatomic, readonly) NSURL *productsURL;
+
+/** The URL of the list of retailer narrows from this slice or nil if this
+ slice cannot be narrowed by a retailer.
+ 
+ Clients are expected to use the Slice's getRetailerNarrows: method instead of
+ dereferencing this URL.
+ */
 @property (nonatomic, readonly) NSURL *retailerNarrowsURL;
+
+/** The URL of the list of category narrows from this slice.
+ 
+ Clients are expected to use the Slice's getCategoryNarrows: method instead of
+ dereferencing this URL.
+ */
 @property (nonatomic, readonly) NSURL *categoryNarrowsURL;
 
 /** Tries to get a list of products in this slice.
@@ -1238,12 +1261,75 @@
 - (void)getCategoryNarrows:(void (^)(id<CSNarrowListPage> result,
                                      NSError *error))callback;
 
+/** Get the retailer used to filter the content in this slice.
+ 
+ Control returns from getFiltersByRetailer: immediately. If the operation is
+ successful, and the slice's content is filtered by a retailer, the given
+ callback is invoked with a non-nil [id\<CSRetailer\>](CSRetailer)
+ in result and a nil error.
+ 
+ If the slice's content is not filtered by a retailer, the callback is
+ invoked with a nil result and a nil error. Note that filtering by a single
+ retailer is distinct from filtering by a list of retailers. If a slice's
+ content is filtered by a list of retailers, and not by a single retailer, the
+ result will be nil.
+ 
+ If the operation fails, callback is invoked with a nil result and a non-nil
+ error.
+ 
+ @param callback The block to invoke when the retailer has been successfully
+ obtained, or when the slice's content is not filtered by a retailer, or when
+ the operation has failed.
+
+ */
 - (void)getFiltersByRetailer:(void (^)(id<CSRetailer> result,
                                        NSError *error))callback;
 
+/** Get the retailer list used to filter the content in this slice.
+ 
+ Control returns from getFiltersByRetailerList: immediately. If the operation is
+ successful, and the slice's content is filtered by a list of retailers, the
+ given callback is invoked with a non-nil
+ [id\<CSRetailerListPage\>](CSRetailerListPage) in result and a nil error.
+ result is the first page of the result set. It is recommended that client
+ code use result.retailerList to get an [id\<CSRetailerList\>](CSRetailerList),
+ which provides convenient access to retailers in the list.
+ 
+ If the slice's content is not filtered by a list of retailer, the callback is
+ invoked with a nil result and a nil error. Note that filtering by a single
+ retailer is distinct from filtering by a list of retailers. If a slice's
+ content is filtered by a single retailer, and not by a list of retailers, the
+ result will be nil.
+ 
+ If the operation fails, callback is invoked with a nil result and a non-nil
+ error.
+ 
+ @param callback The block to invoke when the retailer list has been
+ successfully obtained, or when the slice's content is not filtered by a list
+ of retailers, or when the operation has failed.
+ 
+ */
 - (void)getFiltersByRetailerList:(void (^)(id<CSRetailerListPage> result,
                                            NSError *error))callback;
 
+/** Get the retailer used to filter the content in this slice.
+ 
+ Control returns from getFiltersByCategory: immediately. If the operation is
+ successful, and the slice's content is filtered by a category, the given
+ callback is invoked with a non-nil [id\<CSCategory\>](CSCategory)
+ in result and a nil error.
+ 
+ If the slice's content is not filtered by a category, the callback is
+ invoked with a nil result and a nil error.
+ 
+ If the operation fails, callback is invoked with a nil result and a non-nil
+ error.
+ 
+ @param callback The block to invoke when the category has been successfully
+ obtained, or when the slice's content is not filtered by a category, or when
+ the operation has failed.
+ 
+ */
 - (void)getFiltersByCategory:(void (^)(id<CSCategory> result,
                                        NSError *error))callback;
 
