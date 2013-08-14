@@ -368,6 +368,19 @@
 - (void)getGroups:(void (^)(id<CSGroupListPage> firstPage,
                             NSError *error))callback;
 
+/** Tries to get a slice that provides access to all the content accessible to
+ the user.
+ 
+ Control returns from getSlice: immediately. If the operation is successful,
+ the given callback is invoked with a non-nil [id\<CSSlice\>](CSSlice) in
+ result and a nil error.
+ 
+ If the operation fails, callback is invoked with a nil result and a non-nil
+ error.
+ 
+ @param callback The block to invoke when the slice has been successfully
+ obtained, or when the operation has failed.
+ */
 - (void)getSlice:(void (^)(id<CSSlice> slice,
                            NSError *error))callback;
 
@@ -720,6 +733,19 @@
  */
 - (void)remove:(void (^)(BOOL success, NSError *error))callback;
 
+/** Tries to get a slice that only includes content relating to the likes in
+ this group.
+ 
+ Control returns from getSlice: immediately. If the operation is successful,
+ the given callback is invoked with a non-nil [id\<CSSlice\>](CSSlice) in
+ result and a nil error.
+ 
+ If the operation fails, callback is invoked with a nil result and a non-nil
+ error.
+ 
+ @param callback The block to invoke when the slice has been successfully
+ obtained, or when the operation has failed.
+ */
 - (void)getSlice:(void (^)(id<CSSlice> slice,
                            NSError *error))callback;
 
