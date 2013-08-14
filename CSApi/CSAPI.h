@@ -1139,7 +1139,7 @@
 
 /** The URL of the list of products in this Slice.
  
- Clients are expected to use the Slice'ss getProducts: method instead of
+ Clients are expected to use the Slice's getProducts: method instead of
  dereferencing this URL.
  */
 @property (nonatomic, readonly) NSURL *productsURL;
@@ -1215,7 +1215,7 @@
  [id\<CSNarrowList\>](CSNarrowList), which provides convenient access to
  narrows in the list.
  
- If the slice does not provoide a list of retailer narrows, the callback is
+ If the slice does not provide a list of retailer narrows, the callback is
  invoked with a nil result and a nil error. Note that this is distinct from
  the slice providing an empty list of retailer narrows, in which case result
  will be a non-nil [id\<CSNarrowListPage\>](CSNarrowListPage) with a count of 0.
@@ -1245,7 +1245,7 @@
  [id\<CSNarrowList\>](CSNarrowList), which provides convenient access to
  narrows in the list.
  
- If the slice does not provoide a list of category narrows, the callback is
+ If the slice does not provide a list of category narrows, the callback is
  invoked with a nil result and a nil error. Note that this is distinct from
  the slice providing an empty list of category narrows, in which case result
  will be a non-nil [id\<CSNarrowListPage\>](CSNarrowListPage) with a count of 0.
