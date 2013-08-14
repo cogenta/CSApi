@@ -1362,32 +1362,121 @@
 @end
 
 
+/** Protocol for accessing a Narrow.
+ 
+ A Narrow represents the a transition from a slice to another slice and describe
+ a the filter option that is applied to make that transition.
+ 
+ Slices provide lists of Narrows that enumerate the options to drill down from
+ that slice.
+ */
 @protocol CSNarrow <NSObject>
 
+/** The URL of the slice that results from following this narrow.
+ 
+ Clients are expected to use the Narrow's getSlice: method instead of
+ dereferencing this URL.
+ */
 @property (nonatomic, readonly) NSURL *sliceURL;
+
+/** The URL of a retailer by which the resulting slice filters its content.
+ 
+ Clients are expected to use the Narrow's getNarrowsByRetailer: method instead
+ of dereferencing this URL.
+ */
 @property (nonatomic, readonly) NSURL *narrowsByRetailerURL;
+
+/** The URL of a category by which the resulting slice filters its content.
+ 
+ Clients are expected to use the Narrow's getNarrowsByCategory: method instead
+ of dereferencing this URL.
+ */
 @property (nonatomic, readonly) NSURL *narrowsByCategoryURL;
 
+/** Tries to get the slice that results from following this narrow.
+ 
+ Control returns from getSlice: immediately. If the operation is successful,
+ the given callback is invoked with a non-nil [id\<CSSlice\>](CSSlice) in
+ result and a nil error.
+ 
+ If the operation fails, callback is invoked with a nil result and a non-nil
+ error.
+ 
+ @param callback The block to invoke when the slice has been successfully
+ obtained, or when the operation has failed.
+ */
 - (void)getSlice:(void (^)(id<CSSlice> result, NSError *error))callback;
 
+/** Tries to get the retailer by which the resulting slice filters its content.
+ 
+ Control returns from getNarrowsByRetailer: immediately. If the operation is
+ successful, the given callback is invoked with a non-nil
+ [id\<CSRetailer\>](CSRetailer) in result and a nil error.
+ 
+ If the resulting slice does not filter by a retailer, callback is invoked with
+ a nil result and a nil error.
+ 
+ If the operation fails, callback is invoked with a nil result and a non-nil
+ error.
+ 
+ @param callback The block to invoke when the retailer has been successfully
+ obtained, or when the resulting slice does not filter by a retailer, or when
+ the operation has failed.
+ */
 - (void)getNarrowsByRetailer:(void (^)(id<CSRetailer> result,
                                        NSError *error))callback;
 
+/** Tries to get the retailer by which the resulting slice filters its content.
+ 
+ Control returns from getNarrowsByCategory: immediately. If the operation is
+ successful, the given callback is invoked with a non-nil
+ [id\<CSCategory\>](CSCategory) in result and a nil error.
+ 
+ If the resulting slice does not filter by a category, callback is invoked with
+ a nil result and a nil error.
+ 
+ If the operation fails, callback is invoked with a nil result and a non-nil
+ error.
+ 
+ @param callback The block to invoke when the category has been successfully
+ obtained, or when the resulting slice does not filter by a category, or when
+ the operation has failed.
+ */
 - (void)getNarrowsByCategory:(void (^)(id<CSCategory> result,
                                        NSError *error))callback;
 
 @end
 
 
+/** Protocol for accessing pages of Narrows in a sequence of results.
+ 
+ Client code is expected to use this protocol's narrowList property to get
+ an object conforming to CSNarrowList.
+ */
 @protocol CSNarrowListPage <CSListPage>
 
+/** An object conforming to CSNarrowList that provides convenient access to
+ the list of Narrows.
+ */
 @property (readonly) id<CSNarrowList> narrowList;
 
 @end
 
 
+/** Protocol for accessing a list of Narrows. */
 @protocol CSNarrowList <CSList>
 
+/** Tries to fetch the Narrow at the given index.
+ 
+ Control returns from getNarrowAtIndex:callback: immediately. If the operation
+ is successful, the given callback is invoked with a non-nil
+ [id\<CSNarrow\>](CSNarrow) in result and a nil error. If the operation
+ fails, callback is invoked with a nil result and a non-nil error.
+ 
+ @param index The index in the sequence of the Narrow to retrieve.
+ @param callback The block to invoke when the Narrow has been successfully
+ obtained, or when the operation has failed.
+ */
 - (void)getNarrowAtIndex:(NSUInteger)index
                 callback:(void (^)(id<CSNarrow> narrow,
                                    NSError *error))callback;
