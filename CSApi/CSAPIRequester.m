@@ -245,7 +245,7 @@
     
     [self applyCredential:credential request:request];
     [self applyEtag:etag request:request];
-    [self applyAccept:@"application/hal+json;version=0.1" request:request];
+    [self applyAccept:@"application/hal+json;version=0.2" request:request];
     
     if ( ! [self applyBody:body request:request]) {
         NSDictionary *userInfo = @{NSLocalizedDescriptionKey:
