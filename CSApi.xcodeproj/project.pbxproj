@@ -189,7 +189,6 @@
 		BE558EAF174D1612009FA3DA /* CSCategoryList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSCategoryList.h; sourceTree = "<group>"; };
 		BE558EB0174D1612009FA3DA /* CSCategoryList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSCategoryList.m; sourceTree = "<group>"; };
 		BE5765DD17BA92C70082B4C3 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		BE5765DF17BA93A60082B4C3 /* CSSliceTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSSliceTests.h; sourceTree = "<group>"; };
 		BE5765E017BA93A60082B4C3 /* CSSliceTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSSliceTests.m; sourceTree = "<group>"; };
 		BE5765E217BA957A0082B4C3 /* slice.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = slice.json; sourceTree = "<group>"; };
 		BE5765E417BA99040082B4C3 /* slice_product_search.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = slice_product_search.json; sourceTree = "<group>"; };
@@ -459,7 +458,6 @@
 				BE6BF3F617185103004B6D85 /* CSProductTests.m */,
 				BE480BB0172593830022216B /* CSPriceTest.m */,
 				BE558EA0174D0B4A009FA3DA /* CSCategoryTests.m */,
-				BE5765DF17BA93A60082B4C3 /* CSSliceTests.h */,
 				BE5765E017BA93A60082B4C3 /* CSSliceTests.m */,
 			);
 			path = CSApiTests;
