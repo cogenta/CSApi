@@ -125,6 +125,10 @@
 		BEF5306116C124B7003B8B58 /* user_conflict_1.json in Resources */ = {isa = PBXBuildFile; fileRef = BEF5306016C124B7003B8B58 /* user_conflict_1.json */; };
 		BEF5306416C144A0003B8B58 /* CSAPIRequester.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF5306316C144A0003B8B58 /* CSAPIRequester.m */; };
 		BEF5306716C144BF003B8B58 /* CSAPIRequesterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF5306616C144BF003B8B58 /* CSAPIRequesterTests.m */; };
+		BEF627E617E2067300B5AF6C /* author.json in Resources */ = {isa = PBXBuildFile; fileRef = BEF627E517E2067300B5AF6C /* author.json */; };
+		BEF627E917E206BF00B5AF6C /* CSAuthorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF627E817E206BF00B5AF6C /* CSAuthorTests.m */; };
+		BEF627ED17E208E000B5AF6C /* CSAuthor.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF627EC17E208E000B5AF6C /* CSAuthor.m */; };
+		BEF627EF17E20DF100B5AF6C /* slice_authornarrows.json in Resources */ = {isa = PBXBuildFile; fileRef = BEF627EE17E20DF100B5AF6C /* slice_authornarrows.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -190,7 +194,7 @@
 		BE558EB0174D1612009FA3DA /* CSCategoryList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSCategoryList.m; sourceTree = "<group>"; };
 		BE5765DD17BA92C70082B4C3 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		BE5765E017BA93A60082B4C3 /* CSSliceTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSSliceTests.m; sourceTree = "<group>"; };
-		BE5765E217BA957A0082B4C3 /* slice.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = slice.json; sourceTree = "<group>"; };
+		BE5765E217BA957A0082B4C3 /* slice.json */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = text.json; path = slice.json; sourceTree = "<group>"; tabWidth = 8; };
 		BE5765E417BA99040082B4C3 /* slice_product_search.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = slice_product_search.json; sourceTree = "<group>"; };
 		BE5765E917BA9ACE0082B4C3 /* slice_products.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = slice_products.json; sourceTree = "<group>"; };
 		BE5765EB17BA9B310082B4C3 /* slice_product_59t1CW.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = slice_product_59t1CW.json; sourceTree = "<group>"; };
@@ -326,6 +330,11 @@
 		BEF5306216C1449F003B8B58 /* CSAPIRequester.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSAPIRequester.h; sourceTree = "<group>"; };
 		BEF5306316C144A0003B8B58 /* CSAPIRequester.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSAPIRequester.m; sourceTree = "<group>"; };
 		BEF5306616C144BF003B8B58 /* CSAPIRequesterTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSAPIRequesterTests.m; sourceTree = "<group>"; };
+		BEF627E517E2067300B5AF6C /* author.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = author.json; sourceTree = "<group>"; };
+		BEF627E817E206BF00B5AF6C /* CSAuthorTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSAuthorTests.m; sourceTree = "<group>"; };
+		BEF627EB17E208E000B5AF6C /* CSAuthor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSAuthor.h; sourceTree = "<group>"; };
+		BEF627EC17E208E000B5AF6C /* CSAuthor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSAuthor.m; sourceTree = "<group>"; };
+		BEF627EE17E20DF100B5AF6C /* slice_authornarrows.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = slice_authornarrows.json; sourceTree = "<group>"; };
 		C68FEFEEA74C4920B790C3B7 /* Pods-test.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-test.xcconfig"; path = "Pods/Pods-test.xcconfig"; sourceTree = SOURCE_ROOT; };
 		D0A9D9C4BB3D41BCA4100D6F /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		E11FCF6D842F44979932768C /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
@@ -421,6 +430,7 @@
 				BE6BF3F217183C92004B6D85 /* Products */,
 				BE480BA517258B390022216B /* Prices */,
 				BE558EA2174D0BA2009FA3DA /* Categories */,
+				BEF627EA17E208B600B5AF6C /* Author */,
 				BE63B35717B3AB4500E95B7E /* Slices */,
 				BE63B35B17B3B27A00E95B7E /* Narrows */,
 			);
@@ -459,6 +469,7 @@
 				BE480BB0172593830022216B /* CSPriceTest.m */,
 				BE558EA0174D0B4A009FA3DA /* CSCategoryTests.m */,
 				BE5765E017BA93A60082B4C3 /* CSSliceTests.m */,
+				BEF627E817E206BF00B5AF6C /* CSAuthorTests.m */,
 			);
 			path = CSApiTests;
 			sourceTree = "<group>";
@@ -508,6 +519,7 @@
 				BE5765ED17BA9E2C0082B4C3 /* slice_product_5WY4WK.json */,
 				BE5765EF17BAAC890082B4C3 /* slice_retailernarrows.json */,
 				BE5765F117BAB2240082B4C3 /* slice_categorynarrows.json */,
+				BEF627EE17E20DF100B5AF6C /* slice_authornarrows.json */,
 			);
 			name = Slice;
 			sourceTree = "<group>";
@@ -691,6 +703,7 @@
 		BEA65A1416B9535300F10CB0 /* Fixtures */ = {
 			isa = PBXGroup;
 			children = (
+				BEF627E417E2066600B5AF6C /* Authors */,
 				BE5765E617BA990F0082B4C3 /* Slice */,
 				BEA65A1516B9537300F10CB0 /* app.json */,
 				BE4B14A616B9722A00BDDD08 /* user_post_response.json */,
@@ -723,6 +736,23 @@
 				BE558EAA174D1083009FA3DA /* categories.json */,
 			);
 			path = Fixtures;
+			sourceTree = "<group>";
+		};
+		BEF627E417E2066600B5AF6C /* Authors */ = {
+			isa = PBXGroup;
+			children = (
+				BEF627E517E2067300B5AF6C /* author.json */,
+			);
+			name = Authors;
+			sourceTree = "<group>";
+		};
+		BEF627EA17E208B600B5AF6C /* Author */ = {
+			isa = PBXGroup;
+			children = (
+				BEF627EB17E208E000B5AF6C /* CSAuthor.h */,
+				BEF627EC17E208E000B5AF6C /* CSAuthor.m */,
+			);
+			name = Author;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -836,6 +866,8 @@
 				BE5765EE17BA9E2C0082B4C3 /* slice_product_5WY4WK.json in Resources */,
 				BE5765F017BAAC890082B4C3 /* slice_retailernarrows.json in Resources */,
 				BE5765F217BAB2240082B4C3 /* slice_categorynarrows.json in Resources */,
+				BEF627E617E2067300B5AF6C /* author.json in Resources */,
+				BEF627EF17E20DF100B5AF6C /* slice_authornarrows.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -947,6 +979,7 @@
 				BE63B35E17B3B2AB00E95B7E /* CSNarrow.m in Sources */,
 				BE63B36117B3D20200E95B7E /* CSNarrowListPage.m in Sources */,
 				BE63B36417B3D26C00E95B7E /* CSNarrowList.m in Sources */,
+				BEF627ED17E208E000B5AF6C /* CSAuthor.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -977,6 +1010,7 @@
 				BE480BB1172593830022216B /* CSPriceTest.m in Sources */,
 				BE558EA1174D0B4A009FA3DA /* CSCategoryTests.m in Sources */,
 				BE5765E117BA93A70082B4C3 /* CSSliceTests.m in Sources */,
+				BEF627E917E206BF00B5AF6C /* CSAuthorTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

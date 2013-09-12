@@ -5,7 +5,10 @@
     }, 
     "api:retailernarrows": {
       "href": "/retailers/9,237,20,228,110,223,94,57,52,136/narrows/"
-    }, 
+    },
+    "api:authornarrows": {
+      "href": "/authornarrows?retailers=9,237,20,228,110,223,94,57,52,136"
+    },
     "curies": [
       {
         "href": "/rels/{rel}", 

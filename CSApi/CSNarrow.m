@@ -10,6 +10,7 @@
 #import "CSSlice.h"
 #import "CSRetailer.h"
 #import "CSCategory.h"
+#import "CSAuthor.h"
 
 @interface CSNarrow ()
 @property (strong, nonatomic) YBHALResource *resource;
@@ -116,6 +117,37 @@
          callback([[CSCategory alloc] initWithHAL:result
                                         requester:self.requester
                                        credential:self.credential],
+                  nil);
+     }];
+}
+
+- (NSURL *)narrowsByAuthorURL
+{
+    return [self URLForRelation:@"/rels/narrowsbyauthor"
+                      arguments:nil
+                       resource:self.resource];
+}
+
+- (void)getNarrowsByAuthor:(void (^)(id<CSAuthor> result,
+                                     NSError *error))callback
+{
+    [self getRelation:@"/rels/narrowsbyauthor"
+          forResource:self.resource
+             callback:^(YBHALResource *result, NSError *error)
+     {
+         if (error) {
+             callback(nil, error);
+             return;
+         }
+         
+         if ( ! result) {
+             callback(nil, nil);
+             return;
+         }
+         
+         callback([[CSAuthor alloc] initWithResource:result
+                                           requester:self.requester
+                                          credential:self.credential],
                   nil);
      }];
 }

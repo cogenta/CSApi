@@ -11,6 +11,7 @@
 #import "CSRetailer.h"
 #import "CSRetailerListPage.h"
 #import "CSCategory.h"
+#import "CSAuthor.h"
 #import "CSNarrowListPage.h"
 
 @interface CSSlice ()
@@ -47,6 +48,13 @@
 - (NSURL *)categoryNarrowsURL
 {
     return [self URLForRelation:@"/rels/categorynarrows"
+                      arguments:nil
+                       resource:self.resource];
+}
+
+- (NSURL *)authorNarrowsURL
+{
+    return [self URLForRelation:@"/rels/authornarrows"
                       arguments:nil
                        resource:self.resource];
 }
@@ -127,6 +135,24 @@
      }];
 }
 
+- (void)getAuthorNarrows:(void (^)(id<CSNarrowListPage>, NSError *))callback
+{
+    [self getRelation:@"/rels/authornarrows"
+          forResource:self.resource
+             callback:^(YBHALResource *result, NSError *error)
+     {
+         if (error) {
+             callback(nil, error);
+             return;
+         }
+         
+         callback([[CSNarrowListPage alloc] initWithHal:result
+                                              requester:self.requester
+                                             credential:self.credential],
+                  nil);
+     }];
+}
+
 - (void)getFiltersByRetailer:(void (^)(id<CSRetailer>, NSError *))callback
 {
     [self getRelation:@"/rels/filtersbyretailer"
@@ -192,6 +218,29 @@
          callback([[CSCategory alloc] initWithHAL:result
                                         requester:self.requester
                                        credential:self.credential],
+                  nil);
+     }];
+}
+
+- (void)getFiltersByAuthor:(void (^)(id<CSAuthor>, NSError *))callback
+{
+    [self getRelation:@"/rels/filtersbyauthor"
+          forResource:self.resource
+             callback:^(YBHALResource *result, NSError *error)
+     {
+         if (error) {
+             callback(nil, error);
+             return;
+         }
+         
+         if ( ! result) {
+             callback(nil, nil);
+             return;
+         }
+         
+         callback([[CSAuthor alloc] initWithResource:result
+                                           requester:self.requester
+                                          credential:self.credential],
                   nil);
      }];
 }

@@ -1,0 +1,410 @@
+{
+  "count": 100, 
+  "_links": {
+    "item": [
+      {
+        "href": "/narrow?retailers=9,237,20,228,110,223,94,57,52,136&by_author=Unknown%20author", 
+        "title": "Unknown author"
+      }, 
+      {
+        "href": "/narrow?retailers=9,237,20,228,110,223,94,57,52,136&by_author=Cath%20Kidston", 
+        "title": "Cath Kidston"
+      }, 
+      {
+        "href": "/narrow?retailers=9,237,20,228,110,223,94,57,52,136&by_author=Wallpaper%2A", 
+        "title": "Wallpaper*"
+      }, 
+      {
+        "href": "/narrow?retailers=9,237,20,228,110,223,94,57,52,136&by_author=Moleskine", 
+        "title": "Moleskine"
+      }, 
+      {
+        "href": "/narrow?retailers=9,237,20,228,110,223,94,57,52,136&by_author=LUXE%20ASIA%20LIMITED", 
+        "title": "LUXE ASIA LIMITED"
+      }, 
+      {
+        "href": "/narrow?retailers=9,237,20,228,110,223,94,57,52,136&by_author=Beatrix%20Potter", 
+        "title": "Beatrix Potter"
+      }, 
+      {
+        "href": "/narrow?retailers=9,237,20,228,110,223,94,57,52,136&by_author=Luxe", 
+        "title": "Luxe"
+      }, 
+      {
+        "href": "/narrow?retailers=9,237,20,228,110,223,94,57,52,136&by_author=LUXE%20City%20Guides", 
+        "title": "LUXE City Guides"
+      }, 
+      {
+        "href": "/narrow?retailers=9,237,20,228,110,223,94,57,52,136&by_author=Knock%20Knock", 
+        "title": "Knock Knock"
+      }, 
+      {
+        "href": "/narrow?retailers=9,237,20,228,110,223,94,57,52,136&by_author=Roger%20Priddy", 
+        "title": "Roger Priddy"
+      }, 
+      {
+        "href": "/narrow?retailers=9,237,20,228,110,223,94,57,52,136&by_author=Tarek%20Malouf", 
+        "title": "Tarek Malouf"
+      }, 
+      {
+        "href": "/narrow?retailers=9,237,20,228,110,223,94,57,52,136&by_author=Ladybird", 
+        "title": "Ladybird"
+      }, 
+      {
+        "href": "/narrow?retailers=9,237,20,228,110,223,94,57,52,136&by_author=Kim%20Hargreaves", 
+        "title": "Kim Hargreaves"
+      }, 
+      {
+        "href": "/narrow?retailers=9,237,20,228,110,223,94,57,52,136&by_author=Judith%20Kerr", 
+        "title": "Judith Kerr"
+      }, 
+      {
+        "href": "/narrow?retailers=9,237,20,228,110,223,94,57,52,136&by_author=Debbie%20Bliss", 
+        "title": "Debbie Bliss"
+      }, 
+      {
+        "href": "/narrow?retailers=9,237,20,228,110,223,94,57,52,136&by_author=Tracey%20Corderoy", 
+        "title": "Tracey Corderoy"
+      }, 
+      {
+        "href": "/narrow?retailers=9,237,20,228,110,223,94,57,52,136&by_author=Paperstyle", 
+        "title": "Paperstyle"
+      }, 
+      {
+        "href": "/narrow?retailers=9,237,20,228,110,223,94,57,52,136&by_author=Marion%20Billet", 
+        "title": "Marion Billet"
+      }, 
+      {
+        "href": "/narrow?retailers=9,237,20,228,110,223,94,57,52,136&by_author=Julia%20Donaldson", 
+        "title": "Julia Donaldson"
+      }, 
+      {
+        "href": "/narrow?retailers=9,237,20,228,110,223,94,57,52,136&by_author=David%20Melling", 
+        "title": "David Melling"
+      }, 
+      {
+        "href": "/narrow?retailers=9,237,20,228,110,223,94,57,52,136&by_author=April%20Chorba", 
+        "title": "April Chorba"
+      }, 
+      {
+        "href": "/narrow?retailers=9,237,20,228,110,223,94,57,52,136&by_author=Alex%20Frith", 
+        "title": "Alex Frith"
+      }, 
+      {
+        "href": "/narrow?retailers=9,237,20,228,110,223,94,57,52,136&by_author=Various%20Authors", 
+        "title": "Various Authors"
+      }, 
+      {
+        "href": "/narrow?retailers=9,237,20,228,110,223,94,57,52,136&by_author=Sarah%20Hatton", 
+        "title": "Sarah Hatton"
+      }, 
+      {
+        "href": "/narrow?retailers=9,237,20,228,110,223,94,57,52,136&by_author=Rod%20Campbell", 
+        "title": "Rod Campbell"
+      }, 
+      {
+        "href": "/narrow?retailers=9,237,20,228,110,223,94,57,52,136&by_author=Roald%20Dahl", 
+        "title": "Roald Dahl"
+      }, 
+      {
+        "href": "/narrow?retailers=9,237,20,228,110,223,94,57,52,136&by_author=Richard%20Horne", 
+        "title": "Richard Horne"
+      }, 
+      {
+        "href": "/narrow?retailers=9,237,20,228,110,223,94,57,52,136&by_author=Publications%20International", 
+        "title": "Publications International"
+      }, 
+      {
+        "href": "/narrow?retailers=9,237,20,228,110,223,94,57,52,136&by_author=Michael%20Bond", 
+        "title": "Michael Bond"
+      }, 
+      {
+        "href": "/narrow?retailers=9,237,20,228,110,223,94,57,52,136&by_author=Mary%20Berry", 
+        "title": "Mary Berry"
+      }, 
+      {
+        "href": "/narrow?retailers=9,237,20,228,110,223,94,57,52,136&by_author=Luxe%20City%20Guides", 
+        "title": "Luxe City Guides"
+      }, 
+      {
+        "href": "/narrow?retailers=9,237,20,228,110,223,94,57,52,136&by_author=Louie%20Stowell", 
+        "title": "Louie Stowell"
+      }, 
+      {
+        "href": "/narrow?retailers=9,237,20,228,110,223,94,57,52,136&by_author=Junzo%20Terada", 
+        "title": "Junzo Terada"
+      }, 
+      {
+        "href": "/narrow?retailers=9,237,20,228,110,223,94,57,52,136&by_author=Jill%20Bliss", 
+        "title": "Jill Bliss"
+      }, 
+      {
+        "href": "/narrow?retailers=9,237,20,228,110,223,94,57,52,136&by_author=Jannie%20Ho", 
+        "title": "Jannie Ho"
+      }, 
+      {
+        "href": "/narrow?retailers=9,237,20,228,110,223,94,57,52,136&by_author=Jan%20Eaton", 
+        "title": "Jan Eaton"
+      }, 
+      {
+        "href": "/narrow?retailers=9,237,20,228,110,223,94,57,52,136&by_author=Hannah%20Miles", 
+        "title": "Hannah Miles"
+      }, 
+      {
+        "href": "/narrow?retailers=9,237,20,228,110,223,94,57,52,136&by_author=Glenn%20Murphy", 
+        "title": "Glenn Murphy"
+      }, 
+      {
+        "href": "/narrow?retailers=9,237,20,228,110,223,94,57,52,136&by_author=Gina%20Ford", 
+        "title": "Gina Ford"
+      }, 
+      {
+        "href": "/narrow?retailers=9,237,20,228,110,223,94,57,52,136&by_author=Giles%20Andreae", 
+        "title": "Giles Andreae"
+      }, 
+      {
+        "href": "/narrow?retailers=9,237,20,228,110,223,94,57,52,136&by_author=Emma%20Dodd", 
+        "title": "Emma Dodd"
+      }, 
+      {
+        "href": "/narrow?retailers=9,237,20,228,110,223,94,57,52,136&by_author=Carol%20Vorderman", 
+        "title": "Carol Vorderman"
+      }, 
+      {
+        "href": "/narrow?retailers=9,237,20,228,110,223,94,57,52,136&by_author=Axel%20Scheffler", 
+        "title": "Axel Scheffler"
+      }, 
+      {
+        "href": "/narrow?retailers=9,237,20,228,110,223,94,57,52,136&by_author=Anne%20Akers%20Johnson", 
+        "title": "Anne Akers Johnson"
+      }, 
+      {
+        "href": "/narrow?retailers=9,237,20,228,110,223,94,57,52,136&by_author=Alison%20Murray", 
+        "title": "Alison Murray"
+      }, 
+      {
+        "href": "/narrow?retailers=9,237,20,228,110,223,94,57,52,136&by_author=Abigail%20Wheatley", 
+        "title": "Abigail Wheatley"
+      }, 
+      {
+        "href": "/narrow?retailers=9,237,20,228,110,223,94,57,52,136&by_author=n%2Fa", 
+        "title": "n/a"
+      }, 
+      {
+        "href": "/narrow?retailers=9,237,20,228,110,223,94,57,52,136&by_author=William%20Newton", 
+        "title": "William Newton"
+      }, 
+      {
+        "href": "/narrow?retailers=9,237,20,228,110,223,94,57,52,136&by_author=William%20Bee", 
+        "title": "William Bee"
+      }, 
+      {
+        "href": "/narrow?retailers=9,237,20,228,110,223,94,57,52,136&by_author=Wendy%20Tait", 
+        "title": "Wendy Tait"
+      }, 
+      {
+        "href": "/narrow?retailers=9,237,20,228,110,223,94,57,52,136&by_author=Wendy%20Jelbert", 
+        "title": "Wendy Jelbert"
+      }, 
+      {
+        "href": "/narrow?retailers=9,237,20,228,110,223,94,57,52,136&by_author=Wendy%20Gardiner", 
+        "title": "Wendy Gardiner"
+      }, 
+      {
+        "href": "/narrow?retailers=9,237,20,228,110,223,94,57,52,136&by_author=Valerie%20Aikman-Smith", 
+        "title": "Valerie Aikman-Smith"
+      }, 
+      {
+        "href": "/narrow?retailers=9,237,20,228,110,223,94,57,52,136&by_author=Tracey%20Turner", 
+        "title": "Tracey Turner"
+      }, 
+      {
+        "href": "/narrow?retailers=9,237,20,228,110,223,94,57,52,136&by_author=Tim%20Bugbird", 
+        "title": "Tim Bugbird"
+      }, 
+      {
+        "href": "/narrow?retailers=9,237,20,228,110,223,94,57,52,136&by_author=Tiffany%20Goodall", 
+        "title": "Tiffany Goodall"
+      }, 
+      {
+        "href": "/narrow?retailers=9,237,20,228,110,223,94,57,52,136&by_author=Terry%20Deary", 
+        "title": "Terry Deary"
+      }, 
+      {
+        "href": "/narrow?retailers=9,237,20,228,110,223,94,57,52,136&by_author=Tamsin%20Blanchard", 
+        "title": "Tamsin Blanchard"
+      }, 
+      {
+        "href": "/narrow?retailers=9,237,20,228,110,223,94,57,52,136&by_author=Tamara%20Mellon", 
+        "title": "Tamara Mellon"
+      }, 
+      {
+        "href": "/narrow?retailers=9,237,20,228,110,223,94,57,52,136&by_author=Susie%20Johns", 
+        "title": "Susie Johns"
+      }, 
+      {
+        "href": "/narrow?retailers=9,237,20,228,110,223,94,57,52,136&by_author=Susanna%20Wallis", 
+        "title": "Susanna Wallis"
+      }, 
+      {
+        "href": "/narrow?retailers=9,237,20,228,110,223,94,57,52,136&by_author=Susan%20Briscoe", 
+        "title": "Susan Briscoe"
+      }, 
+      {
+        "href": "/narrow?retailers=9,237,20,228,110,223,94,57,52,136&by_author=Susan%20Akass", 
+        "title": "Susan Akass"
+      }, 
+      {
+        "href": "/narrow?retailers=9,237,20,228,110,223,94,57,52,136&by_author=Sue%20Stratford", 
+        "title": "Sue Stratford"
+      }, 
+      {
+        "href": "/narrow?retailers=9,237,20,228,110,223,94,57,52,136&by_author=Simon%20Elmes", 
+        "title": "Simon Elmes"
+      }, 
+      {
+        "href": "/narrow?retailers=9,237,20,228,110,223,94,57,52,136&by_author=Simon%20Cave", 
+        "title": "Simon Cave"
+      }, 
+      {
+        "href": "/narrow?retailers=9,237,20,228,110,223,94,57,52,136&by_author=Sasha%20Kagan", 
+        "title": "Sasha Kagan"
+      }, 
+      {
+        "href": "/narrow?retailers=9,237,20,228,110,223,94,57,52,136&by_author=Sarah%20Homfray", 
+        "title": "Sarah Homfray"
+      }, 
+      {
+        "href": "/narrow?retailers=9,237,20,228,110,223,94,57,52,136&by_author=Sara%20Withers", 
+        "title": "Sara Withers"
+      }, 
+      {
+        "href": "/narrow?retailers=9,237,20,228,110,223,94,57,52,136&by_author=Samantha%20Meredith", 
+        "title": "Samantha Meredith"
+      }, 
+      {
+        "href": "/narrow?retailers=9,237,20,228,110,223,94,57,52,136&by_author=Sally%20Gardner", 
+        "title": "Sally Gardner"
+      }, 
+      {
+        "href": "/narrow?retailers=9,237,20,228,110,223,94,57,52,136&by_author=Ryland%20Peters%20%26%20Small", 
+        "title": "Ryland Peters & Small"
+      }, 
+      {
+        "href": "/narrow?retailers=9,237,20,228,110,223,94,57,52,136&by_author=Ruth%20Brocklehurst", 
+        "title": "Ruth Brocklehurst"
+      }, 
+      {
+        "href": "/narrow?retailers=9,237,20,228,110,223,94,57,52,136&by_author=Rosie%20Heywood", 
+        "title": "Rosie Heywood"
+      }, 
+      {
+        "href": "/narrow?retailers=9,237,20,228,110,223,94,57,52,136&by_author=Roger%20Williams", 
+        "title": "Roger Williams"
+      }, 
+      {
+        "href": "/narrow?retailers=9,237,20,228,110,223,94,57,52,136&by_author=Rob%20Lloyd%20Jones", 
+        "title": "Rob Lloyd Jones"
+      }, 
+      {
+        "href": "/narrow?retailers=9,237,20,228,110,223,94,57,52,136&by_author=Richard%20Merritt", 
+        "title": "Richard Merritt"
+      }, 
+      {
+        "href": "/narrow?retailers=9,237,20,228,110,223,94,57,52,136&by_author=Richard%20C.%20Woolfson", 
+        "title": "Richard C. Woolfson"
+      }, 
+      {
+        "href": "/narrow?retailers=9,237,20,228,110,223,94,57,52,136&by_author=Rhona%20Johnston", 
+        "title": "Rhona Johnston"
+      }, 
+      {
+        "href": "/narrow?retailers=9,237,20,228,110,223,94,57,52,136&by_author=Rebecca%20Gerlings", 
+        "title": "Rebecca Gerlings"
+      }, 
+      {
+        "href": "/narrow?retailers=9,237,20,228,110,223,94,57,52,136&by_author=Quentin%20Blake", 
+        "title": "Quentin Blake"
+      }, 
+      {
+        "href": "/narrow?retailers=9,237,20,228,110,223,94,57,52,136&by_author=Quadrille%2B", 
+        "title": "Quadrille+"
+      }, 
+      {
+        "href": "/narrow?retailers=9,237,20,228,110,223,94,57,52,136&by_author=Peter%20Yarrow", 
+        "title": "Peter Yarrow"
+      }, 
+      {
+        "href": "/narrow?retailers=9,237,20,228,110,223,94,57,52,136&by_author=Paul%20Mercurio", 
+        "title": "Paul Mercurio"
+      }, 
+      {
+        "href": "/narrow?retailers=9,237,20,228,110,223,94,57,52,136&by_author=Patricia%20Hoskins", 
+        "title": "Patricia Hoskins"
+      }, 
+      {
+        "href": "/narrow?retailers=9,237,20,228,110,223,94,57,52,136&by_author=Paperblanks", 
+        "title": "Paperblanks"
+      }, 
+      {
+        "href": "/narrow?retailers=9,237,20,228,110,223,94,57,52,136&by_author=Not%20Actual%20Size", 
+        "title": "Not Actual Size"
+      }, 
+      {
+        "href": "/narrow?retailers=9,237,20,228,110,223,94,57,52,136&by_author=No%20Author%20Specified", 
+        "title": "No Author Specified"
+      }, 
+      {
+        "href": "/narrow?retailers=9,237,20,228,110,223,94,57,52,136&by_author=Niki%20Segnit", 
+        "title": "Niki Segnit"
+      }, 
+      {
+        "href": "/narrow?retailers=9,237,20,228,110,223,94,57,52,136&by_author=Nicki%20Trench", 
+        "title": "Nicki Trench"
+      }, 
+      {
+        "href": "/narrow?retailers=9,237,20,228,110,223,94,57,52,136&by_author=Nick%20Bromley", 
+        "title": "Nick Bromley"
+      }, 
+      {
+        "href": "/narrow?retailers=9,237,20,228,110,223,94,57,52,136&by_author=Nicholas%20Clayton", 
+        "title": "Nicholas Clayton"
+      }, 
+      {
+        "href": "/narrow?retailers=9,237,20,228,110,223,94,57,52,136&by_author=Nicholas%20Allan", 
+        "title": "Nicholas Allan"
+      }, 
+      {
+        "href": "/narrow?retailers=9,237,20,228,110,223,94,57,52,136&by_author=Nguyen%20Le", 
+        "title": "Nguyen Le"
+      }, 
+      {
+        "href": "/narrow?retailers=9,237,20,228,110,223,94,57,52,136&by_author=Nan%20L.%20Ides", 
+        "title": "Nan L. Ides"
+      }, 
+      {
+        "href": "/narrow?retailers=9,237,20,228,110,223,94,57,52,136&by_author=Monty%20Don", 
+        "title": "Monty Don"
+      }, 
+      {
+        "href": "/narrow?retailers=9,237,20,228,110,223,94,57,52,136&by_author=Monica%20Russel", 
+        "title": "Monica Russel"
+      }, 
+      {
+        "href": "/narrow?retailers=9,237,20,228,110,223,94,57,52,136&by_author=Moleskine%20S%20R%20L", 
+        "title": "Moleskine S R L"
+      }, 
+      {
+        "href": "/narrow?retailers=9,237,20,228,110,223,94,57,52,136&by_author=Mitchell%20Beazley", 
+        "title": "Mitchell Beazley"
+      }, 
+      {
+        "href": "/narrow?retailers=9,237,20,228,110,223,94,57,52,136&by_author=Michelle%20Finn", 
+        "title": "Michelle Finn"
+      }
+    ], 
+    "self": {
+      "href": "/authornarrows?retailers=9,237,20,228,110,223,94,57,52,136"
+    }
+  }
+}

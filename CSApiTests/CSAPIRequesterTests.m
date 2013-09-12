@@ -1026,7 +1026,7 @@
     
     STAssertNil(actualResource, nil);
     STAssertNil(actualEtag, nil);
-    STAssertNotNil(actualError, nil);
+    STAssertNotNil(actualError, nil, @"%@", actualError);
     STAssertNil(actualError.userInfo[@"NSHTTPPropertyStatusCodeKey"], nil);
 }
 

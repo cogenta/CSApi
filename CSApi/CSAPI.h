@@ -1155,6 +1155,14 @@
 
 @end
 
+/** Protocol for accessing an author. */
+@protocol CSAuthor <NSObject>
+
+/** The author's name. */
+@property (nonatomic, readonly) NSString *name;
+
+@end
+
 /** Protocol for accessing a Slice.
  
  A Slice represents a subset of the content available from the Cogenta Shopping
@@ -1184,6 +1192,13 @@
  dereferencing this URL.
  */
 @property (nonatomic, readonly) NSURL *categoryNarrowsURL;
+
+/** The URL of the list of author narrows from this slice.
+ 
+ Clients are expected to use the Slice's getAurhorNarrows: method instead of
+ dereferencing this URL.
+ */
+@property (nonatomic, readonly) NSURL *authorNarrowsURL;
 
 /** Tries to get a list of products in this slice.
  
@@ -1287,6 +1302,36 @@
 - (void)getCategoryNarrows:(void (^)(id<CSNarrowListPage> result,
                                      NSError *error))callback;
 
+/** Tries to get a list of author narrows.
+ 
+ The author narrows each narrow this slice by a different author that
+ is associated with one or more products in this slice.
+ 
+ Control returns from getAuthorNarrows: immediately. If the operation is
+ successful, and the slice provides a list of author narrows, the given
+ callback is invoked with a non-nil [id\<CSNarrowListPage\>](CSNarrowListPage)
+ in result and a nil error. result is the first page of the result set.
+ 
+ It is recommended that client code use result.narrowList to get an
+ [id\<CSNarrowList\>](CSNarrowList), which provides convenient access to
+ narrows in the list.
+ 
+ If the slice does not provide a list of author narrows, the callback is
+ invoked with a nil result and a nil error. Note that this is distinct from
+ the slice providing an empty list of author narrows, in which case result
+ will be a non-nil [id\<CSNarrowListPage\>](CSNarrowListPage) with a count of 0.
+ 
+ If the operation fails, callback is invoked with a nil result and a non-nil
+ error.
+ 
+ @param callback The block to invoke when the narrow list has been successfully
+ obtained, or when the slice provides no list of author narrows, or when the
+ operation has failed.
+ 
+ */
+- (void)getAuthorNarrows:(void (^)(id<CSNarrowListPage> result,
+                                   NSError *error))callback;
+
 /** Get the retailer used to filter the content in this slice.
  
  Control returns from getFiltersByRetailer: immediately. If the operation is
@@ -1359,6 +1404,26 @@
 - (void)getFiltersByCategory:(void (^)(id<CSCategory> result,
                                        NSError *error))callback;
 
+/** Get the author used to filter the content in this slice.
+ 
+ Control returns from getFiltersByAuthor: immediately. If the operation is
+ successful, and the slice's content is filtered by an author, the given
+ callback is invoked with a non-nil [id\<CSAuthor\>](CSAuthor)
+ in result and a nil error.
+ 
+ If the slice's content is not filtered by an author, the callback is
+ invoked with a nil result and a nil error.
+ 
+ If the operation fails, callback is invoked with a nil result and a non-nil
+ error.
+ 
+ @param callback The block to invoke when the author has been successfully
+ obtained, or when the slice's content is not filtered by a author, or when
+ the operation has failed.
+ 
+ */
+- (void)getFiltersByAuthor:(void (^)(id<CSAuthor> result,
+                                     NSError *error))callback;
 @end
 
 
@@ -1392,6 +1457,13 @@
  of dereferencing this URL.
  */
 @property (nonatomic, readonly) NSURL *narrowsByCategoryURL;
+
+/** The URL of a author by which the resulting slice filters its content.
+ 
+ Clients are expected to use the Narrow's getNarrowsByAuthor: method instead
+ of dereferencing this URL.
+ */
+@property (nonatomic, readonly) NSURL *narrowsByAuthorURL;
 
 /** Tries to get the slice that results from following this narrow.
  
@@ -1444,6 +1516,25 @@
  */
 - (void)getNarrowsByCategory:(void (^)(id<CSCategory> result,
                                        NSError *error))callback;
+
+/** Tries to get the author by which the resulting slice filters its content.
+ 
+ Control returns from getNarrowsByAuthor: immediately. If the operation is
+ successful, the given callback is invoked with a non-nil
+ [id\<CSAuthor\>](CSAuthor) in result and a nil error.
+ 
+ If the resulting slice does not filter by an author, callback is invoked with
+ a nil result and a nil error.
+ 
+ If the operation fails, callback is invoked with a nil result and a non-nil
+ error.
+ 
+ @param callback The block to invoke when the author has been successfully
+ obtained, or when the resulting slice does not filter by a author, or when
+ the operation has failed.
+ */
+- (void)getNarrowsByAuthor:(void (^)(id<CSAuthor> result,
+                                     NSError *error))callback;
 
 @end
 
