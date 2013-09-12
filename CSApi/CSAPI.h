@@ -1383,7 +1383,7 @@
 - (void)getFiltersByRetailerList:(void (^)(id<CSRetailerListPage> result,
                                            NSError *error))callback;
 
-/** Get the retailer used to filter the content in this slice.
+/** Get the category used to filter the content in this slice.
  
  Control returns from getFiltersByCategory: immediately. If the operation is
  successful, and the slice's content is filtered by a category, the given
@@ -1498,7 +1498,7 @@
 - (void)getNarrowsByRetailer:(void (^)(id<CSRetailer> result,
                                        NSError *error))callback;
 
-/** Tries to get the retailer by which the resulting slice filters its content.
+/** Tries to get the category by which the resulting slice filters its content.
  
  Control returns from getNarrowsByCategory: immediately. If the operation is
  successful, the given callback is invoked with a non-nil
