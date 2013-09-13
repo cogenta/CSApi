@@ -11,6 +11,7 @@
 #import "CSRetailer.h"
 #import "CSCategory.h"
 #import "CSAuthor.h"
+#import <HyperBek/HyperBek.h>
 
 @interface CSNarrow ()
 @property (strong, nonatomic) YBHALResource *resource;
@@ -27,6 +28,11 @@
         self.resource = resource;
     }
     return self;
+}
+
+- (NSString *)title
+{
+    return self.resource[@"title"];
 }
 
 - (NSURL *)sliceURL

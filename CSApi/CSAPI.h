@@ -1437,6 +1437,9 @@
  */
 @protocol CSNarrow <NSObject>
 
+/** A human-readable name to help identify the narrow. */
+@property (nonatomic, readonly) NSString *title;
+
 /** The URL of the slice that results from following this narrow.
  
  Clients are expected to use the Narrow's getSlice: method instead of
