@@ -9,6 +9,7 @@
 #import "CSAPITestCase.h"
 #import "TestConstants.h"
 #import "TestFixtures.h"
+#import "TestRequester.h"
 #import <SBJson/SBJson.h>
 
 @implementation CSAPITestCase
@@ -100,6 +101,23 @@
 - (YBHALResource *)resourceForFixture:(NSString *)fixture
 {
     return [self resourceForData:dataForFixture(fixture)];
+}
+
+- (void)addGetFixture:(NSString *)fixture requester:(TestRequester *)requester
+{
+    YBHALResource *resource = [self resourceForFixture:fixture];
+    STAssertNotNil(resource,
+                   [NSString stringWithFormat:@"could not load fixture %@",
+                    fixture]);
+    YBHALLink *selfLink = [resource linkForRelation:@"self"];
+    STAssertNotNil(resource,
+                   [NSString stringWithFormat:@"missing self link (%@)",
+                    fixture]);
+    NSURL *selfURL = selfLink.URL;
+    STAssertNotNil(selfURL,
+                   [NSString stringWithFormat:@"missing self URL (%@)",
+                    fixture]);
+    [requester addGetResponse:resource forURL:selfURL];
 }
 
 @end

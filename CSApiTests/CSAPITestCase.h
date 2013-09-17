@@ -16,6 +16,8 @@
     } \
 }
 
+@class TestRequester;
+
 @interface CSAPITestCase : SenTestCase
 
 - (NSTimeInterval)waitForSemaphore:(dispatch_semaphore_t)semaphore;
@@ -34,5 +36,7 @@
 - (YBHALResource*)resourceForData:(NSData*)data;
 
 - (YBHALResource *)resourceForFixture:(NSString *)fixture;
+
+- (void)addGetFixture:(NSString *)fixture requester:(TestRequester *)requester;
 
 @end

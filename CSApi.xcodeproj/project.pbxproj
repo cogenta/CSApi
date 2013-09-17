@@ -239,7 +239,7 @@
 		BE6439C616DFB1790015E822 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; fileEncoding = 4; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		BE6439C716DFB1790015E822 /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
 		BE68DA8C16D62B64008ED350 /* CSApiUserLikeTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSApiUserLikeTests.m; sourceTree = "<group>"; };
-		BE6BF3F017183C11004B6D85 /* product.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = product.json; sourceTree = "<group>"; };
+		BE6BF3F017183C11004B6D85 /* product.json */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = text.json; path = product.json; sourceTree = "<group>"; tabWidth = 2; };
 		BE6BF3F317183CCF004B6D85 /* CSProduct.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSProduct.h; sourceTree = "<group>"; };
 		BE6BF3F417183CCF004B6D85 /* CSProduct.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSProduct.m; sourceTree = "<group>"; };
 		BE6BF3F617185103004B6D85 /* CSProductTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSProductTests.m; sourceTree = "<group>"; };

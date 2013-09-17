@@ -9,6 +9,7 @@
 #import "CSProduct.h"
 #import "CSPictureListPage.h"
 #import "CSPriceListPage.h"
+#import "CSAuthor.h"
 #import <HyperBek/HyperBek.h>
 #import <ISO8601DateFormatter/ISO8601DateFormatter.h>
 
@@ -24,7 +25,6 @@
 @synthesize name;
 @synthesize description_;
 @synthesize views;
-@synthesize author;
 @synthesize softwarePlatform;
 @synthesize manufacturer;
 @synthesize coverType;
@@ -42,7 +42,6 @@
         name = resource[@"name"];
         description_ = resource[@"description"];
         views = resource[@"views"];
-        author = resource[@"author"];
         softwarePlatform = resource[@"software_platform"];
         manufacturer = resource[@"manufacturer"];
         coverType = resource[@"cover_type"];
@@ -85,6 +84,22 @@
                                         requester:self.requester
                                        credential:self.credential],
              nil);
+}
+
+- (void)getAuthor:(void (^)(id<CSAuthor>, NSError *))callback
+{
+    [self getRelation:@"/rels/author"
+          forResource:resource
+             callback:^(YBHALResource *author, NSError *error) {
+        if (error) {
+            callback(nil, error);
+        }
+        
+        callback([[CSAuthor alloc] initWithResource:author
+                                          requester:self.requester
+                                         credential:self.credential],
+                 nil);
+    }];
 }
 
 @end

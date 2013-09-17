@@ -56,6 +56,8 @@
 @protocol CSNarrowListPage;
 @protocol CSNarrowList;
 
+@protocol CSAuthor;
+
 /**
  Provides a handle to the network request for an API invocation.
  
@@ -902,9 +904,6 @@
 /** The number of times a user has viewed this product. */
 @property (readonly) NSNumber *views;
 
-/** If this is a book, the author. */
-@property (readonly) NSString *author;
-
 /** If this is software, the platform. */
 @property (readonly) NSString *softwarePlatform;
 
@@ -954,6 +953,25 @@
  */
 - (void)getPrices:(void (^)(id<CSPriceListPage> firstPage,
                             NSError *error))callback;
+
+
+/** Get the author of this product.
+ 
+ Control returns from getAuthor: immediately. If the operation is successful,
+ and the product has an author, the given callback is invoked with a non-nil
+ [id\<CSAuthor\>](CSAuthor) in result and a nil error.
+ 
+ If the product does not have an author, the callback is invoked with a nil
+ result and a nil error.
+ 
+ If the operation fails, callback is invoked with a nil result and a non-nil
+ error.
+ 
+ @param callback The block to invoke when the author has been successfully
+ obtained, or when the product has no author, or when the operation has failed.
+ 
+ */
+- (void)getAuthor:(void (^)(id<CSAuthor> result, NSError *error))callback;
 
 @end
 

@@ -50,6 +50,8 @@
     product = [[CSProduct alloc] initWithHAL:resource
                                    requester:requester
                                   credential:credential];
+    
+    [self addGetFixture:@"author.json" requester:requester];
 }
 
 - (void)testProperties
@@ -59,7 +61,6 @@
     STAssertEqualObjects(product.name, resource[@"name"], nil);
     STAssertEqualObjects(product.description_, resource[@"description"], nil);
     STAssertEqualObjects(product.views, resource[@"views"], nil);
-    STAssertEqualObjects(product.author, resource[@"author"], nil);
     STAssertEqualObjects(product.softwarePlatform, resource[@"software_platform"], nil);
     STAssertEqualObjects(product.manufacturer, resource[@"manufacturer"], nil);
     STAssertEqualObjects(product.coverType, resource[@"cover_type"], nil);
@@ -136,7 +137,8 @@
                             userInfo:nil];
     __block id<CSPrice> price = nil;
     CALL_AND_WAIT(^(void (^done)()) {
-        [prices getPriceAtIndex:0 callback:^(id<CSPrice> aPrice, NSError *anError) {
+        [prices getPriceAtIndex:0 callback:^(id<CSPrice> aPrice,
+                                             NSError *anError) {
             price = aPrice;
             error = anError;
             done();
@@ -145,6 +147,24 @@
     
     STAssertNil(error, @"%@", error);
     STAssertNotNil(price, nil);
+}
+
+- (void)testGetAuthor
+{
+    __block id error = @"NOT CALLED";
+    __block id<CSAuthor> author = nil;
+    CALL_AND_WAIT(^(void (^done)()) {
+        [product getAuthor:^(id<CSAuthor> anAuthor, NSError *anError) {
+            author = anAuthor;
+            error = anError;
+            done();
+        }];
+    });
+    
+    STAssertNil(error, @"%@", error);
+    STAssertNotNil(author, nil);
+    
+    STAssertEqualObjects(author.name, @"William Shakespeare", nil);
 }
 
 @end

@@ -431,7 +431,6 @@
   "name": "Apple iPod touch 32GB 5th Generation - Black.",
   "cover_type": null,
   "views": 0,
-  "author": null,
   "software_platform": null,
   "_links": {
     "curies": [{
@@ -441,6 +440,10 @@
     }],
     "self": {
       "href": "/products/3ePUno"
+    },
+    "api:author": {
+      "href": "/authors/William%20Shakespeare",
+      "title": "William Shakespeare"
     }
   },
   "manufacturer": "Apple",
