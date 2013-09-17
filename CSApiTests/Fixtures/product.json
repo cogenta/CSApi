@@ -444,6 +444,18 @@
     "api:author": {
       "href": "/authors/William%20Shakespeare",
       "title": "William Shakespeare"
+    },
+    "api:covertype": {
+      "href": "/covertypes/Ebook",
+      "title": "Ebook"
+    },
+    "api:manufacturer": {
+      "href": "/manufacturers/Amazon",
+      "title": "Amazon"
+    },
+    "api:softwareplatform": {
+      "href": "/softwareplatforms/Kindle",
+      "title": "Kindle"
     }
   },
   "manufacturer": "Apple",

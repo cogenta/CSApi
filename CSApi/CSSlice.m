@@ -11,7 +11,7 @@
 #import "CSRetailer.h"
 #import "CSRetailerListPage.h"
 #import "CSCategory.h"
-#import "CSAuthor.h"
+#import "CSNominal.h"
 #import "CSNarrowListPage.h"
 
 @interface CSSlice ()
@@ -238,7 +238,7 @@
              return;
          }
          
-         callback([[CSAuthor alloc] initWithResource:result
+         callback([[CSNominal alloc] initWithResource:result
                                            requester:self.requester
                                           credential:self.credential],
                   nil);

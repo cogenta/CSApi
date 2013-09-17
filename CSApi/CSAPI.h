@@ -57,6 +57,9 @@
 @protocol CSNarrowList;
 
 @protocol CSAuthor;
+@protocol CSCoverType;
+@protocol CSManufacturer;
+@protocol CSSoftwarePlatform;
 
 /**
  Provides a handle to the network request for an API invocation.
@@ -904,15 +907,6 @@
 /** The number of times a user has viewed this product. */
 @property (readonly) NSNumber *views;
 
-/** If this is software, the platform. */
-@property (readonly) NSString *softwarePlatform;
-
-/** The manufacturer of this product. */
-@property (readonly) NSString *manufacturer;
-
-/** The cover type of this product. */
-@property (readonly) NSString *coverType;
-
 /* The last time this product resource was updated. */
 @property (readonly) NSDate *lastUpdated;
 
@@ -972,6 +966,66 @@
  
  */
 - (void)getAuthor:(void (^)(id<CSAuthor> result, NSError *error))callback;
+
+/** Get the cover type of this product.
+ 
+ Control returns from getCoverType: immediately. If the operation is successful,
+ and the product has a cover type, the given callback is invoked with a non-nil
+ [id\<CSCoverType\>](CSCoverType) in result and a nil error.
+ 
+ If the product does not have a cover type, the callback is invoked with a nil
+ result and a nil error.
+ 
+ If the operation fails, callback is invoked with a nil result and a non-nil
+ error.
+ 
+ @param callback The block to invoke when the cover type has been successfully
+ obtained, or when the product has no cover type, or when the operation has
+ failed.
+ 
+ */
+- (void)getCoverType:(void (^)(id<CSCoverType> result, NSError *error))callback;
+
+/** Get the manufacturer of this product.
+ 
+ Control returns from getManufacturer: immediately. If the operation is
+ successful, and the product has a manufacturer, the given callback is invoked
+ with a non-nil [id\<CSManufacturer\>](CSManufacturer) in result and a nil
+ error.
+ 
+ If the product does not have a manufacturer, the callback is invoked with a nil
+ result and a nil error.
+ 
+ If the operation fails, callback is invoked with a nil result and a non-nil
+ error.
+ 
+ @param callback The block to invoke when the manufacturer has been successfully
+ obtained, or when the product has no manufacturer, or when the operation has
+ failed.
+ 
+ */
+- (void)getManufacturer:(void (^)(id<CSManufacturer> result,
+                                  NSError *error))callback;
+
+/** Get the software platform of this product.
+ 
+ Control returns from getSoftwarePlatform: immediately. If the operation is
+ successful, and the product has a software platform, the given callback is
+ invoked with a non-nil [id\<CSSoftwarePlatform\>](CSSoftwarePlatform) in result
+ and a nil error.
+ 
+ If the product does not have a software platform, the callback is invoked with
+ a nil result and a nil error.
+ 
+ If the operation fails, callback is invoked with a nil result and a non-nil
+ error.
+ 
+ @param callback The block to invoke when the software platform has been
+ successfully obtained, or when the product has no software platform, or when
+ the operation has failed.
+ 
+ */- (void)getSoftwarePlatform:(void (^)(id<CSSoftwarePlatform> result,
+                                         NSError *error))callback;
 
 @end
 
@@ -1177,6 +1231,30 @@
 @protocol CSAuthor <NSObject>
 
 /** The author's name. */
+@property (nonatomic, readonly) NSString *name;
+
+@end
+
+/** Protocol for accessing a cover type. */
+@protocol CSCoverType <NSObject>
+
+/** The name of the cover type. */
+@property (nonatomic, readonly) NSString *name;
+
+@end
+
+/** Protocol for accessing a manufacturer. */
+@protocol CSManufacturer <NSObject>
+
+/** The manufacturer's name. */
+@property (nonatomic, readonly) NSString *name;
+
+@end
+
+/** Protocol for accessing a software platform. */
+@protocol CSSoftwarePlatform <NSObject>
+
+/** The name of the software platform. */
 @property (nonatomic, readonly) NSString *name;
 
 @end

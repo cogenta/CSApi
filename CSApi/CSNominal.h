@@ -1,5 +1,5 @@
 //
-//  CSAuthor.h
+//  CSNominal.h
 //  CSApi
 //
 //  Created by Will Harris on 12/09/2013.
@@ -10,7 +10,11 @@
 
 @class YBHALResource;
 
-@interface CSAuthor : CSCredentialEntity <CSAuthor>
+@interface CSNominal : CSCredentialEntity
+<CSAuthor,
+CSCoverType,
+CSManufacturer,
+CSSoftwarePlatform>
 
 - (id)initWithResource:(YBHALResource *)resource
              requester:(id<CSRequester>)requester

@@ -52,6 +52,9 @@
                                   credential:credential];
     
     [self addGetFixture:@"author.json" requester:requester];
+    [self addGetFixture:@"covertype.json" requester:requester];
+    [self addGetFixture:@"manufacturer.json" requester:requester];
+    [self addGetFixture:@"softwareplatform.json" requester:requester];
 }
 
 - (void)testProperties
@@ -61,9 +64,6 @@
     STAssertEqualObjects(product.name, resource[@"name"], nil);
     STAssertEqualObjects(product.description_, resource[@"description"], nil);
     STAssertEqualObjects(product.views, resource[@"views"], nil);
-    STAssertEqualObjects(product.softwarePlatform, resource[@"software_platform"], nil);
-    STAssertEqualObjects(product.manufacturer, resource[@"manufacturer"], nil);
-    STAssertEqualObjects(product.coverType, resource[@"cover_type"], nil);
     STAssertEqualObjects(product.lastUpdated,
                          [[[ISO8601DateFormatter alloc] init]
                           dateFromString:resource[@"last_updated"]],
@@ -97,7 +97,9 @@
                             userInfo:nil];
     __block id<CSPicture> picture = nil;
     CALL_AND_WAIT(^(void (^done)()) {
-        [pictures getPictureAtIndex:0 callback:^(id<CSPicture> aPicture, NSError *anError) {
+        [pictures getPictureAtIndex:0 callback:^(id<CSPicture> aPicture,
+                                                 NSError *anError)
+        {
             picture = aPicture;
             error = anError;
             done();
@@ -152,19 +154,77 @@
 - (void)testGetAuthor
 {
     __block id error = @"NOT CALLED";
-    __block id<CSAuthor> author = nil;
+    __block id<CSAuthor> thing = nil;
     CALL_AND_WAIT(^(void (^done)()) {
-        [product getAuthor:^(id<CSAuthor> anAuthor, NSError *anError) {
-            author = anAuthor;
+        [product getAuthor:^(id<CSAuthor> aThing, NSError *anError) {
+            thing = aThing;
             error = anError;
             done();
         }];
     });
     
     STAssertNil(error, @"%@", error);
-    STAssertNotNil(author, nil);
+    STAssertNotNil(thing, nil);
     
-    STAssertEqualObjects(author.name, @"William Shakespeare", nil);
+    STAssertEqualObjects(thing.name, @"William Shakespeare", nil);
+}
+
+- (void)testGetCovertType
+{
+    __block id error = @"NOT CALLED";
+    __block id<CSCoverType> thing = nil;
+    CALL_AND_WAIT(^(void (^done)()) {
+        [product getCoverType:^(id<CSCoverType> aThing, NSError *anError) {
+            thing = aThing;
+            error = anError;
+            done();
+        }];
+    });
+    
+    STAssertNil(error, @"%@", error);
+    STAssertNotNil(thing, nil);
+    
+    STAssertEqualObjects(thing.name, @"Ebook", nil);
+}
+
+- (void)testGetManufacturer
+{
+    __block id error = @"NOT CALLED";
+    __block id<CSManufacturer> thing = nil;
+    CALL_AND_WAIT(^(void (^done)()) {
+        [product getManufacturer:^(id<CSManufacturer> aThing,
+                                   NSError *anError)
+        {
+            thing = aThing;
+            error = anError;
+            done();
+        }];
+    });
+    
+    STAssertNil(error, @"%@", error);
+    STAssertNotNil(thing, nil);
+    
+    STAssertEqualObjects(thing.name, @"Amazon", nil);
+}
+
+- (void)testGetSoftwarePlatform
+{
+    __block id error = @"NOT CALLED";
+    __block id<CSSoftwarePlatform> thing = nil;
+    CALL_AND_WAIT(^(void (^done)()) {
+        [product getSoftwarePlatform:^(id<CSSoftwarePlatform> aThing,
+                                       NSError *anError)
+        {
+            thing = aThing;
+            error = anError;
+            done();
+        }];
+    });
+    
+    STAssertNil(error, @"%@", error);
+    STAssertNotNil(thing, nil);
+    
+    STAssertEqualObjects(thing.name, @"Kindle", nil);
 }
 
 @end

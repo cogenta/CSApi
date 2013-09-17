@@ -1,5 +1,5 @@
 //
-//  CSAuthorTests.m
+//  CSNominalTests.m
 //  CSApi
 //
 //  Created by Will Harris on 12/09/2013.
@@ -7,24 +7,24 @@
 //
 
 #import "CSAPITestCase.h"
-#import "CSAuthor.h"
+#import "CSNominal.h"
 #import "CSBasicCredential.h"
 #import "TestRequester.h"
 #import <HyperBek/HyperBek.h>
 #import "TestConstants.h"
 
-@interface CSAuthorTests : CSAPITestCase
+@interface CSNominalTests : CSAPITestCase
 
 @property (strong) TestRequester *requester;
 @property (strong) id<CSCredential> credential;
 @property (strong) NSDictionary *json;
 @property (strong) YBHALResource *resource;
 @property (strong) NSURL *URL;
-@property (strong) CSAuthor *author;
+@property (strong) CSNominal *author;
 
 @end
 
-@implementation CSAuthorTests
+@implementation CSNominalTests
 
 - (void)setUp
 {
@@ -45,7 +45,7 @@
     _URL = [_resource linkForRelation:@"self"].URL;
     [_requester addGetResponse:_resource forURL:_URL];
     
-    _author = [[CSAuthor alloc] initWithResource:_resource
+    _author = [[CSNominal alloc] initWithResource:_resource
                                        requester:_requester
                                       credential:_credential];
 }

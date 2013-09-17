@@ -10,7 +10,7 @@
 #import "CSSlice.h"
 #import "CSRetailer.h"
 #import "CSCategory.h"
-#import "CSAuthor.h"
+#import "CSNominal.h"
 #import <HyperBek/HyperBek.h>
 
 @interface CSNarrow ()
@@ -151,7 +151,7 @@
              return;
          }
          
-         callback([[CSAuthor alloc] initWithResource:result
+         callback([[CSNominal alloc] initWithResource:result
                                            requester:self.requester
                                           credential:self.credential],
                   nil);

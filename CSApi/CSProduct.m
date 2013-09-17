@@ -9,7 +9,7 @@
 #import "CSProduct.h"
 #import "CSPictureListPage.h"
 #import "CSPriceListPage.h"
-#import "CSAuthor.h"
+#import "CSNominal.h"
 #import <HyperBek/HyperBek.h>
 #import <ISO8601DateFormatter/ISO8601DateFormatter.h>
 
@@ -25,9 +25,6 @@
 @synthesize name;
 @synthesize description_;
 @synthesize views;
-@synthesize softwarePlatform;
-@synthesize manufacturer;
-@synthesize coverType;
 @synthesize lastUpdated;
 
 - (id)initWithHAL:(YBHALResource *)aResource
@@ -42,9 +39,6 @@
         name = resource[@"name"];
         description_ = resource[@"description"];
         views = resource[@"views"];
-        softwarePlatform = resource[@"software_platform"];
-        manufacturer = resource[@"manufacturer"];
-        coverType = resource[@"cover_type"];
     }
     return self;
 }
@@ -86,20 +80,59 @@
              nil);
 }
 
-- (void)getAuthor:(void (^)(id<CSAuthor>, NSError *))callback
+- (void)getNominalForRelation:(NSString *)rel
+                     callback:(void (^)(CSNominal *, NSError *))callback
 {
-    [self getRelation:@"/rels/author"
+    [self getRelation:rel
           forResource:resource
              callback:^(YBHALResource *author, NSError *error) {
         if (error) {
             callback(nil, error);
         }
         
-        callback([[CSAuthor alloc] initWithResource:author
+        callback([[CSNominal alloc] initWithResource:author
                                           requester:self.requester
                                          credential:self.credential],
                  nil);
     }];
 }
+
+- (void)getAuthor:(void (^)(id<CSAuthor>, NSError *))callback
+{
+    [self getNominalForRelation:@"/rels/author"
+                       callback:^(CSNominal *result, NSError *error)
+    {
+        callback(result, error);
+    }];
+}
+
+- (void)getCoverType:(void (^)(id<CSCoverType>, NSError *))callback
+{
+    [self getNominalForRelation:@"/rels/covertype"
+                       callback:^(CSNominal *result, NSError *error)
+     {
+         callback(result, error);
+     }];
+}
+
+- (void)getManufacturer:(void (^)(id<CSManufacturer>, NSError *))callback
+{
+    [self getNominalForRelation:@"/rels/manufacturer"
+                       callback:^(CSNominal *result, NSError *error)
+     {
+         callback(result, error);
+     }];
+}
+
+- (void)getSoftwarePlatform:(void (^)(id<CSSoftwarePlatform>,
+                                      NSError *))callback
+{
+    [self getNominalForRelation:@"/rels/softwareplatform"
+                       callback:^(CSNominal *result, NSError *error)
+     {
+         callback(result, error);
+     }];
+}
+
 
 @end

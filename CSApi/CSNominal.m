@@ -1,21 +1,21 @@
 //
-//  CSAuthor.m
+//  CSNominal.m
 //  CSApi
 //
 //  Created by Will Harris on 12/09/2013.
 //  Copyright (c) 2013 Cogenta Systems Ltd. All rights reserved.
 //
 
-#import "CSAuthor.h"
+#import "CSNominal.h"
 #import <HyperBek/HyperBek.h>
 
-@interface CSAuthor ()
+@interface CSNominal ()
 
 @property (readonly) YBHALResource *resource;
 
 @end
 
-@implementation CSAuthor
+@implementation CSNominal
 
 - (id)initWithResource:(YBHALResource *)aResource
              requester:(id<CSRequester>)aRequester
