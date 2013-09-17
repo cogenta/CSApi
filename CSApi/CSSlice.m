@@ -245,4 +245,27 @@
      }];
 }
 
+- (void)getSliceWithoutAuthorFilter:(void (^)(id<CSSlice>, NSError *))callback
+{
+    [self getRelation:@"/rels/slicewithoutauthorfilter"
+          forResource:self.resource
+             callback:^(YBHALResource *result, NSError *error)
+     {
+         if (error) {
+             callback(nil, error);
+             return;
+         }
+         
+         if ( ! result) {
+             callback(nil, nil);
+             return;
+         }
+         
+         callback([[CSSlice alloc] initWithHAL:result
+                                     requester:self.requester
+                                    credential:self.credential],
+                  nil);
+     }];
+}
+
 @end

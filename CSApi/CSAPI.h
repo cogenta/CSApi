@@ -1442,6 +1442,28 @@
  */
 - (void)getFiltersByAuthor:(void (^)(id<CSAuthor> result,
                                      NSError *error))callback;
+
+/** Tries to get a slice without an author filter.
+ 
+ The resulting slice has the same filters as this slice, but without the filter
+ by author.
+ 
+ Control returns from getSliceWithoutAuthorFilter: immediately. If the
+ operation is successful, the given callback is invoked with a non-nil
+ [id\<CSSlice\>](CSSlice) in result and a nil error.
+ 
+ If there is no such slice, the callback is invoked with a nil
+ [id\<CSSlice\>](CSSlice) in result and a nil error.
+ 
+ If the operation fails, the callback is invoked with a nil result and a
+ non-nil error.
+ 
+ @param callback The block to invoke when the slice has been successfully
+ obtained, or when there is no such slice, or when the operation has failed.
+ */
+- (void)getSliceWithoutAuthorFilter:(void (^)(id<CSSlice> result,
+                                              NSError *error))callback;
+
 @end
 
 
