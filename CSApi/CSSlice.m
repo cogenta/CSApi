@@ -59,6 +59,27 @@
                        resource:self.resource];
 }
 
+- (NSURL *)coverTypeNarrowsURL
+{
+    return [self URLForRelation:@"/rels/covertypenarrows"
+                      arguments:nil
+                       resource:self.resource];
+}
+
+- (NSURL *)manufacturerNarrowsURL
+{
+    return [self URLForRelation:@"/rels/manufacturernarrows"
+                      arguments:nil
+                       resource:self.resource];
+}
+
+- (NSURL *)softwarePlatformNarrowsURL
+{
+    return [self URLForRelation:@"/rels/softwareplatformnarrows"
+                      arguments:nil
+                       resource:self.resource];
+}
+
 - (id<CSAPIRequest>)getProducts:(void (^)(id<CSProductListPage>,
                                           NSError *))callback
 {
@@ -138,6 +159,60 @@
 - (void)getAuthorNarrows:(void (^)(id<CSNarrowListPage>, NSError *))callback
 {
     [self getRelation:@"/rels/authornarrows"
+          forResource:self.resource
+             callback:^(YBHALResource *result, NSError *error)
+     {
+         if (error) {
+             callback(nil, error);
+             return;
+         }
+         
+         callback([[CSNarrowListPage alloc] initWithHal:result
+                                              requester:self.requester
+                                             credential:self.credential],
+                  nil);
+     }];
+}
+
+- (void)getCoverTypeNarrows:(void (^)(id<CSNarrowListPage>, NSError *))callback
+{
+    [self getRelation:@"/rels/covertypenarrows"
+          forResource:self.resource
+             callback:^(YBHALResource *result, NSError *error)
+     {
+         if (error) {
+             callback(nil, error);
+             return;
+         }
+         
+         callback([[CSNarrowListPage alloc] initWithHal:result
+                                              requester:self.requester
+                                             credential:self.credential],
+                  nil);
+     }];
+}
+
+- (void)getManufacturerNarrows:(void (^)(id<CSNarrowListPage>, NSError *))callback
+{
+    [self getRelation:@"/rels/manufacturernarrows"
+          forResource:self.resource
+             callback:^(YBHALResource *result, NSError *error)
+     {
+         if (error) {
+             callback(nil, error);
+             return;
+         }
+         
+         callback([[CSNarrowListPage alloc] initWithHal:result
+                                              requester:self.requester
+                                             credential:self.credential],
+                  nil);
+     }];
+}
+
+- (void)getSoftwarePlatformNarrows:(void (^)(id<CSNarrowListPage>, NSError *))callback
+{
+    [self getRelation:@"/rels/softwareplatformnarrows"
           forResource:self.resource
              callback:^(YBHALResource *result, NSError *error)
      {
@@ -239,8 +314,77 @@
          }
          
          callback([[CSNominal alloc] initWithResource:result
-                                           requester:self.requester
-                                          credential:self.credential],
+                                            requester:self.requester
+                                           credential:self.credential],
+                  nil);
+     }];
+}
+
+- (void)getFiltersByCoverType:(void (^)(id<CSCoverType>, NSError *))callback
+{
+    [self getRelation:@"/rels/filtersbycovertype"
+          forResource:self.resource
+             callback:^(YBHALResource *result, NSError *error)
+     {
+         if (error) {
+             callback(nil, error);
+             return;
+         }
+         
+         if ( ! result) {
+             callback(nil, nil);
+             return;
+         }
+         
+         callback([[CSNominal alloc] initWithResource:result
+                                            requester:self.requester
+                                           credential:self.credential],
+                  nil);
+     }];
+}
+
+- (void)getFiltersByManufacturer:(void (^)(id<CSManufacturer>, NSError *))callback
+{
+    [self getRelation:@"/rels/filtersbymanufacturer"
+          forResource:self.resource
+             callback:^(YBHALResource *result, NSError *error)
+     {
+         if (error) {
+             callback(nil, error);
+             return;
+         }
+         
+         if ( ! result) {
+             callback(nil, nil);
+             return;
+         }
+         
+         callback([[CSNominal alloc] initWithResource:result
+                                            requester:self.requester
+                                           credential:self.credential],
+                  nil);
+     }];
+}
+
+- (void)getFiltersBySoftwarePlatform:(void (^)(id<CSSoftwarePlatform>, NSError *))callback
+{
+    [self getRelation:@"/rels/filtersbysoftwareplatform"
+          forResource:self.resource
+             callback:^(YBHALResource *result, NSError *error)
+     {
+         if (error) {
+             callback(nil, error);
+             return;
+         }
+         
+         if ( ! result) {
+             callback(nil, nil);
+             return;
+         }
+         
+         callback([[CSNominal alloc] initWithResource:result
+                                            requester:self.requester
+                                           credential:self.credential],
                   nil);
      }];
 }
@@ -248,6 +392,75 @@
 - (void)getSliceWithoutAuthorFilter:(void (^)(id<CSSlice>, NSError *))callback
 {
     [self getRelation:@"/rels/slicewithoutauthorfilter"
+          forResource:self.resource
+             callback:^(YBHALResource *result, NSError *error)
+     {
+         if (error) {
+             callback(nil, error);
+             return;
+         }
+         
+         if ( ! result) {
+             callback(nil, nil);
+             return;
+         }
+         
+         callback([[CSSlice alloc] initWithHAL:result
+                                     requester:self.requester
+                                    credential:self.credential],
+                  nil);
+     }];
+}
+
+- (void)getSliceWithoutCoverTypeFilter:(void (^)(id<CSSlice>, NSError *))callback
+{
+    [self getRelation:@"/rels/slicewithoutcovertypefilter"
+          forResource:self.resource
+             callback:^(YBHALResource *result, NSError *error)
+     {
+         if (error) {
+             callback(nil, error);
+             return;
+         }
+         
+         if ( ! result) {
+             callback(nil, nil);
+             return;
+         }
+         
+         callback([[CSSlice alloc] initWithHAL:result
+                                     requester:self.requester
+                                    credential:self.credential],
+                  nil);
+     }];
+}
+
+- (void)getSliceWithoutManufacturerFilter:(void (^)(id<CSSlice>, NSError *))callback
+{
+    [self getRelation:@"/rels/slicewithoutmanufacturerfilter"
+          forResource:self.resource
+             callback:^(YBHALResource *result, NSError *error)
+     {
+         if (error) {
+             callback(nil, error);
+             return;
+         }
+         
+         if ( ! result) {
+             callback(nil, nil);
+             return;
+         }
+         
+         callback([[CSSlice alloc] initWithHAL:result
+                                     requester:self.requester
+                                    credential:self.credential],
+                  nil);
+     }];
+}
+
+- (void)getSliceWithoutSoftwarePlatformFilter:(void (^)(id<CSSlice>, NSError *))callback
+{
+    [self getRelation:@"/rels/slicewithoutsoftwareplatformfilter"
           forResource:self.resource
              callback:^(YBHALResource *result, NSError *error)
      {

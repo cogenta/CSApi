@@ -134,6 +134,27 @@
                        resource:self.resource];
 }
 
+- (NSURL *)narrowsByCoverTypeURL
+{
+    return [self URLForRelation:@"/rels/narrowsbycovertype"
+                      arguments:nil
+                       resource:self.resource];
+}
+
+- (NSURL *)narrowsByManufacturerURL
+{
+    return [self URLForRelation:@"/rels/narrowsbymanufacturer"
+                      arguments:nil
+                       resource:self.resource];
+}
+
+- (NSURL *)narrowsBySoftwarePlatformURL
+{
+    return [self URLForRelation:@"/rels/narrowsbysoftwareplatform"
+                      arguments:nil
+                       resource:self.resource];
+}
+
 - (void)getNarrowsByAuthor:(void (^)(id<CSAuthor> result,
                                      NSError *error))callback
 {
@@ -152,8 +173,80 @@
          }
          
          callback([[CSNominal alloc] initWithResource:result
-                                           requester:self.requester
-                                          credential:self.credential],
+                                            requester:self.requester
+                                           credential:self.credential],
+                  nil);
+     }];
+}
+
+- (void)getNarrowsByCoverType:(void (^)(id<CSCoverType> result,
+                                     NSError *error))callback
+{
+    [self getRelation:@"/rels/narrowsbycovertype"
+          forResource:self.resource
+             callback:^(YBHALResource *result, NSError *error)
+     {
+         if (error) {
+             callback(nil, error);
+             return;
+         }
+         
+         if ( ! result) {
+             callback(nil, nil);
+             return;
+         }
+         
+         callback([[CSNominal alloc] initWithResource:result
+                                            requester:self.requester
+                                           credential:self.credential],
+                  nil);
+     }];
+}
+
+- (void)getNarrowsByManufacturer:(void (^)(id<CSManufacturer> result,
+                                     NSError *error))callback
+{
+    [self getRelation:@"/rels/narrowsbymanufacturer"
+          forResource:self.resource
+             callback:^(YBHALResource *result, NSError *error)
+     {
+         if (error) {
+             callback(nil, error);
+             return;
+         }
+         
+         if ( ! result) {
+             callback(nil, nil);
+             return;
+         }
+         
+         callback([[CSNominal alloc] initWithResource:result
+                                            requester:self.requester
+                                           credential:self.credential],
+                  nil);
+     }];
+}
+
+- (void)getNarrowsBySoftwarePlatform:(void (^)(id<CSSoftwarePlatform> result,
+                                     NSError *error))callback
+{
+    [self getRelation:@"/rels/narrowsbysoftwareplatform"
+          forResource:self.resource
+             callback:^(YBHALResource *result, NSError *error)
+     {
+         if (error) {
+             callback(nil, error);
+             return;
+         }
+         
+         if ( ! result) {
+             callback(nil, nil);
+             return;
+         }
+         
+         callback([[CSNominal alloc] initWithResource:result
+                                            requester:self.requester
+                                           credential:self.credential],
                   nil);
      }];
 }

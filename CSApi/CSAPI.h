@@ -1291,10 +1291,31 @@
 
 /** The URL of the list of author narrows from this slice.
  
- Clients are expected to use the Slice's getAurhorNarrows: method instead of
+ Clients are expected to use the Slice's getAuthorNarrows: method instead of
  dereferencing this URL.
  */
 @property (nonatomic, readonly) NSURL *authorNarrowsURL;
+
+/** The URL of the list of cover type narrows from this slice.
+ 
+ Clients are expected to use the Slice's getCoverTypeNarrows: method instead of
+ dereferencing this URL.
+ */
+@property (nonatomic, readonly) NSURL *coverTypeNarrowsURL;
+
+/** The URL of the list of manufacturer narrows from this slice.
+ 
+ Clients are expected to use the Slice's getManufacturerNarrows: method instead
+ of dereferencing this URL.
+ */
+@property (nonatomic, readonly) NSURL *manufacturerNarrowsURL;
+
+/** The URL of the list of software platform narrows from this slice.
+ 
+ Clients are expected to use the Slice's getSoftwarePlatformNarrows: method
+ instead of dereferencing this URL.
+ */
+@property (nonatomic, readonly) NSURL *softwarePlatformNarrowsURL;
 
 /** Tries to get a list of products in this slice.
  
@@ -1428,6 +1449,98 @@
 - (void)getAuthorNarrows:(void (^)(id<CSNarrowListPage> result,
                                    NSError *error))callback;
 
+/** Tries to get a list of cover type narrows.
+ 
+ The cover type narrows each narrow this slice by a different cover type that
+ is associated with one or more products in this slice.
+ 
+ Control returns from getCoverTypeNarrows: immediately. If the operation is
+ successful, and the slice provides a list of cover type narrows, the given
+ callback is invoked with a non-nil [id\<CSNarrowListPage\>](CSNarrowListPage)
+ in result and a nil error. result is the first page of the result set.
+ 
+ It is recommended that client code use result.narrowList to get an
+ [id\<CSNarrowList\>](CSNarrowList), which provides convenient access to
+ narrows in the list.
+ 
+ If the slice does not provide a list of cover type narrows, the callback is
+ invoked with a nil result and a nil error. Note that this is distinct from
+ the slice providing an empty list of cover type narrows, in which case result
+ will be a non-nil [id\<CSNarrowListPage\>](CSNarrowListPage) with a count of 0.
+ 
+ If the operation fails, callback is invoked with a nil result and a non-nil
+ error.
+ 
+ @param callback The block to invoke when the narrow list has been successfully
+ obtained, or when the slice provides no list of cover type narrows, or when the
+ operation has failed.
+ 
+ */
+- (void)getCoverTypeNarrows:(void (^)(id<CSNarrowListPage> result,
+                                      NSError *error))callback;
+
+/** Tries to get a list of manufacturer narrows.
+ 
+ The manufacturer narrows each narrow this slice by a different manufacturer that
+ is associated with one or more products in this slice.
+ 
+ Control returns from getManufacturerNarrows: immediately. If the operation is
+ successful, and the slice provides a list of manufacturer narrows, the given
+ callback is invoked with a non-nil [id\<CSNarrowListPage\>](CSNarrowListPage)
+ in result and a nil error. result is the first page of the result set.
+ 
+ It is recommended that client code use result.narrowList to get an
+ [id\<CSNarrowList\>](CSNarrowList), which provides convenient access to
+ narrows in the list.
+ 
+ If the slice does not provide a list of manufacturer narrows, the callback is
+ invoked with a nil result and a nil error. Note that this is distinct from
+ the slice providing an empty list of manufacturer narrows, in which case result
+ will be a non-nil [id\<CSNarrowListPage\>](CSNarrowListPage) with a count of 0.
+ 
+ If the operation fails, callback is invoked with a nil result and a non-nil
+ error.
+ 
+ @param callback The block to invoke when the narrow list has been successfully
+ obtained, or when the slice provides no list of manufacturer narrows, or when
+ the operation has failed.
+ 
+ */
+- (void)getManufacturerNarrows:(void (^)(id<CSNarrowListPage> result,
+                                         NSError *error))callback;
+
+/** Tries to get a list of software platform narrows.
+ 
+ The software platform narrows each narrow this slice by a different software
+ platform that is associated with one or more products in this slice.
+ 
+ Control returns from getSoftwarePlatformNarrows: immediately. If the operation
+ is successful, and the slice provides a list of software platform narrows, the
+ given callback is invoked with a non-nil
+ [id\<CSNarrowListPage\>](CSNarrowListPage) in result and a nil error. result
+ is the first page of the result set.
+ 
+ It is recommended that client code use result.narrowList to get an
+ [id\<CSNarrowList\>](CSNarrowList), which provides convenient access to
+ narrows in the list.
+ 
+ If the slice does not provide a list of software platform narrows, the
+ callback is invoked with a nil result and a nil error. Note that this is
+ distinct from the slice providing an empty list of software platform narrows,
+ in which case result will be a non-nil
+ [id\<CSNarrowListPage\>](CSNarrowListPage) with a count of 0.
+ 
+ If the operation fails, callback is invoked with a nil result and a non-nil
+ error.
+ 
+ @param callback The block to invoke when the narrow list has been successfully
+ obtained, or when the slice provides no list of software platform narrows, or
+ when the operation has failed.
+ 
+ */
+- (void)getSoftwarePlatformNarrows:(void (^)(id<CSNarrowListPage> result,
+                                             NSError *error))callback;
+
 /** Get the retailer used to filter the content in this slice.
  
  Control returns from getFiltersByRetailer: immediately. If the operation is
@@ -1521,6 +1634,69 @@
 - (void)getFiltersByAuthor:(void (^)(id<CSAuthor> result,
                                      NSError *error))callback;
 
+/** Get the cover type used to filter the content in this slice.
+ 
+ Control returns from getFiltersByCoverType: immediately. If the operation is
+ successful, and the slice's content is filtered by a cover type, the given
+ callback is invoked with a non-nil [id\<CSCoverType\>](CSCoverType)
+ in result and a nil error.
+ 
+ If the slice's content is not filtered by a cover type, the callback is
+ invoked with a nil result and a nil error.
+ 
+ If the operation fails, callback is invoked with a nil result and a non-nil
+ error.
+ 
+ @param callback The block to invoke when the cover type has been successfully
+ obtained, or when the slice's content is not filtered by a cover type, or when
+ the operation has failed.
+ 
+ */
+- (void)getFiltersByCoverType:(void (^)(id<CSCoverType> result,
+                                        NSError *error))callback;
+
+/** Get the manufacturer used to filter the content in this slice.
+ 
+ Control returns from getFiltersByManufacturer: immediately. If the operation
+ is successful, and the slice's content is filtered by a manufacturer, the given
+ callback is invoked with a non-nil [id\<CSManufacturer\>](CSManufacturer)
+ in result and a nil error.
+ 
+ If the slice's content is not filtered by a manufacturer, the callback is
+ invoked with a nil result and a nil error.
+ 
+ If the operation fails, callback is invoked with a nil result and a non-nil
+ error.
+ 
+ @param callback The block to invoke when the manufacturer has been successfully
+ obtained, or when the slice's content is not filtered by a manufacturer, or
+ when the operation has failed.
+ 
+ */
+- (void)getFiltersByManufacturer:(void (^)(id<CSManufacturer> result,
+                                           NSError *error))callback;;
+
+/** Get the software platform used to filter the content in this slice.
+ 
+ Control returns from getFiltersBySoftwarePlatform: immediately. If the
+ operation is successful, and the slice's content is filtered by a software
+ platform, the given callback is invoked with a non-nil
+ [id\<CSSoftwarePlatform\>](CSSoftwarePlatform) in result and a nil error.
+ 
+ If the slice's content is not filtered by an software platform, the callback is
+ invoked with a nil result and a nil error.
+ 
+ If the operation fails, callback is invoked with a nil result and a non-nil
+ error.
+ 
+ @param callback The block to invoke when the software platform has been
+ successfully obtained, or when the slice's content is not filtered by a
+ software platform, or when the operation has failed.
+ 
+ */
+- (void)getFiltersBySoftwarePlatform:(void (^)(id<CSSoftwarePlatform> result,
+                                               NSError *error))callback;
+
 /** Tries to get a slice without an author filter.
  
  The resulting slice has the same filters as this slice, but without the filter
@@ -1541,6 +1717,69 @@
  */
 - (void)getSliceWithoutAuthorFilter:(void (^)(id<CSSlice> result,
                                               NSError *error))callback;
+
+/** Tries to get a slice without a cover type filter.
+ 
+ The resulting slice has the same filters as this slice, but without the filter
+ by cover type.
+ 
+ Control returns from getSliceWithoutCoverTypeFilter: immediately. If the
+ operation is successful, the given callback is invoked with a non-nil
+ [id\<CSSlice\>](CSSlice) in result and a nil error.
+ 
+ If there is no such slice, the callback is invoked with a nil
+ [id\<CSSlice\>](CSSlice) in result and a nil error.
+ 
+ If the operation fails, the callback is invoked with a nil result and a
+ non-nil error.
+ 
+ @param callback The block to invoke when the slice has been successfully
+ obtained, or when there is no such slice, or when the operation has failed.
+ */
+- (void)getSliceWithoutCoverTypeFilter:(void (^)(id<CSSlice> result,
+                                                 NSError *error))callback;
+
+/** Tries to get a slice without a manufacturer filter.
+ 
+ The resulting slice has the same filters as this slice, but without the filter
+ by manufacturer.
+ 
+ Control returns from getSliceWithoutManufacturerFilter: immediately. If the
+ operation is successful, the given callback is invoked with a non-nil
+ [id\<CSSlice\>](CSSlice) in result and a nil error.
+ 
+ If there is no such slice, the callback is invoked with a nil
+ [id\<CSSlice\>](CSSlice) in result and a nil error.
+ 
+ If the operation fails, the callback is invoked with a nil result and a
+ non-nil error.
+ 
+ @param callback The block to invoke when the slice has been successfully
+ obtained, or when there is no such slice, or when the operation has failed.
+ */
+- (void)getSliceWithoutManufacturerFilter:(void (^)(id<CSSlice> result,
+                                                    NSError *error))callback;
+
+/** Tries to get a slice without a software platform filter.
+ 
+ The resulting slice has the same filters as this slice, but without the filter
+ by software platform.
+ 
+ Control returns from getSliceWithoutSoftwarePlatformFilter: immediately. If the
+ operation is successful, the given callback is invoked with a non-nil
+ [id\<CSSlice\>](CSSlice) in result and a nil error.
+ 
+ If there is no such slice, the callback is invoked with a nil
+ [id\<CSSlice\>](CSSlice) in result and a nil error.
+ 
+ If the operation fails, the callback is invoked with a nil result and a
+ non-nil error.
+ 
+ @param callback The block to invoke when the slice has been successfully
+ obtained, or when there is no such slice, or when the operation has failed.
+ */
+- (void)getSliceWithoutSoftwarePlatformFilter:(void (^)(id<CSSlice> result,
+                                                        NSError *error))callback;
 
 @end
 
@@ -1579,12 +1818,34 @@
  */
 @property (nonatomic, readonly) NSURL *narrowsByCategoryURL;
 
-/** The URL of a author by which the resulting slice filters its content.
+/** The URL of an author by which the resulting slice filters its content.
  
  Clients are expected to use the Narrow's getNarrowsByAuthor: method instead
  of dereferencing this URL.
  */
 @property (nonatomic, readonly) NSURL *narrowsByAuthorURL;
+
+/** The URL of a cover type by which the resulting slice filters its content.
+ 
+ Clients are expected to use the Narrow's getNarrowsByCoverType: method instead
+ of dereferencing this URL.
+ */
+@property (nonatomic, readonly) NSURL *narrowsByCoverTypeURL;
+
+/** The URL of a manufacturer by which the resulting slice filters its content.
+ 
+ Clients are expected to use the Narrow's getNarrowsByManufacturer: method
+ instead of dereferencing this URL.
+ */
+@property (nonatomic, readonly) NSURL *narrowsByManufacturerURL;
+
+/** The URL of a software platform by which the resulting slice filters its
+ content.
+ 
+ Clients are expected to use the Narrow's getNarrowsBySoftwarePlatform: method
+ instead of dereferencing this URL.
+ */
+@property (nonatomic, readonly) NSURL *narrowsBySoftwarePlatformURL;
 
 /** Tries to get the slice that results from following this narrow.
  
@@ -1656,6 +1917,66 @@
  */
 - (void)getNarrowsByAuthor:(void (^)(id<CSAuthor> result,
                                      NSError *error))callback;
+
+/** Tries to get the cover type by which the resulting slice filters its
+ content.
+ 
+ Control returns from getNarrowsByCoverType: immediately. If the operation is
+ successful, the given callback is invoked with a non-nil
+ [id\<CSCoverType\>](CSCoverType) in result and a nil error.
+ 
+ If the resulting slice does not filter by a cover type, callback is invoked
+ with a nil result and a nil error.
+ 
+ If the operation fails, callback is invoked with a nil result and a non-nil
+ error.
+ 
+ @param callback The block to invoke when the cover type has been successfully
+ obtained, or when the resulting slice does not filter by a cover type, or when
+ the operation has failed.
+ */
+- (void)getNarrowsByCoverType:(void (^)(id<CSCoverType> result,
+                                        NSError *error))callback;
+
+/** Tries to get the manufacturer by which the resulting slice filters its
+ content.
+ 
+ Control returns from getNarrowsByManufacturer: immediately. If the operation is
+ successful, the given callback is invoked with a non-nil
+ [id\<CSManufacturer\>](CSManufacturer) in result and a nil error.
+ 
+ If the resulting slice does not filter by a manufacturer, callback is invoked
+ with a nil result and a nil error.
+ 
+ If the operation fails, callback is invoked with a nil result and a non-nil
+ error.
+ 
+ @param callback The block to invoke when the manufacturer has been successfully
+ obtained, or when the resulting slice does not filter by a manufacturer, or
+ when the operation has failed.
+ */
+- (void)getNarrowsByManufacturer:(void (^)(id<CSManufacturer> result,
+                                           NSError *error))callback;
+
+/** Tries to get the software platform by which the resulting slice filters its
+ content.
+ 
+ Control returns from getNarrowsBySoftwarePlatform: immediately. If the
+ operation is successful, the given callback is invoked with a non-nil
+ [id\<CSSoftwarePlatform\>](CSSoftwarePlatform) in result and a nil error.
+ 
+ If the resulting slice does not filter by a software platform, callback is
+ invoked with a nil result and a nil error.
+ 
+ If the operation fails, callback is invoked with a nil result and a non-nil
+ error.
+ 
+ @param callback The block to invoke when the software platform has been
+ successfully obtained, or when the resulting slice does not filter by a
+ software platform, or when the operation has failed.
+ */
+- (void)getNarrowsBySoftwarePlatform:(void (^)(id<CSSoftwarePlatform> result,
+                                               NSError *error))callback;
 
 @end
 
