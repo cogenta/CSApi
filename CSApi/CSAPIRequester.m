@@ -46,7 +46,7 @@
                     [(AFJSONRequestOperation *)operation responseJSON]);
         }
     }];
-    requestOperation.allowsInvalidSSLCertificate = YES;
+    requestOperation.allowsInvalidSSLCertificate = NO;
 
     return requestOperation;
 }
