@@ -450,6 +450,30 @@
 /** The number of items in the entire result set. */
 @property (readonly) NSUInteger count;
 
+/** The number of pages in the entire result set.
+ 
+ The value of this property may by nil if the list does not support random
+ access.
+ */
+@property (readonly) NSNumber *pages;
+
+/** The number of items in the pages in this result set.
+ 
+ The value of this property may by nil if the list does not support random
+ access.
+ */
+@property (readonly) NSNumber *size;
+
+/** The index of this page in the result set.
+ 
+ The value of this property may by nil if the list does not support random
+ access.
+ */
+@property (readonly) NSNumber *page;
+
+/** YES if the list supports random access, or NO if it does not. */
+@property (readonly) BOOL supportsRandomAccess;
+
 /** The items on this page.
  
  Each object in the array conforms to CSListItem.
@@ -489,6 +513,24 @@
  successfully obtained, or when the operation has failed.
  */
 - (void)getPrev:(void (^)(id<CSListPage> page, NSError *error))callback;
+
+/** Tries to fetch the page with the given index in the sequence.
+ 
+ Control returns from getPage:callback: immediately. If the operation is
+ successful, the given callback is invoked with a non-nil
+ [id\<CSListPage\>](CSListPage) in page and a nil error. If the operation fails,
+ callback is invoked with a nil page and a non-nil error. If the list does not
+ support random access, callback is invoked with a nil page and a nil error.
+ 
+ The operation will fail if index is less than zero or greater than or equal to
+ the number of pages in the list (available from the pages property).
+ 
+ @param callback The block to invoke when the page has been successfully
+ obtained, of when the list does not support random access, or when the
+ operation has failed.
+ */
+- (void)getPage:(NSUInteger)index
+       callback:(void (^)(id<CSListPage> page, NSError *error))callback;
 
 @end
 

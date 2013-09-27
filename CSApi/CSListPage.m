@@ -17,7 +17,6 @@
 
 @property (readonly) YBHALResource *resource;
 - (NSUInteger) getCountForResource:(YBHALResource *)resource;
-
 @end
 
 @implementation CSListPage
@@ -101,6 +100,21 @@
     return [resource[@"count"] unsignedIntegerValue];
 }
 
+- (NSNumber *)page
+{
+    return resource[@"page"];
+}
+
+- (NSNumber *)pages
+{
+    return resource[@"pages"];
+}
+
+- (NSNumber *)size
+{
+    return resource[@"size"];
+}
+
 - (NSString *)rel
 {
     return @"item";
@@ -155,6 +169,30 @@
 - (void)getPrev:(void (^)(id<CSListPage>, NSError *))callback
 {
     [self getListURL:self.prev callback:callback];
+}
+
+- (BOOL)supportsRandomAccess
+{
+    return [self.resource linkForRelation:@"/rels/pages"];
+}
+
+- (void)getPage:(NSUInteger)page callback:(void (^)(id<CSListPage>, NSError *))callback
+{
+    [self getRelation:@"/rels/pages"
+        withArguments:@{@"page": @(page)}
+          forResource:self.resource
+             callback:^(YBHALResource *result, NSError *error)
+     {
+         if (error) {
+             callback(nil, error);
+             return;
+         }
+         
+         callback([self pageWithHal:result
+                          requester:self.requester
+                         credential:self.credential],
+                  nil);
+     }];
 }
 
 - (NSString *)description
