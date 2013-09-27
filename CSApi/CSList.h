@@ -8,20 +8,15 @@
 
 #import "CSListPage.h"
 
-@interface CSList : CSCredentialEntity <CSList>
+@class CSListItem;
 
-@property (readonly) id<CSListPage> firstPage;
-@property (readonly) id<CSListPage> lastPage;
-@property (readonly) NSMutableArray *items;
-@property (readonly) BOOL isLoading;
+@interface CSList : CSCredentialEntity <CSList>
 
 - (id)initWithPage:(CSListPage *)page
          requester:(id<CSRequester>)requester
         credential:(id<CSCredential>)credential;
 
-- (void)loadPage:(id<CSListPage>)page;
-
 - (void)getItemAtIndex:(NSUInteger)index
-              callback:(void (^)(id<CSListItem> item, NSError *))callback;
+              callback:(void (^)(CSListItem *, NSError *))callback;
 
 @end
