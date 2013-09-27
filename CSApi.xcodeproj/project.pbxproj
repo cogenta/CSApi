@@ -30,6 +30,8 @@
 		BE4B14A716B9722A00BDDD08 /* user_post_response.json in Resources */ = {isa = PBXBuildFile; fileRef = BE4B14A616B9722A00BDDD08 /* user_post_response.json */; };
 		BE4B14AA16B9727300BDDD08 /* TestFixtures.m in Sources */ = {isa = PBXBuildFile; fileRef = BE4B14A916B9727300BDDD08 /* TestFixtures.m */; };
 		BE4B940117F5B80D008D4500 /* CSDoneLaterBlockOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = BE4B940017F5B80D008D4500 /* CSDoneLaterBlockOperation.m */; };
+		BE4B940417F5BCFA008D4500 /* CSProximityCacheTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BE4B940317F5BCFA008D4500 /* CSProximityCacheTests.m */; };
+		BE4B940717F5BD26008D4500 /* CSProximityCache.m in Sources */ = {isa = PBXBuildFile; fileRef = BE4B940617F5BD26008D4500 /* CSProximityCache.m */; };
 		BE558E9E174CD3A7009FA3DA /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE558E9D174CD3A7009FA3DA /* Security.framework */; };
 		BE558EA1174D0B4A009FA3DA /* CSCategoryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BE558EA0174D0B4A009FA3DA /* CSCategoryTests.m */; };
 		BE558EA5174D0BDE009FA3DA /* CSCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = BE558EA4174D0BDE009FA3DA /* CSCategory.m */; };
@@ -188,6 +190,9 @@
 		BE4B14A916B9727300BDDD08 /* TestFixtures.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestFixtures.m; sourceTree = "<group>"; };
 		BE4B93FF17F5B80D008D4500 /* CSDoneLaterBlockOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSDoneLaterBlockOperation.h; sourceTree = "<group>"; };
 		BE4B940017F5B80D008D4500 /* CSDoneLaterBlockOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSDoneLaterBlockOperation.m; sourceTree = "<group>"; };
+		BE4B940317F5BCFA008D4500 /* CSProximityCacheTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSProximityCacheTests.m; sourceTree = "<group>"; };
+		BE4B940517F5BD26008D4500 /* CSProximityCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSProximityCache.h; sourceTree = "<group>"; };
+		BE4B940617F5BD26008D4500 /* CSProximityCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSProximityCache.m; sourceTree = "<group>"; };
 		BE558E9D174CD3A7009FA3DA /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		BE558EA0174D0B4A009FA3DA /* CSCategoryTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSCategoryTests.m; sourceTree = "<group>"; };
 		BE558EA3174D0BDE009FA3DA /* CSCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSCategory.h; sourceTree = "<group>"; };
@@ -479,6 +484,7 @@
 				BE558EA0174D0B4A009FA3DA /* CSCategoryTests.m */,
 				BE5765E017BA93A60082B4C3 /* CSSliceTests.m */,
 				BEF627E817E206BF00B5AF6C /* CSNominalTests.m */,
+				BE4B940317F5BCFA008D4500 /* CSProximityCacheTests.m */,
 			);
 			path = CSApiTests;
 			sourceTree = "<group>";
@@ -653,6 +659,8 @@
 				BE7E6E7E16D7D0D6000AA883 /* NSError+CSExtension.m */,
 				BE4B93FF17F5B80D008D4500 /* CSDoneLaterBlockOperation.h */,
 				BE4B940017F5B80D008D4500 /* CSDoneLaterBlockOperation.m */,
+				BE4B940517F5BD26008D4500 /* CSProximityCache.h */,
+				BE4B940617F5BD26008D4500 /* CSProximityCache.m */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -1022,6 +1030,7 @@
 				BE63B36417B3D26C00E95B7E /* CSNarrowList.m in Sources */,
 				BEF627ED17E208E000B5AF6C /* CSNominal.m in Sources */,
 				BE4B940117F5B80D008D4500 /* CSDoneLaterBlockOperation.m in Sources */,
+				BE4B940717F5BD26008D4500 /* CSProximityCache.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1053,6 +1062,7 @@
 				BE558EA1174D0B4A009FA3DA /* CSCategoryTests.m in Sources */,
 				BE5765E117BA93A70082B4C3 /* CSSliceTests.m in Sources */,
 				BEF627E917E206BF00B5AF6C /* CSNominalTests.m in Sources */,
+				BE4B940417F5BCFA008D4500 /* CSProximityCacheTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
