@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "CSApi"
-  s.version      = "0.1"
+  s.version      = "0.1.1"
   s.summary      = "Client library for using the Cogenta Shopping API."
   s.homepage     = "https://github.com/cogenta/CSApi"
   s.license      = { :type => 'MIT', :file => 'LICENSE.txt' }
