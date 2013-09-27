@@ -29,6 +29,7 @@
 		BE480BB3172685D00022216B /* retailer_81.json in Resources */ = {isa = PBXBuildFile; fileRef = BE480BB2172685D00022216B /* retailer_81.json */; };
 		BE4B14A716B9722A00BDDD08 /* user_post_response.json in Resources */ = {isa = PBXBuildFile; fileRef = BE4B14A616B9722A00BDDD08 /* user_post_response.json */; };
 		BE4B14AA16B9727300BDDD08 /* TestFixtures.m in Sources */ = {isa = PBXBuildFile; fileRef = BE4B14A916B9727300BDDD08 /* TestFixtures.m */; };
+		BE4B940117F5B80D008D4500 /* CSDoneLaterBlockOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = BE4B940017F5B80D008D4500 /* CSDoneLaterBlockOperation.m */; };
 		BE558E9E174CD3A7009FA3DA /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE558E9D174CD3A7009FA3DA /* Security.framework */; };
 		BE558EA1174D0B4A009FA3DA /* CSCategoryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BE558EA0174D0B4A009FA3DA /* CSCategoryTests.m */; };
 		BE558EA5174D0BDE009FA3DA /* CSCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = BE558EA4174D0BDE009FA3DA /* CSCategory.m */; };
@@ -185,6 +186,8 @@
 		BE4B14A616B9722A00BDDD08 /* user_post_response.json */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = text.json; path = user_post_response.json; sourceTree = "<group>"; tabWidth = 2; };
 		BE4B14A816B9727300BDDD08 /* TestFixtures.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFixtures.h; sourceTree = "<group>"; };
 		BE4B14A916B9727300BDDD08 /* TestFixtures.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestFixtures.m; sourceTree = "<group>"; };
+		BE4B93FF17F5B80D008D4500 /* CSDoneLaterBlockOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSDoneLaterBlockOperation.h; sourceTree = "<group>"; };
+		BE4B940017F5B80D008D4500 /* CSDoneLaterBlockOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSDoneLaterBlockOperation.m; sourceTree = "<group>"; };
 		BE558E9D174CD3A7009FA3DA /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		BE558EA0174D0B4A009FA3DA /* CSCategoryTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSCategoryTests.m; sourceTree = "<group>"; };
 		BE558EA3174D0BDE009FA3DA /* CSCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSCategory.h; sourceTree = "<group>"; };
@@ -648,6 +651,8 @@
 				BE0D502416C2C4B2005A1DC1 /* CSUserDefaultsAPIStore.m */,
 				BE7E6E7D16D7D0D6000AA883 /* NSError+CSExtension.h */,
 				BE7E6E7E16D7D0D6000AA883 /* NSError+CSExtension.m */,
+				BE4B93FF17F5B80D008D4500 /* CSDoneLaterBlockOperation.h */,
+				BE4B940017F5B80D008D4500 /* CSDoneLaterBlockOperation.m */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -1016,6 +1021,7 @@
 				BE63B36117B3D20200E95B7E /* CSNarrowListPage.m in Sources */,
 				BE63B36417B3D26C00E95B7E /* CSNarrowList.m in Sources */,
 				BEF627ED17E208E000B5AF6C /* CSNominal.m in Sources */,
+				BE4B940117F5B80D008D4500 /* CSDoneLaterBlockOperation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
