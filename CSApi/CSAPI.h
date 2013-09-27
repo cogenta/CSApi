@@ -525,6 +525,7 @@
  The operation will fail if index is less than zero or greater than or equal to
  the number of pages in the list (available from the pages property).
  
+ @param index The index of the page being requested.
  @param callback The block to invoke when the page has been successfully
  obtained, of when the list does not support random access, or when the
  operation has failed.
