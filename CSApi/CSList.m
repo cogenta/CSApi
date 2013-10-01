@@ -10,6 +10,9 @@
 #import "CSListItem.h"
 #import <objc/runtime.h>
 #import "CSDoneLaterBlockOperation.h"
+#import "CSRandomAccessList.h"
+#import "CSActivityPool.h"
+#import "CSProximityCache.h"
 
 @interface CSList ()
 
@@ -21,6 +24,7 @@
 @property (readonly, strong) NSMutableDictionary *pages;
 @property (readonly, strong) NSMutableArray *items;
 @property (readonly) BOOL isLoading;
+@property (strong, nonatomic) CSRandomAccessList *randomAccessList;
 
 - (void)loadSequencialPage:(id<CSListPage>)page;
 
@@ -129,117 +133,52 @@
     }
 }
 
-- (void)getRandomAccessItemAtIndex:(NSUInteger)index
-                          callback:(void (^)(id<CSListItem>, NSError *))callback
+- (CSRandomAccessList *)randomAccessList
 {
+    if (_randomAccessList) {
+        return _randomAccessList;
+    }
+    
+    CSProximityCache *cache = [CSProximityCache cacheWithCapacity:11];
+    CSActivityPool *pool = [[CSActivityPool alloc] initWithCapacity:9];
+    _randomAccessList = [[CSRandomAccessList alloc]
+                         initWithFirstPage:self.firstPage
+                         pool:pool
+                         cache:cache
+                         prefetchBehind:2
+                         prefetchAhead:2];
+    return _randomAccessList;
+}
+
+- (void)getRandomAccessItemAtIndex:(NSUInteger)index
+                          callback:(void (^)(id<CSListItem>,
+                                             NSError *))callback
+{
+    
     NSUInteger size = [self.firstPage.size unsignedIntegerValue];
     NSUInteger indexInPage = index % size;
     NSUInteger pageIndex = index / size;
 
-    NSOperation *getPage = [CSDoneLaterBlockOperation operationWithBlock:^(void (^done)()) {
-        [self.synchronizer addOperation:[NSBlockOperation blockOperationWithBlock:^{
-            id<CSListPage> page = self.pages[@(pageIndex)];
-            if ([page isKindOfClass:[NSOperation class]]) {
-                NSOperation *duplicateOp = [NSBlockOperation blockOperationWithBlock:done];
-                [duplicateOp addDependency:page];
-                [_backgrounder addOperation:duplicateOp];
-                return;
-            }
-            
-            if ([page conformsToProtocol:@protocol(CSListPage)]) {
-                done();
-                return;
-            }
-            
-            NSOperation *loadOp = [CSDoneLaterBlockOperation operationWithBlock:^(void (^doneLoad)()) {
-                [self.firstPage getPage:pageIndex callback:^(id<CSListPage> aPage, NSError *anError) {
-                    [self.synchronizer addOperation:[NSBlockOperation blockOperationWithBlock:^{
-                        if (aPage) {
-                            self.pages[@(pageIndex)] = aPage;
-                        } else if (anError) {
-                            self.pages[@(pageIndex)] = anError;
-                        } else {
-                            [self.pages removeObjectForKey:@(pageIndex)];
-                        }
-                        
-                        doneLoad();
-                    }]];
-                }];
-            }];
-            
-            [self.synchronizer addOperation:[NSBlockOperation blockOperationWithBlock:^{
-                if ( ! [self.pages[@(pageIndex)] isKindOfClass:[NSOperation class]]) {
-                    int kMaxPageCacheSize = 3;
-                    if ([self.pages count] >= kMaxPageCacheSize) {
-                        NSArray *keysByDistance = [[self.pages allKeys] sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
-                            if ( ! [obj1 respondsToSelector:@selector(integerValue)]
-                                || ! [obj2 respondsToSelector:@selector(integerValue)]) {
-                                // Should never happen.
-                                return [obj1 compare:obj2];
-                            }
-                            
-                            NSInteger difference1 = [obj1 integerValue] - pageIndex;
-                            NSInteger distance1 = ABS(difference1);
-                            NSInteger difference2 = [obj2 integerValue] - pageIndex;
-                            NSInteger distance2 = ABS(difference2);
-                            
-                            if (distance1 < distance2) {
-                                return NSOrderedAscending;
-                            } else if (distance1 > distance2) {
-                                return NSOrderedDescending;
-                            } else {
-                                return NSOrderedSame;
-                            }
-                        }];
-                        id furthestKey = [keysByDistance lastObject];
-                        id furthestItem = self.pages[furthestKey];
-                        if ([furthestItem respondsToSelector:@selector(cancel)]) {
-                            [furthestItem cancel];
-                        }
-                        [self.pages removeObjectForKey:furthestKey];
-                    }
-                    self.pages[@(pageIndex)] = loadOp;
-                }
-                [_pageBackgrounder addOperation:loadOp];
-                
-                NSBlockOperation *doneOp = [NSBlockOperation blockOperationWithBlock:done];
-                [doneOp addDependency:loadOp];
-                [_pageBackgrounder addOperation:doneOp];
-
-            }]];
-
-        }]];
+    [self.randomAccessList getPageAtIndex:pageIndex
+                                 callback:^(id<CSListPage> page,
+                                            NSError *error)
+    {
+        if ( ! page) {
+            callback(nil, error);
+            return;
+        }
+        
+        callback(page.items[indexInPage], nil);
     }];
-    
-    NSOperation *getItem = [NSBlockOperation blockOperationWithBlock:^{
-        __block int opId = -1;
-        NSOperation *op = [NSBlockOperation blockOperationWithBlock:^{
-            id page = self.pages[@(pageIndex)];
-            [_backgrounder addOperation:[NSBlockOperation blockOperationWithBlock:^{
-                if ([page conformsToProtocol:@protocol(CSListPage)]) {
-                    callback([page items][indexInPage], nil);
-                } else if ([page isKindOfClass:[NSError class]]) {
-                    callback(nil, page);
-                } else {
-                    callback(nil, nil);
-                }
-            }]];
-        }];
-        opId = (int) op;
-        [self.synchronizer addOperation:op];
-
-    }];
-    [getItem addDependency:getPage];
-    
-    [_backgrounder addOperation:getPage];
-    [_backgrounder addOperation:getItem];
 }
 
 - (void)getSequencialItemAtIndex:(NSUInteger)index
                         callback:(void (^)(id<CSListItem>, NSError *))callback
 {
     NSBlockOperation *op = [NSBlockOperation blockOperationWithBlock:^{
-        [self maybeLoadMoreForIndex:index callback:^(BOOL success, NSError *error) {
+        [self maybeLoadMoreForIndex:index callback:^(BOOL success,
+                                                     NSError *error)
+        {
             if ( ! success) {
                 dispatch_async(dispatch_get_main_queue(), ^{
                     callback(nil, error);
