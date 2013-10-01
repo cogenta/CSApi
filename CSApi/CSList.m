@@ -140,7 +140,7 @@
     }
     
     CSProximityCache *cache = [CSProximityCache cacheWithCapacity:11];
-    CSActivityPool *pool = [[CSActivityPool alloc] initWithCapacity:9];
+    CSActivityPool *pool = [[CSActivityPool alloc] initWithCapacity:2];
     _randomAccessList = [[CSRandomAccessList alloc]
                          initWithFirstPage:self.firstPage
                          pool:pool
