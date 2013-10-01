@@ -8,7 +8,7 @@ pod 'SBJson'
 
 target :test, :exclusive => true do
     link_with 'CSApiTests'
-    pod 'OCMock', :head
+    pod 'OCMock'
     pod 'OHHTTPStubs'
 end
 
