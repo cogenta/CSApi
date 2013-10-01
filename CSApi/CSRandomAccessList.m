@@ -130,13 +130,6 @@ NSString * const CSAbortDescription = @"The operation was aborted.";
     NSUInteger low = current > _prefetchBehind ? current - _prefetchBehind : 0;
     NSUInteger high = current + _prefetchAhead;
     
-    if (last == current) {
-        NSUInteger next = last + 1;
-        if (low <= next && next <= high) {
-            return @(next);
-        }
-    }
-    
     if (last > current) {
         NSInteger next = current - (last - current);
         if (low <= next && next <= high) {
@@ -144,7 +137,7 @@ NSString * const CSAbortDescription = @"The operation was aborted.";
         }
     }
     
-    if (last < current) {
+    if (last <= current) {
         NSInteger next = current + (current - last) + 1;
         if (low <= next && next <= high) {
             return @(next);
