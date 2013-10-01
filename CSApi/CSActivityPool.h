@@ -25,5 +25,6 @@
 - (instancetype)initWithCapacity:(NSUInteger)capacity;
 - (void)beginActivity:(id)identifier;
 - (void)endActivity:(id)identifier;
+- (BOOL)hasActivity:(id)identifier;
 
 @end

@@ -72,4 +72,9 @@
     }
 }
 
+- (BOOL)hasActivity:(id)identifier
+{
+    return [_activities containsObject:identifier];
+}
+
 @end

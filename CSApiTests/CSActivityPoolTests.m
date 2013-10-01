@@ -241,4 +241,17 @@
     }
 }
 
+- (void)testHasActivity
+{
+    CSActivityPool *pool = [[CSActivityPool alloc] initWithCapacity:3];
+    STAssertFalse([pool hasActivity:@(1)], nil);
+    STAssertFalse([pool hasActivity:@(2)], nil);
+    [pool beginActivity:@(1)];
+    STAssertTrue([pool hasActivity:@(1)], nil);
+    STAssertFalse([pool hasActivity:@(2)], nil);
+    [pool endActivity:@(1)];
+    STAssertFalse([pool hasActivity:@(1)], nil);
+    STAssertFalse([pool hasActivity:@(2)], nil);
+}
+
 @end
