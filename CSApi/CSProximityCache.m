@@ -11,6 +11,7 @@
 @interface CSProximityCache ()
 
 @property (nonatomic, strong) NSMutableDictionary *things;
+@property (nonatomic, assign) NSUInteger capacity;
 
 - (NSUInteger)furthestPlaceFromPlace:(NSInteger)place;
 - (void)removeFurthestThingFromPlace:(NSInteger)place;
@@ -19,25 +20,26 @@
 
 @implementation CSProximityCache
 
-- (id)init
+- (id)initWithCapacity:(NSUInteger)capacity
 {
     self = [super init];
     if (self) {
         _things = [[NSMutableDictionary alloc] init];
+        _capacity = capacity;
     }
     return self;
 }
 
 + (instancetype)cacheWithCapacity:(NSUInteger)capacity
 {
-    return [[self alloc] init];
+    return [[self alloc] initWithCapacity:capacity];
 }
 
 - (void)setObject:(id)obj forPlace:(NSInteger)place
 {
     _things[@(place)] = obj;
     
-    while ([_things count] > 3) {
+    while ([_things count] > _capacity) {
         [self removeFurthestThingFromPlace:place];
     }
 }

@@ -90,4 +90,22 @@
     CSAssertNil([cache objectForPlace:30]);
 }
 
+- (void)testIncreasedCapacity
+{
+    CSProximityCache *cache = [CSProximityCache cacheWithCapacity:5];
+    [cache setObject:@(1) forPlace:1];
+    [cache setObject:@(2) forPlace:2];
+    [cache setObject:@(3) forPlace:3];
+    [cache setObject:@(4) forPlace:4];
+    [cache setObject:@(5) forPlace:5];
+    [cache setObject:@(6) forPlace:6];
+    
+    CSAssertNil([cache objectForPlace:1]);
+    STAssertEqualObjects([cache objectForPlace:2], @(2), nil);
+    STAssertEqualObjects([cache objectForPlace:3], @(3), nil);
+    STAssertEqualObjects([cache objectForPlace:4], @(4), nil);
+    STAssertEqualObjects([cache objectForPlace:5], @(5), nil);
+    STAssertEqualObjects([cache objectForPlace:6], @(6), nil);
+}
+
 @end
