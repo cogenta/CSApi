@@ -8,8 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
+typedef void (^done_later_block_t)(void (^done)());
+
 @interface CSDoneLaterBlockOperation : NSOperation
 
-+ (CSDoneLaterBlockOperation *)operationWithBlock:(void (^)(void (^done)()))blk;
++ (CSDoneLaterBlockOperation *)operationWithBlock:(done_later_block_t)blk;
 
 @end

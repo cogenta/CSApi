@@ -73,6 +73,8 @@
 		BE6BF3F717185103004B6D85 /* CSProductTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BE6BF3F617185103004B6D85 /* CSProductTests.m */; };
 		BE6BF3F8171864D6004B6D85 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE01AA7216B7FF0800982D27 /* MobileCoreServices.framework */; };
 		BE6BF3F9171864DC004B6D85 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE01AA7016B7FEE500982D27 /* SystemConfiguration.framework */; };
+		BE6DEF3D17FACAF500A50743 /* CSRandomAccessList.m in Sources */ = {isa = PBXBuildFile; fileRef = BE6DEF3C17FACAF500A50743 /* CSRandomAccessList.m */; };
+		BE6DEF4017FACD8900A50743 /* CSRandomAccessListTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BE6DEF3F17FACD8900A50743 /* CSRandomAccessListTests.m */; };
 		BE78D15816E5FA4500DAE148 /* CSImageTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BE78D15716E5FA4500DAE148 /* CSImageTests.m */; };
 		BE78D15B16E5FAC400DAE148 /* CSImage.m in Sources */ = {isa = PBXBuildFile; fileRef = BE78D15A16E5FAC400DAE148 /* CSImage.m */; };
 		BE78D15D16E6001900DAE148 /* image.json in Resources */ = {isa = PBXBuildFile; fileRef = BE78D15C16E6001900DAE148 /* image.json */; };
@@ -259,6 +261,9 @@
 		BE6BF3F317183CCF004B6D85 /* CSProduct.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSProduct.h; sourceTree = "<group>"; };
 		BE6BF3F417183CCF004B6D85 /* CSProduct.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSProduct.m; sourceTree = "<group>"; };
 		BE6BF3F617185103004B6D85 /* CSProductTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSProductTests.m; sourceTree = "<group>"; };
+		BE6DEF3B17FACAF500A50743 /* CSRandomAccessList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSRandomAccessList.h; sourceTree = "<group>"; };
+		BE6DEF3C17FACAF500A50743 /* CSRandomAccessList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSRandomAccessList.m; sourceTree = "<group>"; };
+		BE6DEF3F17FACD8900A50743 /* CSRandomAccessListTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSRandomAccessListTests.m; sourceTree = "<group>"; };
 		BE730787174CC41B005E5E29 /* Podfile.lock */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile.lock; sourceTree = "<group>"; };
 		BE78D15716E5FA4500DAE148 /* CSImageTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSImageTests.m; sourceTree = "<group>"; };
 		BE78D15916E5FAC400DAE148 /* CSImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSImage.h; sourceTree = "<group>"; };
@@ -491,6 +496,7 @@
 				BEF627E817E206BF00B5AF6C /* CSNominalTests.m */,
 				BE4B940317F5BCFA008D4500 /* CSProximityCacheTests.m */,
 				BE4B940917F981A9008D4500 /* CSActivityPoolTests.m */,
+				BE6DEF3F17FACD8900A50743 /* CSRandomAccessListTests.m */,
 			);
 			path = CSApiTests;
 			sourceTree = "<group>";
@@ -669,6 +675,8 @@
 				BE4B940617F5BD26008D4500 /* CSProximityCache.m */,
 				BE4B940B17F981E8008D4500 /* CSActivityPool.h */,
 				BE4B940C17F981E9008D4500 /* CSActivityPool.m */,
+				BE6DEF3B17FACAF500A50743 /* CSRandomAccessList.h */,
+				BE6DEF3C17FACAF500A50743 /* CSRandomAccessList.m */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -1040,6 +1048,7 @@
 				BE4B940117F5B80D008D4500 /* CSDoneLaterBlockOperation.m in Sources */,
 				BE4B940717F5BD26008D4500 /* CSProximityCache.m in Sources */,
 				BE4B940D17F981E9008D4500 /* CSActivityPool.m in Sources */,
+				BE6DEF3D17FACAF500A50743 /* CSRandomAccessList.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1073,6 +1082,7 @@
 				BEF627E917E206BF00B5AF6C /* CSNominalTests.m in Sources */,
 				BE4B940417F5BCFA008D4500 /* CSProximityCacheTests.m in Sources */,
 				BE4B940A17F981A9008D4500 /* CSActivityPoolTests.m in Sources */,
+				BE6DEF4017FACD8900A50743 /* CSRandomAccessListTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
