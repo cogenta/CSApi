@@ -6,7 +6,7 @@ Pod::Spec.new do |s|
   s.license      = { :type => 'MIT', :file => 'LICENSE.txt' }
   s.author       = { "Will Harris" => "will@greatlibrary.net" }
   s.source       = { :git => "https://github.com/cogenta/CSApi.git",
-                     :tag => "0.1" }
+                     :tag => "0.1.1" }
   s.ios.deployment_target = '6.0'
   s.osx.deployment_target = '10.7'
   s.source_files = 'Classes', 'CSApi/**/*.{h,m}'
