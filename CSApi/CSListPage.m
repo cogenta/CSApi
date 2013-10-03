@@ -173,7 +173,7 @@
 
 - (BOOL)supportsRandomAccess
 {
-    return [self.resource linkForRelation:@"/rels/pages"];
+    return [self.resource linkForRelation:@"/rels/pages"] != nil;
 }
 
 - (void)getPage:(NSUInteger)page callback:(void (^)(id<CSListPage>, NSError *))callback
