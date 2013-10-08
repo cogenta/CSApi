@@ -12,10 +12,4 @@
 
 @interface CSLike : CSCredentialEntity <CSLike>
 
-@property (readonly) NSURL *URL;
-
-- (id)initWithResource:(YBHALResource *)resource
-             requester:(id<CSRequester>)requester
-            credential:(id<CSCredential>)credential;
-
 @end

@@ -11,34 +11,21 @@
 #import "CSMutableUser.h"
 #import "CSUser.h"
 #import "CSHALRepresentation.h"
-#import <objc/runtime.h>
 #import "CSRetailerListPage.h"
 #import "CSRetailer.h"
 
 @implementation CSApplication
 
-@synthesize resource;
-@synthesize name;
-
-- (id)initWithHAL:(YBHALResource *)aResource
-        requester:(id<CSRequester>)aRequester
-       credential:(id<CSCredential>)aCredential
+- (NSString *)name
 {
-    self = [super initWithRequester:aRequester
-                         credential:aCredential];
-    if (self) {
-        resource = aResource;
-        
-        name = resource[@"name"];
-    }
-    return self;
+    return self.resource[@"name"];
 }
 
 - (void)createUserWithChange:(void (^)(id<CSMutableUser>))change
                     callback:(void (^)(id<CSUser>, NSError *))callback
 {
-    NSURL *URL = [resource linkForRelation:@"/rels/users"].URL;
-    NSURL *baseURL = [resource linkForRelation:@"self"].URL;
+    NSURL *URL = [self.resource linkForRelation:@"/rels/users"].URL;
+    NSURL *baseURL = self.URL;
     id<CSRepresentation> representation = [CSHALRepresentation
                                            representationWithBaseURL:baseURL];
     CSMutableUser *user = [[CSMutableUser alloc] init];
@@ -55,16 +42,16 @@
              return;
          }
          
-         CSUser *user = [[CSUser alloc] initWithHal:result
-                                          requester:self.requester
-                                               etag:etag];
+         CSUser *user = [[CSUser alloc] initWithResource:result
+                                               requester:self.requester
+                                                    etag:etag];
          callback(user, nil);
      }];
 }
 
 - (void)getRetailers:(void (^)(id<CSRetailerListPage> page, NSError *error))callback
 {
-    NSURL *URL = [resource linkForRelation:@"/rels/retailers"].URL;
+    NSURL *URL = [self.resource linkForRelation:@"/rels/retailers"].URL;
     [self getURL:URL callback:^(YBHALResource *result, id etag, NSError *error)
      {
          if (error) {
@@ -72,19 +59,13 @@
              return;
          }
          
-         callback([[CSRetailerListPage alloc] initWithHal:result
-                                                requester:self.requester
-                                               credential:self.credential],
+         callback([[CSRetailerListPage alloc] initWithResource:result
+                                                     requester:self.requester
+                                                    credential:self.credential],
                   nil);
      }];
 }
 
-- (NSString *)description
-{
-    return [NSString stringWithFormat:@"<%s URL=%@>",
-            class_getName([self class]),
-            [resource linkForRelation:@"self"].URL];
-}
 
 @end
 

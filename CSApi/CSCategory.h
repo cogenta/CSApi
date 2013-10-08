@@ -8,12 +8,6 @@
 
 #import "CSCredentialEntity.h"
 
-@class YBHALResource;
-
 @interface CSCategory : CSCredentialEntity <CSCategory>
-
-- (id)initWithHAL:(YBHALResource *)resource
-        requester:(id<CSRequester>)requester
-       credential:(id<CSCredential>)credential;
 
 @end

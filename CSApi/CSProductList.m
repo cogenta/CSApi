@@ -28,7 +28,7 @@
             }
             
             CSProduct *product = [[CSProduct alloc]
-                                  initWithHAL:resource
+                                  initWithResource:resource
                                   requester:self.requester
                                   credential:self.credential];
             callback(product, nil);

@@ -28,7 +28,7 @@
             }
             
             CSNarrow *narrow = [[CSNarrow alloc]
-                                initWithHAL:resource
+                                initWithResource:resource
                                 requester:self.requester
                                 credential:self.credential];
             callback(narrow, nil);

@@ -27,9 +27,9 @@
                 return;
             }
             
-            CSPrice *price = [[CSPrice alloc] initWithHAL:resource
-                                                requester:self.requester
-                                               credential:self.credential];
+            CSPrice *price = [[CSPrice alloc] initWithResource:resource
+                                                     requester:self.requester
+                                                    credential:self.credential];
             callback(price, nil);
         }];
     }];

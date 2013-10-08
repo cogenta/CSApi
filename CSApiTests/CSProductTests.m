@@ -47,9 +47,9 @@
     
     URL = [resource linkForRelation:@"self"].URL;
     
-    product = [[CSProduct alloc] initWithHAL:resource
-                                   requester:requester
-                                  credential:credential];
+    product = [[CSProduct alloc] initWithResource:resource
+                                        requester:requester
+                                       credential:credential];
     
     [self addGetFixture:@"author.json" requester:requester];
     [self addGetFixture:@"covertype.json" requester:requester];

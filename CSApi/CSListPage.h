@@ -12,13 +12,6 @@
 
 @interface CSListPage : CSCredentialEntity <CSListPage>
 
-@property (readonly) NSURL *URL;
-@property (readonly) NSURL *next;
-@property (readonly) NSURL *prev;
-@property (readonly) NSString *rel;
-
-- (id)initWithHal:(YBHALResource *)resource
-        requester:(id<CSRequester>)requester
-       credential:(id<CSCredential>)credential;
+- (instancetype)pageWithHal:(YBHALResource *)resource;
 
 @end

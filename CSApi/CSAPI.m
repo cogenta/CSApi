@@ -17,7 +17,7 @@
 #import "CSRetailer.h"
 #import <objc/runtime.h>
 
-@interface CSAPI ()
+@interface CSAPI () <NSCoding>
 
 - (id<CSRequester>) requester;
 
@@ -29,16 +29,24 @@
 @synthesize credential;
 
 - (id)initWithBookmark:(NSString *)aBookmark
-              username:(NSString *)aUsername
-              password:(NSString *)aPassword
+            credential:(id<CSCredential>)aCredential
 {
     self = [super init];
     if (self) {
         bookmark = aBookmark;
-        credential = [CSBasicCredential credentialWithUsername:aUsername
-                                                      password:aPassword];
+        credential = aCredential;
     }
     return self;
+}
+
+- (id)initWithBookmark:(NSString *)aBookmark
+              username:(NSString *)aUsername
+              password:(NSString *)aPassword
+{
+    return [self initWithBookmark:aBookmark
+                       credential:[CSBasicCredential
+                                   credentialWithUsername:aUsername
+                                   password:aPassword]];
 }
 
 + (instancetype)apiWithBookmark:(NSString *)bookmark
@@ -61,9 +69,10 @@
              callback(nil, error);
              return;
          }
-         CSApplication *app = [[CSApplication alloc] initWithHAL:result
-                                                       requester:requester
-                                                      credential:credential];
+         CSApplication *app = [[CSApplication alloc]
+                               initWithResource:result
+                               requester:requester
+                               credential:credential];
          callback(app, nil);
      }];
 }
@@ -92,10 +101,10 @@
              return;
          }
          
-         CSUser *user = [[CSUser alloc] initWithHal:result
-                                          requester:requester
-                                         credential:aCredential
-                                               etag:etag];
+         CSUser *user = [[CSUser alloc] initWithResource:result
+                                               requester:requester
+                                              credential:aCredential
+                                                    etag:etag];
          callback(user, nil);
      }];
 }
@@ -157,6 +166,20 @@
 {
     return [NSString stringWithFormat:@"<%s bookmark=%@>",
             class_getName([self class]), bookmark];
+}
+
+#pragma mark - NSCoding
+
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    return [self initWithBookmark:[aDecoder decodeObjectForKey:@"bookmark"]
+                       credential:[aDecoder decodeObjectForKey:@"credential"]];
+}
+
+- (void)encodeWithCoder:(NSCoder *)aCoder
+{
+    [aCoder encodeObject:self.bookmark forKey:@"bookmark"];
+    [aCoder encodeObject:self.credential forKey:@"credential"];
 }
 
 @end

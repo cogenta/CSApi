@@ -48,9 +48,9 @@
     
     URL = [resource linkForRelation:@"self"].URL;
     
-    price = [[CSPrice alloc] initWithHAL:resource
-                               requester:requester
-                              credential:credential];
+    price = [[CSPrice alloc] initWithResource:resource
+                                    requester:requester
+                                   credential:credential];
 }
 
 - (void)testProperties

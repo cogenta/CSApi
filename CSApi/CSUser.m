@@ -19,19 +19,21 @@
 #import "CSGroup.h"
 #import "CSGroupListPage.h"
 #import "CSSlice.h"
-#import <objc/runtime.h>
+
+@interface CSUser ()
+
+- (void)loadFromResource:(YBHALResource *)aResource;
+
+@end
 
 @implementation CSUser
 
-@synthesize URL;
 @synthesize reference;
 @synthesize meta;
-@synthesize etag;
-@synthesize resource;
 
-- (id)initWithHal:(YBHALResource *)aResource
-        requester:(id<CSRequester>)aRequester
-             etag:(id)anEtag
+- (id)initWithResource:(YBHALResource *)aResource
+             requester:(id<CSRequester>)aRequester
+                  etag:(id)anEtag
 {
     id<CSCredential> aCredential = nil;
     if (aResource[@"credential"]) {
@@ -39,31 +41,22 @@
                        credentialWithDictionary:aResource[@"credential"]];
     }
     
-    return [self initWithHal:aResource
-                   requester:aRequester
-                  credential:aCredential
-                        etag:anEtag];
+    return [self initWithResource:aResource
+                        requester:aRequester
+                       credential:aCredential
+                             etag:anEtag];
 }
 
-- (id)initWithHal:(YBHALResource *)aResource
-        requester:(id<CSRequester>)aRequester
-       credential:(id<CSCredential>)aCredential
-             etag:(id)anEtag
+- (void)loadExtraProperties
 {
-    self = [super initWithRequester:aRequester credential:aCredential];
-    if (self) {
-        [self loadFromResource:aResource];
-        etag = anEtag;
-    }
-    return self;
+    reference = self.resource[@"reference"];
+    meta = self.resource[@"meta"];
 }
 
 - (void)loadFromResource:(YBHALResource *)aResource
 {
-    resource = aResource;
-    URL = [resource linkForRelation:@"self"].URL;
-    reference = resource[@"reference"];
-    meta = resource[@"meta"];
+    self.resource = aResource;
+    [self loadExtraProperties];
 }
 
 - (CSMutableUser *)mutableUser
@@ -106,7 +99,7 @@
          {
              if ( ! error) {
                  [self loadFromResource:result];
-                 etag = etagFromPut;
+                 self.etag = etagFromPut;
                  callback(YES, nil);
                  return;
              }
@@ -130,14 +123,14 @@
              }
              
              [self loadFromResource:result];
-             etag = etagFromGet;
+             self.etag = etagFromGet;
              
              dispatch_async(dispatch_get_main_queue(), doPut);
          }];
     };
     
     
-    if (etag) {
+    if (self.etag) {
         doPut();
     } else {
         doGet();
@@ -147,7 +140,7 @@
 
 - (void)getLikes:(void (^)(id<CSLikeListPage>, NSError *))callback
 {
-    NSURL *likesURL = [resource linkForRelation:@"/rels/likes"].URL;
+    NSURL *likesURL = [self.resource linkForRelation:@"/rels/likes"].URL;
     [self.requester getURL:likesURL
                 credential:self.credential
                   callback:^(id result, id etag, NSError *error)
@@ -157,16 +150,16 @@
              return;
          }
          
-         callback([[CSLikeListPage alloc] initWithHal:result
-                                            requester:self.requester
-                                           credential:self.credential],
+         callback([[CSLikeListPage alloc] initWithResource:result
+                                                 requester:self.requester
+                                                credential:self.credential],
                   nil);
      }];
 }
 
 - (void)getGroupsWithReference:(NSString *)aReference callback:(void (^)(id<CSGroupListPage>, NSError *))callback
 {
-    YBHALLink *groupsByReferenceLink = [resource linkForRelation:@"/rels/groupsbyreference"];
+    YBHALLink *groupsByReferenceLink = [self.resource linkForRelation:@"/rels/groupsbyreference"];
     NSURL *groupsURL = [groupsByReferenceLink URLWithVariables:@{@"reference": aReference}];
     groupsURL = [[NSURL URLWithString:[groupsURL absoluteString]
                        relativeToURL:self.URL] absoluteURL];
@@ -179,16 +172,16 @@
              return;
          }
          
-         callback([[CSGroupListPage alloc] initWithHal:result
-                                             requester:self.requester
-                                            credential:self.credential],
+         callback([[CSGroupListPage alloc] initWithResource:result
+                                                  requester:self.requester
+                                                 credential:self.credential],
                   nil);
      }];
 }
 
 - (void)getGroups:(void (^)(id<CSGroupListPage>, NSError *))callback
 {
-    NSURL *groupsURL = [resource linkForRelation:@"/rels/groups"].URL;
+    NSURL *groupsURL = [self.resource linkForRelation:@"/rels/groups"].URL;
     [self.requester getURL:groupsURL
                 credential:self.credential
                   callback:^(id result, id etag, NSError *error)
@@ -198,9 +191,9 @@
              return;
          }
          
-         callback([[CSGroupListPage alloc] initWithHal:result
-                                             requester:self.requester
-                                            credential:self.credential],
+         callback([[CSGroupListPage alloc] initWithResource:result
+                                                  requester:self.requester
+                                                 credential:self.credential],
                   nil);
      }];
 }
@@ -223,7 +216,7 @@
         return;
     }
     
-    NSURL *groupsURL = [resource linkForRelation:@"/rels/groups"].URL;
+    NSURL *groupsURL = [self.resource linkForRelation:@"/rels/groups"].URL;
     id body = [group representWithRepresentation:representation];
     [self.requester postURL:groupsURL
                  credential:self.credential
@@ -258,17 +251,11 @@
              return;
          }
          
-         callback([[CSSlice alloc] initWithHAL:result
-                                     requester:self.requester
-                                    credential:self.credential],
+         callback([[CSSlice alloc] initWithResource:result
+                                          requester:self.requester
+                                         credential:self.credential],
                   nil);
      }];
-}
-
-- (NSString *)description
-{
-    return [NSString stringWithFormat:@"<%s URL=%@>",
-            class_getName([self class]), URL];
 }
 
 @end

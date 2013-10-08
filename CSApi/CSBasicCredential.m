@@ -11,6 +11,10 @@
 #import "CSAPI.h"
 #import <objc/runtime.h>
 
+@interface CSBasicCredential () <NSCoding>
+
+@end
+
 @implementation CSBasicCredential
 
 @synthesize username;
@@ -55,6 +59,20 @@
     return [NSString stringWithFormat:@"<%s %@:%@>",
             class_getName([self class]),
             username, password];
+}
+
+#pragma mark - NSCoding
+
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    return [self initWithUsername:[aDecoder decodeObjectForKey:@"username"]
+                         password:[aDecoder decodeObjectForKey:@"password"]];
+}
+
+- (void)encodeWithCoder:(NSCoder *)aCoder
+{
+    [aCoder encodeObject:self.username forKey:@"username"];
+    [aCoder encodeObject:self.password forKey:@"password"];
 }
 
 @end

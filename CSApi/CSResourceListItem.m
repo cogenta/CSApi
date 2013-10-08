@@ -9,30 +9,32 @@
 #import "CSResourceListItem.h"
 #import <HyperBek/HyperBek.h>
 
+@interface CSResourceListItem ()
+
+@property (strong, nonatomic) YBHALResource *resource;
+
+@end
+
 @implementation CSResourceListItem
 
-@synthesize resource;
-
-- (id)initWithResource:(YBHALResource *)aResource
-             requester:(id<CSRequester>)aRequester
-            credential:(id<CSCredential>)aCredential
+- (id)initWithResource:(YBHALResource *)resource
 {
-    self = [super initWithRequester:aRequester credential:aCredential];
+    self = [super init];
     if (self) {
-        resource = aResource;
+        self.resource = resource;
     }
     return self;
 }
 
-- (NSURL *)URL
-{
-    return [resource linkForRelation:@"self"].URL;
-}
-
 - (id<CSAPIRequest>)getSelf:(void (^)(YBHALResource *, NSError *))callback
 {
-    callback(resource, nil);
+    callback(self.resource, nil);
     return nil;
+}
+
+- (NSURL *)URL
+{
+    return [self.resource linkForRelation:@"self"].URL;
 }
 
 @end

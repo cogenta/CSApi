@@ -12,24 +12,14 @@
 
 @implementation CSLike
 
-@synthesize URL;
-@synthesize likedURL;
-
-- (id)initWithResource:(YBHALResource *)resource
-             requester:(id<CSRequester>)requester
-            credential:(id<CSCredential>)credential
+- (NSURL *)likedURL
 {
-    self = [super initWithRequester:requester credential:credential];
-    if (self) {
-        URL = [resource linkForRelation:@"self"].URL;
-        likedURL = [resource linkForRelation:@"/rels/liked"].URL;
-    }
-    return self;
+    return [self.resource linkForRelation:@"/rels/liked"].URL;
 }
 
 - (void)remove:(void (^)(BOOL, NSError *))callback
 {
-    [self.requester deleteURL:URL
+    [self.requester deleteURL:self.URL
                    credential:self.credential
                      callback:^(id result, id etag, NSError *error)
      {
@@ -45,7 +35,7 @@
 - (NSString *)description
 {
     return [NSString stringWithFormat:@"<%s URL=%@ likedURL=%@>",
-            class_getName([self class]), URL, likedURL];
+            class_getName([self class]), self.URL, self.likedURL];
 }
 
 @end

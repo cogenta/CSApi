@@ -28,9 +28,9 @@
                     requester:(id<CSRequester>)aRequester
                    credential:(id<CSCredential>)aCredential
 {
-    return [[CSRetailerListPage alloc] initWithHal:resource
-                                         requester:self.requester
-                                        credential:self.credential];
+    return [[CSRetailerListPage alloc] initWithResource:resource
+                                              requester:self.requester
+                                             credential:self.credential];
 }
 
 @end

@@ -25,23 +25,4 @@
     return categoryList;
 }
 
-- (id<CSListPage>)pageWithHal:(YBHALResource *)resource
-                    requester:(id<CSRequester>)aRequester
-                   credential:(id<CSCredential>)aCredential
-{
-    return [[CSCategoryListPage alloc] initWithHal:resource
-                                         requester:self.requester
-                                        credential:self.credential];
-}
-
-- (NSUInteger)getCountForResource:(YBHALResource *)resource
-{
-    NSArray *resources = [resource resourcesForRelation:[self rel]];
-    if (resources) {
-        return [resources count];
-    }
-    
-    return [[resource linksForRelation:[self rel]] count];
-}
-
 @end

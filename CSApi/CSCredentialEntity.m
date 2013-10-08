@@ -11,38 +11,93 @@
 #import "CSListItem.h"
 #import "CSLinkListItem.h"
 #import "CSResourceListItem.h"
+#import <objc/runtime.h>
+
+@interface YBHALResource (NSCodingAdditions) <NSCoding>
+
+@end
+
+@implementation YBHALResource (NSCodingAdditions)
+
+- (void)encodeWithCoder:(NSCoder *)aCoder
+{
+    [aCoder encodeObject:[(id)self dictionary] forKey:@"dictionary"];
+    [aCoder encodeObject:[(id)self baseURL] forKey:@"baseURL"];
+}
+
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    return [self initWithDictionary:[aDecoder decodeObjectForKey:@"dictionary"]
+                            baseURL:[aDecoder decodeObjectForKey:@"baseURL"]];
+}
+
+@end
+
+@interface CSCredentialEntity ()
+
+@property (readonly, strong) NSURL *cacheURL;
+
+@end
 
 @implementation CSCredentialEntity
 
-@synthesize requester;
-@synthesize credential;
-
-- (id)initWithRequester:(id<CSRequester>)aRequester
-             credential:(id<CSCredential>)aCredential
+- (id)initWithResource:(YBHALResource *)resource
+             requester:(id<CSRequester>)requester
+            credential:(id<CSCredential>)credential
+                  etag:(id)etag
 {
     self = [super init];
     if (self) {
-        requester = aRequester;
-        credential = aCredential;
+        _resource = resource;
+        _requester = requester;
+        _credential = credential;
+        _etag = etag;
+        [self loadExtraProperties];
     }
     return self;
 }
+
+- (id)initWithResource:(YBHALResource *)resource
+             requester:(id<CSRequester>)requester
+            credential:(id<CSCredential>)credential
+{
+    return [self initWithResource:resource
+                        requester:requester
+                       credential:credential
+                             etag:nil];
+}
+
+- (void)loadExtraProperties
+{
+    // Do nothing. Override this method in subclasses to initialize extra
+    // properties.
+}
+
+- (NSURL *)URL
+{
+    if ( ! _cacheURL) {
+        _cacheURL = [self.resource linkForRelation:@"self"].URL;
+    }
+    
+    return _cacheURL;
+}
+
 
 - (id<CSAPIRequest>)postURL:(NSURL *)URL
            body:(id)body
        callback:(requester_callback_t)callback
 {
-    return (id<CSAPIRequest>) [requester postURL:URL
-                                      credential:credential
-                                            body:body
-                                        callback:callback];
+    return (id<CSAPIRequest>) [self.requester postURL:URL
+                                           credential:self.credential
+                                                 body:body
+                                             callback:callback];
 }
 
 - (id<CSAPIRequest>)getURL:(NSURL *)URL callback:(requester_callback_t)callback
 {
-    return (id<CSAPIRequest>) [requester getURL:URL
-                                     credential:credential
-                                       callback:callback];
+    return (id<CSAPIRequest>) [self.requester getURL:URL
+                                          credential:self.credential
+                                            callback:callback];
 }
 
 - (id<CSAPIRequest>)putURL:(NSURL *)URL
@@ -50,11 +105,11 @@
           etag:(id)etag
       callback:(requester_callback_t)callback
 {
-    return (id<CSAPIRequest>) [requester putURL:URL
-           credential:credential
-                 body:body
-                 etag:etag
-             callback:callback];
+    return (id<CSAPIRequest>) [self.requester putURL:URL
+                                          credential:self.credential
+                                                body:body
+                                                etag:etag
+                                            callback:callback];
 }
 
 - (CSListItem *)itemForRelation:(NSString *)relation
@@ -62,9 +117,7 @@
 {
     YBHALResource *itemResource = [resource resourceForRelation:relation];
     if (itemResource) {
-        return [[CSResourceListItem alloc] initWithResource:itemResource
-                                                  requester:self.requester
-                                                 credential:self.credential];
+        return [[CSResourceListItem alloc] initWithResource:itemResource];
     } else {
         YBHALLink *itemLink = [resource linkForRelation:relation];
         
@@ -140,6 +193,31 @@
                          relativeToURL:baseURL]
                   absoluteURL];
     return URL;
+}
+
+- (NSString *)description
+{
+    return [NSString stringWithFormat:@"<%s URL=%@>",
+            class_getName([self class]),
+            self.URL];
+}
+
+#pragma mark - NSCoding
+
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    return [self initWithResource:[aDecoder decodeObjectForKey:@"resource"]
+                        requester:[aDecoder decodeObjectForKey:@"requester"]
+                       credential:[aDecoder decodeObjectForKey:@"credential"]
+                             etag:[aDecoder decodeObjectForKey:@"etag"]];
+}
+
+- (void)encodeWithCoder:(NSCoder *)aCoder
+{
+    [aCoder encodeObject:self.resource forKey:@"resource"];
+    [aCoder encodeObject:self.requester forKey:@"requester"];
+    [aCoder encodeObject:self.credential forKey:@"credential"];
+    [aCoder encodeObject:self.etag forKey:@"etag"];
 }
 
 @end

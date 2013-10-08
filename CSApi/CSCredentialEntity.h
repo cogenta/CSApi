@@ -11,13 +11,21 @@
 
 @class YBHALResource;
 
-@interface CSCredentialEntity : NSObject
+@interface CSCredentialEntity : NSObject <CSEntity>
 
-@property (strong, nonatomic) id<CSRequester> requester;
-@property (strong, nonatomic) id<CSCredential> credential;
+@property (nonatomic, strong) YBHALResource *resource;
+@property (nonatomic, strong) id etag;
+@property (readonly, strong) id<CSRequester> requester;
+@property (readonly, strong) id<CSCredential> credential;
 
-- (id)initWithRequester:(id<CSRequester>)requester
-             credential:(id<CSCredential>)credential;
+- (id)initWithResource:(YBHALResource *)resource
+             requester:(id<CSRequester>)requester
+            credential:(id<CSCredential>)credential
+                  etag:(id)etag;
+
+- (id)initWithResource:(YBHALResource *)resource
+             requester:(id<CSRequester>)requester
+            credential:(id<CSCredential>)credential;
 
 - (id<CSAPIRequest>)postURL:(NSURL *)URL
            body:(id)body
@@ -42,6 +50,8 @@
 - (NSURL *)URLForRelation:(NSString *)relation
                 arguments:(NSDictionary *)args
                  resource:(YBHALResource *)resource;
+
+- (void)loadExtraProperties;
 
 @end
 

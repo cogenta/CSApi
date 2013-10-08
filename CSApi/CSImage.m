@@ -17,40 +17,20 @@
 
 @implementation CSImage
 
-@synthesize URL = _URL;
-@synthesize etag;
 @synthesize width;
 @synthesize height;
 @synthesize enclosureURL;
 @synthesize enclosureType;
 
-- (id)initWithResource:(YBHALResource *)aResource
-             requester:(id<CSRequester>)aReqester
-            credential:(id<CSCredential>)aCredential
-                  etag:(id)anEtag
+- (void)loadExtraProperties
 {
-    self = [super initWithRequester:aReqester credential:aCredential];
-    if (self) {
-        _resource = aResource;
-        etag = anEtag;
-        width = aResource[@"width"];
-        height = aResource[@"height"];
-    }
-    return self;
-}
-
-- (NSURL *)URL
-{
-    if ( ! _URL) {
-        _URL = [_resource linkForRelation:@"self"].URL;
-    }
-    
-    return _URL;
+    width = self.resource[@"width"];
+    height = self.resource[@"height"];
 }
 
 - (void)loadEnclosure
 {
-    YBHALLink *enclosure = [_resource linkForRelation:@"enclosure"];
+    YBHALLink *enclosure = [self.resource linkForRelation:@"enclosure"];
     enclosureURL = enclosure.URL;
     enclosureType = enclosure.type;
 }

@@ -13,11 +13,5 @@
 
 @interface CSApplication : CSCredentialEntity <CSApplication>
 
-@property (strong, nonatomic) YBHALResource *resource;
-
-- (id)initWithHAL:(YBHALResource *)resource
-        requester:(id<CSRequester>)requester
-       credential:(id<CSCredential>)credential;
-
 @end
 

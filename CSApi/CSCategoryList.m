@@ -28,7 +28,7 @@
             }
             
             CSCategory *category = [[CSCategory alloc]
-                                    initWithHAL:resource
+                                    initWithResource:resource
                                     requester:self.requester
                                     credential:self.credential];
             callback(category, nil);

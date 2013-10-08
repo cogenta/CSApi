@@ -10,10 +10,6 @@
 
 @interface CSResourceListItem : CSListItem
 
-@property (readonly) YBHALResource *resource;
-
-- (id)initWithResource:(YBHALResource *)resource
-             requester:(id<CSRequester>)requester
-            credential:(id<CSCredential>)credential;
+- (id)initWithResource:(YBHALResource *)resource;
 
 @end

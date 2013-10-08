@@ -15,46 +15,37 @@
 
 @interface CSListPage ()
 
-@property (readonly) YBHALResource *resource;
+@property (readonly) NSURL *next;
+@property (readonly) NSURL *prev;
+@property (readonly) NSString *rel;
+
 - (NSUInteger) getCountForResource:(YBHALResource *)resource;
+
+
 @end
 
 @implementation CSListPage
 
-@synthesize resource;
 @synthesize count;
 @synthesize items;
-@synthesize URL;
 @synthesize next;
 @synthesize prev;
 
-- (id)initWithHal:(YBHALResource *)aResource
-        requester:(id<CSRequester>)aRequester
-       credential:(id<CSCredential>)aCredential
+- (void)loadExtraProperties
 {
-    if ( ! aResource) {
-        return nil;
-    }
-    self = [super initWithRequester:aRequester credential:aCredential];
-    if (self) {
-        resource = aResource;
-        count = [self getCountForResource:resource];
-    }
-    return self;
+    count = [self getCountForResource:self.resource];
 }
 
 - (NSArray *)items
 {
     if ( ! items) {
-        NSArray *resources = [resource resourcesForRelation:self.rel];
+        NSArray *resources = [self.resource resourcesForRelation:self.rel];
         if (resources) {
             items = [resources mapUsingBlock:^id(id obj) {
-                return [[CSResourceListItem alloc] initWithResource:obj
-                                                          requester:self.requester
-                                                         credential:self.credential];
+                return [[CSResourceListItem alloc] initWithResource:obj];
             }];
         } else {
-            NSArray *links = [resource linksForRelation:self.rel];
+            NSArray *links = [self.resource linksForRelation:self.rel];
             items = [links mapUsingBlock:^id(id obj) {
                 return [[CSLinkListItem alloc] initWithLink:obj
                                                   requester:self.requester
@@ -70,19 +61,10 @@
     return items;
 }
 
-- (NSURL *)URL
-{
-    if ( ! URL) {
-        URL = [resource linkForRelation:@"self"].URL;
-    }
-    
-    return URL;
-}
-
 - (NSURL *)next
 {
     if ( ! next) {
-        next = [resource linkForRelation:@"next"].URL;
+        next = [self.resource linkForRelation:@"next"].URL;
     }
     return next;
 }
@@ -90,29 +72,29 @@
 - (NSURL *)prev
 {
     if ( ! prev) {
-        prev = [resource linkForRelation:@"prev"].URL;
+        prev = [self.resource linkForRelation:@"prev"].URL;
     }
     return prev;
 }
 
 - (NSUInteger)getCountForResource:(YBHALResource *)aResource
 {
-    return [resource[@"count"] unsignedIntegerValue];
+    return [self.resource[@"count"] unsignedIntegerValue];
 }
 
 - (NSNumber *)page
 {
-    return resource[@"page"];
+    return self.resource[@"page"];
 }
 
 - (NSNumber *)pages
 {
-    return resource[@"pages"];
+    return self.resource[@"pages"];
 }
 
 - (NSNumber *)size
 {
-    return resource[@"size"];
+    return self.resource[@"size"];
 }
 
 - (NSString *)rel
@@ -134,7 +116,7 @@
                     requester:(id<CSRequester>)aRequester
                    credential:(id<CSCredential>)aCredential
 {
-    return [[CSListPage alloc] initWithHal:aResource
+    return [[CSListPage alloc] initWithResource:aResource
                                  requester:self.requester
                                 credential:self.credential];
 }
@@ -199,6 +181,13 @@
 {
     return [NSString stringWithFormat:@"<%s URL=%@>",
             class_getName([self class]), self.URL];
+}
+
+- (instancetype)pageWithHal:(YBHALResource *)aResource
+{
+    return [[[self class] alloc] initWithResource:aResource
+                                        requester:self.requester
+                                       credential:self.credential];
 }
 
 @end

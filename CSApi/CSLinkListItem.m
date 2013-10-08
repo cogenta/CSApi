@@ -10,24 +10,37 @@
 
 #import <HyperBek/HyperBek.h>
 
-@implementation CSLinkListItem
+@interface CSLinkListItem ()
 
-@synthesize URL;
+@property (strong, nonatomic) id<CSRequester> requester;
+@property (strong, nonatomic) id<CSCredential> credential;
+@property (copy, nonatomic) NSURL *URL;
+
+@end
+
+@implementation CSLinkListItem
 
 - (id)initWithLink:(YBHALLink *)link
          requester:(id<CSRequester>)aRequester
         credential:(id<CSCredential>)aCredential;
 {
-    self = [super initWithRequester:aRequester credential:aCredential];
+    self = [super init];
     if (self) {
-        URL = link.URL;
+        self.URL = link.URL;
+        self.requester = aRequester;
+        self.credential = aCredential;
     }
     return self;
 }
 
 - (id<CSAPIRequest>)getSelf:(void (^)(YBHALResource *, NSError *))callback
 {
-    return [self getURL:URL callback:^(id result, id etag, NSError *error) {
+    return (id<CSAPIRequest>) [self.requester getURL:self.URL
+                                          credential:self.credential
+                                            callback:^(id result,
+                                                       id etag,
+                                                       NSError *error)
+    {
         callback(result, error);
     }];
 }

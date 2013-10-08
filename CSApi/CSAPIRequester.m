@@ -150,7 +150,7 @@
 
 @end
 
-@interface CSAPIRequester ()
+@interface CSAPIRequester () <NSCoding>
 
 @property (strong, nonatomic) NSOperationQueue *halDecoderQueue;
 
@@ -365,6 +365,18 @@
                        body:nil
                        etag:nil
                    callback:callback];
+}
+
+#pragma mark - NSCoding
+
+- (void)encodeWithCoder:(NSCoder *)aCoder
+{
+    // Do nothing
+}
+
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    return [self init];
 }
 
 @end

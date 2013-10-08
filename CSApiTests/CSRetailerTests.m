@@ -131,32 +131,6 @@
     STAssertEqualObjects(retailer.name, resource[@"name"], nil);
 }
 
-- (void)testRetailerLinkOverridesSelfForURL
-{
-    NSURL *baseURL = [NSURL URLWithString:@"http://localhost/"];
-    NSString *path = @"/retailers/foo";
-    NSURL *expectedURL = [[NSURL URLWithString:path relativeToURL:baseURL]
-                          absoluteURL];
-    
-    json = @{@"_links":
-                 @{@"self": @{@"href": @"/filers/bar"},
-                   @"api:retailer": @{@"href": path},
-                   @"curies": @[@{@"href": @"/rels/{rel}",
-                                  @"name": @"api",
-                                  @"templated": @(YES)}
-                                ]
-                   }
-             };
-    
-    resource = [[YBHALResource alloc] initWithDictionary:json baseURL:baseURL];
-    retailer = [[CSRetailer alloc] initWithResource:resource
-                                          requester:self.requester
-                                         credential:self.credential];
-                                           
-    
-    STAssertEqualObjects(retailer.URL, expectedURL, nil);
-}
-
 - (void)testGetPicture
 {
     __block NSError *error = [NSError errorWithDomain:@"not called"

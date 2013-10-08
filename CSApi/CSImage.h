@@ -11,12 +11,4 @@
 
 @interface CSImage : CSCredentialEntity <CSImage>
 
-- (id)initWithResource:(YBHALResource *)resource
-             requester:(id<CSRequester>)requester
-            credential:(id<CSCredential>)credential
-                  etag:(id)etag;
-
-@property (nonatomic, readonly) NSURL *URL;
-@property (nonatomic, readonly) id etag;
-
 @end

@@ -11,13 +11,6 @@
 
 @implementation CSListItem
 
-- (id)initWithRequester:(id<CSRequester>)requester
-             credential:(id<CSCredential>)credential
-{
-    self = [super initWithRequester:requester credential:credential];
-    return self;
-}
-
 - (id<CSAPIRequest>)getSelf:(void (^)(YBHALResource *, NSError *))callback
 {
     callback(nil, nil);
@@ -27,12 +20,6 @@
 - (NSURL *)URL
 {
     return nil;
-}
-
-- (NSString *)description
-{
-    return [NSString stringWithFormat:@"<%s URL=%@>",
-            class_getName([self class]), self.URL];
 }
 
 @end

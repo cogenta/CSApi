@@ -10,12 +10,10 @@
 
 @class YBHALResource;
 
-@interface CSListItem : CSCredentialEntity <CSListItem>
-
-- (id)initWithRequester:(id<CSRequester>)requester
-             credential:(id<CSCredential>)credential;
+@interface CSListItem : NSObject <CSListItem>
 
 - (id<CSAPIRequest>)getSelf:(void (^)(YBHALResource *resource,
                                       NSError *error))callback;
+- (NSURL *)URL;
 
 @end

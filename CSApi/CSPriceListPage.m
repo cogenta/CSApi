@@ -29,9 +29,9 @@
                     requester:(id<CSRequester>)aRequester
                    credential:(id<CSCredential>)aCredential
 {
-    return [[CSPriceListPage alloc] initWithHal:resource
-                                      requester:self.requester
-                                     credential:self.credential];
+    return [[CSPriceListPage alloc] initWithResource:resource
+                                           requester:self.requester
+                                          credential:self.credential];
 }
 
 - (NSUInteger)getCountForResource:(YBHALResource *)resource

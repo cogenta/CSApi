@@ -12,16 +12,8 @@
 
 @interface CSUser : CSCredentialEntity <CSUser>
 
-@property (strong, nonatomic) YBHALResource *resource;
-
-- (id)initWithHal:(YBHALResource *)resource
-        requester:(id<CSRequester>)requester
-             etag:(id)etag;
-- (id)initWithHal:(YBHALResource *)resource
-        requester:(id<CSRequester>)requester
-       credential:(id<CSCredential>)credential
-             etag:(id)etag;
-
-- (void)loadFromResource:(YBHALResource *)resource;
+- (id)initWithResource:(YBHALResource *)resource
+             requester:(id<CSRequester>)requester
+                  etag:(id)etag;
 
 @end

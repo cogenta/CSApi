@@ -13,34 +13,18 @@
 #import <HyperBek/HyperBek.h>
 #import <ISO8601DateFormatter/ISO8601DateFormatter.h>
 
-@interface CSProduct ()
-
-@property (strong, nonatomic) YBHALResource *resource;
-
-@end
-
 @implementation CSProduct
 
-@synthesize resource;
 @synthesize name;
 @synthesize description_;
 @synthesize views;
 @synthesize lastUpdated;
 
-- (id)initWithHAL:(YBHALResource *)aResource
-        requester:(id<CSRequester>)aRequester
-       credential:(id<CSCredential>)aCredential
+- (void)loadExtraProperties
 {
-    self = [super initWithRequester:aRequester
-                         credential:aCredential];
-    if (self) {
-        resource = aResource;
-        
-        name = resource[@"name"];
-        description_ = resource[@"description"];
-        views = resource[@"views"];
-    }
-    return self;
+    name = self.resource[@"name"];
+    description_ = self.resource[@"description"];
+    views = self.resource[@"views"];
 }
 
 - (NSDate *)lastUpdated
@@ -50,14 +34,14 @@
     }
     
     lastUpdated = [[[ISO8601DateFormatter alloc] init]
-                   dateFromString:resource[@"last_updated"]];
+                   dateFromString:self.resource[@"last_updated"]];
     return lastUpdated;
 }
 
 - (void)getPictures:(void (^)(id<CSPictureListPage>, NSError *))callback
 {
     [self getRelation:@"/rels/pictures"
-          forResource:resource
+          forResource:self.resource
              callback:^(YBHALResource *page, NSError *error)
      {
          if (error) {
@@ -65,18 +49,18 @@
              return;
          }
          
-         callback([[CSPictureListPage alloc] initWithHal:page
-                                               requester:self.requester
-                                              credential:self.credential],
+         callback([[CSPictureListPage alloc] initWithResource:page
+                                                    requester:self.requester
+                                                   credential:self.credential],
                   nil);
      }];
 }
 
 - (void)getPrices:(void (^)(id<CSPriceListPage>, NSError *))callback
 {
-    callback([[CSPriceListPage alloc] initWithHal:self.resource
-                                        requester:self.requester
-                                       credential:self.credential],
+    callback([[CSPriceListPage alloc] initWithResource:self.resource
+                                             requester:self.requester
+                                            credential:self.credential],
              nil);
 }
 
@@ -84,7 +68,7 @@
                      callback:(void (^)(CSNominal *, NSError *))callback
 {
     [self getRelation:rel
-          forResource:resource
+          forResource:self.resource
              callback:^(YBHALResource *author, NSError *error) {
         if (error) {
             callback(nil, error);

@@ -49,9 +49,9 @@
     //
     
     resource = [self resourceForFixture:@"slice.json"];
-    slice = [[CSSlice alloc] initWithHAL:resource
-                               requester:requester
-                              credential:credential];
+    slice = [[CSSlice alloc] initWithResource:resource
+                                    requester:requester
+                                   credential:credential];
     
     //
 

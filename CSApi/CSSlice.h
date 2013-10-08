@@ -12,8 +12,4 @@
 
 @interface CSSlice : CSCredentialEntity <CSSlice>
 
-- (id)initWithHAL:(YBHALResource *)resource
-        requester:(id<CSRequester>)requester
-       credential:(id<CSCredential>)credential;
-
 @end

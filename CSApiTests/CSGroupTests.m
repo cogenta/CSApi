@@ -67,10 +67,10 @@
     initialEtag = @"\"Initial ETag\"";
     groupResource = [self resourceForJson:groupDict];
     STAssertNotNil(groupResource, nil);
-    group = [[CSGroup alloc] initWithHal:groupResource
-                               requester:requester
-                              credential:credential
-                                    etag:initialEtag];
+    group = [[CSGroup alloc] initWithResource:groupResource
+                                    requester:requester
+                                   credential:credential
+                                         etag:initialEtag];
     
     //
     

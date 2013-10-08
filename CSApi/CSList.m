@@ -47,9 +47,12 @@
          requester:(id<CSRequester>)aRequester
         credential:(id<CSCredential>)aCredential
 {
-    self = [super initWithRequester:aRequester credential:aCredential];
+    self = [super initWithResource:page.resource
+                         requester:aRequester
+                        credential:aCredential];
     if (self) {
         firstPage = page;
+        
         items = [NSMutableArray array];
         NSUInteger pages = [firstPage.pages unsignedIntegerValue];
         _pages = [NSMutableDictionary dictionaryWithCapacity:pages];
@@ -61,7 +64,9 @@
         
         _backgrounder = [[NSOperationQueue alloc] init];
         _backgrounder.maxConcurrentOperationCount = 10;
-        [self loadSequencialPage:firstPage];
+        if ( ! firstPage.supportsRandomAccess) {
+            [self loadSequencialPage:firstPage];
+        }
     }
     return self;
 }
@@ -78,7 +83,7 @@
         NSDictionary *userInfo = @{@"index": @(index),
                                    @"items": @([items count]),
                                    @"count": @([firstPage count]),
-                                   @"page": lastPage.URL,
+                                   @"page": lastPage.URL ?: [NSNull null],
                                    NSLocalizedDescriptionKey: @"no next page"};
         NSError *outOfRange = [NSError errorWithDomain:@"CSAPI"
                                                   code:0
@@ -205,6 +210,22 @@
 {
     return [NSString stringWithFormat:@"<%s firstPage.URL=%@ lastPage.URL=%@>",
             class_getName([self class]), firstPage.URL, lastPage.URL];
+}
+
+#pragma mark - NSCoding
+
+- (void)encodeWithCoder:(NSCoder *)aCoder
+{
+    [aCoder encodeObject:firstPage forKey:@"page"];
+    [aCoder encodeObject:self.requester forKey:@"requester"];
+    [aCoder encodeObject:self.credential forKey:@"credential"];
+}
+
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    return [self initWithPage:[aDecoder decodeObjectForKey:@"page"]
+                    requester:[aDecoder decodeObjectForKey:@"requester"]
+                   credential:[aDecoder decodeObjectForKey:@"credential"]];
 }
 
 @end

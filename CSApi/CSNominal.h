@@ -16,8 +16,4 @@ CSCoverType,
 CSManufacturer,
 CSSoftwarePlatform>
 
-- (id)initWithResource:(YBHALResource *)resource
-             requester:(id<CSRequester>)requester
-            credential:(id<CSCredential>)credential;
-
 @end

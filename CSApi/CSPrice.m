@@ -11,15 +11,8 @@
 #import "CSRetailer.h"
 #import <HyperBek/HyperBek.h>
 
-@interface CSPrice ()
-
-@property (strong, nonatomic) YBHALResource *resource;
-
-@end
-
 @implementation CSPrice
 
-@synthesize resource;
 @synthesize effectivePrice;
 @synthesize price;
 @synthesize stock;
@@ -27,29 +20,20 @@
 @synthesize currencySymbol;
 @synthesize currencyCode;
 
-- (id)initWithHAL:(YBHALResource *)aResource
-        requester:(id<CSRequester>)requester
-       credential:(id<CSCredential>)credential
+- (void)loadExtraProperties
 {
-    self = [super initWithRequester:requester credential:credential];
-    if (self) {
-        resource = aResource;
-        effectivePrice = resource[@"effective_price"];
-        price = resource[@"price"];
-        deliveryPrice = resource[@"delivery_price"];
-        currencySymbol = resource[@"currency_symbol"];
-        currencyCode = resource[@"currency_code"];
-        stock = resource[@"stock"];
-    }
-    
-    return self;
+    effectivePrice = self.resource[@"effective_price"];
+    price = self.resource[@"price"];
+    deliveryPrice = self.resource[@"delivery_price"];
+    currencySymbol = self.resource[@"currency_symbol"];
+    currencyCode = self.resource[@"currency_code"];
+    stock = self.resource[@"stock"];
 }
-
 
 - (void)getProduct:(void (^)(id<CSProduct>, NSError *))callback
 {
     [self getRelation:@"/rels/product"
-          forResource:resource
+          forResource:self.resource
              callback:^(YBHALResource *product, NSError *error)
      {
          if (error) {
@@ -57,9 +41,9 @@
              return;
          }
          
-         callback([[CSProduct alloc] initWithHAL:product
-                                       requester:self.requester
-                                      credential:self.credential],
+         callback([[CSProduct alloc] initWithResource:product
+                                            requester:self.requester
+                                           credential:self.credential],
                   nil);
      }];
 }
@@ -67,7 +51,7 @@
 - (void)getRetailer:(void (^)(id<CSRetailer>, NSError *))callback
 {
     [self getRelation:@"/rels/retailer"
-          forResource:resource
+          forResource:self.resource
              callback:^(YBHALResource *retailer, NSError *error)
      {
          if (error) {
@@ -84,13 +68,13 @@
 
 - (NSURL *)retailerURL
 {
-    YBHALLink *link = [resource linkForRelation:@"/rels/retailer"];
+    YBHALLink *link = [self.resource linkForRelation:@"/rels/retailer"];
     return link.URL;
 }
 
 - (NSURL *)purchaseURL
 {
-    YBHALLink *link = [resource linkForRelation:@"/rels/purchase"];
+    YBHALLink *link = [self.resource linkForRelation:@"/rels/purchase"];
     return link.URL;
 }
 

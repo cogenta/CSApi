@@ -55,9 +55,9 @@
     
     URL = [resource linkForRelation:@"self"].URL;
     
-    category = [[CSCategory alloc] initWithHAL:resource
-                                     requester:requester
-                                    credential:credential];
+    category = [[CSCategory alloc] initWithResource:resource
+                                          requester:requester
+                                         credential:credential];
     
     //
     

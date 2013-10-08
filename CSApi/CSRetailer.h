@@ -12,8 +12,4 @@
 
 @interface CSRetailer : CSCredentialEntity <CSRetailer, CSListItem>
 
-- (id)initWithResource:(YBHALResource *)resource
-             requester:(id<CSRequester>)requester
-            credential:(id<CSCredential>)credential;
-
 @end

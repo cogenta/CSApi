@@ -21,15 +21,16 @@
             return;
         }
         
-        [item getSelf:^(YBHALResource *resource, NSError *error) {
+        [item getSelf:^(YBHALResource *result, NSError *error) {
             if (error) {
                 callback(nil, error);
                 return;
             }
             
-            CSPicture *picture = [[CSPicture alloc] initWithHal:resource
-                                                      requester:self.requester
-                                                     credential:self.credential];
+            CSPicture *picture = [[CSPicture alloc]
+                                  initWithResource:result
+                                  requester:self.requester
+                                  credential:self.credential];
             callback(picture, nil);
         }];
     }];

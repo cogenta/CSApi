@@ -39,10 +39,10 @@
     YBHALResource *groupResource = [self resourceForFixture:@"group.json"];
     STAssertNotNil(groupResource, nil);
     YBHALResource *userResource = [self resourceForFixture:@"user_get_response.json"];
-    CSUser *user = [[CSUser alloc] initWithHal:userResource
-                                     requester:requester
-                                    credential:credential
-                                          etag:@"ORIGINAL ETAG"];
+    CSUser *user = [[CSUser alloc] initWithResource:userResource
+                                          requester:requester
+                                         credential:credential
+                                               etag:@"ORIGINAL ETAG"];
     
     __block YBHALResource *postBody = nil;
     [requester addPostCallback:^(id body, id etag, requester_callback_t cb) {
@@ -83,10 +83,10 @@
     YBHALResource *groupsResource = [self resourceForFixture:@"groups.json"];
     STAssertNotNil(groupsResource, nil);
     YBHALResource *userResource = [self resourceForFixture:@"user_get_response.json"];
-    CSUser *user = [[CSUser alloc] initWithHal:userResource
-                                     requester:requester
-                                    credential:credential
-                                          etag:@"ORIGINAL ETAG"];
+    CSUser *user = [[CSUser alloc] initWithResource:userResource
+                                          requester:requester
+                                         credential:credential
+                                               etag:@"ORIGINAL ETAG"];
     [requester addGetResponse:groupsResource
                        forURL:[userResource linkForRelation:@"/rels/groups"].URL];
     
@@ -114,10 +114,10 @@
     YBHALResource *groupsResource = [self resourceForFixture:@"groups.json"];
     STAssertNotNil(groupsResource, nil);
     YBHALResource *userResource = [self resourceForFixture:@"user_get_response.json"];
-    CSUser *user = [[CSUser alloc] initWithHal:userResource
-                                     requester:requester
-                                    credential:credential
-                                          etag:@"ORIGINAL ETAG"];
+    CSUser *user = [[CSUser alloc] initWithResource:userResource
+                                          requester:requester
+                                         credential:credential
+                                               etag:@"ORIGINAL ETAG"];
     NSURL *url = [[userResource linkForRelation:@"/rels/groupsbyreference"]
                   URLWithVariables:@{@"reference": @"foo"}];
     url = [[NSURL URLWithString:[url absoluteString]

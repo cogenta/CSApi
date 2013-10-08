@@ -318,7 +318,9 @@ request_handler_t postCallback =
         return [obj linkForRelation:@"self"].URL;
     }];
     STAssertNotNil(expectedURLs, nil);
-    NSArray *actualURLs = [page.items valueForKey:@"URL"];
+    NSArray *actualURLs = [page.items mapUsingBlock:^(id x) {
+        return [x URL];
+    }];
     STAssertEqualObjects(actualURLs, expectedURLs, nil);
     
     STAssertEqualObjects(@(page.count), retailersResource[@"count"], nil);

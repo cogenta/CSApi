@@ -80,6 +80,20 @@
 
 @end
 
+/** Protocol shared by server-side resource. */
+@protocol CSEntity <NSObject, NSCoding>
+
+/** URL of the resource. */
+- (NSURL *)URL;
+
+/** Entity tag of the resource. */
+- (id)etag;
+
+/** The credential used to get the resource. */
+- (id<CSCredential>)credential;
+
+@end
+
 /**
  Provides access to the Cogenta Shopping API.
  
@@ -212,7 +226,7 @@
 @end
 
 /** Protocol for interacting with an application resource. */
-@protocol CSApplication <NSObject>
+@protocol CSApplication <CSEntity>
 
 /** The application's name. */
 @property (readonly) NSString *name;
@@ -259,18 +273,7 @@
 @end
 
 /** Protocol for interacting with a user resource. */
-@protocol CSUser <NSObject>
-
-/** @name Bookkeeping */
-
-/** URL of the user resource. */
-@property (readonly) NSURL *URL;
-
-/** Entity tag of the user resource. */
-@property (readonly) id etag;
-
-/** The user's credential. */
-@property (readonly) id<CSCredential> credential;
+@protocol CSUser <CSEntity>
 
 /** @name User state */
 
@@ -442,10 +445,7 @@
  nor a next page.
  
  */
-@protocol CSListPage <NSObject>
-
-/** URL for the page. */
-@property (readonly) NSURL *URL;
+@protocol CSListPage <CSEntity>
 
 /** The number of items in the entire result set. */
 @property (readonly) NSUInteger count;
@@ -539,16 +539,10 @@
 /** Protocol for accessing an item in a sequence of results. */
 @protocol CSListItem <NSObject>
 
-/** A URL identifying the item. */
-@property (readonly) NSURL *URL;
-
 @end
 
 /** Protocol for accessing a retailer. */
-@protocol CSRetailer <NSObject>
-
-/** The URL of the retailer. */
-@property (readonly) NSURL *URL;
+@protocol CSRetailer <CSEntity>
 
 /** The name of the retailer. */
 @property (readonly) NSString *name;
@@ -568,7 +562,7 @@
 @end
 
 /** Protocol for accessing a list of items. */
-@protocol CSList <NSObject>
+@protocol CSList <CSEntity>
 
 /** The number of items in the list. */
 @property (readonly) NSUInteger count;
@@ -657,7 +651,7 @@
  resource. Likes are created using the createLikeWithChange:callback: method
  on CSGroup.
  */
-@protocol CSLike <NSObject>
+@protocol CSLike <CSEntity>
 
 /** The URL of the resource in which the user is interested. */
 @property (readonly) NSURL *likedURL;
@@ -692,10 +686,7 @@
  A group is a collection of likes with additional reference and meta data.
  Groups are created using the createGroupWithChange:callback: method on CSUser.
  */
-@protocol CSGroup <NSObject>
-
-/** URL of the user resource. */
-@property (readonly) NSURL *URL;
+@protocol CSGroup <CSEntity>
 
 /** The group's reference string.
  
@@ -887,7 +878,7 @@
  
  An image is metadata about an raster image file.
  */
-@protocol CSImage <NSObject>
+@protocol CSImage <CSEntity>
 
 /** The width of the raster image in pixels. */
 @property (readonly) NSNumber *width;
@@ -939,7 +930,7 @@
 @end
 
 /** Protocol for accessing products. */
-@protocol CSProduct <NSObject>
+@protocol CSProduct <CSEntity>
 
 /** The name of the product. */
 @property (readonly) NSString *name;
@@ -1142,7 +1133,7 @@
 @end
 
 /** Protocol for accessing a price. */
-@protocol CSPrice <NSObject>
+@protocol CSPrice <CSEntity>
 
 /** The "final price you pay", inclusive of delivery and offer discounts. */
 @property (readonly) NSNumber *effectivePrice;
@@ -1238,10 +1229,7 @@
 @end
 
 /** Protocol for accessing a category. */
-@protocol CSCategory <NSObject>
-
-/** The URL of the category. */
-@property (readonly) NSURL *URL;
+@protocol CSCategory <CSEntity>
 
 /** The category's name. */
 @property (readonly) NSString *name;
@@ -1271,7 +1259,7 @@
 @end
 
 /** Protocol for accessing an author. */
-@protocol CSAuthor <NSObject>
+@protocol CSAuthor <CSEntity>
 
 /** The author's name. */
 @property (nonatomic, readonly) NSString *name;
@@ -1279,7 +1267,7 @@
 @end
 
 /** Protocol for accessing a cover type. */
-@protocol CSCoverType <NSObject>
+@protocol CSCoverType <CSEntity>
 
 /** The name of the cover type. */
 @property (nonatomic, readonly) NSString *name;
@@ -1287,7 +1275,7 @@
 @end
 
 /** Protocol for accessing a manufacturer. */
-@protocol CSManufacturer <NSObject>
+@protocol CSManufacturer <CSEntity>
 
 /** The manufacturer's name. */
 @property (nonatomic, readonly) NSString *name;
@@ -1295,7 +1283,7 @@
 @end
 
 /** Protocol for accessing a software platform. */
-@protocol CSSoftwarePlatform <NSObject>
+@protocol CSSoftwarePlatform <CSEntity>
 
 /** The name of the software platform. */
 @property (nonatomic, readonly) NSString *name;
@@ -1308,7 +1296,7 @@
  API and can be used to list and search products. Slices may also provide lists
  of Narrows, which are used to obtain further-reduced Slices.
  */
-@protocol CSSlice <NSObject>
+@protocol CSSlice <CSEntity>
 
 /** The URL of the list of products in this Slice.
  
@@ -1835,7 +1823,7 @@
  Slices provide lists of Narrows that enumerate the options to drill down from
  that slice.
  */
-@protocol CSNarrow <NSObject>
+@protocol CSNarrow <CSEntity>
 
 /** A human-readable name to help identify the narrow. */
 @property (nonatomic, readonly) NSString *title;

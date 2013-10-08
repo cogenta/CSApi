@@ -13,23 +13,9 @@
 #import "CSCategory.h"
 #import "CSNominal.h"
 #import "CSNarrowListPage.h"
-
-@interface CSSlice ()
-@property (strong, nonatomic) YBHALResource *resource;
-@end
+#import <HyperBek/HyperBek.h>
 
 @implementation CSSlice
-
-- (id)initWithHAL:(YBHALResource *)resource
-        requester:(id<CSRequester>)requester
-       credential:(id<CSCredential>)credential
-{
-    self = [super initWithRequester:requester credential:credential];
-    if (self) {
-        self.resource = resource;
-    }
-    return self;
-}
 
 - (NSURL *)productsURL
 {
@@ -92,9 +78,9 @@
             return;
         }
         
-        callback([[CSProductListPage alloc] initWithHal:result
-                                              requester:self.requester
-                                             credential:self.credential],
+        callback([[CSProductListPage alloc] initWithResource:result
+                                                   requester:self.requester
+                                                  credential:self.credential],
                  nil);
     }];
 }
@@ -113,9 +99,9 @@
             return;
         }
         
-        callback([[CSProductListPage alloc] initWithHal:result
-                                              requester:self.requester
-                                             credential:self.credential],
+        callback([[CSProductListPage alloc] initWithResource:result
+                                                   requester:self.requester
+                                                  credential:self.credential],
                  nil);
     }];
 }
@@ -131,9 +117,9 @@
              return;
          }
          
-         callback([[CSNarrowListPage alloc] initWithHal:result
-                                              requester:self.requester
-                                             credential:self.credential],
+         callback([[CSNarrowListPage alloc] initWithResource:result
+                                                   requester:self.requester
+                                                  credential:self.credential],
                   nil);
      }];
 }
@@ -149,9 +135,9 @@
              return;
          }
          
-         callback([[CSNarrowListPage alloc] initWithHal:result
-                                              requester:self.requester
-                                             credential:self.credential],
+         callback([[CSNarrowListPage alloc] initWithResource:result
+                                                   requester:self.requester
+                                                  credential:self.credential],
                   nil);
      }];
 }
@@ -167,9 +153,9 @@
              return;
          }
          
-         callback([[CSNarrowListPage alloc] initWithHal:result
-                                              requester:self.requester
-                                             credential:self.credential],
+         callback([[CSNarrowListPage alloc] initWithResource:result
+                                                   requester:self.requester
+                                                  credential:self.credential],
                   nil);
      }];
 }
@@ -185,9 +171,9 @@
              return;
          }
          
-         callback([[CSNarrowListPage alloc] initWithHal:result
-                                              requester:self.requester
-                                             credential:self.credential],
+         callback([[CSNarrowListPage alloc] initWithResource:result
+                                                   requester:self.requester
+                                                  credential:self.credential],
                   nil);
      }];
 }
@@ -203,9 +189,9 @@
              return;
          }
          
-         callback([[CSNarrowListPage alloc] initWithHal:result
-                                              requester:self.requester
-                                             credential:self.credential],
+         callback([[CSNarrowListPage alloc] initWithResource:result
+                                                   requester:self.requester
+                                                  credential:self.credential],
                   nil);
      }];
 }
@@ -221,9 +207,9 @@
              return;
          }
          
-         callback([[CSNarrowListPage alloc] initWithHal:result
-                                              requester:self.requester
-                                             credential:self.credential],
+         callback([[CSNarrowListPage alloc] initWithResource:result
+                                                   requester:self.requester
+                                                  credential:self.credential],
                   nil);
      }];
 }
@@ -267,9 +253,9 @@
              return;
          }
          
-         callback([[CSRetailerListPage alloc] initWithHal:result
-                                                requester:self.requester
-                                               credential:self.credential],
+         callback([[CSRetailerListPage alloc] initWithResource:result
+                                                     requester:self.requester
+                                                    credential:self.credential],
                   nil);
      }];
 }
@@ -290,9 +276,9 @@
              return;
          }
          
-         callback([[CSCategory alloc] initWithHAL:result
-                                        requester:self.requester
-                                       credential:self.credential],
+         callback([[CSCategory alloc] initWithResource:result
+                                             requester:self.requester
+                                            credential:self.credential],
                   nil);
      }];
 }
@@ -405,9 +391,9 @@
              return;
          }
          
-         callback([[CSSlice alloc] initWithHAL:result
-                                     requester:self.requester
-                                    credential:self.credential],
+         callback([[CSSlice alloc] initWithResource:result
+                                          requester:self.requester
+                                         credential:self.credential],
                   nil);
      }];
 }
@@ -428,9 +414,9 @@
              return;
          }
          
-         callback([[CSSlice alloc] initWithHAL:result
-                                     requester:self.requester
-                                    credential:self.credential],
+         callback([[CSSlice alloc] initWithResource:result
+                                          requester:self.requester
+                                         credential:self.credential],
                   nil);
      }];
 }
@@ -451,9 +437,9 @@
              return;
          }
          
-         callback([[CSSlice alloc] initWithHAL:result
-                                     requester:self.requester
-                                    credential:self.credential],
+         callback([[CSSlice alloc] initWithResource:result
+                                          requester:self.requester
+                                         credential:self.credential],
                   nil);
      }];
 }
@@ -474,9 +460,9 @@
              return;
          }
          
-         callback([[CSSlice alloc] initWithHAL:result
-                                     requester:self.requester
-                                    credential:self.credential],
+         callback([[CSSlice alloc] initWithResource:result
+                                          requester:self.requester
+                                         credential:self.credential],
                   nil);
      }];
 }

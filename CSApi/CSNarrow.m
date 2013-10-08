@@ -13,22 +13,11 @@
 #import "CSNominal.h"
 #import <HyperBek/HyperBek.h>
 
-@interface CSNarrow ()
+@interface CSNarrow () <NSCoding>
 @property (strong, nonatomic) YBHALResource *resource;
 @end
 
 @implementation CSNarrow
-
-- (id)initWithHAL:(YBHALResource *)resource
-        requester:(id<CSRequester>)requester
-       credential:(id<CSCredential>)credential
-{
-    self = [super initWithRequester:requester credential:credential];
-    if (self) {
-        self.resource = resource;
-    }
-    return self;
-}
 
 - (NSString *)title
 {
@@ -58,9 +47,9 @@
              return;
          }
          
-         callback([[CSSlice alloc] initWithHAL:result
-                                     requester:self.requester
-                                    credential:self.credential],
+         callback([[CSSlice alloc] initWithResource:result
+                                          requester:self.requester
+                                         credential:self.credential],
                   nil);
      }];
 }
@@ -120,9 +109,9 @@
              return;
          }
          
-         callback([[CSCategory alloc] initWithHAL:result
-                                        requester:self.requester
-                                       credential:self.credential],
+         callback([[CSCategory alloc] initWithResource:result
+                                             requester:self.requester
+                                            credential:self.credential],
                   nil);
      }];
 }

@@ -16,26 +16,13 @@
 #import "CSCategoryList.h"
 #import "CSRetailerListPage.h"
 
-@interface CSCategoryArrayListPage : CSListPage <CSCategoryListPage>
-
-@property (readonly) NSArray *categories;
+@interface CSImmediateSubcategoryListPage : CSListPage <CSCategoryListPage>
 
 @end
 
-@implementation CSCategoryArrayListPage
+@implementation CSImmediateSubcategoryListPage
 
 @synthesize categoryList;
-
-- (id)initWithArray:(NSArray *)categories
-          requester:(id<CSRequester>)requester
-         credential:(id<CSCredential>)credential
-{
-    self = [super initWithRequester:requester credential:credential];
-    if (self) {
-        _categories = categories;
-    }
-    return self;
-}
 
 - (id<CSCategoryList>)categoryList
 {
@@ -49,14 +36,24 @@
     return categoryList;
 }
 
-- (NSArray *)items
+- (id<CSListPage>)pageWithHal:(YBHALResource *)resource
+                    requester:(id<CSRequester>)aRequester
+                   credential:(id<CSCredential>)aCredential
 {
-    return self.categories;
+    return [[CSImmediateSubcategoryListPage alloc]
+            initWithResource:resource
+            requester:self.requester
+            credential:self.credential];
 }
 
-- (NSUInteger)count
+- (NSUInteger)getCountForResource:(YBHALResource *)resource
 {
-    return [self.categories count];
+    NSArray *resources = [resource resourcesForRelation:[self rel]];
+    if (resources) {
+        return [resources count];
+    }
+    
+    return [[resource linksForRelation:[self rel]] count];
 }
 
 - (NSString *)rel
@@ -66,53 +63,23 @@
 
 @end
 
-@interface CSCategory ()
-@property (strong, nonatomic) YBHALResource *resource;
-@end
 
 @implementation CSCategory
 
 @synthesize name;
 
-- (id)initWithHAL:(YBHALResource *)resource
-        requester:(id<CSRequester>)requester
-       credential:(id<CSCredential>)credential
+- (void)loadExtraProperties
 {
-    self = [super initWithRequester:requester credential:credential];
-    if (self) {
-        self.resource = resource;
-        name = self.resource[@"name"];
-    }
-    return self;
+    name = self.resource[@"name"];
 }
 
-- (NSURL *)URL
+- (void)getImmediateSubcategories:(void (^)(id<CSCategoryListPage>,
+                                            NSError *))callback
 {
-    return [self.resource linkForRelation:@"self"].URL;
-}
-
-- (void)getImmediateSubcategories:(void (^)(id<CSCategoryListPage>, NSError *))callback
-{
-    NSArray *items;
-    NSArray *resources = [self.resource resourcesForRelation:@"/rels/immediatesubcategory"];
-    if (resources) {
-        items = [resources mapUsingBlock:^id(id obj) {
-            return [[CSResourceListItem alloc] initWithResource:obj
-                                                      requester:self.requester
-                                                     credential:self.credential];
-        }];
-    } else {
-        NSArray *links = [self.resource linksForRelation:@"/rels/immediatesubcategory"];
-        items = [links mapUsingBlock:^id(id obj) {
-            return [[CSLinkListItem alloc] initWithLink:obj
-                                              requester:self.requester
-                                             credential:self.credential];
-        }];
-    }
-
-    callback([[CSCategoryArrayListPage alloc] initWithArray:items
-                                                  requester:self.requester
-                                                 credential:self.credential],
+    callback([[CSImmediateSubcategoryListPage alloc]
+              initWithResource:self.resource
+              requester:self.requester
+              credential:self.credential],
              nil);
 }
 
