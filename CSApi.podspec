@@ -11,7 +11,9 @@ Pod::Spec.new do |s|
   s.osx.deployment_target = '10.7'
   s.source_files = 'Classes', 'CSApi/**/*.{h,m}'
   s.public_header_files = 'CSApi/CSApi.h'
-  s.frameworks = 'MobileCoreServices', 'SystemConfiguration', 'Foundation'
+  s.ios.frameworks = 'MobileCoreServices', 'SystemConfiguration', 'Foundation'
+15
+  s.osx.frameworks = 'AppKit', 'CoreServices', 'SystemConfiguration', 'Foundation'
   s.requires_arc = true
   s.dependency 'AFNetworking', '1.3.2'
   s.dependency 'HyperBek'
